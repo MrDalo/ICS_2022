@@ -10,11 +10,11 @@
         public float Cost { get; set; }
 
         public Guid CarId { get; set; }
-        public CarEntity Car { get; set; }
+        public CarEntity? Car { get; set; }
         
         public Guid DriverId { get; set; }
-        public UserEntity Driver { get; set; }
+        public UserEntity? Driver { get; set; }
 
-        public ICollection<UserEntity> CoDrivers { get; set; }
+        public ICollection<UserEntity>? CoDrivers { get; set; }
     }
 }

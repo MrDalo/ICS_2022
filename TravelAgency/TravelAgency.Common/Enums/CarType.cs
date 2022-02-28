@@ -1,4 +1,4 @@
-﻿namespace TravelAgency.DAL.Enums;
+﻿namespace TravelAgency.Common.Enums;
 
 public enum CarType
 {
