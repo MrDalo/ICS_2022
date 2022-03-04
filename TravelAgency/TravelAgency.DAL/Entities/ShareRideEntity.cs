@@ -2,25 +2,23 @@
 
 namespace TravelAgency.DAL.Entities
 {
-    public class ShareRideEntity : IEntity
+    public record ShareRideEntity(
+        Guid Id,
+        string FromPlace,
+        string ToPlace,
+        DateTime LeaveTime,
+        DateTime ArriveTime,
+        float Cost,
+        Guid CarId,
+        Guid DriverId) : IEntity
     {
-        public Guid Id { get; set; }
-        public string? FromPlace { get; set; }
-        public string? ToPlace { get; set; }
-        public DateTime LeaveTime { get; set; }
-        public DateTime ArriveTime { get; set; }
-        public float Cost { get; set; }
 
-        public Guid CarId { get; set; }
-        
         [ForeignKey(nameof(CarId))]
-        public CarEntity? Car { get; set; }
-        
-        public Guid DriverId { get; set; }
+        public CarEntity? Car { get; init; }
 
         [ForeignKey(nameof(DriverId))]
-        public UserEntity? Driver { get; set; }
+        public UserEntity? Driver { get; init; }
 
-        public ICollection<UserEntity>? CoDrivers { get; set; }
+        public ICollection<UserEntity>? CoDrivers { get; init; }
     }
 }

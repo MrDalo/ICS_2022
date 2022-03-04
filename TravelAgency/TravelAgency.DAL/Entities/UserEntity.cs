@@ -1,18 +1,19 @@
 ﻿namespace TravelAgency.DAL.Entities
 {
-    public class UserEntity : IEntity
+    public record UserEntity(
+        Guid Id,
+        string Login,
+        string Name,
+        string Surname,
+        string Email,
+        string PhoneNumber,
+        string? PhotoUrl) : IEntity
     {
-        public Guid Id { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public string? Email { get; set; }
-        public string? PhoneNumber { get; set; }
-        public string? PhotoUrl { get; set; }
 
-        public ICollection<ShareRideEntity>? DriverShareRides { get; set; }
+        public ICollection<ShareRideEntity>? DriverShareRides { get; init; }
 
-        public ICollection<ShareRideEntity>? CoDriverShareRides { get; set; }
+        public ICollection<ShareRideEntity>? CoDriverShareRides { get; init; }
 
-        public ICollection<CarEntity>? Cars { get; set; }
+        public ICollection<CarEntity>? Cars { get; init; }
     }
 }
