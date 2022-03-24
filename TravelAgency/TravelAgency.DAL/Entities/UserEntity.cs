@@ -12,7 +12,7 @@
 
         public ICollection<ShareRideEntity>? DriverShareRides { get; init; }
 
-        public ICollection<ShareRideEntity>? CoDriverShareRides { get; init; }
+        public ICollection<ShareRideEntity>? PassengerShareRides { get; init; }
 
         public ICollection<CarEntity>? Cars { get; init; }
     }

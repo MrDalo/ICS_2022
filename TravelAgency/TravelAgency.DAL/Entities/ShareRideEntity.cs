@@ -8,7 +8,7 @@ namespace TravelAgency.DAL.Entities
         string ToPlace,
         DateTime LeaveTime,
         DateTime ArriveTime,
-        float Cost,
+        decimal Cost,
         Guid CarId,
         Guid DriverId) : IEntity
     {
@@ -19,6 +19,6 @@ namespace TravelAgency.DAL.Entities
         [ForeignKey(nameof(DriverId))]
         public UserEntity? Driver { get; init; }
 
-        public ICollection<UserEntity>? CoDrivers { get; init; }
+        public ICollection<UserEntity>? Passengers { get; init; }
     }
 }
