@@ -5,13 +5,17 @@ using Xunit;
 
 namespace TravelAgency.DAL.Tests
 {
+    /**
+     * @brief Tests for UserEntity in DbContext - DB
+     * 
+     */
     public class DbContextUserTests : IAsyncLifetime
     {
             //Field(variable) for DbContext
         private readonly TravelAgencyDbContext _travelAgencyDbContextSut;
 
         /**
-         * @brief Tests for UserEntity in DbContext - DB
+         * @brief Creating DbContext  - InMemory
          * 
          */
         public DbContextUserTests()
