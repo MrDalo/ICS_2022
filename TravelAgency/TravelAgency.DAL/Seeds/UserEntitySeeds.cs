@@ -31,7 +31,7 @@ public static class UserEntitySeeds
     };
 
     public static readonly UserEntity Passenger2 = new(
-        Id: Guid.Parse(input: "061f3338-0d39-4549-8b7d-ec74f76ba4b1"),
+        Id: Guid.Parse(input: "05553338-0d39-4549-8b7d-ec74f76ba4b1"),
         Name: "Emily",
         Login: "xgreen12",
         Surname: "Green",
