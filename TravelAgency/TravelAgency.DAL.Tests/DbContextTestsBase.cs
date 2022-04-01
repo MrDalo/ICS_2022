@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using TravelAgency.DAL.Tests.Factories;
-using TravelAgency.DAL.Factories;
+using TravelAgency.Common.Tests;
+using TravelAgency.Common.Tests.Factories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Xunit;

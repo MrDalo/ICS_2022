@@ -13,9 +13,8 @@ namespace TravelAgency.DAL.Tests
         public DbContextUserTests(ITestOutputHelper output) : base(output)
         {
         }
+        
         [Fact]
-
-
         public async Task AddNew_User_Persisted()
         {
             //Arrange
@@ -40,6 +39,7 @@ namespace TravelAgency.DAL.Tests
             Assert.Equal(entity, actualEntities);
         }
 
+        [Fact]
         public async Task GetAll_Users_FromDB()
         {
             var users = await TravelAgencyDbContextSUT.Users.ToArrayAsync();

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TravelAgency.DAL.Seeds;
 
-public static class CarEntitySeeds
+public static class CarSeeds
 {
     public static readonly CarEntity FiatMultipla = new(
         Id: Guid.Parse(input: "1206bea4-b4b2-41a1-bf70-4dc610283298"),
@@ -15,9 +15,9 @@ public static class CarEntitySeeds
         ImgUrl: null,
         RegistrationDate: DateTime.Parse("2021-10-10"), 
         Capacity: 3,
-        OwnerId: UserEntitySeeds.Driver1.Id)
+        OwnerId: UserSeeds.Driver1.Id)
     {
-        Owner = UserEntitySeeds.Driver1
+        Owner = UserSeeds.Driver1
     };
 
     public static void Seed(this ModelBuilder modelBuilder)

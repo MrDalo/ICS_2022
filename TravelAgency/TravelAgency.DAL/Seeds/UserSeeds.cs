@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TravelAgency.DAL.Seeds;
 
-public static class UserEntitySeeds
+public static class UserSeeds
 {
     public static readonly UserEntity Driver1 = new(
         Id: Guid.Parse(input: "dc5df605-d676-4c25-98d8-5b795c7b6503"),
@@ -44,7 +44,6 @@ public static class UserEntitySeeds
 
     public static void Seed(this ModelBuilder modelBuilder)
     {
-        // TODO: why is it set to null and empty
         modelBuilder.Entity<UserEntity>().HasData(
             Driver1 with
             {

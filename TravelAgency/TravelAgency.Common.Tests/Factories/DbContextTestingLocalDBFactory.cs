@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TravelAgency.DAL;
 
-namespace TravelAgency.DAL.Tests.Factories
+namespace TravelAgency.Common.Tests.Factories
 {
     public class DbContextTestingLocalDBFactory : IDbContextFactory<TravelAgencyDbContext>
     {

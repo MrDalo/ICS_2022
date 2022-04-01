@@ -58,9 +58,9 @@ namespace TravelAgency.DAL
 
             if (_seedDemoData)
             {
-                UserEntitySeeds.Seed(modelBuilder);
-                CarEntitySeeds.Seed(modelBuilder);
-                ShareRideEntitySeeds.Seed(modelBuilder);
+                UserSeeds.Seed(modelBuilder);
+                CarSeeds.Seed(modelBuilder);
+                ShareRideSeeds.Seed(modelBuilder);
             }
         }
     }
