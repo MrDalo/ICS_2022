@@ -5,19 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TravelAgency.DAL.Entities;
+using TravelAgency.DAL.Seeds;
 
 namespace TravelAgency.DAL
 {
     public class TravelAgencyDbContext : DbContext
     {
+        private readonly bool _seedDemoData;
+
         /**
          * @brief Construction of DbContext
          */
-        public TravelAgencyDbContext(DbContextOptions contextOptions): base(contextOptions)
+        public TravelAgencyDbContext(DbContextOptions contextOptions, bool seedDemoData = false)
+            : base(contextOptions)
         {
-
+            _seedDemoData = seedDemoData;
         }
-
 
         public DbSet<CarEntity> Cars => Set<CarEntity>();
         public DbSet<ShareRideEntity> ShareRides => Set<ShareRideEntity>();
@@ -52,6 +55,13 @@ namespace TravelAgency.DAL
                 .WithMany(u => u.PassengerShareRides)
                 .UsingEntity(j => j.ToTable("PassengerOfShareRide")); // Malo by to vytvorit novu tabulku s nazvom PassengerOfShareRide - N k N vztah je tvorba novej tabulky
                 //src: https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-composite-key%2Csimple-key
+
+            if (_seedDemoData)
+            {
+                UserEntitySeeds.Seed(modelBuilder);
+                CarEntitySeeds.Seed(modelBuilder);
+                ShareRideEntitySeeds.Seed(modelBuilder);
+            }
         }
     }
 }
