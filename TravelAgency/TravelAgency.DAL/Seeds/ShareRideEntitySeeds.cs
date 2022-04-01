@@ -10,8 +10,8 @@ public static class ShareRideEntitySeeds
         Id: Guid.Parse(input: "f3a11d15-d449-4632-8ba9-2720c0fdab70"),
         FromPlace: "Brno",
         ToPlace: "Prague",
-        LeaveTime: DateTime.ParseExact("2022-02-18 05:50 PM", "yyyy-MM-dd HH:mm tt", null),
-        ArriveTime: DateTime.ParseExact("2022-02-18 09:30 PM", "yyyy-MM-dd HH:mm tt", null),
+        LeaveTime: new DateTime(2022, 2, 18, 12, 30, 0),
+        ArriveTime: new DateTime(2022, 2, 18, 16, 30, 0),
         Cost: 10,
         CarId: CarEntitySeeds.FiatMultipla.Id,
         DriverId: UserEntitySeeds.Driver1.Id)
