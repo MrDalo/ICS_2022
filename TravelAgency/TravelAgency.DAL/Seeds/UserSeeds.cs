@@ -13,10 +13,7 @@ public static class UserSeeds
         Surname: "Smith",
         Email: "davidsmith@gmail.com",
         PhoneNumber: "+421789564111",
-        PhotoUrl: null)
-    {
-        // TODO: Add ICollections
-    };
+        PhotoUrl: null);
 
     public static readonly UserEntity Passenger1 = new(
         Id: Guid.Parse(input: "061f3338-0d39-4549-8b7d-ec74f76ba4b1"),
@@ -25,10 +22,7 @@ public static class UserSeeds
         Surname: "Taylor",
         Email: "emanueltaylor@gmail.com",
         PhoneNumber: "+421045256789",
-        PhotoUrl: null)
-    {
-        // TODO: Add ICollections
-    };
+        PhotoUrl: null);
 
     public static readonly UserEntity Passenger2 = new(
         Id: Guid.Parse(input: "05553338-0d39-4549-8b7d-ec74f76ba4b1"),
@@ -37,10 +31,16 @@ public static class UserSeeds
         Surname: "Green",
         Email: "emilygreen@gmail.com",
         PhoneNumber: "+421124569785",
-        PhotoUrl: null)
+        PhotoUrl: null);
+
+    static UserSeeds()
     {
-        // TODO: Add ICollections
-    };
+        Driver1.Cars.Add(CarSeeds.FiatMultipla);
+        Driver1.DriverShareRides.Add(ShareRideSeeds.ShareRide1);
+        Passenger1.PassengerShareRides.Add(ShareRideSeeds.ShareRide1 );
+        Passenger2.PassengerShareRides.Add( ShareRideSeeds.ShareRide1 );
+    }
+
 
     public static void Seed(this ModelBuilder modelBuilder)
     {

@@ -51,14 +51,14 @@ namespace TravelAgency.DAL.Tests
             Assert.True(cars.Any());
         }
 
-        [Fact]
-        public async Task GetAll_Fiat_Cars_FromDB()
-        {
+        //[Fact]
+        //public async Task GetAll_Fiat_Cars_FromDB()
+        //{
            
-            var fiat = await TravelAgencyDbContextSUT.Cars.ToArrayAsync();
+        //    var fiat = await TravelAgencyDbContextSUT.Cars.ToArrayAsync();
 
-            Assert.Contains(CarSeeds.FiatMultipla, fiat);
-        }
+        //    Assert.Contains(CarSeeds.FiatMultipla, fiat);
+        //}
 
        /* [Fact]
         public async Task GetById_Cars_FiatRetrieved()

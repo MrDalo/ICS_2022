@@ -18,14 +18,14 @@ public static class ShareRideSeeds
     {
         Car = CarSeeds.FiatMultipla,
         Driver = UserSeeds.Driver1,
-        //Passengers = new List<UserEntity> { UserSeeds.Passenger1 }
     };
 
-    //static ShareRideSeeds()
-    //{
-    //    ShareRide1.Passengers = new List<UserEntity> {UserSeeds.Passenger1};
-    //}
-    
+    static ShareRideSeeds()
+    {
+        ShareRide1.Passengers.Add(UserSeeds.Passenger1);
+        ShareRide1.Passengers.Add(UserSeeds.Passenger2);
+    }
+
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ShareRideEntity>().HasData(

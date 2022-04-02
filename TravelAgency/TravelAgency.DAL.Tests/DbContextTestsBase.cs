@@ -14,7 +14,7 @@ public class DbContextTestsBase : IAsyncLifetime
     protected DbContextTestsBase(ITestOutputHelper output)
     {
         // Switch between databases
-        //DbContextFactory = new DbContextTestingInMemoryFactory("TravelAgency", true);//GetType().FullName!, seedTestingData: true);
+        //DbContextFactory = new DbContextTestingInMemoryFactory(GetType().FullName!, true);//GetType().FullName!, seedTestingData: true);
         DbContextFactory = new DbContextTestingLocalDBFactory(GetType().FullName!, true);
 
         TravelAgencyDbContextSUT = DbContextFactory.CreateDbContext();
@@ -31,7 +31,8 @@ public class DbContextTestsBase : IAsyncLifetime
 
     public async Task DisposeAsync()
     {
-       // await TravelAgencyDbContextSUT.Database.EnsureDeletedAsync();
+        // TODO: uncomment
+        //await TravelAgencyDbContextSUT.Database.EnsureDeletedAsync();
         await TravelAgencyDbContextSUT.DisposeAsync();
     }
 }

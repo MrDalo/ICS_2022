@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using TravelAgency.Common.Enums;
+﻿using TravelAgency.Common.Enums;
 
 namespace TravelAgency.DAL.Entities
 {
@@ -14,7 +13,6 @@ namespace TravelAgency.DAL.Entities
         Guid OwnerId) : IEntity
     {
 
-        [ForeignKey(nameof(OwnerId))]
         public UserEntity? Owner { get; init; }
     }
 }
