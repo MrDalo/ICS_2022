@@ -60,14 +60,14 @@ namespace TravelAgency.DAL.Tests
             Assert.Contains(CarSeeds.FiatMultipla, fiat);
         }
 
-        [Fact]
+       /* [Fact]
         public async Task GetById_Cars_FiatRetrieved()
         {
 
             var fiat = await TravelAgencyDbContextSUT.Cars.SingleAsync(i => i.Id == CarSeeds.FiatMultipla.Id);
 
             Assert.Equal(CarSeeds.FiatMultipla, fiat);
-        }
+        }*/
 
     }
 }

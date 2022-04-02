@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TravelAgency.Common.Tests;
 using TravelAgency.DAL.Entities;
 using Xunit;
 using Xunit.Abstractions;
@@ -36,7 +37,7 @@ namespace TravelAgency.DAL.Tests
             //Assert
             await using var dbx = await DbContextFactory.CreateDbContextAsync();
             var actualEntities = await dbx.Users.SingleAsync(i => i.Id == entity.Id);
-            Assert.Equal(entity, actualEntities);
+            DeepAssert.Equal(entity, actualEntities);
         }
 
         [Fact]

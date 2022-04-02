@@ -15,7 +15,7 @@ public class DbContextTestsBase : IAsyncLifetime
     {
         // Switch between databases
         //DbContextFactory = new DbContextTestingInMemoryFactory("TravelAgency", true);//GetType().FullName!, seedTestingData: true);
-        DbContextFactory = new DbContextTestingLocalDBFactory("TravelAgency", true);
+        DbContextFactory = new DbContextTestingLocalDBFactory(GetType().FullName!, true);
 
         TravelAgencyDbContextSUT = DbContextFactory.CreateDbContext();
     }
