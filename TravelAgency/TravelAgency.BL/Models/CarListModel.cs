@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using TravelAgency.BL.Models;
 using TravelAgency.DAL.Entities;
 using TravelAgency.DAL.UnitOfWork;
 using TravelAgency.Common.Enums;
@@ -25,7 +24,7 @@ namespace TravelAgency.BL.Models
         {
             public MapperProfile()
             {
-                CreateMap<CarEntity, CarDetailModel>();
+                CreateMap<CarEntity, CarListModel>();
             }
         }
     }

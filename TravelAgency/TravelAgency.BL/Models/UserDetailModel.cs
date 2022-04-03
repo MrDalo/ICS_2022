@@ -28,7 +28,7 @@ namespace TravelAgency.BL.Models
 
         public List<ShareRideListModel> PassengerShareRides { get; init; } = new();
 
-        public List<CarEntity> Cars { get; init; } = new();
+        public List<CarListModel> Cars { get; init; } = new();
         //TODO pri LIST Cars treba zistit a zvalidovat zapis, pretoze moze byt list prazdny, asi treba zmenit aj <CarEntity> na nejaky CarModel
 
         public class MapperProfile : Profile
