@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelAgency.Common.Tests.Seeds
+namespace TravelAgency.DAL.Tests
 {
-    internal class Class1
+    internal class DbContextShareRideTests
     {
     }
 }
