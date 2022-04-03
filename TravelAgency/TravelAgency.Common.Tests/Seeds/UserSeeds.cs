@@ -19,17 +19,17 @@ public static class UserSeeds
     );
 
     public static readonly UserEntity UserEntity = new(
-        Id: Guid.Parse(input: "dc5df605-d676-4c25-98d8-5b795c7b6503"),
-        Name: "David",
+        Id: Guid.Parse(input: "4c5df605-d676-4c25-98d8-5b795c7b6503"),
+        Name: "Johan",
         Login: "xsmith00",
-        Surname: "Smith",
+        Surname: "Schnitt",
         Email: "davidsmith@gmail.com",
         PhoneNumber: "+421789564111",
         PhotoUrl: null
     );
 
     public static readonly UserEntity UserEntity1 = new(
-        Id: Guid.Parse(input: "bc5df605-d676-4c25-98d8-5b795c7b6503"),
+        Id: Guid.Parse(input: "5c5df605-d676-4c25-98d8-5b795c7b6503"),
         Login: "xsmith00",
         Name: "Lacko",
         Surname: "Placko",
@@ -41,21 +41,19 @@ public static class UserSeeds
 
     //To ensure that no tests reuse these clones for non-idempotent operations
     public static readonly UserEntity UserEntityWithNoCars = 
-        UserEntity with { Id = Guid.Parse("98B7F7B6-0F51-43B3-B8C0-B5FCFFF6DC2E"), DriverShareRides = Array.Empty<ShareRideEntity>() , PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>()};
+        UserEntity with { Id = Guid.Parse("1117F7B6-0F51-43B3-B8C0-B5FCFFF6DC2E"), DriverShareRides = Array.Empty<ShareRideEntity>() , PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>()};
    
-    public static readonly UserEntity UserEntityUpdate = UserEntity with { /*Id = Guid.Parse("0953F3CE-7B1A-48C1-9796-D2BAC7F67868"),*/ DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
-    public static readonly UserEntity UserForCarEntityUpdate = UserEntity with { Id = Guid.Parse("4FD824C0-A7D1-48BA-8E7C-4F136CF8BF31"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
-   
-   
-    //public static readonly UserEntity UserEntityDelete = UserEntity1 with { Id = Guid.Parse("dvc5df605-d676-4c25-98d8-5b795c7b6503"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
-    //TODO minimalne to uprac ty prase xD
-    /*public static readonly UserEntity RecipeForIngredientAmountEntityDelete = UserEntity with { Id = Guid.Parse("F78ED923-E094-4016-9045-3F5BB7F2EB88"), Ingredients = Array.Empty<IngredientAmountEntity>() };*/
-
+    public static readonly UserEntity UserEntityUpdate = UserEntity with { Id = Guid.Parse("2223F3CE-7B1A-48C1-9796-D2BAC7F67868"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
+    public static readonly UserEntity UserForCarEntityUpdate = UserEntity with { Id = Guid.Parse("333824C0-A7D1-48BA-8E7C-4F136CF8BF31"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
+    public static readonly UserEntity UserCarEntityDelete = UserEntity with { Id = Guid.Parse("444824C0-A7D1-48BA-8E7C-4F136CF8BF31"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
+    public static readonly UserEntity UserCarAdd = UserEntity with { Id = Guid.Parse("555824C0-A7D1-48BA-8E7C-4F136CF8BF31"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
+    public static readonly UserEntity UserForUserCarDelete = UserEntity with { Id = Guid.Parse("666824C0-A7D1-48BA-8E7C-4F136CF8BF31"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
 
     static UserSeeds()
     {
        UserEntity.Cars.Add(CarSeeds.CarEntity2);
-       
+       UserEntity.Cars.Add(CarSeeds.CarEntity1);
+
     }
 
     public static void Seed(this ModelBuilder modelBuilder)
@@ -65,8 +63,10 @@ public static class UserSeeds
             UserEntity1 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             UserEntityWithNoCars,
             UserEntityUpdate,
-            UserForCarEntityUpdate
-           // UserEntityDelete
+            UserForCarEntityUpdate,
+            UserCarEntityDelete,
+            UserForUserCarDelete,
+            UserCarAdd
         );
     }
 }
