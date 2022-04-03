@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TravelAgency.Common.Tests
 {
-    public class CookBookTestingDbContext : TravelAgencyDbContext
+    public class TravelAgencyTestingDbContext : TravelAgencyDbContext
     {
         private readonly bool _seedTestingData;
 
-        public CookBookTestingDbContext(DbContextOptions contextOptions, bool seedTestingData = false)
+        public TravelAgencyTestingDbContext(DbContextOptions contextOptions, bool seedTestingData = false)
             : base(contextOptions, seedDemoData: false)
         {
             _seedTestingData = seedTestingData;
@@ -20,10 +20,9 @@ namespace TravelAgency.Common.Tests
 
             if (_seedTestingData)
             {
-                //TODO
-                /* IngredientSeeds.Seed(modelBuilder);
-                 RecipeSeeds.Seed(modelBuilder);
-                 IngredientAmountSeeds.Seed(modelBuilder);*/
+                UserSeeds.Seed(modelBuilder);
+                CarSeeds.Seed(modelBuilder);
+                //ShareRideSeeds.Seed(modelBuilder);
             }
         }
     }

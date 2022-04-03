@@ -20,7 +20,7 @@ namespace TravelAgency.Common.Tests.Factories
             builder.UseSqlServer($"Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog = {_databaseName};MultipleActiveResultSets = True;Integrated Security = True; ");
 
             // TravelAgencyDbContext seedDemoData set to true in order to run tests
-            return new TravelAgencyDbContext(builder.Options, _seedTestingData);
+            return new TravelAgencyTestingDbContext(builder.Options, _seedTestingData);
         }
     }
 }
