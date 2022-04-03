@@ -26,9 +26,7 @@ namespace TravelAgency.DAL
         public DbSet<ShareRideEntity> ShareRides => Set<ShareRideEntity>();
         public DbSet<UserEntity> Users => Set<UserEntity>();
 
-            //Vlozenie pociatocnych dat, ak sa DB spusti, budu tam testovacie data - isiel som podla cvika 2.
-            //Nedokoncil som to preto, lebo nas DB ma byt prezistentna(data sa nemaju po vypnuti appky stratil a maju sa zachovat)
-            //Teda neviem ,ci mame Db naplnit pre testovacie uceli datami dopredu alebo v testoch sa data insertnu, otestuju a nasledne zmazu
+            
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -42,7 +40,7 @@ namespace TravelAgency.DAL
 
             modelBuilder.Entity<ShareRideEntity>()
                 .HasOne(s => s.Car)
-                .WithMany() // Neviem ci toto pojde, CarEntity nema iCollection<ShareRideEntity> takze to nemam s cim prepojit
+                .WithMany() 
                 .HasForeignKey(s => s.CarId)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -52,8 +50,7 @@ namespace TravelAgency.DAL
                 .HasForeignKey(s => s.DriverId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //TODO hasForeignKey treba asi zmenit na nejaku implicitnu hodnotu, aby to tam nebolo natvrdo.... hovoril v prednaske, bude mozno na cviku
-
+            
             modelBuilder.Entity<ShareRideEntity>()
                 .HasMany(s => s.Passengers)
                 .WithMany(u => u.PassengerShareRides)
