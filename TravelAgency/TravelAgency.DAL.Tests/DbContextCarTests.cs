@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TravelAgency.Common.Enums;
 using TravelAgency.Common.Tests;
+using TravelAgency.Common.Tests.Seeds;
 using TravelAgency.DAL.Entities;
-using TravelAgency.DAL.Seeds;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -21,17 +21,19 @@ namespace TravelAgency.DAL.Tests
         public async Task AddNew_Car()
         {
             //Arrange
-            CarEntity entity = new(
-                //Guid.Parse("C5DE45D7-64A0-4E8D-AC7F-BF5CFDFB0EFC"),
-                Id: Guid.Parse(input: "C9D2B626-05F3-4878-B174-24AA7C8E1773"),
-                LicensePlate: "IL012DD",
-                Manufacturer: "Skoda",
-                CarType.Sedan,
-                RegistrationDate: DateTime.Today, 
-                ImgUrl: "https://fiat-zilina.sk/vozidlo/fiat-doblo/",
-                Capacity: 5,
-                OwnerId: UserSeeds.Driver1.Id
-            );
+            var entity = CarSeeds.EmptyCarEntity with{
+
+                Id= Guid.Parse(input: "18501907-3B8B-447C-9F20-9248C1A2C939"),
+                LicensePlate= "TN123DD",
+                Manufacturer= "BMW",
+                CarType= CarType.SportsCar,
+                ImgUrl= null,
+                RegistrationDate= DateTime.Parse("2021-10-10"),
+                Capacity= 5,
+                OwnerId= UserSeeds.UserEntity1.Id,
+            
+                Owner = null
+            };
 
             //Act
             TravelAgencyDbContextSUT.Cars.Add(entity);
@@ -42,6 +44,8 @@ namespace TravelAgency.DAL.Tests
             var actualEntities = await dbx.Cars.SingleAsync(i => i.Id == entity.Id);
             Assert.Equal(entity, actualEntities);
         }
+        
+
 
         [Fact]
         public async Task GetAll_Cars_FromDB()
@@ -51,26 +55,16 @@ namespace TravelAgency.DAL.Tests
             Assert.True(cars.Any());
         }
 
+
         [Fact]
-        public async Task GetAll_CarAmount_ForUser()
+        public async Task GetContains_Car_ForUser()
         {
             var cars = await TravelAgencyDbContextSUT.Cars
-                .Where(i => i.OwnerId == CarSeeds.FiatMultipla.OwnerId)
+                .Where(i => i.OwnerId == CarSeeds.CarEntityUserContains.OwnerId)
                 .ToArrayAsync();
 
-            Assert.Contains(CarSeeds.FiatMultipla with { Owner = null }, cars);
+            Assert.Contains(CarSeeds.CarEntityUserContains with { Owner = null }, cars);
         }
-
-        
-
-
-        /*public async Task GetById_Cars_FiatRetrieved()
-        {
-
-            var fiat = await TravelAgencyDbContextSUT.Cars.SingleAsync(i => i.Id == CarSeeds.FiatMultipla.Id);
-
-            Assert.Equal(CarSeeds.FiatMultipla, fiat);
-        }*/
 
     }
 }

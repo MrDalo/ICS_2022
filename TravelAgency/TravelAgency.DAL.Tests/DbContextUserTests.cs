@@ -22,12 +22,15 @@ namespace TravelAgency.DAL.Tests
         public async Task AddNew_UserWitNoCar_Persisted()
         {
             //Arrange
-            var entity  = UserSeeds.UserEntityWithNoCars with{
-                Name= "David",
+            var entity  = UserSeeds.EmptyUserEntity with{
+                Id = Guid.Parse(input: "8888A15C-089C-4971-80FE-917A3E2A32E8"),
+                Name = "Palko",
                 Login= "xsmith00",
-                Surname = "Smith",
+                Surname = "ChudobnyBezKary",
                 Email= "davidsmith@gmail.com",
-                PhoneNumber= "+421789564111"
+                PhoneNumber= "+421789564111",
+                Cars = new List<CarEntity>()
+
             };
 
             //Act
@@ -36,8 +39,9 @@ namespace TravelAgency.DAL.Tests
 
             //Assert
             await using var dbx = await DbContextFactory.CreateDbContextAsync();
-            var actualEntities = await dbx.Users.SingleAsync(i => i.Id == entity.Id);
-            DeepAssert.Equal(entity, actualEntities);
+            var actualEntity = await dbx.Users
+                .SingleAsync(i => i.Id == entity.Id);
+            DeepAssert.Equal(entity, actualEntity);
         }
 
         [Fact]
@@ -55,18 +59,18 @@ namespace TravelAgency.DAL.Tests
             //Arrange
             var entity = UserSeeds.EmptyUserEntity with
             {
-                Id = Guid.Parse(input: "{1D5BC5E2-175C-4482-B17F-283884706F0A}"),
+                Id = Guid.Parse(input: "88C7A15C-089C-4971-80FE-917A3E2A32E8"),
                 Name = "Tonko",
                 Login = "xsmith00",
-                Surname = "Tonislav",
+                Surname = "Novy",
                 Email = "tonkozgurunu@gmail.com",
                 PhoneNumber = "+421789564222",
                 Cars = new List<CarEntity> {
-                    CarSeeds.CarEntity with
+                    CarSeeds.EmptyCarEntity with
                     {
-                        Id = Guid.Parse(input: "{2B5BC5E2-175C-4482-B17F-283884706F0A}"),
+                        Id = Guid.Parse(input: "2B5BC5E2-175C-4482-B17F-283884706F0A"),
                         LicensePlate= "IL584XG",
-                        Manufacturer= "Skoda",
+                        Manufacturer= "Ford",
                         CarType= CarType.Other,
                         Owner = UserSeeds.EmptyUserEntity
                     }
@@ -86,7 +90,7 @@ namespace TravelAgency.DAL.Tests
         }
 
         [Fact]
-        public async Task GetById_User()    //TODO v cookbook je v common.test/seeds odlisne data s rovnakym id ako v dal.test/seed a prechadza to nejako zahadne
+        public async Task GetById_User()   
         {
             //Act
             var entity = await TravelAgencyDbContextSUT.Users
@@ -104,6 +108,7 @@ namespace TravelAgency.DAL.Tests
                 .Include(i => i.Cars)
                 .SingleAsync(i => i.Id == UserSeeds.UserEntity.Id);
             //Assert
+           
             DeepAssert.Equal(UserSeeds.UserEntity, entity);
         }
 
@@ -115,11 +120,11 @@ namespace TravelAgency.DAL.Tests
             var entity =
                 baseEntity with
                 {
-                    Login= "xsmith00",
-                    Name= "Lacko",
-                    Surname= "Placko",
-                    Email= "vut@gmail.com",
-                    PhoneNumber= "0949866579",
+                    Login= "xzmena00",
+                    Name= "Pulo",
+                    Surname= "Zmeneny",
+                    Email= "zmena@gmail.com",
+                    PhoneNumber= "0949866579"
                 };
 
             //Act
@@ -132,20 +137,20 @@ namespace TravelAgency.DAL.Tests
             DeepAssert.Equal(entity, actualEntity);
         }
 
-       /* [Fact]
-        public async Task Delete_User_Deleted()     //todo problem s odkazom na sharerides
+        [Fact]
+        public async Task DeleteById_Cars_Deleted()
         {
             //Arrange
-            var baseEntity = UserSeeds.UserEntity;
+            var baseEntity = UserSeeds.UserCarEntityDelete;
 
             //Act
-            TravelAgencyDbContextSUT.Users.Remove(baseEntity);
+           TravelAgencyDbContextSUT.Remove(
+                TravelAgencyDbContextSUT.Users.Single(i => i.Id == baseEntity.Id));
             await TravelAgencyDbContextSUT.SaveChangesAsync();
 
             //Assert
             Assert.False(await TravelAgencyDbContextSUT.Users.AnyAsync(i => i.Id == baseEntity.Id));
-        }*/
+        }
         
-
     }
 }
