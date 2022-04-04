@@ -30,7 +30,7 @@ namespace TravelAgency.DAL.Tests
                 ImgUrl= null,
                 RegistrationDate= DateTime.Parse("2021-10-10"),
                 Capacity= 5,
-                OwnerId= UserSeeds.UserEntity1.Id,
+                OwnerId= UserSeeds.UserEntity.Id,
             
                 Owner = null
             };

@@ -1,12 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TravelAgency.Common.Enums;
+using TravelAgency.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace TravelAgency.Common.Tests.Seeds
+
+namespace TravelAgency.Common.Tests.Seeds;
+
+public static class ShareRideSeeds
 {
-    internal class DbContextCarSeeds
+    public static readonly ShareRideEntity EmptyShareRideEntity = new(
+            Id: default,
+            FromPlace: default!,
+            ToPlace: default!,
+            LeaveTime: default,
+            ArriveTime: default,
+            Cost:default,
+            CarId: default,
+            DriverId: default)
+        {
+            Car = default,
+            Driver = default
+        };
+
+    public static readonly ShareRideEntity ShareRideEntity1 = new(
+        Id: Guid.Parse(input: "C0EF1FBF-6F5D-41A2-AB30-D6915858D8FD"),
+        FromPlace: "Bratislava",
+        ToPlace: "Brno",
+        LeaveTime: new DateTime(2022, 4, 12, 12, 30, 0),
+        ArriveTime: new DateTime(2022, 4, 12, 14, 30, 0),
+        Cost: 8,
+        CarId: CarSeeds.CarEntity1.Id,
+        DriverId: UserSeeds.UserEntity.Id)
     {
+        Car = CarSeeds.CarEntity1,
+        Driver = UserSeeds.UserEntity
+    };
+
+    
+
+public static void Seed(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ShareRideEntity>().HasData(
+            ShareRideEntity1 with { Car = null, Driver = null}
+        );
     }
 }

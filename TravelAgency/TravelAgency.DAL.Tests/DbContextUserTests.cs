@@ -97,15 +97,17 @@ namespace TravelAgency.DAL.Tests
                 .SingleAsync(i => i.Id == UserSeeds.UserEntity.Id);
 
             //Assert
-            DeepAssert.Equal(UserSeeds.UserEntity with { Cars = Array.Empty<CarEntity>() }, entity);
+            DeepAssert.Equal(UserSeeds.UserEntity with { Cars = Array.Empty<CarEntity>(), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>()}, entity);
         }
 
         [Fact]
-        public async Task GetById_IncludingCars_User()
+        public async Task GetById_IncludingCarsShareRidesPassengerShareRides_User()
         {
             //Act
             var entity = await TravelAgencyDbContextSUT.Users
                 .Include(i => i.Cars)
+                .Include(i => i.DriverShareRides)
+                .Include(i => i.PassengerShareRides)
                 .SingleAsync(i => i.Id == UserSeeds.UserEntity.Id);
             //Assert
            

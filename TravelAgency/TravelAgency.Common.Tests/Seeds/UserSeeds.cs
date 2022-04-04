@@ -28,7 +28,7 @@ public static class UserSeeds
         PhotoUrl: null
     );
 
-    public static readonly UserEntity UserEntity1 = new(
+    public static readonly UserEntity Passenger1 = new(
         Id: Guid.Parse(input: "5c5df605-d676-4c25-98d8-5b795c7b6503"),
         Login: "xsmith00",
         Name: "Lacko",
@@ -53,14 +53,15 @@ public static class UserSeeds
     {
        UserEntity.Cars.Add(CarSeeds.CarEntity2);
        UserEntity.Cars.Add(CarSeeds.CarEntity1);
-
+       UserEntity.DriverShareRides.Add(ShareRideSeeds.ShareRideEntity1);
+       Passenger1.PassengerShareRides.Add(ShareRideSeeds.ShareRideEntity1);
     }
 
     public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<UserEntity>().HasData(
             UserEntity with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
-            UserEntity1 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
+            Passenger1 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             UserEntityWithNoCars,
             UserEntityUpdate,
             UserForCarEntityUpdate,
