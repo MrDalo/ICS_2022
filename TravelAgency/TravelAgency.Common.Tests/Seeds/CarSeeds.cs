@@ -53,6 +53,10 @@ public static class CarSeeds
     public static readonly CarEntity CarEntityUpdate = CarEntity1 with { Id = Guid.Parse("A2E6849D-A158-4436-980C-7FC26B60C674"), Owner = null, OwnerId = UserSeeds.UserForCarEntityUpdate.Id };
     public static readonly CarEntity CarEntityUserContains = CarEntity1 with { Id = Guid.Parse("735FAEE9-4DCC-4B09-BD29-1BB60068DB34"), Owner = null, OwnerId = UserSeeds.UserForUserCarDelete.Id };
     public static readonly CarEntity CarEntityDelete = CarEntity1 with { Id = Guid.Parse("30872EFF-CED4-4F2B-89DB-0EE83A74D279"), Owner = null, OwnerId = UserSeeds.UserForUserCarDelete.Id };
+    public static readonly CarEntity CarTest1 = CarEntity1 with { Id = Guid.Parse("1111131F-CED4-4F2B-89DB-0EE83A74D279"), Owner = null, OwnerId = UserSeeds.PassengerTest.Id };
+    public static readonly CarEntity CarTest2 = CarEntity1 with { Id = Guid.Parse("2222231F-CED4-4F2B-89DB-0EE83111D279"), Owner = null, OwnerId = UserSeeds.PassengerTest.Id };
+    public static readonly CarEntity CarTest3 = CarEntity1 with { Id = Guid.Parse("1121331F-CED4-4F2B-89DB-0EE83A74D279"), Owner = null, OwnerId = UserSeeds.PassengerTest2.Id };
+    public static readonly CarEntity CarTest4 = CarEntity1 with { Id = Guid.Parse("2345731F-CED4-4F2B-89DB-0EE83111D279"), Owner = null, OwnerId = UserSeeds.PassengerTest2.Id };
 
     public static void Seed(this ModelBuilder modelBuilder)
     {
@@ -60,6 +64,10 @@ public static class CarSeeds
          
             CarEntity1 with { Owner = null },
             CarEntity2 with { Owner = null },
+            CarTest1,
+            CarTest2,
+            CarTest3,
+            CarTest4,
             CarEntityUpdate,
             CarEntityUserContains,
             CarEntityDelete

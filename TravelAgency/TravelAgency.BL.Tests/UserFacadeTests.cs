@@ -75,7 +75,7 @@ namespace TravelAgency.BL.Tests
         public async Task Update_RemoveCars_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
+            var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest2);
             detailModel.Cars.Clear();
 
             //Act
@@ -90,7 +90,8 @@ namespace TravelAgency.BL.Tests
         public async Task Update_RemoveOneOfCars_FromSeeded_CheckUpdated()
         {
             //Arrange
-            var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
+            var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest);
+            detailModel.Cars.Remove(detailModel.Cars.First());
             detailModel.Cars.Remove(detailModel.Cars.First());
 
             //Act

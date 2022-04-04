@@ -38,6 +38,26 @@ public static class UserSeeds
         PhotoUrl: null
     );
 
+    public static readonly UserEntity PassengerTest = new(
+        Id: Guid.Parse(input: "5c123605-d676-1234-98d8-5b795c7b6503"),
+        Login: "xsmithasdf00",
+        Name: "Maros",
+        Surname: "Placasdfko",
+        Email: "vut@gmail.com",
+        PhoneNumber: "0949866579",
+        PhotoUrl: null
+    );
+
+    public static readonly UserEntity PassengerTest2 = new(
+        Id: Guid.Parse(input: "12313305-d676-1234-98d8-5b795c7b6503"),
+        Login: "xsmithasdf00",
+        Name: "Marosko",
+        Surname: "Zajac",
+        Email: "vut@gmail.com",
+        PhoneNumber: "0949866579",
+        PhotoUrl: null
+    );
+
 
     //To ensure that no tests reuse these clones for non-idempotent operations
     public static readonly UserEntity UserEntityWithNoCars = 
@@ -57,6 +77,11 @@ public static class UserSeeds
        UserEntity.Cars.Add(CarSeeds.CarEntity1);
        UserEntity.DriverShareRides.Add(ShareRideSeeds.ShareRideEntity1);
        Passenger1.PassengerShareRides.Add(ShareRideSeeds.ShareRideEntity1);
+       PassengerTest.Cars.Add(CarSeeds.CarTest1);
+       PassengerTest.Cars.Add(CarSeeds.CarTest2);
+       PassengerTest2.Cars.Add(CarSeeds.CarTest3);
+       PassengerTest2.Cars.Add(CarSeeds.CarTest4);
+
     }
 
     public static void Seed(this ModelBuilder modelBuilder)
@@ -64,6 +89,8 @@ public static class UserSeeds
         modelBuilder.Entity<UserEntity>().HasData(
             UserEntity with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             Passenger1 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
+            PassengerTest with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
+            PassengerTest2 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             UserEntityWithNoCars,
             UserEntityUpdate,
             UserForCarEntityUpdate,

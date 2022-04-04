@@ -24,9 +24,9 @@ namespace TravelAgency.BL.Models
         public string? PhotoUrl { get; set; }
 
 
-        public List<ShareRideListModel> DriverShareRides { get; init; } = new();
+        public List<ShareRideDetailModel> DriverShareRides { get; init; } = new();
 
-        public List<ShareRideListModel> PassengerShareRides { get; init; } = new();
+        public List<ShareRideDetailModel> PassengerShareRides { get; init; } = new();
 
         public List<CarListModel> Cars { get; init; } = new();
         //TODO pri LIST Cars treba zistit a zvalidovat zapis, pretoze moze byt list prazdny, asi treba zmenit aj <CarEntity> na nejaky CarModel

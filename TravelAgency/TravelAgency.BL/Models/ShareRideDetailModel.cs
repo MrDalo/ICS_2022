@@ -8,7 +8,14 @@ using TravelAgency.DAL.Entities;
 
 namespace TravelAgency.BL.Models
 {
-    public record ShareRideDetailModel(string FromPlace, string ToPlace, decimal Cost, DateTime LeaveTime, DateTime ArriveTime, Guid CarId, Guid DriverId) : ModelBase
+    public record ShareRideDetailModel(
+        string FromPlace, 
+        string ToPlace, 
+        decimal Cost, 
+        DateTime LeaveTime, 
+        DateTime ArriveTime, 
+        Guid CarId, 
+        Guid DriverId) : ModelBase
     {
         public string FromPlace { get; set; } = FromPlace;
         public string ToPlace { get; set; } = ToPlace;
