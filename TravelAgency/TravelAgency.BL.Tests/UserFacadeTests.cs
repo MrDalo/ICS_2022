@@ -50,7 +50,7 @@ namespace TravelAgency.BL.Tests
         }
 
         [Fact]
-        public async Task Create_WithNonExistingIngredient_Throws()
+        public async Task Create_WithNonExistingUser_Throws()
         {
             //Arrange
             var model = new UserDetailModel
@@ -61,17 +61,6 @@ namespace TravelAgency.BL.Tests
                 Email: "domim@gmail.com",
                 PhoneNumber: "+421789562511"
             );
-            /*{
-                Cars = {
-                    new CarListModel(
-                        LicensePlate: "IL025AB",
-                        Manufacturer: "Seat",
-                        CarType: CarType.Hatchback,
-                        RegistrationDate: DateTime.Parse("2020-08-12"),
-                        Capacity:4
-                    )
-                }
-            };*/
 
             //Act & Assert
             try

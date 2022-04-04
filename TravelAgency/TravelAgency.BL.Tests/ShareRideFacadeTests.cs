@@ -18,11 +18,11 @@ namespace TravelAgency.BL.Tests
 {
     public sealed class ShareRideFacadeTests : CRUDFacadeTestsBase
     {
-        private readonly CarFacade _shareRideFacadeSUT;
+        private readonly ShareRideFacade _shareRideFacadeSUT;
 
         public ShareRideFacadeTests(ITestOutputHelper output) : base(output)
         {
-            _shareRideFacadeSUT = new CarFacade(UnitOfWorkFactory, Mapper);
+            _shareRideFacadeSUT = new ShareRideFacade(UnitOfWorkFactory, Mapper);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace TravelAgency.BL.Tests
             DeepAssert.Equal(model, returnedModel);
         }
 
-        private static void FixIds(UserDetailModel expectedModel, UserDetailModel returnedModel)
+        private static void FixIds(ShareRideDetailModel expectedModel, ShareRideDetailModel returnedModel)
         {
             returnedModel.Id = expectedModel.Id;
 
@@ -50,10 +50,9 @@ namespace TravelAgency.BL.Tests
             {
                 var userListModel = expectedModel.Passengers.FirstOrDefault(i =>
                     i.Login == userModel.Login
-                    && i.Name == userModel.Name
-                    && i.Surname == userModel.Surname
-                    && i.Email == userModel.Email
-                    && i.PhoneNumber == userModel.PhoneNumber);
+                    //&& i.Name == userModel.Name
+                    //&&
+                );
 
                 if (userListModel != null)
                 {
