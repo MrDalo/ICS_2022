@@ -46,7 +46,50 @@ namespace TravelAgency.DAL.Tests
             DeepAssert.Equal(entity, actualEntities);
         }
 
+        [Fact]
+        public async Task GetAll_ShareRide_FromDB()
+        {
+            var ride = await TravelAgencyDbContextSUT.ShareRides.ToArrayAsync();
 
+            Assert.True(ride.Any());
+        }
+
+        [Fact]
+        public async Task Update_Shareride_Persisted()
+        {
+            //Arrange
+            var baseEntity = ShareRideSeeds.ShareRideEntityUpdate;
+            var entity =
+                baseEntity with
+                {
+                    Cost = Convert.ToDecimal("2,5"),
+                    ArriveTime= new DateTime(2022, 4, 12, 15, 30, 0)
+                };
+
+            //Act
+            TravelAgencyDbContextSUT.ShareRides.Update(entity);
+            await TravelAgencyDbContextSUT.SaveChangesAsync();
+
+            //Assert
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
+            var actualEntity = await dbx.ShareRides.SingleAsync(i => i.Id == entity.Id);
+            DeepAssert.Equal(entity, actualEntity);
+        }
+
+        [Fact]
+        public async Task DeleteById_ShareRide_Deleted()
+        {
+            //Arrange
+            var baseEntity = ShareRideSeeds.ShareRideEntityDelete;
+
+            //Act
+            TravelAgencyDbContextSUT.Remove(
+                TravelAgencyDbContextSUT.ShareRides.Single(i => i.Id == baseEntity.Id));
+            await TravelAgencyDbContextSUT.SaveChangesAsync();
+
+            //Assert
+            Assert.False(await TravelAgencyDbContextSUT.ShareRides.AnyAsync(i => i.Id == baseEntity.Id));
+        }
 
     }
 

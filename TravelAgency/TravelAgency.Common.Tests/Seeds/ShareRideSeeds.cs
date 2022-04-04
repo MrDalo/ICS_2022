@@ -36,12 +36,15 @@ public static class ShareRideSeeds
         Driver = UserSeeds.UserEntity
     };
 
-    
 
-public static void Seed(this ModelBuilder modelBuilder)
+    public static readonly ShareRideEntity ShareRideEntityUpdate = ShareRideEntity1 with { Id = Guid.Parse(input: "111F1FBF-6F5D-41A2-AB30-D6915858D8FD"), Car = null, Driver = null, DriverId = UserSeeds.UserForShareRideUpdate.Id};
+    public static readonly ShareRideEntity ShareRideEntityDelete = ShareRideEntity1 with { Id = Guid.Parse(input: "222F1FBF-6F5D-41A2-AB30-D6915858D8FD"), Car = null, Driver = null, DriverId = UserSeeds.UserForShareRideDelete.Id };
+    public static void Seed(this ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ShareRideEntity>().HasData(
-            ShareRideEntity1 with { Car = null, Driver = null}
+            ShareRideEntity1 with { Car = null, Driver = null},
+            ShareRideEntityUpdate with { Car = null, Driver = null },
+            ShareRideEntityDelete with { Car = null, Driver = null }
         );
     }
 }
