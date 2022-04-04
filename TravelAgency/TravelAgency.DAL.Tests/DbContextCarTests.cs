@@ -93,6 +93,42 @@ namespace TravelAgency.DAL.Tests
             Assert.Contains(CarSeeds.CarEntity1 with { Owner = null}, cars);
             Assert.Contains(CarSeeds.CarEntity2 with { Owner = null}, cars);
         }
+        [Fact]
+        public async Task Update_Car_Persisted()
+        {
+            //Arrange
+            var baseEntity = CarSeeds.CarEntityUpdate;
+            var entity =
+                baseEntity with
+                {
+                    Manufacturer = "Opel",
+                    Capacity = 7
+                };
+
+            //Act
+            TravelAgencyDbContextSUT.Cars.Update(entity);
+            await TravelAgencyDbContextSUT.SaveChangesAsync();
+
+            //Assert
+            await using var dbx = await DbContextFactory.CreateDbContextAsync();
+            var actualEntity = await dbx.Cars.SingleAsync(i => i.Id == entity.Id);
+            Assert.Equal(entity, actualEntity);
+        }
+
+        [Fact]
+        public async Task DeleteById_Car_Deleted()
+        {
+            //Arrange
+            var baseEntity = CarSeeds.CarEntityDelete;
+
+            //Act
+            TravelAgencyDbContextSUT.Remove(
+                TravelAgencyDbContextSUT.Cars.Single(i => i.Id == baseEntity.Id));
+            await TravelAgencyDbContextSUT.SaveChangesAsync();
+
+            //Assert
+            Assert.False(await TravelAgencyDbContextSUT.Cars.AnyAsync(i => i.Id == baseEntity.Id));
+        }
 
     }
 }
