@@ -36,11 +36,19 @@ namespace TravelAgency.BL.Tests
                 Manufacturer: "Mercedes",
                 CarType: CarType.Minivan,
                 RegistrationDate: DateTime.Parse("2021-10-12"),
-                Capacity:5
+                Capacity:5,
+                OwnerId: Guid.Parse(input: "5c5df605-d676-4c25-98d8-5b795c7b6503")
             );
 
             var returnedModel = await _carFacadeSUT.SaveAsync(model);
+            FixIds(model, returnedModel);
             Assert.Equal(model, returnedModel);
+        }
+
+        private static void FixIds(CarDetailModel expectedModel, CarDetailModel returnedModel)
+        {
+            returnedModel.Id = expectedModel.Id;
+
         }
         /*
         [Fact]
@@ -119,5 +127,5 @@ namespace TravelAgency.BL.Tests
             var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
             DeepAssert.Equal(ingredient, Mapper.Map<IngredientDetailModel>(ingredientFromDb));
         }*/
-    }
+        }
 }

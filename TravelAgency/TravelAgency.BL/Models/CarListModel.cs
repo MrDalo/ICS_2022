@@ -10,7 +10,8 @@ namespace TravelAgency.BL.Models
         string Manufacturer,
         CarType CarType,
         DateTime RegistrationDate,
-        int Capacity) : ModelBase
+        int Capacity,
+        Guid OwnerId) : ModelBase
     {
 
         public string LicensePlate { get; set; } = LicensePlate;
@@ -20,11 +21,14 @@ namespace TravelAgency.BL.Models
         public string? ImgUrl { get; set; }
         public int Capacity { get; set; } = Capacity;
 
+        public Guid OwnerId { get; set; } = OwnerId;
+
         public class MapperProfile : Profile
         {
             public MapperProfile()
             {
-                CreateMap<CarEntity, CarListModel>();
+                CreateMap<CarEntity, CarListModel>()
+                    .ReverseMap();
             }
         }
     }
