@@ -70,6 +70,22 @@ namespace TravelAgency.BL.Tests
             catch (DbUpdateException) { } //SqlServer throws on FK
         }
 
+        [Fact]
+        public async Task Update_RemoveOneOfCars_FromSeededUserEntity_CheckUpdated()
+        {
+            //Arrange
+            var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
+            detailModel.Cars.Remove(detailModel.Cars.First());
+            detailModel.Cars.Remove(detailModel.Cars.First());
+
+            //Act
+            await _userFacadeSUT.SaveAsync(detailModel);
+
+            //Assert
+            var returnedModel = await _userFacadeSUT.GetAsync(detailModel.Id);
+            DeepAssert.Equal(detailModel, returnedModel);
+        }
+
 
         [Fact]
         public async Task Update_RemoveCars_FromSeeded_CheckUpdated()
