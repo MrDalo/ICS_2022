@@ -71,6 +71,29 @@ public static class UserSeeds
     public static readonly UserEntity UserForShareRideUpdate = UserEntity with { Id = Guid.Parse("777824C0-A7D1-48BA-8E7C-4F136CF8BF31"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
     public static readonly UserEntity UserForShareRideDelete = UserEntity with { Id = Guid.Parse("888824C0-A7D1-48BA-8E7C-4F136CF8BF31"), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() };
 
+
+
+    public static readonly UserEntity PassengerTest69 = new(
+        Id: Guid.Parse(input: "e11a73a4-db74-4749-a93d-6de07d773304"),
+        Login: "xsmithasdf00",
+        Name: "Jozef",
+        Surname: "Skrecok",
+        Email: "vut@gmail.com",
+        PhoneNumber: "0949866579",
+        PhotoUrl: null
+    );
+
+    public static readonly UserEntity PassengerTest70 = new(
+        Id: Guid.Parse(input: "222efa30-3bae-4bf6-97f0-793d6d08517d"),
+        Login: "xsmithasdf00",
+        Name: "Marek",
+        Surname: "Kralik",
+        Email: "vut@gmail.com",
+        PhoneNumber: "0949866579",
+        PhotoUrl: null
+    );
+
+
     static UserSeeds()
     {
        UserEntity.Cars.Add(CarSeeds.CarEntity2);
@@ -81,6 +104,9 @@ public static class UserSeeds
        PassengerTest.Cars.Add(CarSeeds.CarTest2);
        PassengerTest2.Cars.Add(CarSeeds.CarTest3);
        PassengerTest2.Cars.Add(CarSeeds.CarTest4);
+       PassengerTest69.Cars.Add(CarSeeds.CarToBeSearched);
+       PassengerTest69.Cars.Add(CarSeeds.CarToBeDeleted);
+       PassengerTest70.Cars.Add(CarSeeds.CarToBeUpdated);
 
     }
 
@@ -98,7 +124,9 @@ public static class UserSeeds
             UserForUserCarDelete,
             UserCarAdd,
             UserForShareRideUpdate,
-            UserForShareRideDelete
+            UserForShareRideDelete,
+            PassengerTest69 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
+            PassengerTest70 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>(), Cars = Array.Empty<CarEntity>() }
         );
     }
 }

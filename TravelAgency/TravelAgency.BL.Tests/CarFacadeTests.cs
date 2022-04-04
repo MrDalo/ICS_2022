@@ -11,6 +11,7 @@ using TravelAgency.Common.Tests;
 using TravelAgency.Common.Tests.Seeds;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TravelAgency.Common.Enums;
 using Xunit.Abstractions;
 using Xunit;
@@ -48,44 +49,45 @@ namespace TravelAgency.BL.Tests
         private static void FixIds(CarDetailModel expectedModel, CarDetailModel returnedModel)
         {
             returnedModel.Id = expectedModel.Id;
-
         }
-        /*
+        
         [Fact]
-        public async Task GetAll_Single_SeededWater()
+        public async Task GetAll_Single_SeededCarByID()
         {
-            var ingredients = await _carFacadeSUT.GetAsync();
-            var ingredient = ingredients.Single(i => i.Id == IngredientSeeds.Water.Id);
+            var cars = await _carFacadeSUT.GetAsync();
+            var car = cars.Single(i => i.Id == CarSeeds.CarEntity1.Id);
 
-            DeepAssert.Equal(Mapper.Map<IngredientListModel>(IngredientSeeds.Water), ingredient);
+            DeepAssert.Equal(Mapper.Map<CarListModel>(CarSeeds.CarEntity1), car);
         }
 
         [Fact]
         public async Task GetById_SeededWater()
         {
-            var ingredient = await _carFacadeSUT.GetAsync(IngredientSeeds.Water.Id);
+            var car = await _carFacadeSUT.GetAsync(CarSeeds.CarToBeSearched.Id);
 
-            DeepAssert.Equal(Mapper.Map<IngredientDetailModel>(IngredientSeeds.Water), ingredient);
+            DeepAssert.Equal(Mapper.Map<CarDetailModel>(CarSeeds.CarToBeSearched), car);
         }
 
         [Fact]
         public async Task GetById_NonExistent()
         {
-            var ingredient = await _carFacadeSUT.GetAsync(IngredientSeeds.EmptyIngredient.Id);
+            var car = await _carFacadeSUT.GetAsync(CarSeeds.EmptyCarEntity.Id);
 
-            Assert.Null(ingredient);
+            Assert.Null(car);
         }
 
+        
         [Fact]
-        public async Task SeededWater_DeleteById_Deleted()
+        public async Task SeededCar_DeleteById_Deleted()
         {
-            await _carFacadeSUT.DeleteAsync(IngredientSeeds.Water.Id);
+
+            await _carFacadeSUT.DeleteAsync(CarSeeds.CarToBeDeleted.Id);
 
             await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
-            Assert.False(await dbxAssert.Ingredients.AnyAsync(i => i.Id == IngredientSeeds.Water.Id));
+            Assert.False(await dbxAssert.Cars.AnyAsync(i => i.Id == CarSeeds.CarToBeDeleted.Id));
         }
 
-
+        /*
         [Fact]
         public async Task NewIngredient_InsertOrUpdate_IngredientAdded()
         {
@@ -127,5 +129,5 @@ namespace TravelAgency.BL.Tests
             var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
             DeepAssert.Equal(ingredient, Mapper.Map<IngredientDetailModel>(ingredientFromDb));
         }*/
-        }
+    }
 }
