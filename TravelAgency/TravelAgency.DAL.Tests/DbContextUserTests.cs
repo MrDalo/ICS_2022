@@ -138,7 +138,7 @@ namespace TravelAgency.DAL.Tests
         }
 
         [Fact]
-        public async Task DeleteById_Cars_Deleted()
+        public async Task Delete_UserById_Deleted()
         {
             //Arrange
             var baseEntity = UserSeeds.UserCarEntityDelete;

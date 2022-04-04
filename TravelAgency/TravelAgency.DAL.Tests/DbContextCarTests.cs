@@ -66,5 +66,33 @@ namespace TravelAgency.DAL.Tests
             Assert.Contains(CarSeeds.CarEntityUserContains with { Owner = null }, cars);
         }
 
+        [Fact]
+        public async Task Delete_CarById_Deleted()
+        {
+            //Arrange
+            var baseEntity = CarSeeds.CarEntityDelete;
+
+            //Act
+            TravelAgencyDbContextSUT.Remove(
+                TravelAgencyDbContextSUT.Cars.Single(i => i.Id == baseEntity.Id));
+            await TravelAgencyDbContextSUT.SaveChangesAsync();
+
+            //Assert
+            Assert.False(await TravelAgencyDbContextSUT.Cars.AnyAsync(i => i.Id == baseEntity.Id));
+        }
+
+        [Fact]
+        public async Task GetAll_Car_ForUser()
+        {
+            //Act
+            var cars = await TravelAgencyDbContextSUT.Cars
+                .Where(i => i.OwnerId == UserSeeds.UserEntity.Id)
+                .ToArrayAsync();
+
+            //Assert
+            Assert.Contains(CarSeeds.CarEntity1 with { Owner = null}, cars);
+            Assert.Contains(CarSeeds.CarEntity2 with { Owner = null}, cars);
+        }
+
     }
 }
