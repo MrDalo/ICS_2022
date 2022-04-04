@@ -34,7 +34,10 @@ namespace TravelAgency.BL.Tests
                 ToPlace: "Trencin",
                 LeaveTime: new DateTime (2022,10,12,12,50,30),
                 ArriveTime: new DateTime(2022, 10, 14, 12, 50, 30),
-                Cost: 50
+                Cost: 50,
+                CarId: Guid.Parse(input: "1206bea4-b4b2-41a1-bf70-4dc610283298"),
+                DriverId: Guid.Parse(input: "4c5df605-d676-4c25-98d8-5b795c7b6503")
+
             );
 
             var returnedModel = await _shareRideFacadeSUT.SaveAsync(model);

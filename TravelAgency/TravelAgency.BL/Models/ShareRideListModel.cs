@@ -18,7 +18,8 @@ namespace TravelAgency.BL.Models
         {
             public MapperProfile()
             {
-                CreateMap<ShareRideEntity, ShareRideListModel>();
+                CreateMap<ShareRideEntity, ShareRideListModel>()
+                    .ReverseMap();
             }
         }
     }
