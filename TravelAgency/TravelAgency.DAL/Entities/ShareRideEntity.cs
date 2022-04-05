@@ -8,7 +8,7 @@ namespace TravelAgency.DAL.Entities
         DateTime LeaveTime,
         DateTime ArriveTime,
         decimal Cost,
-        Guid CarId,
+        Guid? CarId,
         Guid DriverId) : IEntity
     {
 
