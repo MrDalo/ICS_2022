@@ -96,7 +96,8 @@ namespace TravelAgency.BL.Tests
             foreach (var userModel in returnedModel.Passengers)
             {
                 var userListModel = expectedModel.Passengers.FirstOrDefault(i =>
-                    i.Login == userModel.Login
+                    i.PassengerId == userModel.PassengerId 
+                    && i.ShareRideId == userModel.ShareRideId 
                 );
 
                 if (userListModel != null)

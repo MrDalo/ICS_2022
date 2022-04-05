@@ -17,6 +17,7 @@ public static class ServiceCollectionExtension
         services.AddSingleton<UserFacade>();
         services.AddSingleton<ShareRideFacade>();
         services.AddSingleton<CarFacade>();
+        services.AddSingleton<PassengerOfShareRideFacade>();
 
         services.AddAutoMapper((serviceProvider, cfg) =>
         {

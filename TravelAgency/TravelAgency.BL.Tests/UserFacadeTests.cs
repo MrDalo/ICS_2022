@@ -69,23 +69,6 @@ namespace TravelAgency.BL.Tests
             catch (DbUpdateException) { } //SqlServer throws on FK
         }
 
-        [Fact]
-        public async Task Update_RemoveOneOfCars_FromSeededUserEntity_CheckUpdated()
-        {
-            //Arrange
-            var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-            detailModel.Cars.Remove(detailModel.Cars.First());
-            
-
-            //Act
-            await _userFacadeSUT.SaveAsync(detailModel);
-
-            //detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
-            //Assert
-            var returnedModel = await _userFacadeSUT.GetAsync(detailModel.Id);
-            detailModel.DriverShareRides[0].CarId = null;
-            DeepAssert.Equal(detailModel, returnedModel);
-        }
 
 
         [Fact]
@@ -156,10 +139,8 @@ namespace TravelAgency.BL.Tests
             foreach (var passengerModel in returnedModel.PassengerShareRides)
             {
                 var passengerModelList = expectedModel.PassengerShareRides.FirstOrDefault(i =>
-                    i.Cost == passengerModel.Cost
-                    && i.LeaveTime == passengerModel.LeaveTime
-                    && i.FromPlace == passengerModel.FromPlace
-                    && i.ToPlace == passengerModel.ToPlace);
+                    i.PassengerId == passengerModel.PassengerId
+                    && i.ShareRideId == passengerModel.ShareRideId);
 
                 if (passengerModelList != null)
                 {

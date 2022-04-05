@@ -23,7 +23,7 @@ namespace TravelAgency.Common.Tests
                 UserSeeds.Seed(modelBuilder);
                 CarSeeds.Seed(modelBuilder);
                 ShareRideSeeds.Seed(modelBuilder);
-                PassengerOFShareRideSeeds.Seed(modelBuilder);
+                PassengerOfShareRideSeeds.Seed(modelBuilder);
             }
         }
     }

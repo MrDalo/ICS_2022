@@ -35,7 +35,7 @@ public static class ShareRideSeeds
         Car = CarSeeds.CarEntity1,
         Driver = UserSeeds.UserEntity
     };
-
+    
 
     public static readonly ShareRideEntity ShareRideToBeUpdated1 = new(
         Id: Guid.Parse(input: "7b479595-03a2-42a4-b47f-a421cb94b2d9"),

@@ -26,7 +26,7 @@ namespace TravelAgency.BL.Models
         public Guid DriverId { get; set; } = DriverId;
 
 
-        public List<UserListModel> Passengers { get; init; } = new();
+        public List<PassengerOfShareRideDetailModel> Passengers { get; init; } = new();
 
         
 

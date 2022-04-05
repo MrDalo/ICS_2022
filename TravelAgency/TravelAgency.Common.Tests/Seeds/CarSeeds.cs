@@ -48,7 +48,6 @@ public static class CarSeeds
 
 
 
-
     //To ensure that no tests reuse these clones for non-idempotent operations
     public static readonly CarEntity CarEntityUpdate = CarEntity1 with { Id = Guid.Parse("A2E6849D-A158-4436-980C-7FC26B60C674"), Owner = null, OwnerId = UserSeeds.UserForCarEntityUpdate.Id };
     public static readonly CarEntity CarEntityUserContains = CarEntity1 with { Id = Guid.Parse("735FAEE9-4DCC-4B09-BD29-1BB60068DB34"), Owner = null, OwnerId = UserSeeds.UserForUserCarDelete.Id };

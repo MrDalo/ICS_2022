@@ -99,7 +99,7 @@ public static class UserSeeds
        UserEntity.Cars.Add(CarSeeds.CarEntity1);
        UserEntity.Cars.Add(CarSeeds.CarEntity2);
        UserEntity.DriverShareRides.Add(ShareRideSeeds.ShareRideEntity1);
-       Passenger1.PassengerShareRides.Add(PassengerOFShareRideSeeds.PassengerOfShareRide2);
+       Passenger1.PassengerShareRides.Add(PassengerOfShareRideSeeds.PassengerOfShareRide2);
        PassengerTest.Cars.Add(CarSeeds.CarTest1);
        PassengerTest.Cars.Add(CarSeeds.CarTest2);
        PassengerTest2.Cars.Add(CarSeeds.CarTest3);
