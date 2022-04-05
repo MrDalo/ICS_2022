@@ -53,8 +53,6 @@ namespace TravelAgency.BL.Tests
             {
                 var userListModel = expectedModel.Passengers.FirstOrDefault(i =>
                     i.Login == userModel.Login
-                    //&& i.Name == userModel.Name
-                    //&&
                 );
 
                 if (userListModel != null)
