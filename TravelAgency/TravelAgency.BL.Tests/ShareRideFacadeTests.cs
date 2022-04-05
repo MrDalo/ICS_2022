@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using TravelAgency.BL.Tests;
 using TravelAgency.BL.Facades;
 using TravelAgency.Common.Tests;
 using TravelAgency.Common.Tests.Seeds;
@@ -45,6 +44,51 @@ namespace TravelAgency.BL.Tests
             DeepAssert.Equal(model, returnedModel);
         }
 
+        [Fact]
+
+        public async Task GetAll_Single_SeededShareRideByID()
+        {
+            var share_rides = await _shareRideFacadeSUT.GetAsync();
+            var share_ride = share_rides.Single(i => i.Id == ShareRideSeeds.ShareRideToBeUpdated1.Id);
+
+            DeepAssert.Equal(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideToBeUpdated1), share_ride);
+        }
+
+        [Fact]
+        public async Task GetById_SeededShareRide()
+        {
+            var share_ride = await _shareRideFacadeSUT.GetAsync(ShareRideSeeds.ShareRideToBeUpdated2.Id);
+
+            DeepAssert.Equal(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideToBeUpdated2), share_ride);
+        }
+
+        [Fact]
+        public async Task SeedsCars_SeedersUpdated()
+        {
+            var currently_update = new ShareRideDetailModel(
+                FromPlace: ShareRideSeeds.ShareRideToBeUpdated1.FromPlace,
+                ToPlace: ShareRideSeeds.ShareRideToBeUpdated1.ToPlace,
+                Cost: ShareRideSeeds.ShareRideToBeUpdated1.Cost,
+                LeaveTime: ShareRideSeeds.ShareRideToBeUpdated1.LeaveTime,
+                ArriveTime: ShareRideSeeds.ShareRideToBeUpdated1.ArriveTime,
+                CarId: ShareRideSeeds.ShareRideToBeUpdated1.CarId,
+                DriverId: ShareRideSeeds.ShareRideToBeUpdated1.DriverId)
+            {
+                Id = ShareRideSeeds.ShareRideToBeUpdated1.Id
+            };
+
+            currently_update.LeaveTime = new DateTime(2022, 2, 13, 5, 43, 0);
+
+            await _shareRideFacadeSUT.SaveAsync(currently_update);
+
+            await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
+            var ShareRideFromDb = await dbxAssert.ShareRides.SingleAsync(i => i.Id == currently_update.Id);
+            DeepAssert.Equal(currently_update, Mapper.Map<ShareRideDetailModel>(ShareRideFromDb));
+
+        }
+
+
+
         private static void FixIds(ShareRideDetailModel expectedModel, ShareRideDetailModel returnedModel)
         {
             returnedModel.Id = expectedModel.Id;
@@ -52,9 +96,8 @@ namespace TravelAgency.BL.Tests
             foreach (var userModel in returnedModel.Passengers)
             {
                 var userListModel = expectedModel.Passengers.FirstOrDefault(i =>
-                    i.Login == userModel.Login
-                    //&& i.Name == userModel.Name
-                    //&&
+                    i.PassengerId == userModel.PassengerId 
+                    && i.ShareRideId == userModel.ShareRideId 
                 );
 
                 if (userListModel != null)

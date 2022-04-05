@@ -21,6 +21,7 @@ public class CRUDFacadeTestsBase : IAsyncLifetime
         Console.SetOut(converter);
 
         // DbContextFactory = new DbContextTestingInMemoryFactory(GetType().Name, seedTestingData: true);
+        // DbContextFactory = new DbContextTestingSQLiteFactory(GetType().FullName!, seedTestingData: true);
         DbContextFactory = new DbContextTestingLocalDBFactory(GetType().FullName!, seedTestingData: true);
         
 

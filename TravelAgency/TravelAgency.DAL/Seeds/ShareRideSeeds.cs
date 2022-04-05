@@ -22,8 +22,8 @@ public static class ShareRideSeeds
 
     static ShareRideSeeds()
     {
-        ShareRide1.Passengers.Add(UserSeeds.Passenger1);
-        ShareRide1.Passengers.Add(UserSeeds.Passenger2);
+        ShareRide1.Passengers.Add(PassengerOfShareRideSeeds.PassengerOfShareRide1);
+        ShareRide1.Passengers.Add(PassengerOfShareRideSeeds.PassengerOfShareRide2);
     }
 
     public static void Seed(this ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ public static class ShareRideSeeds
             {
                 Car = null,
                 Driver = null,
-                Passengers = Array.Empty<UserEntity>()
+                Passengers = Array.Empty<PassengerOfShareRideEntity>()
             }
         );
     }

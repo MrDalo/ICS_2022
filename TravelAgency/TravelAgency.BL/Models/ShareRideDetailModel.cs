@@ -14,7 +14,7 @@ namespace TravelAgency.BL.Models
         decimal Cost, 
         DateTime LeaveTime, 
         DateTime ArriveTime, 
-        Guid CarId, 
+        Guid? CarId, 
         Guid DriverId) : ModelBase
     {
         public string FromPlace { get; set; } = FromPlace;
@@ -22,11 +22,11 @@ namespace TravelAgency.BL.Models
         public DateTime LeaveTime { get; set; } = LeaveTime;
         public DateTime ArriveTime { get; set; } = ArriveTime;
         public decimal Cost { get; set; } = Cost;
-        public Guid CarId { get; set; } = CarId;
+        public Guid? CarId { get; set; } = CarId;
         public Guid DriverId { get; set; } = DriverId;
 
 
-        public List<UserListModel> Passengers { get; init; } = new();
+        public List<PassengerOfShareRideDetailModel> Passengers { get; init; } = new();
 
         
 

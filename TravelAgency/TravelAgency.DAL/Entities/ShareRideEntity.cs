@@ -8,7 +8,7 @@ namespace TravelAgency.DAL.Entities
         DateTime LeaveTime,
         DateTime ArriveTime,
         decimal Cost,
-        Guid CarId,
+        Guid? CarId,
         Guid DriverId) : IEntity
     {
 
@@ -16,6 +16,6 @@ namespace TravelAgency.DAL.Entities
 
         public UserEntity? Driver { get; init; }
 
-        public ICollection<UserEntity> Passengers { get; init; } = new List<UserEntity>();
+        public ICollection<PassengerOfShareRideEntity> Passengers { get; init; } = new List<PassengerOfShareRideEntity>();
     }
 }

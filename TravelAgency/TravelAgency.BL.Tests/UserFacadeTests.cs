@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using TravelAgency.BL.Models;
-using TravelAgency.BL.Tests;
 using TravelAgency.BL.Facades;
 using TravelAgency.Common.Tests;
 using TravelAgency.Common.Tests.Seeds;
@@ -69,6 +68,7 @@ namespace TravelAgency.BL.Tests
             }
             catch (DbUpdateException) { } //SqlServer throws on FK
         }
+
 
 
         [Fact]
@@ -139,10 +139,8 @@ namespace TravelAgency.BL.Tests
             foreach (var passengerModel in returnedModel.PassengerShareRides)
             {
                 var passengerModelList = expectedModel.PassengerShareRides.FirstOrDefault(i =>
-                    i.Cost == passengerModel.Cost
-                    && i.LeaveTime == passengerModel.LeaveTime
-                    && i.FromPlace == passengerModel.FromPlace
-                    && i.ToPlace == passengerModel.ToPlace);
+                    i.PassengerId == passengerModel.PassengerId
+                    && i.ShareRideId == passengerModel.ShareRideId);
 
                 if (passengerModelList != null)
                 {

@@ -12,7 +12,7 @@
 
         public ICollection<ShareRideEntity> DriverShareRides { get; init; } = new List<ShareRideEntity>();
 
-        public ICollection<ShareRideEntity> PassengerShareRides { get; init; } = new List<ShareRideEntity>();
+        public ICollection<PassengerOfShareRideEntity> PassengerShareRides { get; init; } = new List<PassengerOfShareRideEntity>();
 
         public ICollection<CarEntity> Cars { get; init; } = new List<CarEntity>();
 
