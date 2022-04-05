@@ -97,7 +97,7 @@ namespace TravelAgency.DAL.Tests
                 .SingleAsync(i => i.Id == UserSeeds.UserEntity.Id);
 
             //Assert
-            DeepAssert.Equal(UserSeeds.UserEntity with { Cars = Array.Empty<CarEntity>(), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<ShareRideEntity>()}, entity);
+            DeepAssert.Equal(UserSeeds.UserEntity with { Cars = Array.Empty<CarEntity>(), DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>()}, entity);
         }
 
         [Fact]

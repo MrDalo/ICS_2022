@@ -25,8 +25,9 @@ namespace TravelAgency.DAL
         public DbSet<CarEntity> Cars => Set<CarEntity>();
         public DbSet<ShareRideEntity> ShareRides => Set<ShareRideEntity>();
         public DbSet<UserEntity> Users => Set<UserEntity>();
+        public DbSet<PassengerOfShareRideEntity> PassengerOfShareRide => Set<PassengerOfShareRideEntity>();
 
-            
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -50,18 +51,43 @@ namespace TravelAgency.DAL
                 .HasForeignKey(s => s.DriverId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            
-            modelBuilder.Entity<ShareRideEntity>()
-                .HasMany(s => s.Passengers)
+
+            modelBuilder.Entity<PassengerOfShareRideEntity>()
+                .HasKey(x => new {x.PassengerId, x.ShareRideId});
+
+            modelBuilder.Entity<PassengerOfShareRideEntity>()
+                .HasOne(p => p.Passenger)
                 .WithMany(u => u.PassengerShareRides)
-                .UsingEntity(j => j.ToTable("PassengerOfShareRide")); // Malo by to vytvorit novu tabulku s nazvom PassengerOfShareRide - N k N vztah je tvorba novej tabulky
-                                              //src: https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-composite-key%2Csimple-key
+                .HasForeignKey(p => p.PassengerId);
+
+            modelBuilder.Entity<PassengerOfShareRideEntity>()
+                .HasOne(p => p.ShareRide)
+                .WithMany(u => u.Passengers)
+                .HasForeignKey(p => p.ShareRideId);
+
+
+            //modelBuilder.Entity<ShareRideEntity>()
+            //    .HasMany(s => s.Passengers)
+            //    .WithMany(u => u.PassengerShareRides)
+            //    .UsingEntity(j => j.ToTable("PassengerOfShareRide")); // Malo by to vytvorit novu tabulku s nazvom PassengerOfShareRide - N k N vztah je tvorba novej tabulky
+            //                                                          //src: https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-composite-key%2Csimple-key
+
+            //modelBuilder.Entity<ShareRideEntity>()
+            //    .HasMany(s => s.Passengers)
+            //    .WithMany(c => c.PassengerShareRides)
+            //    .Map(cs =>
+            //    {
+            //        cs.MapLeftKey("StudentRefId");
+            //        cs.MapRightKey("CourseRefId");
+            //        cs.ToTable("StudentCourse");
+            //    });
 
             if (_seedDemoData)
             {
                 UserSeeds.Seed(modelBuilder);
                 CarSeeds.Seed(modelBuilder);
                 ShareRideSeeds.Seed(modelBuilder);
+                PassengerOfShareRideSeeds.Seed(modelBuilder);
             }
         }
     }

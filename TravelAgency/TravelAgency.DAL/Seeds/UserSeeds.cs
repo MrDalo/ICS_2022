@@ -37,8 +37,8 @@ public static class UserSeeds
     {
         Driver1.Cars.Add(CarSeeds.FiatMultipla);
         Driver1.DriverShareRides.Add(ShareRideSeeds.ShareRide1);
-        Passenger1.PassengerShareRides.Add(ShareRideSeeds.ShareRide1 );
-        Passenger2.PassengerShareRides.Add( ShareRideSeeds.ShareRide1 );
+        Passenger1.PassengerShareRides.Add(PassengerOfShareRideSeeds.PassengerOfShareRide1);
+        Passenger2.PassengerShareRides.Add(PassengerOfShareRideSeeds.PassengerOfShareRide2 );
     }
 
 
@@ -48,19 +48,19 @@ public static class UserSeeds
             Driver1 with
             {
                 DriverShareRides = Array.Empty<ShareRideEntity>(),
-                PassengerShareRides = Array.Empty<ShareRideEntity>(),
+                PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(),
                 Cars = Array.Empty<CarEntity>()
             },
             Passenger1 with
             {
                 DriverShareRides = Array.Empty<ShareRideEntity>(),
-                PassengerShareRides = Array.Empty<ShareRideEntity>(),
+                PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(),
                 Cars = Array.Empty<CarEntity>()
             },
             Passenger2 with
             {
                 DriverShareRides = Array.Empty<ShareRideEntity>(),
-                PassengerShareRides = Array.Empty<ShareRideEntity>(),
+                PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(),
                 Cars = Array.Empty<CarEntity>()
             }
         );
