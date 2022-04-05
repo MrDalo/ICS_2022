@@ -10,10 +10,11 @@
         string? PhotoUrl) : IEntity
     {
 
-        public ICollection<ShareRideEntity>? DriverShareRides { get; init; }
+        public ICollection<ShareRideEntity> DriverShareRides { get; init; } = new List<ShareRideEntity>();
 
-        public ICollection<ShareRideEntity>? CoDriverShareRides { get; init; }
+        public ICollection<ShareRideEntity> PassengerShareRides { get; init; } = new List<ShareRideEntity>();
 
-        public ICollection<CarEntity>? Cars { get; init; }
+        public ICollection<CarEntity> Cars { get; init; } = new List<CarEntity>();
+
     }
 }
