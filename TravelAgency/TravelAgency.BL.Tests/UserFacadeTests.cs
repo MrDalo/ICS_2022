@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using TravelAgency.BL.Models;
-using TravelAgency.BL.Tests;
 using TravelAgency.BL.Facades;
 using TravelAgency.Common.Tests;
 using TravelAgency.Common.Tests.Seeds;

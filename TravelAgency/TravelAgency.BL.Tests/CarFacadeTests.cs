@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using TravelAgency.BL.Models;
-using TravelAgency.BL.Tests;
 using TravelAgency.BL.Facades;
 using TravelAgency.Common.Tests;
 using TravelAgency.Common.Tests.Seeds;
@@ -104,14 +103,13 @@ namespace TravelAgency.BL.Tests
                 Id = CarSeeds.CarToBeUpdated.Id
             };
 
-            carUpdate.Manufacturer = "Hovnival";
+            carUpdate.Manufacturer = "Hyundai";
             carUpdate.LicensePlate = "IL584UG";
             carUpdate.RegistrationDate = DateTime.Today;
 
             //Act
             await _carFacadeSUT.SaveAsync(carUpdate);
 
-            Console.Write(carUpdate);
 
             //Assert
             await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
