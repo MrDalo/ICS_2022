@@ -87,47 +87,36 @@ namespace TravelAgency.BL.Tests
             Assert.False(await dbxAssert.Cars.AnyAsync(i => i.Id == CarSeeds.CarToBeDeleted.Id));
         }
 
-        /*
         [Fact]
-        public async Task NewIngredient_InsertOrUpdate_IngredientAdded()
+        public async Task SeededCar_InsertOrUpdate_ParametersUpdated()
         {
             //Arrange
-            var ingredient = new IngredientDetailModel(
-                Name: "Water",
-                Description: "Mineral water"
-            );
-
-            //Act
-            ingredient = await _carFacadeSUT.SaveAsync(ingredient);
-
-            //Assert
-            await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
-            var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
-            DeepAssert.Equal(ingredient, Mapper.Map<IngredientDetailModel>(ingredientFromDb));
-        }
-
-        [Fact]
-        public async Task SeededWater_InsertOrUpdate_IngredientUpdated()
-        {
-            //Arrange
-            var ingredient = new IngredientDetailModel
+            var carUpdate = new CarDetailModel
             (
-                Name: IngredientSeeds.Water.Name,
-                Description: IngredientSeeds.Water.Description
+                LicensePlate: CarSeeds.CarToBeUpdated.LicensePlate,
+                Manufacturer:CarSeeds.CarToBeUpdated.Manufacturer,
+                CarType:CarSeeds.CarToBeUpdated.CarType,
+                RegistrationDate: CarSeeds.CarToBeUpdated.RegistrationDate,
+                Capacity:CarSeeds.CarToBeUpdated.Capacity,
+                OwnerId:CarSeeds.CarToBeUpdated.OwnerId
             )
             {
-                Id = IngredientSeeds.Water.Id
+                Id = CarSeeds.CarToBeUpdated.Id
             };
-            ingredient.Name += "updated";
-            ingredient.Description += "updated";
+
+            carUpdate.Manufacturer = "Hovnival";
+            carUpdate.LicensePlate = "IL584UG";
+            carUpdate.RegistrationDate = DateTime.Today;
 
             //Act
-            await _carFacadeSUT.SaveAsync(ingredient);
+            await _carFacadeSUT.SaveAsync(carUpdate);
+
+            Console.Write(carUpdate);
 
             //Assert
             await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
-            var ingredientFromDb = await dbxAssert.Ingredients.SingleAsync(i => i.Id == ingredient.Id);
-            DeepAssert.Equal(ingredient, Mapper.Map<IngredientDetailModel>(ingredientFromDb));
-        }*/
+            var carFromDb = await dbxAssert.Cars.SingleAsync(i => i.Id == carUpdate.Id);
+            Assert.Equal(carUpdate, Mapper.Map<CarDetailModel>(carFromDb));
+        }
     }
 }

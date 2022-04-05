@@ -75,21 +75,21 @@ public static class UserSeeds
 
     public static readonly UserEntity PassengerTest69 = new(
         Id: Guid.Parse(input: "e11a73a4-db74-4749-a93d-6de07d773304"),
-        Login: "xsmithasdf00",
+        Login: "xjozefs00",
         Name: "Jozef",
         Surname: "Skrecok",
         Email: "vut@gmail.com",
-        PhoneNumber: "0949866579",
+        PhoneNumber: "+421949866579",
         PhotoUrl: null
     );
 
     public static readonly UserEntity PassengerTest70 = new(
         Id: Guid.Parse(input: "222efa30-3bae-4bf6-97f0-793d6d08517d"),
-        Login: "xsmithasdf00",
+        Login: "xkrali00",
         Name: "Marek",
         Surname: "Kralik",
         Email: "vut@gmail.com",
-        PhoneNumber: "0949866579",
+        PhoneNumber: "+421949866589",
         PhotoUrl: null
     );
 
