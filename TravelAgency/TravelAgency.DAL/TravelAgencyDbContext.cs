@@ -42,7 +42,7 @@ namespace TravelAgency.DAL
                 .HasOne(s => s.Car)
                 .WithMany() 
                 .HasForeignKey(s => s.CarId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<ShareRideEntity>()
                 .HasOne(s => s.Driver)

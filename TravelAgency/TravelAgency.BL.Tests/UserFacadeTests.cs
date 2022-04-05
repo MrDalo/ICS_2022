@@ -76,13 +76,15 @@ namespace TravelAgency.BL.Tests
             //Arrange
             var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
             detailModel.Cars.Remove(detailModel.Cars.First());
-            detailModel.Cars.Remove(detailModel.Cars.First());
+            
 
             //Act
             await _userFacadeSUT.SaveAsync(detailModel);
 
+            //detailModel = Mapper.Map<UserDetailModel>(UserSeeds.UserEntity);
             //Assert
             var returnedModel = await _userFacadeSUT.GetAsync(detailModel.Id);
+            detailModel.DriverShareRides[0].CarId = null;
             DeepAssert.Equal(detailModel, returnedModel);
         }
 
