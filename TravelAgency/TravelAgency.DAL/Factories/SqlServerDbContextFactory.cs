@@ -17,10 +17,7 @@ namespace TravelAgency.DAL.Factories
         {
             var optionsBuilder = new DbContextOptionsBuilder<TravelAgencyDbContext>();
             optionsBuilder.UseSqlServer(_connectionString);
-
-            //optionsBuilder.LogTo(System.Console.WriteLine); //Enable in case you want to see tests details, enabled may cause some inconsistencies in tests
-            //optionsBuilder.EnableSensitiveDataLogging();
-
+            
             return new TravelAgencyDbContext(optionsBuilder.Options, _seedDemoData);
         }
     }

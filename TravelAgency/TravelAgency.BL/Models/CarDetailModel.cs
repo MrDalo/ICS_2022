@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using TravelAgency.DAL.Entities;
-using TravelAgency.DAL.UnitOfWork;
 using TravelAgency.Common.Enums;
 
 namespace TravelAgency.BL.Models

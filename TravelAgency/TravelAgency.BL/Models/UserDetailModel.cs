@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
-using AutoMapper.EquivalencyExpression;
-using TravelAgency.Common.Enums;
+﻿using AutoMapper;
 using TravelAgency.DAL.Entities;
-
 
 namespace TravelAgency.BL.Models
 {
@@ -29,7 +24,6 @@ namespace TravelAgency.BL.Models
         public List<PassengerOfShareRideDetailModel> PassengerShareRides { get; init; } = new();
 
         public List<CarListModel> Cars { get; init; } = new();
-        //TODO pri LIST Cars treba zistit a zvalidovat zapis, pretoze moze byt list prazdny, asi treba zmenit aj <CarEntity> na nejaky CarModel
 
         public class MapperProfile : Profile
         {
@@ -38,7 +32,6 @@ namespace TravelAgency.BL.Models
                 CreateMap<UserEntity, UserDetailModel>()
                     .ReverseMap()
                     .ForMember(entity => entity.Login, expression => expression.Ignore());
-                        //Zabezpeci, ze uzivatel nemoze menit svoj login, //TODO treba sa dohodnut ci user moze zmenit svoj login - za mna nie lebo moze nastat problem pri ukladani ICollections
             }
         }
 

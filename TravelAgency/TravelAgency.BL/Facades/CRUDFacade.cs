@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.EntityFrameworkCore;
+﻿using AutoMapper;
 using TravelAgency.BL.Models;
-using TravelAgency.DAL;
 using TravelAgency.DAL.Entities;
 using TravelAgency.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;

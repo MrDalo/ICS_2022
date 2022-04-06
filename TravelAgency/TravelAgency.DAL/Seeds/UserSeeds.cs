@@ -1,5 +1,4 @@
-﻿using System;
-using TravelAgency.DAL.Entities;
+﻿using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace TravelAgency.DAL.Seeds;

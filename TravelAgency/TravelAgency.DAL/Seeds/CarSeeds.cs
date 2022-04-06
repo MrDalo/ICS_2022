@@ -1,5 +1,4 @@
-﻿using System;
-using TravelAgency.Common.Enums;
+﻿using TravelAgency.Common.Enums;
 using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 

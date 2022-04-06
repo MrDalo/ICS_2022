@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TravelAgency.DAL.Entities;
 using TravelAgency.DAL.Seeds;
 
@@ -65,23 +60,7 @@ namespace TravelAgency.DAL
                 .WithMany(u => u.Passengers)
                 .HasForeignKey(p => p.ShareRideId);
 
-
-            //modelBuilder.Entity<ShareRideEntity>()
-            //    .HasMany(s => s.Passengers)
-            //    .WithMany(u => u.PassengerShareRides)
-            //    .UsingEntity(j => j.ToTable("PassengerOfShareRide")); // Malo by to vytvorit novu tabulku s nazvom PassengerOfShareRide - N k N vztah je tvorba novej tabulky
-            //                                                          //src: https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-composite-key%2Csimple-key
-
-            //modelBuilder.Entity<ShareRideEntity>()
-            //    .HasMany(s => s.Passengers)
-            //    .WithMany(c => c.PassengerShareRides)
-            //    .Map(cs =>
-            //    {
-            //        cs.MapLeftKey("StudentRefId");
-            //        cs.MapRightKey("CourseRefId");
-            //        cs.ToTable("StudentCourse");
-            //    });
-
+            
             if (_seedDemoData)
             {
                 UserSeeds.Seed(modelBuilder);
