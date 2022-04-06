@@ -34,8 +34,8 @@ public class DbContextTestsBase : IAsyncLifetime
 
     public async Task DisposeAsync()
     {
-        // TODO: uncomment
-        //await TravelAgencyDbContextSUT.Database.EnsureDeletedAsync();
+        
+        await TravelAgencyDbContextSUT.Database.EnsureDeletedAsync();
         await TravelAgencyDbContextSUT.DisposeAsync();
     }
 }
