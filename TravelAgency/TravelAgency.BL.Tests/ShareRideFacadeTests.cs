@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using TravelAgency.BL.Facades;
 using TravelAgency.Common.Tests;
 using TravelAgency.Common.Tests.Seeds;
-
 using Microsoft.EntityFrameworkCore;
 using TravelAgency.BL.Models;
 using Xunit.Abstractions;

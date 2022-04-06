@@ -1,8 +1,6 @@
 ﻿using System;
-using TravelAgency.Common.Enums;
 using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace TravelAgency.Common.Tests.Seeds;
 

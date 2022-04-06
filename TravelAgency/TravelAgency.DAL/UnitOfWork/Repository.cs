@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.EntityFrameworkCore;
 using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
