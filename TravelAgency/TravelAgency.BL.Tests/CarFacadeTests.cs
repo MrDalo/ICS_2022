@@ -54,7 +54,7 @@ namespace TravelAgency.BL.Tests
         }
 
         [Fact]
-        public async Task GetById_SeededWater()
+        public async Task GetById_SeededCar()
         {
             var car = await _carFacadeSUT.GetAsync(CarSeeds.CarToBeSearched.Id);
 
@@ -83,7 +83,7 @@ namespace TravelAgency.BL.Tests
         [Fact]
         public async Task SeededCar_InsertOrUpdate_ParametersUpdated()
         {
-            //Arrange
+ 
             var carUpdate = new CarDetailModel
             (
                 LicensePlate: CarSeeds.CarToBeUpdated.LicensePlate,
@@ -101,11 +101,8 @@ namespace TravelAgency.BL.Tests
             carUpdate.LicensePlate = "IL584UG";
             carUpdate.RegistrationDate = DateTime.Today;
 
-            //Act
             await _carFacadeSUT.SaveAsync(carUpdate);
 
-
-            //Assert
             await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
             var carFromDb = await dbxAssert.Cars.SingleAsync(i => i.Id == carUpdate.Id);
             Assert.Equal(carUpdate, Mapper.Map<CarDetailModel>(carFromDb));
