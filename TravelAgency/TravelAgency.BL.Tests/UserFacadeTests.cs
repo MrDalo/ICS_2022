@@ -44,7 +44,7 @@ namespace TravelAgency.BL.Tests
         [Fact]
         public async Task Create_WithNonExistingUser_Throws()
         {
-            //Arrange
+
             var model = new UserDetailModel
             (
                 Login: "xharmy00",
@@ -54,12 +54,12 @@ namespace TravelAgency.BL.Tests
                 PhoneNumber: "+421789562511"
             );
 
-            //Act & Assert
+
             try
             {
-                await _userFacadeSUT.SaveAsync(model); //In-memory pass without exception
+                await _userFacadeSUT.SaveAsync(model);
             }
-            catch (DbUpdateException) { } //SqlServer throws on FK
+            catch (DbUpdateException) { }
         }
 
 
@@ -67,14 +67,13 @@ namespace TravelAgency.BL.Tests
         [Fact]
         public async Task Update_RemoveCars_FromSeeded_CheckUpdated()
         {
-            //Arrange
+
             var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest2);
             detailModel.Cars.Clear();
 
-            //Act
+
             await _userFacadeSUT.SaveAsync(detailModel);
 
-            //Assert
             var returnedModel = await _userFacadeSUT.GetAsync(detailModel.Id);
             DeepAssert.Equal(detailModel, returnedModel);
         }
@@ -82,15 +81,14 @@ namespace TravelAgency.BL.Tests
         [Fact]
         public async Task Update_RemoveOneOfCars_FromSeeded_CheckUpdated()
         {
-            //Arrange
+
             var detailModel = Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest);
             detailModel.Cars.Remove(detailModel.Cars.First());
             detailModel.Cars.Remove(detailModel.Cars.First());
 
-            //Act
+
             await _userFacadeSUT.SaveAsync(detailModel);
 
-            //Assert
             var returnedModel = await _userFacadeSUT.GetAsync(detailModel.Id);
             DeepAssert.Equal(detailModel, returnedModel);
         }
