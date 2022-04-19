@@ -19,7 +19,7 @@ namespace TravelAgency.BL.Facades
 
         //TODO car limit
 
-        public async Task<bool> SignUpForShareRideAsPassenger(ShareRideDetailModel model, UserDetailModel user)
+        public async Task<bool> SignUpForShareRideAsPassenger(UserDetailModel user, ShareRideDetailModel model)
         {
             await using var uow = _unitOfWorkFactory.Create();
             var query = uow
@@ -66,7 +66,10 @@ namespace TravelAgency.BL.Facades
                     
                     PassengerId: user.Id,
                     ShareRideId: query.First().Id
-                );
+                )
+                {
+                    Id = Guid.NewGuid()
+                };
                 
 
                 user.PassengerShareRides.Add(newPassengerAndShareRideRelation);

@@ -51,7 +51,7 @@ namespace TravelAgency.BL.Facades
         public async Task<TDetailModel> SaveAsync(TDetailModel model)
         {
             await using var uow = _unitOfWorkFactory.Create();
-
+            
             var entity = await uow
                 .GetRepository<TEntity>()
                 .InsertOrUpdateAsync(model, _mapper)

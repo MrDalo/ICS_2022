@@ -94,6 +94,24 @@ namespace TravelAgency.BL.Tests
         }
 
 
+        [Fact]
+        public async Task AddUserToShareRideAsAPassenger()
+        {
+
+            Assert.True(await _userFacadeSUT.SignUpForShareRideAsPassenger(Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest71), Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideEntityDelete)));
+
+        }
+
+
+        [Fact]
+        public async Task AddUserToShareRideAsAPassengerError()
+        {
+
+            Assert.False(await _userFacadeSUT.SignUpForShareRideAsPassenger(Mapper.Map<UserDetailModel>(UserSeeds.Passenger1), Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideEntityDelete)));
+
+        }
+
+
         private static void FixIds(UserDetailModel expectedModel, UserDetailModel returnedModel)
         {
             returnedModel.Id = expectedModel.Id;

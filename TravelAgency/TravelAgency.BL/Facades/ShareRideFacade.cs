@@ -67,10 +67,14 @@ namespace TravelAgency.BL.Facades
                 .GetRepository<CarEntity>()
                 .Get()
                 .Where(e => e.Id == model.CarId);
-            
 
-                // -1 because driver is not counted in Passengers 
-            if (model.Passengers.Count == query.First().Capacity - 1)
+            var Passengersquery = uow
+                .GetRepository<PassengerOfShareRideEntity>()
+                .Get()
+                .Where(e => e.ShareRideId == model.Id);
+
+            // -1 because driver is not counted in Passengers 
+            if (Passengersquery.Count() == query.First().Capacity - 1)
             {
                 //True
                 return 1;

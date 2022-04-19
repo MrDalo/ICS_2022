@@ -42,12 +42,26 @@ namespace TravelAgency.Common.Tests.Seeds
 
         };
 
+        public static readonly PassengerOfShareRideEntity PassengerOfShareRide3 = new(
+            Id: Guid.Parse(input: "41DDA17B-3F21-44AD-9BF5-05F7E9AFDD65"),
+            PassengerId: UserSeeds.PassengerTest2.Id,
+            ShareRideId: ShareRideSeeds.ShareRideEntityUpdate.Id
+        )
+        {
+            Passenger = UserSeeds.PassengerTest2,
+            ShareRide = ShareRideSeeds.ShareRideEntityUpdate
+
+        };
+
+
+
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PassengerOfShareRideEntity>().HasData(
                 PassengerOfShareRide1 with {Passenger = null, ShareRide = null},
-                PassengerOfShareRide2 with { Passenger = null, ShareRide = null }
-                
+                PassengerOfShareRide2 with { Passenger = null, ShareRide = null },
+                PassengerOfShareRide3 with { Passenger = null, ShareRide = null }
+
             );
         }
     }
