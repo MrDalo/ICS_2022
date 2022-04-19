@@ -47,7 +47,7 @@ namespace TravelAgency.BL.Tests
         [Fact]
         public async Task GetAll_Single_SeededCarByID()
         {
-            var cars = await _carFacadeSUT.GetAsync();
+            var cars = await _carFacadeSUT.GetAll();
             var car = cars.Single(i => i.Id == CarSeeds.CarEntity1.Id);
 
             DeepAssert.Equal(Mapper.Map<CarListModel>(CarSeeds.CarEntity1), car);

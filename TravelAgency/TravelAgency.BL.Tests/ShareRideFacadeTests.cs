@@ -44,7 +44,7 @@ namespace TravelAgency.BL.Tests
 
         public async Task GetAll_Single_SeededShareRideByID()
         {
-            var share_rides = await _shareRideFacadeSUT.GetAsync();
+            var share_rides = await _shareRideFacadeSUT.GetAll();
             var share_ride = share_rides.Single(i => i.Id == ShareRideSeeds.ShareRideToBeUpdated1.Id);
 
             DeepAssert.Equal(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideToBeUpdated1), share_ride);
