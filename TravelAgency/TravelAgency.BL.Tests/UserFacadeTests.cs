@@ -111,6 +111,21 @@ namespace TravelAgency.BL.Tests
 
         }
 
+        [Fact]
+        public async Task CanAddNewCarTest()
+        {
+
+            Assert.True(await _userFacadeSUT.CanIAddNewCar(Mapper.Map<UserDetailModel>(UserSeeds.UserEntity)));
+
+        }
+
+        [Fact]
+        public async Task CanNotAddNewCarTest()
+        {
+
+            Assert.False(await _userFacadeSUT.CanIAddNewCar(Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest70)));
+
+        }
 
         private static void FixIds(UserDetailModel expectedModel, UserDetailModel returnedModel)
         {

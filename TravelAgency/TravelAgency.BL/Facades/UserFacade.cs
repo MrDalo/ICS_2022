@@ -17,7 +17,20 @@ namespace TravelAgency.BL.Facades
             _mapper = mapper;
         }
 
-        //TODO car limit
+        public async Task<bool> CanIAddNewCar(UserDetailModel user)
+        {
+                //Max supported cars per user is set to 3
+            if (user.Cars.Count < 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
 
         public async Task<bool> SignUpForShareRideAsPassenger(UserDetailModel user, ShareRideDetailModel model)
         {

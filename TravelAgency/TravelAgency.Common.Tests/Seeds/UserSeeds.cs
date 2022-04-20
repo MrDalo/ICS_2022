@@ -115,6 +115,8 @@ public static class UserSeeds
        PassengerTest69.Cars.Add(CarSeeds.CarToBeSearched);
        PassengerTest69.Cars.Add(CarSeeds.CarToBeDeleted);
        PassengerTest70.Cars.Add(CarSeeds.CarToBeUpdated);
+       PassengerTest70.Cars.Add(CarSeeds.CarTest5);
+       PassengerTest70.Cars.Add(CarSeeds.CarTest6);
 
     }
 
