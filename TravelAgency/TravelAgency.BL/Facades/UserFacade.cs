@@ -19,16 +19,12 @@ namespace TravelAgency.BL.Facades
 
         public async Task<bool> CanIAddNewCar(UserDetailModel user)
         {
-                //Max supported cars per user is set to 3
+            //Max supported cars per user is set to 3
             if (user.Cars.Count < 3)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
-
+            return false;
         }
 
 
