@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Common", "Trav
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.DAL.Tests", "TravelAgency.DAL.Tests\TravelAgency.DAL.Tests.csproj", "{5BEFF05E-6F41-40FC-9990-BB8B8549B07B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Common.Tests", "TravelAgency.Common.Tests\TravelAgency.Common.Tests.csproj", "{170776D5-6607-4900-A966-1BB7B412AF40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Tests.Common", "TravelAgency.Tests.Common\TravelAgency.Tests.Common.csproj", "{170776D5-6607-4900-A966-1BB7B412AF40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.BL", "TravelAgency.BL\TravelAgency.BL.csproj", "{3088C10D-A984-47FF-A977-8C872ED4A8AE}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.BL", "TravelAg
 		{5E49C39F-51F6-4A79-B9B8-9572E8A08438} = {5E49C39F-51F6-4A79-B9B8-9572E8A08438}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.BL.Tests", "TravelAgency.BL.Tests\TravelAgency.BL.Tests.csproj", "{5894EA19-5DB1-4ED9-99C5-E0467E5F83E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.BL.Tests", "TravelAgency.BL.Tests\TravelAgency.BL.Tests.csproj", "{5894EA19-5DB1-4ED9-99C5-E0467E5F83E8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3088C10D-A984-47FF-A977-8C872ED4A8AE} = {3088C10D-A984-47FF-A977-8C872ED4A8AE}
 		{170776D5-6607-4900-A966-1BB7B412AF40} = {170776D5-6607-4900-A966-1BB7B412AF40}

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TravelAgency.Common.Enums;
-using TravelAgency.Common.Tests.Seeds;
+using TravelAgency.Tests.Common.Seeds;
 using Xunit;
 using Xunit.Abstractions;
 

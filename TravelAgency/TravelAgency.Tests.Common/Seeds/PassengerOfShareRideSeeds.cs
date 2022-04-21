@@ -2,7 +2,7 @@
 using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace TravelAgency.Common.Tests.Seeds
+namespace TravelAgency.Tests.Common.Seeds
 {
     public static class PassengerOfShareRideSeeds
     {

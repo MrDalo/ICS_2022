@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TravelAgency.DAL;
 
-namespace TravelAgency.Common.Tests.Factories
+namespace TravelAgency.Tests.Common.Factories
 {
     public class DbContextTestingInMemoryFactory : IDbContextFactory<TravelAgencyDbContext>
     {

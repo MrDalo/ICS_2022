@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using TravelAgency.BL.Models;
 using TravelAgency.BL.Facades;
-using TravelAgency.Common.Tests;
-using TravelAgency.Common.Tests.Seeds;
+using TravelAgency.Tests.Common;
+using TravelAgency.Tests.Common.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit.Abstractions;
 using Xunit;
