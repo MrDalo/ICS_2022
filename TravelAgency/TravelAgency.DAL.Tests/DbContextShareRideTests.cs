@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TravelAgency.Common.Tests;
-using TravelAgency.Common.Tests.Seeds;
+using TravelAgency.Tests.Common;
+using TravelAgency.Tests.Common.Seeds;
 using TravelAgency.DAL.Entities;
 using Xunit;
 using Xunit.Abstractions;

@@ -2,7 +2,7 @@
 using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace TravelAgency.Common.Tests.Seeds;
+namespace TravelAgency.Tests.Common.Seeds;
 
 public static class UserSeeds
 {
@@ -91,6 +91,16 @@ public static class UserSeeds
         PhotoUrl: null
     );
 
+    public static readonly UserEntity PassengerTest71 = new(
+        Id: Guid.Parse(input: "9DFD52D1-F297-4431-BF60-02AAA268ADF6"),
+        Login: "xkulla00",
+        Name: "Parek",
+        Surname: "Marek",
+        Email: "vut@gmail.com",
+        PhoneNumber: "+421949866589",
+        PhotoUrl: null
+    );
+
 
     static UserSeeds()
     {
@@ -105,6 +115,8 @@ public static class UserSeeds
        PassengerTest69.Cars.Add(CarSeeds.CarToBeSearched);
        PassengerTest69.Cars.Add(CarSeeds.CarToBeDeleted);
        PassengerTest70.Cars.Add(CarSeeds.CarToBeUpdated);
+       PassengerTest70.Cars.Add(CarSeeds.CarTest5);
+       PassengerTest70.Cars.Add(CarSeeds.CarTest6);
 
     }
 
@@ -123,6 +135,7 @@ public static class UserSeeds
             UserCarAdd,
             UserForShareRideUpdate,
             UserForShareRideDelete,
+            PassengerTest71 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             PassengerTest69 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             PassengerTest70 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(), Cars = Array.Empty<CarEntity>() }
         );

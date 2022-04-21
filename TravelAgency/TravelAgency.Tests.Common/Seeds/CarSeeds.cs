@@ -3,7 +3,7 @@ using TravelAgency.Common.Enums;
 using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace TravelAgency.Common.Tests.Seeds;
+namespace TravelAgency.Tests.Common.Seeds;
 
 public static class CarSeeds
 {
@@ -56,6 +56,8 @@ public static class CarSeeds
     public static readonly CarEntity CarTest2 = CarEntity1 with { Id = Guid.Parse("2222231F-CED4-4F2B-89DB-0EE83111D279"), Owner = null, OwnerId = UserSeeds.PassengerTest.Id };
     public static readonly CarEntity CarTest3 = CarEntity1 with { Id = Guid.Parse("1121331F-CED4-4F2B-89DB-0EE83A74D279"), Owner = null, OwnerId = UserSeeds.PassengerTest2.Id };
     public static readonly CarEntity CarTest4 = CarEntity1 with { Id = Guid.Parse("2345731F-CED4-4F2B-89DB-0EE83111D279"), Owner = null, OwnerId = UserSeeds.PassengerTest2.Id };
+    public static readonly CarEntity CarTest5 = CarEntity1 with { Id = Guid.Parse("61FCC4B4-A013-4876-815A-8DBFAA2C09E6"), Owner = null, OwnerId = UserSeeds.PassengerTest2.Id };
+    public static readonly CarEntity CarTest6 = CarEntity1 with { Id = Guid.Parse("805E7434-7C7D-4816-938F-4B0CAB5347A7"), Owner = null, OwnerId = UserSeeds.PassengerTest2.Id };
 
 
     public static readonly CarEntity CarToBeSearched = EmptyCarEntity with
@@ -108,6 +110,8 @@ public static class CarSeeds
             CarTest2,
             CarTest3,
             CarTest4,
+            CarTest5,
+            CarTest6,
             CarEntityUpdate,
             CarEntityUserContains,
             CarEntityDelete,

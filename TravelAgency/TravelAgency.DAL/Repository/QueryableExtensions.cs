@@ -1,8 +1,8 @@
-﻿using TravelAgency.DAL.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using TravelAgency.DAL.Entities;
 
-namespace TravelAgency.DAL.UnitOfWork;
+namespace TravelAgency.DAL.Repository;
 
 public static class QueryableExtensions
 {

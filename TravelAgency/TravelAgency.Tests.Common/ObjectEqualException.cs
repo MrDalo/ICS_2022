@@ -1,6 +1,6 @@
 ﻿using Xunit.Sdk;
 
-namespace TravelAgency.Common.Tests;
+namespace TravelAgency.Tests.Common;
 
 public class ObjectEqualException : AssertActualExpectedException
 {

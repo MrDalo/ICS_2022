@@ -1,4 +1,5 @@
 ﻿using TravelAgency.DAL.Entities;
+using TravelAgency.DAL.Repository;
 
 namespace TravelAgency.DAL.UnitOfWork
 {

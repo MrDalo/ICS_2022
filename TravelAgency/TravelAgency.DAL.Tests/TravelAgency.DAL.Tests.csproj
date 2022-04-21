@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TravelAgency.Common.Tests\TravelAgency.Common.Tests.csproj" />
+    <ProjectReference Include="..\TravelAgency.Tests.Common\TravelAgency.Tests.Common.csproj" />
     <ProjectReference Include="..\TravelAgency.DAL\TravelAgency.DAL.csproj" />
   </ItemGroup>
 

@@ -23,13 +23,6 @@ namespace TravelAgency.BL.Models
 
         public List<PassengerOfShareRideDetailModel> Passengers { get; init; } = new();
 
-        
-
-        //public CarEntity? Car { get; init; }
-
-        //public UserEntity? Driver { get; init; }
-        
-
         public class MapperProfile : Profile
         {
             public MapperProfile()

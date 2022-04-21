@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using KellermanSoftware.CompareNetObjects;
 
-namespace TravelAgency.Common.Tests
+namespace TravelAgency.Tests.Common
 {
     public static class DeepAssert
     {

@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using TravelAgency.BL.Models;
 using TravelAgency.BL.Facades;
-using TravelAgency.Common.Tests;
-using TravelAgency.Common.Tests.Seeds;
+using TravelAgency.Tests.Common;
+using TravelAgency.Tests.Common.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Xunit.Abstractions;
 using Xunit;
@@ -93,6 +93,39 @@ namespace TravelAgency.BL.Tests
             DeepAssert.Equal(detailModel, returnedModel);
         }
 
+
+        [Fact]
+        public async Task AddUserToShareRideAsAPassenger()
+        {
+
+            Assert.True(await _userFacadeSUT.SignUpForShareRideAsPassenger(Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest71), Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideEntityDelete)));
+
+        }
+
+
+        [Fact]
+        public async Task AddUserToShareRideAsAPassengerError()
+        {
+
+            Assert.False(await _userFacadeSUT.SignUpForShareRideAsPassenger(Mapper.Map<UserDetailModel>(UserSeeds.Passenger1), Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideEntityDelete)));
+
+        }
+
+        [Fact]
+        public async Task CanAddNewCarTest()
+        {
+
+            Assert.True(await _userFacadeSUT.CanIAddNewCar(Mapper.Map<UserDetailModel>(UserSeeds.UserEntity)));
+
+        }
+
+        [Fact]
+        public async Task CanNotAddNewCarTest()
+        {
+
+            Assert.False(await _userFacadeSUT.CanIAddNewCar(Mapper.Map<UserDetailModel>(UserSeeds.PassengerTest70)));
+
+        }
 
         private static void FixIds(UserDetailModel expectedModel, UserDetailModel returnedModel)
         {

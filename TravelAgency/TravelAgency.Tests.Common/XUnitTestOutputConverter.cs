@@ -2,7 +2,7 @@
 using System.Text;
 using Xunit.Abstractions;
 
-namespace TravelAgency.Common.Tests
+namespace TravelAgency.Tests.Common
 {
     public class XUnitTestOutputConverter : TextWriter
     {

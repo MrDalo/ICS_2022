@@ -1,5 +1,6 @@
 ﻿using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
+using TravelAgency.DAL.Repository;
 
 namespace TravelAgency.DAL.UnitOfWork
 {

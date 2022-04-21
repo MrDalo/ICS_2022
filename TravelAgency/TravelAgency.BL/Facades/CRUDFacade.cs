@@ -39,7 +39,7 @@ namespace TravelAgency.BL.Facades
             return await _mapper.ProjectTo<TDetailModel>(query).SingleOrDefaultAsync().ConfigureAwait(false);
         }
 
-        public async Task<IEnumerable<TListModel>> GetAsync()
+        public async Task<IEnumerable<TListModel>> GetAll()
         {
             await using var uow = _unitOfWorkFactory.Create();
             var query = uow
@@ -51,7 +51,7 @@ namespace TravelAgency.BL.Facades
         public async Task<TDetailModel> SaveAsync(TDetailModel model)
         {
             await using var uow = _unitOfWorkFactory.Create();
-
+            
             var entity = await uow
                 .GetRepository<TEntity>()
                 .InsertOrUpdateAsync(model, _mapper)

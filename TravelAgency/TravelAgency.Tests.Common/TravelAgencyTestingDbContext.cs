@@ -1,8 +1,8 @@
-﻿using TravelAgency.Common.Tests.Seeds;
-using TravelAgency.DAL;
+﻿using TravelAgency.DAL;
 using Microsoft.EntityFrameworkCore;
+using TravelAgency.Tests.Common.Seeds;
 
-namespace TravelAgency.Common.Tests
+namespace TravelAgency.Tests.Common
 {
     public class TravelAgencyTestingDbContext : TravelAgencyDbContext
     {

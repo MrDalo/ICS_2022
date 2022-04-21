@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TravelAgency.BL.Models;
 using TravelAgency.BL.Facades;
-using TravelAgency.Common.Tests;
-using TravelAgency.Common.Tests.Seeds;
+using TravelAgency.Tests.Common;
+using TravelAgency.Tests.Common.Seeds;
 using Microsoft.EntityFrameworkCore;
 using TravelAgency.Common.Enums;
 using Xunit.Abstractions;
@@ -47,7 +47,7 @@ namespace TravelAgency.BL.Tests
         [Fact]
         public async Task GetAll_Single_SeededCarByID()
         {
-            var cars = await _carFacadeSUT.GetAsync();
+            var cars = await _carFacadeSUT.GetAll();
             var car = cars.Single(i => i.Id == CarSeeds.CarEntity1.Id);
 
             DeepAssert.Equal(Mapper.Map<CarListModel>(CarSeeds.CarEntity1), car);
