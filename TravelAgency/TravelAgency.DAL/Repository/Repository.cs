@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.EntityFrameworkCore;
-using TravelAgency.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using TravelAgency.DAL.Entities;
+using TravelAgency.DAL.UnitOfWork;
 
-
-namespace TravelAgency.DAL.UnitOfWork
+namespace TravelAgency.DAL.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {

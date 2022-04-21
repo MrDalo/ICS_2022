@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using TravelAgency.DAL.Entities;
 
-namespace TravelAgency.DAL.UnitOfWork
+namespace TravelAgency.DAL.Repository
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {
