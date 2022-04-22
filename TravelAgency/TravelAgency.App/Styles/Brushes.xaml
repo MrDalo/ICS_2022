@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Default Brushes for the application-->
+ 
+    <SolidColorBrush x:Key="DefaultForegroundBrush" Color="#fff"/>
+    
+
+    <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="#FFF43C3C"/>
+    <SolidColorBrush x:Key="DefaultBackgroundBrushHover" Color="#FFFF7575"/>
+</ResourceDictionary>
