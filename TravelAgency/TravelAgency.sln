@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.BL.Tests", "Tr
 		{170776D5-6607-4900-A966-1BB7B412AF40} = {170776D5-6607-4900-A966-1BB7B412AF40}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.App", "TravelAgency.App\TravelAgency.App.csproj", "{57D4A01C-E369-4D51-A3B2-8E500F0C667B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.App", "TravelAgency.App\TravelAgency.App.csproj", "{03CFF310-7449-445A-9AC7-A84316F5372D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,10 @@ Global
 		{5894EA19-5DB1-4ED9-99C5-E0467E5F83E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5894EA19-5DB1-4ED9-99C5-E0467E5F83E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5894EA19-5DB1-4ED9-99C5-E0467E5F83E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57D4A01C-E369-4D51-A3B2-8E500F0C667B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57D4A01C-E369-4D51-A3B2-8E500F0C667B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57D4A01C-E369-4D51-A3B2-8E500F0C667B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57D4A01C-E369-4D51-A3B2-8E500F0C667B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03CFF310-7449-445A-9AC7-A84316F5372D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CFF310-7449-445A-9AC7-A84316F5372D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03CFF310-7449-445A-9AC7-A84316F5372D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03CFF310-7449-445A-9AC7-A84316F5372D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
