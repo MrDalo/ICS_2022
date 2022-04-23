@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelAgency.App.Messages;
+using TravelAgency.App.Wrappers;
 using TravelAgency.App.Services;
 using TravelAgency.BL.Models;
 using TravelAgency.App.Commands;
@@ -14,7 +15,7 @@ using System.Windows.Input;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class PassengerOfShareRideDetailViewModel : ViewModelBase
+    public class PassengerOfShareRideDetailViewModel : ViewModelBase, IPassengerOfShareRideDetailViewModel
     {
 
 
@@ -28,6 +29,23 @@ namespace TravelAgency.App.ViewModels
         {
             _passengerOfShareRideFacade = passengerOfShareRideFacade;
             _mediator = mediator;
+        }
+
+        public PassengerOfShareRideWrapper? Model { get; private set; }
+
+        public async Task LoadAsync(Guid id)
+        {
+
+        }
+
+        public async Task SaveAsync()
+        {
+
+        }
+
+        public async Task DeleteAsync()
+        {
+
         }
 
     }

@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class PassengerOfShareRideListViewModel : ViewModelBase
+    public class PassengerOfShareRideListViewModel : ViewModelBase, IPassengerOfShareRideListViewModel
     {
         private readonly PassengerOfShareRideFacade _passengerOfShareRideFacade;
         private readonly IMediator _mediator;
@@ -26,6 +26,11 @@ namespace TravelAgency.App.ViewModels
         {
             _passengerOfShareRideFacade = passengerOfShareRideFacade;
             _mediator = mediator;
+        }
+
+        public async Task LoadAsync()
+        {
+
         }
 
 

@@ -11,10 +11,11 @@ using TravelAgency.BL.Facades;
 using TravelAgency.Common.Enums;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TravelAgency.App.Wrappers;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class ShareRideDetailViewModel : ViewModelBase
+    public class ShareRideDetailViewModel : ViewModelBase, IShareRideDetailViewModel
     {
         private readonly ShareRideFacade _shareRideFacade;
         private readonly IMediator _mediator;
@@ -26,6 +27,24 @@ namespace TravelAgency.App.ViewModels
         {
             _shareRideFacade = shareRideFacade;
             _mediator = mediator;
+        }
+
+
+        public ShareRideWrapper? Model { get; private set; }
+
+        public async Task LoadAsync(Guid id)
+        {
+
+        }
+
+        public async Task SaveAsync()
+        {
+
+        }
+
+        public async Task DeleteAsync()
+        {
+
         }
 
 

@@ -11,11 +11,12 @@ using TravelAgency.BL.Facades;
 using TravelAgency.Common.Enums;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TravelAgency.App.Wrappers;
 
 
 namespace TravelAgency.App.ViewModels
 {
-    public class CarDetailViewModel : ViewModelBase 
+    public class CarDetailViewModel : ViewModelBase, ICarDetailViewModel
     {
 
         private readonly CarFacade _carFacade;
@@ -29,6 +30,25 @@ namespace TravelAgency.App.ViewModels
             _carFacade = carFacade;
             _mediator = mediator;
         }
+
+
+        public CarWrapper? Model { get; private set;}
+
+        public async Task LoadAsync(Guid id)
+        {
+
+        }
+
+        public async Task SaveAsync()
+        {
+
+        }
+
+        public async Task DeleteAsync()
+        {
+
+        }
+
 
 
     }

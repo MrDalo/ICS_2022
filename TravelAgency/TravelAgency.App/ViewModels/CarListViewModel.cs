@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class CarListViewModel : ViewModelBase
+    public class CarListViewModel : ViewModelBase, ICarListViewModel
     {
         private readonly CarFacade _carFacade;
         private readonly IMediator _mediator;
@@ -28,5 +28,9 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
         }
 
+        public async Task LoadAsync()
+        {
+
+        }
     }
 }

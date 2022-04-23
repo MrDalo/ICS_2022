@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class ShareRideListViewModel : ViewModelBase
+    public class ShareRideListViewModel : ViewModelBase, IShareRideListViewModel
     {
 
         private readonly ShareRideFacade _shareRideFacade;
@@ -27,6 +27,11 @@ namespace TravelAgency.App.ViewModels
         {
             _shareRideFacade = shareRideFacade;
             _mediator = mediator;
+        }
+
+        public async Task LoadAsync()
+        {
+
         }
 
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Services;
 using TravelAgency.BL.Models;
+using TravelAgency.App.Wrappers;
 using TravelAgency.App.Commands;
 using TravelAgency.BL.Facades;
 using TravelAgency.Common.Enums;
@@ -14,7 +15,7 @@ using System.Windows.Input;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class UserListViewModel : ViewModelBase
+    public class UserListViewModel : ViewModelBase, IUserListViewModel
     {
 
         private readonly UserFacade _userFacade;
@@ -29,6 +30,12 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
 
+
+        }
+
+
+        public async Task LoadAsync()
+        {
 
         }
 
