@@ -6,9 +6,30 @@
         xmlns:local="clr-namespace:TravelAgency.App"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="{StaticResource DefaultBackgroundBrush}">
 
-        <Button Content="profilview" HorizontalAlignment="Left" Margin="211,78,0,0" VerticalAlignment="Top" Click="profilview"/>
+
+        <Ellipse
+            Margin="-91,-136,579,306" 
+            Fill="{StaticResource DefaultForegroundBrightBrush}">
+        </Ellipse>
+
+        <TextBlock 
+            
+            Style="{StaticResource ProfileViewLogo}"
+            Foreground="{StaticResource DefaultForegroundDarkBrush}" Height="58" 
+            Margin="25,10,0,0" 
+            
+            HorizontalAlignment="Left">            
+            ICS
+            <LineBreak/>
+            travel agency
+        </TextBlock>
+
+        <Button Content="profilview" HorizontalAlignment="Left" Margin="37,362,0,0" VerticalAlignment="Top" Click="profilview"/>
+       
+        <Frame Source="LoginInterface.xaml"  Width="400" Height="320" x:Name="ContentFrame" NavigationUIVisibility="Hidden"></Frame>
+        
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
 
 
