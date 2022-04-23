@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TravelAgency.App.ViewModels;
 
-namespace TravelAgency.App
+namespace TravelAgency.App.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProfileInfo.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProfileInfo : UserControl
     {
-        public MainWindow(MainViewModel mainViewModel)
+        public ProfileInfo()
         {
             InitializeComponent();
-            DataContext = mainViewModel;
         }
     }
 }

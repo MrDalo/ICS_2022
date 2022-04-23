@@ -29,11 +29,11 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <Label Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="1" >Domov</Label>
-                <Label Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="2">Profil</Label>
-                <Label Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="3">Moje Autá</Label>
-                <Label Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="4">Moje jazdy</Label>
-                <Label Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="5">Odhlásiť</Label>
+                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="1" >Domov</Button>
+                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="2">Profil</Button>
+                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="3">Moje Autá</Button>
+                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="4">Moje jazdy</Button>
+                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="5">Odhlásiť</Button>
 
             </Grid>
         </Grid>

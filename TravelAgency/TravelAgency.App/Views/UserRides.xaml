@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="TravelAgency.App.Views.UserRides"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelAgency.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+       
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+
+                <Label
+                    Grid.Row="0"
+                    FontSize="35"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center">
+
+                    Šofér
+                </Label>
+                <Label 
+                    Grid.Row="2"
+                    FontSize="35"
+                    FontWeight="Bold"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center">
+                    Spolujazdec
+                </Label>
+
+        <ListView HorizontalContentAlignment="Right" HorizontalAlignment="Center" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}">
+                  <!--ItemsSource=todo binding-->
+                  
+            <ListView.View>
+				<GridView >
+					<GridViewColumn  Header="Dátum" Width="150" DisplayMemberBinding="{Binding Date}" />
+					<GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding dest}" />
+					<GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding price}" />
+				</GridView>
+			</ListView.View>
+            
+        </ListView>
+
+        <ListView Margin="0,0,0,5" HorizontalAlignment="Center" Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=10}">
+            <!--ItemsSource=todo binding-->
+1
+            <ListView.View >
+                <GridView>
+                    <GridViewColumn Header="Dátum" Width="150" DisplayMemberBinding="{Binding Date}" />
+                    <GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding dest}" />
+                    <GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding price}" />
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+
+       
+
+    </Grid>
+</UserControl>

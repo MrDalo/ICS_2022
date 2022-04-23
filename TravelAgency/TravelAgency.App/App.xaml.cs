@@ -1,7 +1,7 @@
 ﻿//using TravelAgency.App.Extensions;
 using TravelAgency.App.Services;
 using TravelAgency.App.Services.MessageDialog;
-//using TravelAgency.App.ViewModels;
+using TravelAgency.App.ViewModels;
 using TravelAgency.App.Views;
 using TravelAgency.DAL;
 using Microsoft.EntityFrameworkCore;
@@ -32,9 +32,7 @@ namespace TravelAgency.App
 
         public App()
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("cs");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("cs");
-
+            
             _host = Host.CreateDefaultBuilder()
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .ConfigureServices((context, services) => { ConfigureServices(context.Configuration, services); })
@@ -51,7 +49,7 @@ namespace TravelAgency.App
         {
             services.AddBLServices();
 
-            services.Configure<DALSettings>(configuration.GetSection("CookBook:DAL"));
+            services.Configure<DALSettings>(configuration.GetSection("TravelAgency:DAL"));
 
             services.AddSingleton<IDbContextFactory<TravelAgencyDbContext>>(provider =>
             {
