@@ -1,5 +1,4 @@
-﻿
-namespace TravelAgency.App.ViewModels.Interfaces
+﻿namespace TravelAgency.App.ViewModels
 {
     public interface IViewModel
     {

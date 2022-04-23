@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using TravelAgency.App.ViewModels.Interfaces;
+using TravelAgency.App.ViewModels;
 
 namespace TravelAgency.App.ViewModels
 {
