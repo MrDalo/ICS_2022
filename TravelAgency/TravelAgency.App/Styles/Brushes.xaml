@@ -3,7 +3,8 @@
 
     <!--Default Brushes for the application-->
  
-    <SolidColorBrush x:Key="DefaultForegroundBrush" Color="#fff"/>
+    <SolidColorBrush x:Key="DefaultForegroundBrightBrush" Color="#fff"/>
+    <SolidColorBrush x:Key="DefaultForegroundDarkBrush" Color="#000"/>
     
 
     <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="#FFF43C3C"/>

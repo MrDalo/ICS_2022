@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using TravelAgency.App.ViewModels;
 
 namespace TravelAgency.App.Views
@@ -12,6 +13,14 @@ namespace TravelAgency.App.Views
         {
             InitializeComponent();
             DataContext = mainViewModel;
+        }
+
+        private void profilview(object sender, RoutedEventArgs e)
+        {
+            
+            var page = new ProfileWindow();
+            MainFrame.Content = page;
+
         }
     }
 }
