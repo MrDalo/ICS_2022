@@ -24,10 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TravelAgency.BL\TravelAgency.BL.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
 	<ItemGroup>
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
