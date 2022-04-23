@@ -16,17 +16,13 @@
         </Grid.ColumnDefinitions>
 
         <ListView HorizontalContentAlignment="Right"  d:ItemsSource="{d:SampleData ItemCount=3}">
-            <!--<ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>-->
+      
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="150" Height="280"> <!--Height="250"-->
@@ -48,11 +44,11 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Grid.Row="0" Content="ŠPZ:" />
-                            <Label Grid.Column="0" Grid.Row="1" Content="Výrobca:" />
-                            <Label Grid.Column="0" Grid.Row="2" Content="Kapacita:" />
-                            <Label Grid.Column="0" Grid.Row="3" Content="Typ:"/>
-                            <Label Grid.Column="0" Grid.Row="4" Content="Registrácia:"/>
+                            <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="ŠPZ:" />
+                            <Label FontWeight="Bold" Grid.Column="0" Grid.Row="1" Content="Výrobca:" />
+                            <Label FontWeight="Bold" Grid.Column="0" Grid.Row="2" Content="Kapacita:" />
+                            <Label FontWeight="Bold" Grid.Column="0" Grid.Row="3" Content="Typ:"/>
+                            <Label FontWeight="Bold" Grid.Column="0" Grid.Row="4" Content="Registrácia:"/>
 
                             <Label Grid.Column="1" Grid.Row="0" Content="binding" />
                             <Label Grid.Column="1" Grid.Row="1"  Content="binding" /> 
@@ -66,7 +62,12 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Label Grid.Column="1" Content="todo add car button"></Label>
+        <Button
+            Grid.Column="1"
+            Width="40" Height="40" 
+            Style="{StaticResource AddCircleButton}"
+            Content="+">
+        </Button>
 
 
     </Grid>
