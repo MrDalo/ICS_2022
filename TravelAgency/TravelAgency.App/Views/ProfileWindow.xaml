@@ -33,7 +33,7 @@
 
                 <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="1" >Domov</Button>
                 <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="2" Click="ShowProfileInfo">Profil</Button>
-                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="3">Moje Autá</Button>
+                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="3" Click="ShowUserCar">Moje Autá</Button>
                 <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="4" Click="ShowUserRides">Moje jazdy</Button>
                 <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="5">Odhlásiť</Button>
 
@@ -42,16 +42,13 @@
 
 
 
-        <TextBlock 
-            Grid.Row="0" 
-            Grid.RowSpan="1" 
-            Style="{StaticResource ProfileViewLogo}">            
+        <TextBlock Grid.Row="0" Style="{StaticResource ProfileViewLogo}">            
             ICS
             <LineBreak/>
             travel agency
         </TextBlock>
-
-        <Frame Grid.Column="1" x:Name="ProfileFrame" NavigationUIVisibility="Hidden" />
+        
+        <Frame Source="ProfileInfo.xaml" Grid.Column="1" x:Name="ProfileFrame" NavigationUIVisibility="Hidden" />
        
 
     </Grid>

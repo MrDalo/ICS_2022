@@ -17,10 +17,8 @@ namespace TravelAgency.App.Views
 
         private void profilview(object sender, RoutedEventArgs e)
         {
-            
             var page = new ProfileWindow();
             MainFrame.Content = page;
-
         }
     }
 }

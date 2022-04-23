@@ -36,5 +36,11 @@ namespace TravelAgency.App.Views
             var page = new UserRides();
             ProfileFrame.Content = page;
         }
+
+        private void ShowUserCar(object sender, RoutedEventArgs e)
+        {
+            var page = new UserCars();
+            ProfileFrame.Content = page;
+        }
     }
 }
