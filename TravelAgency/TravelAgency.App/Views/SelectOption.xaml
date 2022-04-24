@@ -1,0 +1,19 @@
+﻿<local:UserControlBase x:Class="TravelAgency.App.Views.SelectOption"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                       xmlns:local="clr-namespace:TravelAgency.App.Views"
+                       mc:Ignorable="d" 
+                       d:DesignHeight="200" d:DesignWidth="300">
+    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Margin="30">Vyhľadať jazdu</Button>
+        <Button Grid.Row="1" Margin="30">Vytovriť jazdu</Button>
+            
+    </Grid>
+</local:UserControlBase>

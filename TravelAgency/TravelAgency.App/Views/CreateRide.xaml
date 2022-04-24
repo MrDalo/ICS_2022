@@ -1,0 +1,169 @@
+﻿<UserControl x:Class="TravelAgency.App.Views.CreateRide"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelAgency.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Label  Grid.Row="0" Style="{StaticResource UserRidesTitle}">Vytvoriť jazdu</Label>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Label 
+                    Grid.Row="0"
+                    Style="{StaticResource AddRideSourceDestionationTitle}"
+                    >Odkiaľ</Label>
+                <TextBox
+                    Grid.Row="1"
+                    Width="200" Height="30"
+                    Style="{StaticResource CreateRideTextbox}"
+                >
+                </TextBox>
+
+
+                <Label 
+                    Grid.Row="2"
+                    Style="{StaticResource AddRideSourceDestionationTitle}"
+                    >Kam</Label>
+                <TextBox
+                    Grid.Row="3"
+                    Width="200" Height="30"
+                    Style="{StaticResource CreateRideTextbox}"
+                >
+                </TextBox>
+            </Grid>
+
+
+            <Grid Grid.Column="1" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                    
+                </Grid.RowDefinitions>
+                
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Style="{StaticResource AddRideSourceDestionationTitle}"
+                >Zvolte auto:
+                </Label>
+
+                <ComboBox
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Width="200"
+                    Height="30"
+                    VerticalAlignment="Top"
+                    Background="{StaticResource DefaultAddButtonHoverBrush}"
+                    ItemsSource="{Binding TODOBINDING}">
+                </ComboBox>
+
+                <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition /> 
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        >Príchod:
+                    </Label>
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        FontWeight="Bold"
+                        FontSize="14"
+                    >Odchod:
+                    </Label>
+
+                    <Label 
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        FontWeight="Bold"
+                        FontSize="14"
+                    >Dátum:
+                    </Label>
+
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Background="{StaticResource DefaultAddButtonHoverBrush}"
+                        Width="150"
+                        ></TextBox>
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Background="{StaticResource DefaultAddButtonHoverBrush}"
+                        Width="150"
+                    ></TextBox>
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Background="{StaticResource DefaultAddButtonHoverBrush}"
+                        Width="150"
+                    ></TextBox>
+
+
+
+
+                </Grid>
+            </Grid>
+
+
+
+        </Grid>
+
+
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                Grid.Column="0"
+                Style="{StaticResource CreateRideButton}"
+                    >Späť</Button>
+            <Button 
+                Grid.Column="1"
+                Style="{StaticResource CreateRideButton}"
+                >Vytvoriť</Button>
+        </Grid>
+
+
+            
+    </Grid>
+</UserControl>

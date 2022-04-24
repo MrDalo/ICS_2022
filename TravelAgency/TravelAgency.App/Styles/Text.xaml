@@ -19,6 +19,15 @@
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
-  
+
+    <Style x:Key="AddRideSourceDestionationTitle" TargetType="Label">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource DefaultForegroundDarkBrush}"></Setter>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
 
 </ResourceDictionary>
