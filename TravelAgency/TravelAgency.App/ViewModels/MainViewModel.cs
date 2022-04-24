@@ -12,16 +12,16 @@ namespace TravelAgency.App.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        //private readonly IFactory<IUserDetailViewModel> _userDetailViewModelFactory;
-        //private readonly IFactory<ICarDetailViewModel> _carDetailViewModelFactory;
-        //private readonly IFactory<IShareRideDetailViewModel> _shareRideDetailViewModelFactory;
-        //private readonly IFactory<IPassengerOfShareRideDetailViewModel> _passengerOfShareRideDetailViewModelFactory;
+        private readonly IFactory<IUserDetailViewModel> _userDetailViewModelFactory;
+        private readonly IFactory<ICarDetailViewModel> _carDetailViewModelFactory;
+        private readonly IFactory<IShareRideDetailViewModel> _shareRideDetailViewModelFactory;
+        private readonly IFactory<IPassengerOfShareRideDetailViewModel> _passengerOfShareRideDetailViewModelFactory;
 
         public MainViewModel(
             IUserListViewModel userListViewModel,
-            //ICarListViewModel carListViewModel,
-            //IShareRideListViewModel shareRideListViewModel,
-            //IPassengerOfShareRideListViewModel passengerOfShareRideListViewModel,
+            ICarListViewModel carListViewModel,
+            IShareRideListViewModel shareRideListViewModel,
+            IPassengerOfShareRideListViewModel passengerOfShareRideListViewModel,
             IMediator mediator)
             //IFactory<IUserDetailViewModel> userDetailViewModelFactory,
             //IFactory<ICarDetailViewModel> carDetailViewModelFactory,
@@ -30,9 +30,9 @@ namespace TravelAgency.App.ViewModels
         {
             //TODO
             UserListViewModel = userListViewModel;
-            //CarListViewModel = carListViewModel;
-            //ShareRideListViewModel = shareRideListViewModel;
-            //PassengerOfShareRideListViewModel = passengerOfShareRideListViewModel;
+            CarListViewModel = carListViewModel;
+            ShareRideListViewModel = shareRideListViewModel;
+            PassengerOfShareRideListViewModel = passengerOfShareRideListViewModel;
             //_userDetailViewModelFactory = userDetailViewModelFactory;
             //_carDetailViewModelFactory = carDetailViewModelFactory;
             //_shareRideDetailViewModelFactory = shareRideDetailViewModelFactory;
@@ -42,9 +42,9 @@ namespace TravelAgency.App.ViewModels
         }
 
         public IUserListViewModel UserListViewModel { get; }
-        //public ICarListViewModel CarListViewModel { get; }
-        //public IShareRideListViewModel ShareRideListViewModel { get; }
-        //public IPassengerOfShareRideListViewModel PassengerOfShareRideListViewModel { get; }
+        public ICarListViewModel CarListViewModel { get; }
+        public IShareRideListViewModel ShareRideListViewModel { get; }
+        public IPassengerOfShareRideListViewModel PassengerOfShareRideListViewModel { get; }
 
         //public ObservableCollection<IUserDetailViewModel> UserDetailViewModels { get; } = new ObservableCollection<IUserDetailViewModel>();
     }
