@@ -18,7 +18,7 @@ namespace TravelAgency.App.Views
     /// <summary>
     /// Interaction logic for ProfileInfo.xaml
     /// </summary>
-    public partial class ProfileInfo : UserControl
+    public partial class ProfileInfo
     {
         public ProfileInfo()
         {
