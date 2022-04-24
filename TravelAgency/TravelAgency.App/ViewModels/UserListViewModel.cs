@@ -58,15 +58,7 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
-        public ICollection<UserListModel> PoleHodnot { get; set; } = new List<UserListModel>()
-        {
-            new UserListModel("Patrik") {},
-            new UserListModel("Dalibor") {},
-            new UserListModel("Anthon Of Bolesov") {},
-        };
-                    
-            
-
+        
         public async Task LoadAsync()
         {
             Users.Clear();
