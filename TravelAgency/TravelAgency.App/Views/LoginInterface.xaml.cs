@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelAgency.App.ViewModels;
 
 namespace TravelAgency.App.Views
 {
@@ -23,6 +24,7 @@ namespace TravelAgency.App.Views
         public LoginInterface()
         {
             InitializeComponent();
+
         }
     }
 }

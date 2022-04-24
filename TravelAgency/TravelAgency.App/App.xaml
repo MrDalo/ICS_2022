@@ -1,7 +1,10 @@
 ﻿<Application x:Class="TravelAgency.App.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="clr-namespace:TravelAgency.App.Converters">
+             xmlns:converters="clr-namespace:TravelAgency.App.Converters"
+             xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels">
+
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
