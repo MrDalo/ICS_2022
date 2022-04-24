@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.App"
+        xmlns:views="clr-namespace:TravelAgency.App.Views"
+        xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+
     <Grid Background="{StaticResource DefaultBackgroundBrush}">
 
 
@@ -28,10 +32,13 @@
 
         <Button Content="profilview" HorizontalAlignment="Left" Margin="37,362,0,0" VerticalAlignment="Top" Click="profilview"/>
        
-        <Frame Source="LoginInterface.xaml"  Width="400" Height="320" x:Name="ContentFrame" NavigationUIVisibility="Hidden"></Frame>
+        
         
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
 
+        <views:LoginInterface x:Name="LoginPage"
+ 
+                              DataContext="{Binding UserListViewModel}" Height="200" Width="400" />
 
     </Grid>
 </Window>

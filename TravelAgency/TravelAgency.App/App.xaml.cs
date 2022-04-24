@@ -14,7 +14,7 @@ using System.Threading;
 using System.Windows;
 using TravelAgency.App.Factories;
 using TravelAgency.App.Settings;
-using TravelAgency.App.ViewModels;
+using TravelAgency.App.Extensions;
 using TravelAgency.BL;
 using TravelAgency.BL.Facades;
 using TravelAgency.DAL.Factories;
@@ -63,7 +63,15 @@ namespace TravelAgency.App
             services.AddSingleton<IMediator, Mediator>();
 
             services.AddSingleton<MainViewModel>();
-            // TODO addSingleton and AddFactory for al ListViewModels and DetailViewModels
+            services.AddSingleton<IUserListViewModel, UserListViewModel>();
+            services.AddSingleton<IShareRideListViewModel, ShareRideListViewModel>();
+            services.AddSingleton<IPassengerOfShareRideListViewModel, PassengerOfShareRideListViewModel>();
+            services.AddSingleton<ICarListViewModel, CarListViewModel>();
+
+            services.AddFactory<IUserDetailViewModel, UserDetailViewModel>();
+            services.AddFactory<IShareRideDetailViewModel, ShareRideDetailViewModel>();
+            services.AddFactory<IPassengerOfShareRideListViewModel, PassengerOfShareRideListViewModel>();
+            services.AddFactory<ICarDetailViewModel, CarDetailViewModel>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

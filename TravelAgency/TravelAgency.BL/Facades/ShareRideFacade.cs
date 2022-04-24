@@ -19,7 +19,7 @@ namespace TravelAgency.BL.Facades
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ShareRideListModel>> GetFilteredShareRidesAsync(
+        public async Task<IEnumerable<ShareRideDetailModel>> GetFilteredShareRidesAsync(
             DateTime ? startTime = null, DateTime ? finishTime = null,
             string ? startLocation = null, string ? destinationLocation = null
             )
@@ -50,7 +50,7 @@ namespace TravelAgency.BL.Facades
             }
 
 
-            return await _mapper.ProjectTo<ShareRideListModel>(query).ToArrayAsync().ConfigureAwait(false);
+            return await _mapper.ProjectTo<ShareRideDetailModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
 
 

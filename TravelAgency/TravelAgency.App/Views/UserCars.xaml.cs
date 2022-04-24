@@ -18,7 +18,7 @@ namespace TravelAgency.App.Views
     /// <summary>
     /// Interaction logic for UserCars.xaml
     /// </summary>
-    public partial class UserCars : UserControl
+    public partial class UserCars
     {
         public UserCars()
         {

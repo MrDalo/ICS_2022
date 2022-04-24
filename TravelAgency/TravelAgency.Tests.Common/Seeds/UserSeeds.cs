@@ -101,6 +101,16 @@ public static class UserSeeds
         PhotoUrl: null
     );
 
+    public static readonly UserEntity DriverTest72 = new(
+        Id: Guid.Parse(input: "A49CC5CE-84CA-4E50-8730-1E229C9A96B7"),
+        Login: "xpekar00",
+        Name: "Majko",
+        Surname: "Gorosi",
+        Email: "vut@gmail.com",
+        PhoneNumber: "+421949866589",
+        PhotoUrl: null
+    );
+
 
     static UserSeeds()
     {
@@ -135,6 +145,7 @@ public static class UserSeeds
             UserCarAdd,
             UserForShareRideUpdate,
             UserForShareRideDelete,
+            DriverTest72 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             PassengerTest71 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             PassengerTest69 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(), Cars = Array.Empty<CarEntity>() },
             PassengerTest70 with { DriverShareRides = Array.Empty<ShareRideEntity>(), PassengerShareRides = Array.Empty<PassengerOfShareRideEntity>(), Cars = Array.Empty<CarEntity>() }

@@ -17,8 +17,12 @@ namespace TravelAgency.BL.Facades
             _mapper = mapper;
         }
 
-        public async Task<bool> CanIAddNewCar(UserDetailModel user)
+        public async Task<bool> CanIAddNewCar(UserDetailModel? user)
         {
+            if (user == null)
+            {
+                return false;
+            }
             //Need one await to prevent Warning about async function without await inside
             await using var uow = _unitOfWorkFactory.Create();
             //Max supported cars per user is set to 3
