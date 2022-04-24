@@ -32,6 +32,7 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
             UserSelectedCommand = new RelayCommand<UserListModel>(UserSelected);
+            UserNewCommand = new RelayCommand(UserNew);
 
             mediator.Register<UpdateMessage<UserWrapper>>(UserUpdated);
 
@@ -40,15 +41,14 @@ namespace TravelAgency.App.ViewModels
         public ObservableCollection<UserListModel> Users { get; } = new();
         
         
-
-
-        //public ICommand UserNewCommand { get; }
+        public ICommand UserNewCommand { get; }
 
         public ICommand UserSelectedCommand { get; }
 
 
         private async void UserUpdated(UpdateMessage<UserWrapper> _) => await LoadAsync();
 
+        private void UserNew() => _mediator.Send(new NewMessage<UserWrapper>());
 
         private void UserSelected(UserListModel? userListModel)
         {

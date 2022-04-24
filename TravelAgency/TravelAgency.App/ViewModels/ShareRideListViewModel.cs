@@ -35,8 +35,6 @@ namespace TravelAgency.App.ViewModels
             ShareRideNewCommand = new RelayCommand(ShareRideNew);
 
             mediator.Register<UpdateMessage<ShareRideWrapper>>(ShareRideUpdated);
-                //ShareRide sa podla mna nebude dat mazat takze tento delete mozme asi vynecaht a nedavat ho sem
-            mediator.Register<DeleteMessage<ShareRideWrapper>>(ShareRideDeleted);
         }
 
         public ObservableCollection<ShareRideListModel> ShareRides { get; set; } = new();
@@ -50,8 +48,6 @@ namespace TravelAgency.App.ViewModels
         private void ShareRideSelected(ShareRideListModel? shareRides) => _mediator.Send(new SelectedMessage<ShareRideWrapper> { Id = shareRides?.Id });
 
         private async void ShareRideUpdated(UpdateMessage<ShareRideWrapper> _) => await LoadAsync();
-
-        private async void ShareRideDeleted(DeleteMessage<ShareRideWrapper> _) => await LoadAsync();
 
 
         public async Task LoadAsync()

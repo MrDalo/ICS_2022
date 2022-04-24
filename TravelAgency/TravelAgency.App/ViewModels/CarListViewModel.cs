@@ -27,7 +27,7 @@ namespace TravelAgency.App.ViewModels
             CarSelectedCommand = new RelayCommand<CarListModel>(CarSelected);
             CarNewCommand = new RelayCommand(CarNew);
 
-            mediator.Register<UpdateMessage<CarWrapper>>(CarUpdated);
+           
             mediator.Register<DeleteMessage<CarWrapper>>(CarDeleted);
         }
 
@@ -39,10 +39,7 @@ namespace TravelAgency.App.ViewModels
         private void CarNew() => _mediator.Send(new NewMessage<CarWrapper>());
 
         private void CarSelected(CarListModel? car) => _mediator.Send(new SelectedMessage<CarWrapper> { Id = car?.Id });
-            
-            //Pri Car potrebujeme aj update ak by sa vytvorilo nove auto a potrebujeme aj delete ak by user nejake auto vymazal
-        private async void CarUpdated(UpdateMessage<CarWrapper> _) => await LoadAsync();
-
+        
         private async void CarDeleted(DeleteMessage<CarWrapper> _) => await LoadAsync();
 
 
