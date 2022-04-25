@@ -22,23 +22,31 @@ namespace TravelAgency.App.ViewModels
             ICarListViewModel carListViewModel,
             IShareRideListViewModel shareRideListViewModel,
             IPassengerOfShareRideListViewModel passengerOfShareRideListViewModel,
-            IMediator mediator)
-            //IFactory<IUserDetailViewModel> userDetailViewModelFactory,
-            //IFactory<ICarDetailViewModel> carDetailViewModelFactory,
-            //IFactory<IShareRideDetailViewModel> shareRideDetailViewModelFactory,
-            //IFactory<IPassengerOfShareRideDetailViewModel> passengerOfShareRideDetailViewModelFactory)//TODO
+            IMediator mediator,
+            IFactory<IUserDetailViewModel> userDetailViewModelFactory,
+            IFactory<ICarDetailViewModel> carDetailViewModelFactory,
+            IFactory<IShareRideDetailViewModel> shareRideDetailViewModelFactory,
+            IFactory<IPassengerOfShareRideDetailViewModel> passengerOfShareRideDetailViewModelFactory)//TODO
         {
-            //TODO
+            
             UserListViewModel = userListViewModel;
             CarListViewModel = carListViewModel;
             ShareRideListViewModel = shareRideListViewModel;
             PassengerOfShareRideListViewModel = passengerOfShareRideListViewModel;
-            //_userDetailViewModelFactory = userDetailViewModelFactory;
-            //_carDetailViewModelFactory = carDetailViewModelFactory;
-            //_shareRideDetailViewModelFactory = shareRideDetailViewModelFactory;
-            //_passengerOfShareRideDetailViewModelFactory = passengerOfShareRideDetailViewModelFactory;
+            _userDetailViewModelFactory = userDetailViewModelFactory;
+            _carDetailViewModelFactory = carDetailViewModelFactory;
+            _shareRideDetailViewModelFactory = shareRideDetailViewModelFactory;
+            _passengerOfShareRideDetailViewModelFactory = passengerOfShareRideDetailViewModelFactory;
+
+            UserDetailViewModel = _userDetailViewModelFactory.Create();
+            CarDetailViewModel = _carDetailViewModelFactory.Create();
+            ShareRideDetailViewModel = _shareRideDetailViewModelFactory.Create();
+            PassengerOfShareRideDetailViewModel = _passengerOfShareRideDetailViewModelFactory.Create();
+
+            
 
 
+            //TODO mediator.Register<>();
         }
 
         public IUserListViewModel UserListViewModel { get; }
@@ -46,6 +54,16 @@ namespace TravelAgency.App.ViewModels
         public IShareRideListViewModel ShareRideListViewModel { get; }
         public IPassengerOfShareRideListViewModel PassengerOfShareRideListViewModel { get; }
 
-        //public ObservableCollection<IUserDetailViewModel> UserDetailViewModels { get; } = new ObservableCollection<IUserDetailViewModel>();
+        public IUserDetailViewModel UserDetailViewModel { get; }
+        public ICarDetailViewModel CarDetailViewModel { get; }
+        public IShareRideDetailViewModel ShareRideDetailViewModel { get; }
+        public IPassengerOfShareRideDetailViewModel PassengerOfShareRideDetailViewModel { get; }
+
+        public ObservableCollection<IUserDetailViewModel> UserDetailViewModels { get; } = new ObservableCollection<IUserDetailViewModel>();
+
+        public ObservableCollection<IShareRideDetailViewModel> ShareRideDetailViewModels { get; } = new ObservableCollection<IShareRideDetailViewModel>();
+        public ObservableCollection<IPassengerOfShareRideDetailViewModel> PassengerOfShareRideDetailViewModels { get; } = new ObservableCollection<IPassengerOfShareRideDetailViewModel>();
+        public ObservableCollection<ICarDetailViewModel> CarViewModels { get; } = new ObservableCollection<ICarDetailViewModel>();
+
     }
 }

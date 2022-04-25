@@ -52,7 +52,15 @@ namespace TravelAgency.App.ViewModels
 
         public async Task DeleteAsync()
         {
-            var VoidSpace = await _userFacade.CanIAddNewCar(null);
+            if (Model is null)
+            {
+                throw new InvalidOperationException("Null model cannot be deleted");
+            }
+
+            _mediator.Send(new DeleteMessage<UserWrapper>
+            {
+                Model = Model
+            });
         }
 
 
