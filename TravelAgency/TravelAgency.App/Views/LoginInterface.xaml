@@ -1,4 +1,5 @@
 ﻿<local:UserControlBase x:Class="TravelAgency.App.Views.LoginInterface"
+             xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,14 +17,20 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox 
+        <ComboBox x:Name="UserListComboBox"
             Height="20" Grid.Row="0"
             Margin="10,0"
             
             ItemsSource="{Binding Mode=OneWay,Path= Users}"
             DisplayMemberPath="Login"
-            
-            />
+        >
+            <interactions:Interaction.Triggers>
+                <interactions:EventTrigger EventName="SelectionChanged">
+                    <interactions:InvokeCommandAction Command="{Binding UserSelectedCommand}"
+                                                      CommandParameter="{Binding ElementName=UserListComboBox, Path=SelectedItem}" />
+                </interactions:EventTrigger>
+            </interactions:Interaction.Triggers>
+        </ComboBox>
 
 
         <Grid Grid.Row="1">
