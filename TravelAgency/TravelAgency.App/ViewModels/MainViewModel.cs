@@ -86,7 +86,7 @@ namespace TravelAgency.App.ViewModels
                 var userDetailViewModel = _userDetailViewModelFactory.Create();
                 userDetailViewModel.LoadAsync(id.Value);
 
-                SelectedUserDetailViewModel = user.;
+                SelectedUserDetailViewModel = userDetailViewModel;
             }
         }
 
