@@ -10,6 +10,6 @@
     <SolidColorBrush x:Key="DefaultAddButtonHoverBrush" Color="#FFE7E7E7"/>
 
     <SolidColorBrush x:Key="DefaultBackgroundBrightBrush" Color="#fff"/>
-    <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="#FFF43C3C"/>
+    <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="#E4002B"/>
     <SolidColorBrush x:Key="DefaultBackgroundBrushHover" Color="#FFFF7575"/>
 </ResourceDictionary>
