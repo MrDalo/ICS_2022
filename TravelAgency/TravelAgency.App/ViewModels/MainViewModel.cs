@@ -22,6 +22,7 @@ namespace TravelAgency.App.ViewModels
             ICarListViewModel carListViewModel,
             IShareRideListViewModel shareRideListViewModel,
             IPassengerOfShareRideListViewModel passengerOfShareRideListViewModel,
+            ISelectOptionViewModel selectOptionViewModel,
             IMediator mediator,
             IFactory<IUserDetailViewModel> userDetailViewModelFactory,
             IFactory<ICarDetailViewModel> carDetailViewModelFactory,
@@ -33,9 +34,11 @@ namespace TravelAgency.App.ViewModels
             CarListViewModel = carListViewModel;
             ShareRideListViewModel = shareRideListViewModel;
             PassengerOfShareRideListViewModel = passengerOfShareRideListViewModel;
+            SelectOptionViewModel = selectOptionViewModel;
             _userDetailViewModelFactory = userDetailViewModelFactory;
             _carDetailViewModelFactory = carDetailViewModelFactory;
             _shareRideDetailViewModelFactory = shareRideDetailViewModelFactory;
+            
             //_passengerOfShareRideDetailViewModelFactory = passengerOfShareRideDetailViewModelFactory;
 
             UserDetailViewModel = _userDetailViewModelFactory.Create();
@@ -56,6 +59,7 @@ namespace TravelAgency.App.ViewModels
         public ICarListViewModel CarListViewModel { get; }
         public IShareRideListViewModel ShareRideListViewModel { get; }
         public IPassengerOfShareRideListViewModel PassengerOfShareRideListViewModel { get; }
+        public ISelectOptionViewModel SelectOptionViewModel { get; }
 
         public IUserDetailViewModel UserDetailViewModel { get; }
         public ICarDetailViewModel CarDetailViewModel { get; }

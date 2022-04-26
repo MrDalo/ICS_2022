@@ -6,7 +6,7 @@
                        xmlns:local="clr-namespace:TravelAgency.App.Views"
                        mc:Ignorable="d" 
                        d:DesignHeight="200" d:DesignWidth="300">
-    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}">
+    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}" Visibility="{Binding Path=IsVisible, Converter={StaticResource BoolToVis}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>

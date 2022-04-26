@@ -22,7 +22,7 @@ namespace TravelAgency.App.ViewModels
 
         private readonly UserFacade _userFacade;
         private readonly IMediator _mediator;
-
+        public ICommand LogIn { get; set; }
 
         public UserListViewModel(
             UserFacade userFacade,
@@ -33,9 +33,15 @@ namespace TravelAgency.App.ViewModels
 
             UserSelectedCommand = new RelayCommand<UserListModel>(UserSelected);
             UserNewCommand = new RelayCommand(UserNew);
+            LogIn = new RelayCommand(LogInUser);
 
             mediator.Register<UpdateMessage<UserWrapper>>(UserUpdated);
 
+        }
+
+        private void LogInUser()
+        {
+            _mediator.Send(new LogInMessage());
         }
 
         public ObservableCollection<UserListModel> Users { get; } = new();

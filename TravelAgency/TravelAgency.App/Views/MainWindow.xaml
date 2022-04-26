@@ -40,5 +40,9 @@
  
                               DataContext="{Binding UserListViewModel}" Height="200" Width="400" />
 
+        <views:SelectOption x:Name="SelectOption"
+ 
+                              DataContext="{Binding SelectOptionViewModel}" Height="200" Width="400" />
+
     </Grid>
 </Window>
