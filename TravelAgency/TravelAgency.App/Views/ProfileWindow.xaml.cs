@@ -18,29 +18,11 @@ namespace TravelAgency.App.Views
     /// <summary>
     /// Interaction logic for ProfileWindow.xaml
     /// </summary>
-    public partial class ProfileWindow : Page
+    public partial class ProfileWindow
     {
         public ProfileWindow()
         {
             InitializeComponent();
-        }
-
-        private void ShowProfileInfo(object sender, RoutedEventArgs e)
-        {
-            var page = new ProfileInfo(); 
-            ProfileFrame.Content = page;
-        }
-
-        private void ShowUserRides(object sender, RoutedEventArgs e)
-        {
-            var page = new UserRides();
-            ProfileFrame.Content = page;
-        }
-
-        private void ShowUserCar(object sender, RoutedEventArgs e)
-        {
-            var page = new UserCars();
-            ProfileFrame.Content = page;
         }
     }
 }

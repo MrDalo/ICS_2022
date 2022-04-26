@@ -14,11 +14,5 @@ namespace TravelAgency.App.Views
             InitializeComponent();
             DataContext = mainViewModel;
         }
-
-        private void profilview(object sender, RoutedEventArgs e)
-        {
-            var page = new ProfileWindow();
-            MainFrame.Content = page;
-        }
     }
 }
