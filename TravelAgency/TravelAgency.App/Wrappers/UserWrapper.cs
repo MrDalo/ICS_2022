@@ -33,6 +33,12 @@ namespace TravelAgency.App.Wrappers
             set => SetValue(value);
         }
 
+        public string? Email
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
+
         public string? PhoneNumber
         {
             get => GetValue<string>();

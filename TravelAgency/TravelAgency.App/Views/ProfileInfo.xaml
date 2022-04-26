@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:TravelAgency.App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{StaticResource DefaultForegroundBrightBrush}">
+    <Grid Background="{StaticResource DefaultForegroundBrightBrush}" 
+          Visibility="{Binding ProfileInfoViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="5*"/>
@@ -41,9 +42,9 @@
             <TextBlock FontWeight="Bold" Padding="20,4,0,0" Grid.Column="0" Grid.Row="1">E-mail:</TextBlock>
             <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="2">Tel.č:</TextBlock>
 
-            <Label Padding="10,4,0,0" Grid.Column="1" Grid.Row="0" Content="todo binding" />
-            <Label Padding="10,4,0,0" Grid.Column="2" Grid.Row="1" Content="todo binding" />
-            <Label Padding="10,4,0,0" Grid.Column="3" Grid.Row="2" Content="todo binding" />
+            <Label Padding="10,4,0,0" Grid.Column="1" Grid.Row="0" Content="{Binding SelectedUserDetailViewModel.Model.Login}" />
+            <Label Padding="10,4,0,0" Grid.Column="2" Grid.Row="1" Content="{Binding SelectedUserDetailViewModel.Model.Email}" />
+            <Label Padding="10,4,0,0" Grid.Column="3" Grid.Row="2" Content="{Binding SelectedUserDetailViewModel.Model.PhoneNumber}" />
 
         </Grid>
 

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Background="{StaticResource DefaultForegroundBrightBrush}">
+    <Grid Background="{StaticResource DefaultForegroundBrightBrush}" Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
         
         <Grid  Background="{StaticResource DefaultBackgroundBrush}">
             <Grid.RowDefinitions>
@@ -27,10 +27,10 @@
                 </Grid.RowDefinitions>
 
                 <Button Style="{StaticResource ProfileButton}"  Grid.Row="1" >Domov</Button>
-                <Button Style="{StaticResource ProfileButton}"  Grid.Row="2" >Profil</Button>
-                <Button Style="{StaticResource ProfileButton}"  Grid.Row="3" >Moje Autá</Button>
-                <Button Style="{StaticResource ProfileButton}"  Grid.Row="4" >Moje jazdy</Button>
-                <Button Style="{StaticResource ProfileButton}"  Grid.Row="5">Odhlásiť</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding ToProfileInfo}" Grid.Row="2" >Profil</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding ToUserCars}" Grid.Row="3" >Moje Autá</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding ToUserShareRides}" Grid.Row="4" >Moje jazdy</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding LogOut}" Grid.Row="5">Odhlásiť</Button>
 
             </Grid>
         </Grid>

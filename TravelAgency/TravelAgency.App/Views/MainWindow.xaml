@@ -44,7 +44,16 @@
         </TextBlock>
 
 
-        <Ellipse  
+        <Button 
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Height="50" Width="50" 
+            Margin="0,20,20, 0" 
+            Command="{Binding OpenProfile}">
+        </Button>
+
+        <!--<Ellipse  
             Grid.Column="1"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
@@ -53,7 +62,8 @@
             <Ellipse.Fill>
                 <ImageBrush  Stretch="UniformToFill" ImageSource="https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person-279x300.jpg"/>
             </Ellipse.Fill>
-        </Ellipse>
+        </Ellipse>-->
+
         <Label
             Grid.Column="1"
             VerticalAlignment="Top"
@@ -78,26 +88,17 @@
         />
         <views:ProfileWindow
             Grid.Column="0"
-            Visibility="Collapsed"
+            DataContext="{Binding ProfileWindowViewModel}"
             />
 
         <views:ProfileInfo
-            Grid.Column="1"
-            Visibility="Collapsed"
-            />
+            Grid.Column="1"/>
 
         <views:UserCars
             Grid.Column="1"
-            Visibility="Collapsed"
-            />
+        />
         <views:UserRides
             Grid.Column="1"
-            Visibility="Collapsed"
-            />
-        
-            
-
-            <!--<views:ProfileWindow x:Name="ProfileWindow"/>
-        <views:ProfileInfo x:Name="ProfileInfo" HorizontalAlignment="Right" Width="580"/>-->
+        />
     </Grid>
 </Window>
