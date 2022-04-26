@@ -11,8 +11,8 @@
         
 
         <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <ListView HorizontalContentAlignment="Right"  d:ItemsSource="{d:SampleData ItemCount=3}">
@@ -63,6 +63,7 @@
         </ListView>
 
         <Button
+            Margin="50,0,0,0"
             Grid.Column="1"
             Width="40" Height="40" 
             Style="{StaticResource AddCircleButton}"

@@ -8,12 +8,8 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="{StaticResource DefaultForegroundBrightBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="0" Background="{StaticResource DefaultBackgroundBrush}">
+        
+        <Grid  Background="{StaticResource DefaultBackgroundBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="4*"/>
@@ -30,11 +26,11 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="1" >Domov</Button>
-                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="2" >Profil</Button>
-                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="3" >Moje Autá</Button>
-                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="4" >Moje jazdy</Button>
-                <Button Style="{StaticResource ProfileButton}" Grid.Column="0" Grid.Row="5">Odhlásiť</Button>
+                <Button Style="{StaticResource ProfileButton}"  Grid.Row="1" >Domov</Button>
+                <Button Style="{StaticResource ProfileButton}"  Grid.Row="2" >Profil</Button>
+                <Button Style="{StaticResource ProfileButton}"  Grid.Row="3" >Moje Autá</Button>
+                <Button Style="{StaticResource ProfileButton}"  Grid.Row="4" >Moje jazdy</Button>
+                <Button Style="{StaticResource ProfileButton}"  Grid.Row="5">Odhlásiť</Button>
 
             </Grid>
         </Grid>
