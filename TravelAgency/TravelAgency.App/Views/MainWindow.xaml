@@ -98,7 +98,7 @@
             Grid.Column="1"
         />
         <views:UserRides
-            Grid.Column="1"
+            Grid.Column="1"/>
         <views:FilteredRides
             Grid.Column="0"
             Grid.ColumnSpan="2"
