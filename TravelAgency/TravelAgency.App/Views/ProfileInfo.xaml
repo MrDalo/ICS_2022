@@ -28,6 +28,8 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
@@ -39,12 +41,16 @@
 
 
             <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="0" >Login:</TextBlock>
-            <TextBlock FontWeight="Bold" Padding="20,4,0,0" Grid.Column="0" Grid.Row="1">E-mail:</TextBlock>
-            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="2">Tel.č:</TextBlock>
+            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="1" >Meno:</TextBlock>
+            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="2" >Priezvisko:</TextBlock>
+            <TextBlock FontWeight="Bold" Padding="20,4,0,0" Grid.Column="0" Grid.Row="3" >E-mail:</TextBlock>
+            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="4" >Tel.č:</TextBlock>
 
             <Label Padding="10,4,0,0" Grid.Column="1" Grid.Row="0" Content="{Binding SelectedUserDetailViewModel.Model.Login}" />
             <Label Padding="10,4,0,0" Grid.Column="2" Grid.Row="1" Content="{Binding SelectedUserDetailViewModel.Model.Email}" />
             <Label Padding="10,4,0,0" Grid.Column="3" Grid.Row="2" Content="{Binding SelectedUserDetailViewModel.Model.PhoneNumber}" />
+            <Label Padding="10,4,0,0" Grid.Column="1" Grid.Row="4" Content="todo binding" />
+            <Label Padding="10,4,0,0" Grid.Column="1" Grid.Row="3" Content="todo binding" />
 
         </Grid>
 

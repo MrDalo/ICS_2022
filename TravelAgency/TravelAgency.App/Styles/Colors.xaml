@@ -1,5 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="DefaultForegroundColor">White</Color>
-    <Color x:Key="DefaultBackgroundColor">#FFF43C3C</Color>
+    <Color x:Key="DefaultBackgroundColor">#E4002B</Color>
 </ResourceDictionary>
