@@ -12,14 +12,27 @@
 
     <Grid Background="{StaticResource DefaultBackgroundBrush}">
 
+       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
 
         <Ellipse
-            Margin="-91,-136,579,306" 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="-200,-250,0,0" 
+            Width="400" 
+            Height="400" 
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
             Fill="{StaticResource DefaultForegroundBrightBrush}">
         </Ellipse>
 
         <TextBlock 
-            
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Style="{StaticResource ProfileViewLogo}"
             Foreground="{StaticResource DefaultForegroundDarkBrush}" Height="58" 
             Margin="25,10,0,0" 
@@ -30,17 +43,67 @@
             travel agency
         </TextBlock>
 
-        <Button Content="Profile View" HorizontalAlignment="Left" Margin="37,362,0,0" VerticalAlignment="Top"/>
+
+        <Button 
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Height="50" Width="50" 
+            Margin="0,20,20, 0" 
+            Command="{Binding OpenProfile}">
+        </Button>
+
+        <!--<Ellipse  
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Height="50" Width="50" 
+            Margin="0,20,20, 0" >
+            <Ellipse.Fill>
+                <ImageBrush  Stretch="UniformToFill" ImageSource="https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person-279x300.jpg"/>
+            </Ellipse.Fill>
+        </Ellipse>-->
+
+        <Label
+            Grid.Column="1"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            Margin="0,30,80, 0"
+            Content="{Binding SelectedUserDetailViewModel.Model.Login}"
+            />
 
         <views:LoginInterface x:Name="LoginPage"
- 
-                              DataContext="{Binding UserListViewModel}" Height="200" Width="400" />
+                              Grid.Column="0"
+                              DataContext="{Binding UserListViewModel}" 
+                              Height="200" 
+                              Width="400"
+                              Grid.ColumnSpan="2"/>
 
         <views:SelectOption x:Name="SelectOption"
- 
-                              DataContext="{Binding SelectOptionViewModel}" Height="200" Width="400" />
-        
-        <!--<views:ProfileWindow x:Name="ProfileWindow"/>
-        <views:ProfileInfo x:Name="ProfileInfo" HorizontalAlignment="Right" Width="580"/>-->
+            Grid.Column="0"
+            DataContext="{Binding SelectOptionViewModel}" 
+            Height="200" 
+            Width="400" 
+            Grid.ColumnSpan="2"
+        />
+        <views:ProfileWindow
+            Grid.Column="0"
+            DataContext="{Binding ProfileWindowViewModel}"
+            />
+
+        <views:ProfileInfo
+            Grid.Column="1"/>
+
+        <views:UserCars
+            Grid.Column="1"
+        />
+        <views:UserRides
+            Grid.Column="1"/>
+        <views:FilteredRides
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            Visibility="Collapsed"
+            />
     </Grid>
 </Window>

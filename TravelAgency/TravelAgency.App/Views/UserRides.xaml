@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:TravelAgency.App.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{StaticResource DefaultForegroundBrightBrush}">
+    <Grid Background="{StaticResource DefaultForegroundBrightBrush}" 
+          Visibility="{Binding UserRidesViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
 
        
                 <Grid.RowDefinitions>
@@ -29,27 +30,29 @@
                     Spolujazdec
                 </Label>
 
-        <ListView HorizontalContentAlignment="Right" HorizontalAlignment="Center" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}">
-                  <!--ItemsSource=todo binding-->
+        <ListView HorizontalContentAlignment="Right" HorizontalAlignment="Center" Grid.Row="1" ItemsSource="{Binding SelectedUserDetailViewModel.Model.Model.DriverShareRides}">
                   
             <ListView.View>
 				<GridView >
-					<GridViewColumn  Header="Dátum" Width="150" DisplayMemberBinding="{Binding Date}" />
-					<GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding dest}" />
-					<GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding price}" />
-				</GridView>
+                    <GridViewColumn Header="Odjazd" Width="150" DisplayMemberBinding="{Binding LeaveTime}" />
+                    <GridViewColumn Header="Príchod" Width="150" DisplayMemberBinding="{Binding ArriveTime}" />
+                    <GridViewColumn Header="Začiatok" Width="150" DisplayMemberBinding="{Binding FromPlace}" />
+                    <GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding ToPlace}" />
+                    <GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding Cost}" />
+                </GridView>
 			</ListView.View>
             
         </ListView>
 
-        <ListView Margin="0,0,0,5" HorizontalAlignment="Center" Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=10}">
-            <!--ItemsSource=todo binding-->
+        <ListView Margin="0,0,0,5" HorizontalAlignment="Center" Grid.Row="3" ItemsSource="{Binding SelectedUserDetailViewModel.Model.Model.PassengerShareRides}">
 1
             <ListView.View >
                 <GridView>
-                    <GridViewColumn Header="Dátum" Width="150" DisplayMemberBinding="{Binding Date}" />
-                    <GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding dest}" />
-                    <GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding price}" />
+                    <GridViewColumn Header="Odjazd" Width="150" DisplayMemberBinding="{Binding LeaveTime}" />
+                    <GridViewColumn Header="Príchod" Width="150" DisplayMemberBinding="{Binding ArriveTime}" />
+                    <GridViewColumn Header="Začiatok" Width="150" DisplayMemberBinding="{Binding FromPlace}" />
+                    <GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding ToPlace}" />
+                    <GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding Cost}" />
                 </GridView>
             </ListView.View>
 

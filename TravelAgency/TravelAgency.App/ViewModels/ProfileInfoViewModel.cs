@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.Input;
 using TravelAgency.App.Services;
 using TravelAgency.App.Messages;
-using TravelAgency.App.Wrappers;
+using TravelAgency.App.Commands;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class SelectOptionViewModel : ViewModelBase, ISelectOptionViewModel
+    public class ProfileInfoViewModel : ViewModelBase, IProfileInfoViewModel
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
 
 
-        public SelectOptionViewModel(IMediator mediator)
+        public ProfileInfoViewModel(IMediator mediator)
         {
             _mediator = mediator;
 
-            mediator.Register<LogInMessage>(OnUserLogin);
+            mediator.Register<OpenUserCarsMessage>(OnUserCarsOpen);
+            mediator.Register<OpenUserShareRidesMessage>(OnUserRidesOpen);
+            mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
             mediator.Register<LogOutMessage>(OnLogOut);
-            //LogIn = new RelayCommand(UserLogIn);
         }
 
         public bool IsVisible
@@ -37,17 +38,24 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
-
-        private void OnUserLogin(LogInMessage obj)
+        private void OnOpenProfile(OpenProfileInfoMessage obj)
         {
             IsVisible = true;
         }
 
-        private void OnLogOut(LogOutMessage obj)
+        private void OnUserCarsOpen(OpenUserCarsMessage obj)
         {
             IsVisible = false;
         }
 
+        private void OnUserRidesOpen(OpenUserShareRidesMessage obj)
+        {
+            IsVisible = false;
+        }
+        private void OnLogOut(LogOutMessage obj)
+        {
+            IsVisible = false;
+        }
 
     }
 }
