@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="TravelAgency.App.Views.UserRegister"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelAgency.App.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Style="{StaticResource UserRidesTitle}">
+            Registrovať
+        </Label>
+
+        <Grid  Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Style="{StaticResource AddRideSourceDestionationTitle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="0,0,0,0"
+            >Login:</Label>
+
+            <TextBox
+                Grid.Column="1"
+                Width="200" Height="30"
+                Style="{StaticResource CreateRideTextbox}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFE7E7E7"
+            ></TextBox>
+
+        </Grid>
+
+        <Grid  Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Style="{StaticResource AddRideSourceDestionationTitle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="0,0,0,0"
+            >Meno:</Label>
+
+            <TextBox
+                Grid.Column="1"
+                Width="200" Height="30"
+                Style="{StaticResource CreateRideTextbox}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFE7E7E7"
+            ></TextBox>
+
+
+        </Grid>
+
+        <Grid  Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Style="{StaticResource AddRideSourceDestionationTitle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="0,0,0,0"
+            >Priezvisko:</Label>
+
+            <TextBox
+                Grid.Column="1"
+                Width="200" Height="30"
+                Style="{StaticResource CreateRideTextbox}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFE7E7E7"
+            ></TextBox>
+
+
+        </Grid>
+
+        <Grid  Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Style="{StaticResource AddRideSourceDestionationTitle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="0,0,0,0"
+            >E-mail:</Label>
+
+            <TextBox
+                Grid.Column="1"
+                Width="200" Height="30"
+                Style="{StaticResource CreateRideTextbox}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFE7E7E7"
+            ></TextBox>
+
+
+
+        </Grid>
+
+        <Grid  Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Style="{StaticResource AddRideSourceDestionationTitle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="0,0,0,0"
+            >Tel.č.:</Label>
+
+            <TextBox
+                Grid.Column="1"
+                Width="200" Height="30"
+                Style="{StaticResource CreateRideTextbox}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFE7E7E7"
+            ></TextBox>
+
+        </Grid>
+
+        <Grid  Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Style="{StaticResource AddRideSourceDestionationTitle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="0,0,0,0"
+            >Nahrať profilovú fotku (URL adresa):</Label>
+
+            <TextBox
+                Grid.Column="1"
+                Width="200" Height="30"
+                Style="{StaticResource CreateRideTextbox}" TextAlignment="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFE7E7E7"
+            ></TextBox>
+
+
+        </Grid>
+
+        <Grid  Grid.Row="7">
+            <Button
+            Style="{StaticResource CreateRideButton}" HorizontalAlignment="Right" Background="#FFDDDDDD" VerticalAlignment="Center" Margin="0,20,20,20" >Registrovať
+            </Button>
+
+        </Grid>
+
+
+
+
+    </Grid>
+</UserControl>
