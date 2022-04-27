@@ -36,19 +36,58 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <TextBox
-                Grid.Column="1"
-                Width="200" Height="30" 
-                
-            ></TextBox>
+
+            <TextBox Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>
+
+
+
         </Grid>
 
         <Grid Grid.Row="3">
-            <TextBox
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource AddRideSourceDestionationTitle}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center" Margin="0,0,0,0"
+            >Dátum odchodu:</Label> 
+
+            <DatePicker
                 Grid.Column="1"
-                Width="100" Height="30"
-                
-            ></TextBox>
+                Height="25"
+                HorizontalAlignment="Center"
+                Name="datePicker1"  
+                VerticalAlignment="Center"
+                Width="115" />
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Grid  Grid.Column="0">
+                <Button
+                    Style="{StaticResource CreateRideButton}" HorizontalAlignment="Left" Background="#FFDDDDDD" VerticalAlignment="Center" Margin="20,20,20,20" >Späť
+                </Button>
+
+            </Grid>
+
+            <Grid  Grid.Column="1">
+                <Button
+                    Style="{StaticResource CreateRideButton}" HorizontalAlignment="Right" Background="#FFDDDDDD" VerticalAlignment="Center" Margin="0,20,20,20" >Vyhľadať
+                </Button>
+
+            </Grid>
+
+
         </Grid>
 
         
