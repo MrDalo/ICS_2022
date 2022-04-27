@@ -86,6 +86,13 @@
             Width="400" 
             Grid.ColumnSpan="2"
         />
+
+        <views:CreateRide x:Name="CreateRide"
+                            Grid.Column="0"
+                            DataContext="{Binding CreateRideViewModel}" 
+                            Grid.ColumnSpan="2"
+        />
+
         <views:ProfileWindow
             Grid.Column="0"
             DataContext="{Binding ProfileWindowViewModel}"

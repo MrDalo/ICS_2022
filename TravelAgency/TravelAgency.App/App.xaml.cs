@@ -67,6 +67,7 @@ namespace TravelAgency.App
             services.AddSingleton<IProfileWindowViewModel, ProfileWindowViewModel>();
             services.AddSingleton<IProfileInfoViewModel, ProfileInfoViewModel>();
             services.AddSingleton<IUserCarsViewModel, UserCarsViewModel>();
+            services.AddSingleton<ICreateRideViewModel, CreateRideViewModel>();
             services.AddSingleton<IUserRidesViewModel, UserRidesViewModel>();
             services.AddSingleton<IUserListViewModel, UserListViewModel>();
             services.AddSingleton<IShareRideListViewModel, ShareRideListViewModel>();

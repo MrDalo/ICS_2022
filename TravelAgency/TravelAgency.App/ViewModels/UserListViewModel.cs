@@ -68,8 +68,8 @@ namespace TravelAgency.App.ViewModels
         {
             Users.Clear();
             
-            var cars = await _userFacade.GetAll();
-            Users.AddRange(cars);
+            var users = await _userFacade.GetAll();
+            Users.AddRange(users);
         }
 
         public override void LoadInDesignMode()

@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TravelAgency.App.Views"
+             xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
+
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:CreateRideViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}">
+    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}"
+          Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
