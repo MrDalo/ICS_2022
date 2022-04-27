@@ -79,6 +79,13 @@
                               Width="400"
                               Grid.ColumnSpan="2"/>
 
+        <views:UserRegister x:Name="RegistrationPage"
+                              Grid.Column="0"
+                              DataContext="{Binding UserDetailViewModel}"
+                              Height="300" 
+                              Width="500"
+                              Grid.ColumnSpan="2"/>
+
         <views:SelectOption x:Name="SelectOption"
             Grid.Column="0"
             DataContext="{Binding SelectOptionViewModel}" 
@@ -102,10 +109,12 @@
             Grid.Column="1"/>
 
         <views:UserCars
-            Grid.Column="1"
-        />
-        <views:UserRides
             Grid.Column="1"/>
+            <!--DataContext="{Binding CarListViewModel}"/>-->
+
+        <views:UserRides
+            Grid.Column="1" />
+           
         <views:FilteredRides
             Grid.Column="0"
             Grid.ColumnSpan="2"

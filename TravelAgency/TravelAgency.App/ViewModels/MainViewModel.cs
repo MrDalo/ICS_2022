@@ -63,9 +63,11 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
             mediator.Register<SelectedMessage<UserWrapper>>(OnUserSelected);
+            mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
             OpenProfile = new RelayCommand(OnProfileButtonClicked);
         }
 
+     
 
         public IUserDetailViewModel? SelectedUserDetailViewModel { get; set; }
 
@@ -95,6 +97,14 @@ namespace TravelAgency.App.ViewModels
         private void OnProfileButtonClicked()
         {
             _mediator.Send(new OpenProfileInfoMessage());
+        }
+
+        private void OnUserNewMessage(NewMessage<UserWrapper> obj)
+        {
+            //SelectUser(Guid.Empty);
+            var userDetailViewModel = _userDetailViewModelFactory.Create();
+            userDetailViewModel.LoadAsync(Guid.Empty);
+
         }
 
         private void OnUserSelected(SelectedMessage<UserWrapper> message)

@@ -16,6 +16,8 @@ namespace TravelAgency.App.ViewModels
         private readonly UserFacade _userFacade;
         private readonly IMediator _mediator;
 
+        private bool _isVisible = false;
+        private UserWrapper? _model = UserDetailModel.Empty;
 
         public UserDetailViewModel(
             UserFacade userFacade,
@@ -26,11 +28,42 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
+            mediator.Register<RegisterMessage>(OnOpenRegistration);
         }
 
-        public UserWrapper? Model { get; private set; }
+        private void OnOpenRegistration(RegisterMessage obj)
+        {
+            IsVisible = true;
+        }
 
-        public ICommand SaveCommand { get; }
+        public bool IsVisible
+        {
+            get => _isVisible;
+
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //public UserWrapper? Model
+        //{
+        //    get; private set ;
+        //}
+
+        public UserWrapper? Model
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                OnPropertyChanged();
+                //IngredientAmountDetailViewModel.RecipeId = value?.Id ?? Guid.Empty;
+            }
+        }
+
+        public ICommand SaveCommand { get; set; }
 
         public async Task LoadAsync(Guid id)
         {
@@ -44,8 +77,11 @@ namespace TravelAgency.App.ViewModels
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
+            IsVisible = false;
+
             Model = await _userFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<UserWrapper>{Model = Model});
+            Model = UserDetailModel.Empty;
         }
 
         private bool CanSave() => Model?.IsValid ?? false;

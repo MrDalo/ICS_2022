@@ -25,7 +25,8 @@ namespace TravelAgency.App.ViewModels
         private UserListModel? _selectedUserListModel;
         private readonly IMessageDialogService _messageDialogService;
 
-        public ICommand LogIn { get; set; }
+        public ICommand LogIn { get; }
+        //public ICommand OpenRegistration { get; }
 
         public UserListViewModel(
             UserFacade userFacade,
@@ -38,10 +39,17 @@ namespace TravelAgency.App.ViewModels
 
             UserSelectedCommand = new RelayCommand<UserListModel>(UserSelected);
             UserNewCommand = new RelayCommand(UserNew);
+            
             LogIn = new RelayCommand(LogInUser);
+            //OpenRegistration = new RelayCommand(OpenRegistrationWindow);
 
             mediator.Register<UpdateMessage<UserWrapper>>(UserUpdated);
         }
+
+        //private void OpenRegistrationWindow()
+        //{
+        //    _mediator.Send(new RegisterMessage());
+        //}
 
 
         public ObservableCollection<UserListModel> Users { get; } = new();
@@ -54,7 +62,12 @@ namespace TravelAgency.App.ViewModels
 
         private async void UserUpdated(UpdateMessage<UserWrapper> _) => await LoadAsync();
 
-        private void UserNew() => _mediator.Send(new NewMessage<UserWrapper>());
+        private void UserNew()
+        {
+            _mediator.Send(new RegisterMessage());
+            _mediator.Send(new NewMessage<UserWrapper>());
+        }
+
 
         private void UserSelected(UserListModel? userListModel)
         {
