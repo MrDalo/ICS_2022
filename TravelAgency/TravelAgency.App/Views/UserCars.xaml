@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TravelAgency.App.Views"
+             xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource DefaultForegroundBrightBrush}"
           Visibility="{Binding UserCarsViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
@@ -26,15 +28,26 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="150" Height="280"> <!--Height="250"-->
+                    <Grid Width="150" Height="auto"> <!--Height="250"-->
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
                             <RowDefinition Height="150" />
-                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
+                        
+                            <Button
+                                Margin="50,0,0,0"
+                                Grid.Row="0"
+                                Width="40" Height="40" 
+                                Style="{StaticResource AddCircleButton}"
+                                Content="X">
+                            </Button>
+                        
                         <Image Height="120" Width="140" Grid.Row="0" Source="https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person-279x300.jpg" Stretch="UniformToFill" />
                         
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -51,13 +64,18 @@
                             <Label FontWeight="Bold" Grid.Column="0" Grid.Row="3" Content="Typ:"/>
                             <Label FontWeight="Bold" Grid.Column="0" Grid.Row="4" Content="Registrácia:"/>
 
-                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding LicensePlate}" />
-                            <Label Grid.Column="1" Grid.Row="1"  Content="{Binding Manufacturer}" />
-                            <Label Grid.Column="1" Grid.Row="2" Content="{Binding Capacity}" />
-                            <Label Grid.Column="1" Grid.Row="3"  Content="{Binding CarType}" />
-                            <Label Grid.Column="1" Grid.Row="4"  Content="{Binding RegistrationDate}" />
+                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding LicensePlate, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}" />
+                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Manufacturer, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Capacity, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding CarType, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
+                            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding RegistrationDate, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
+
+
+                            <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Width="70" Height="40" Style="{StaticResource ConfirmButton}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Potvrdit"
+                                    Command="{Binding CarDetailViewModel.SaveCommand}"/>
                         </Grid>
                        
+
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -117,20 +117,20 @@
                     <TextBox
                         Grid.Row="0"
                         Grid.Column="1"
-                        Background="{StaticResource DefaultAddButtonHoverBrush}"
+                        Style="{StaticResource CreateRideTextbox}"
                         Width="150"
                         ></TextBox>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
-                        Background="{StaticResource DefaultAddButtonHoverBrush}"
+                        Style="{StaticResource CreateRideTextbox}"
                         Width="150"
                     ></TextBox>
 
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        Background="{StaticResource DefaultAddButtonHoverBrush}"
+                        Style="{StaticResource CreateRideTextbox}"
                         Width="150"
                     ></TextBox>
 
@@ -153,14 +153,22 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Button 
+            <Button
                 Grid.Column="0"
-                Style="{StaticResource CreateRideButton}"
+                Width="150"
+                Height="40"
+                Style="{StaticResource BackButton}"
                     >Späť</Button>
+
             <Button 
                 Grid.Column="1"
-                Style="{StaticResource CreateRideButton}"
+                Width="150"
+                Height="40"
+                BorderThickness="0"
+                Style="{StaticResource ConfirmButton}"
                 >Vytvoriť</Button>
+
+
         </Grid>
 
 
