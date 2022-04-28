@@ -17,12 +17,14 @@ namespace TravelAgency.App.ViewModels
         private bool _isVisible = false;
 
         public ICommand CreateRide { get; set; }
+        public ICommand SearchRide { get; set; }
 
         public SelectOptionViewModel(IMediator mediator)
         {
             _mediator = mediator;
 
             CreateRide = new RelayCommand(CreateRideButton);
+            SearchRide = new RelayCommand(SearchRideButton);
 
             mediator.Register<LogInMessage>(OnUserLogin);
             mediator.Register<LogOutMessage>(OnLogOut);
@@ -56,7 +58,11 @@ namespace TravelAgency.App.ViewModels
             _mediator.Send(new CreateRideWindowMessage());
             
         }
+        private void SearchRideButton()
+        {
+            _mediator.Send(new OpenSearchRideMessage());
 
+        }
 
     }
 }

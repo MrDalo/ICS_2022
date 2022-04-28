@@ -73,7 +73,7 @@ namespace TravelAgency.App
             services.AddSingleton<IShareRideListViewModel, ShareRideListViewModel>();
             services.AddSingleton<IPassengerOfShareRideListViewModel, PassengerOfShareRideListViewModel>();
             services.AddSingleton<ICarListViewModel, CarListViewModel>();
-
+            services.AddFactory<ISearchRideViewModel, SearchRideViewModel>();
             services.AddFactory<IUserDetailViewModel, UserDetailViewModel>();
             services.AddFactory<ISelectOptionViewModel, SelectOptionViewModel>();
             services.AddFactory<IShareRideDetailViewModel, ShareRideDetailViewModel>();

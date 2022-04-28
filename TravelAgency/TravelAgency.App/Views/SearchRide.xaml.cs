@@ -18,7 +18,7 @@ namespace TravelAgency.App.Views
     /// <summary>
     /// Interaction logic for SearchRide.xaml
     /// </summary>
-    public partial class SearchRide : Page
+    public partial class SearchRide
     {
         public SearchRide()
         {

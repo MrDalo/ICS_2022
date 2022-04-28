@@ -32,6 +32,7 @@ namespace TravelAgency.App.ViewModels
                 IProfileInfoViewModel profileInfoViewModel,
                 IUserCarsViewModel userCarsViewModel,
                 IUserRidesViewModel userRidesViewModel,
+                ISearchRideViewModel searchRideViewModel,
                 ICreateRideViewModel createRideViewModel,
                 IMediator mediator,
                 IFactory<IUserDetailViewModel> userDetailViewModelFactory,
@@ -50,6 +51,7 @@ namespace TravelAgency.App.ViewModels
             UserCarsViewModel = userCarsViewModel;
             CreateRideViewModel = createRideViewModel;
             UserRidesViewModel = userRidesViewModel;
+            SearchRideViewModel = searchRideViewModel;
             _userDetailViewModelFactory = userDetailViewModelFactory;
             _carDetailViewModelFactory = carDetailViewModelFactory;
             _shareRideDetailViewModelFactory = shareRideDetailViewModelFactory;
@@ -80,7 +82,7 @@ namespace TravelAgency.App.ViewModels
         public IProfileInfoViewModel ProfileInfoViewModel { get; }
         public IUserCarsViewModel UserCarsViewModel { get; }
         public IUserRidesViewModel UserRidesViewModel { get; }
-
+        public ISearchRideViewModel SearchRideViewModel { get; }
         public ICreateRideViewModel CreateRideViewModel { get; }
 
         public IUserDetailViewModel UserDetailViewModel { get; }
