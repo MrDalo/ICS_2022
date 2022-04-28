@@ -171,6 +171,7 @@
                 Height="40"
                 BorderThickness="0"
                 Style="{StaticResource ConfirmButton}"
+                Command="{Binding SubmitCreationFunc}"
                 >Vytvoriť</Button>
 
 

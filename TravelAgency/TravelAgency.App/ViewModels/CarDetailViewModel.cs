@@ -1,13 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Services;
+using TravelAgency.App.Extensions;
 using TravelAgency.BL.Models;
+using TravelAgency.App.Wrappers;
 using TravelAgency.App.Commands;
 using TravelAgency.BL.Facades;
+using TravelAgency.Common.Enums;
+using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Windows.Input;
-using TravelAgency.App.Wrappers;
 using TravelAgency.App.Services.MessageDialog;
+
 
 
 namespace TravelAgency.App.ViewModels
@@ -42,6 +50,17 @@ namespace TravelAgency.App.ViewModels
         public async Task LoadAsync(Guid id)
         {
             Model = await _carFacade.GetAsync(id) ?? new(string.Empty, string.Empty, default, default, 0, Guid.Empty); ;
+
+        }
+
+        public ObservableCollection<CarDetailModel> Cars { get; } = new();
+
+        public async Task GetAllUsersCarViewModel(Guid UserId)
+        {
+            Cars.Clear();
+
+            var cars = await _carFacade.GetAllUserCars(UserId);
+            Cars.AddRange(cars);
 
         }
 
