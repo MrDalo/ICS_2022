@@ -44,7 +44,7 @@
             
         </ListView>
 
-        <ListView Margin="0,0,0,5" HorizontalAlignment="Center" Grid.Row="3" ItemsSource="{Binding SelectedUserDetailViewModel.Model.Model.PassengerShareRides}">
+        <!--<ListView Margin="0,0,0,5" HorizontalAlignment="Center" Grid.Row="3" ItemsSource="{Binding SelectedUserDetailViewModel.Model.Model.PassengerShareRides}">
 1
             <ListView.View >
                 <GridView>
@@ -56,7 +56,7 @@
                 </GridView>
             </ListView.View>
 
-        </ListView>
+        </ListView>-->
 
        
 

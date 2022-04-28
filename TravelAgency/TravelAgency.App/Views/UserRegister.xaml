@@ -169,18 +169,7 @@
             Command="{Binding SaveCommand}"
             >Registrovať</Button>
 
-        <!--<Button>
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="Click">
-                    <i:InvokeCommandAction Command="{Binding SaveCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </Button>-->
-
         </Grid>
-
-
-
 
     </Grid>
 </UserControl>

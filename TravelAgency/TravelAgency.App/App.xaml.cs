@@ -63,7 +63,7 @@ namespace TravelAgency.App
             services.AddSingleton<IMediator, Mediator>();
 
             services.AddSingleton<MainViewModel>();
-            services.AddSingleton<SelectOptionViewModel>();
+            services.AddSingleton<ISelectOptionViewModel, SelectOptionViewModel>();
             services.AddSingleton<IProfileWindowViewModel, ProfileWindowViewModel>();
             services.AddSingleton<IProfileInfoViewModel, ProfileInfoViewModel>();
             services.AddSingleton<IUserCarsViewModel, UserCarsViewModel>();

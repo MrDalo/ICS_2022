@@ -85,12 +85,6 @@ namespace TravelAgency.App.ViewModels
             Users.AddRange(users);
         }
 
-        public override void LoadInDesignMode()
-        {
-            Users.Add(new UserListModel(
-                Login: "Patrik Of Sehnoutek"));
-
-        }
         private void LogInUser()
         {
             if (_selectedUserListModel is not null)
