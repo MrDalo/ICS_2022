@@ -75,7 +75,6 @@ namespace TravelAgency.App.ViewModels
         public IFilteredRidesViewModel FilteredRidesViewModel { get; }
         public ISearchRideViewModel SearchRideViewModel { get; }
         public ICreateRideViewModel CreateRideViewModel { get; }
-
         public IUserDetailViewModel UserDetailViewModel { get; }
         public ICarDetailViewModel CarDetailViewModel { get; }
         public IShareRideDetailViewModel ShareRideDetailViewModel { get; }
