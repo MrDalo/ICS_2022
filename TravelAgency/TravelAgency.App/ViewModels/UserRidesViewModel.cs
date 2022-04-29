@@ -25,6 +25,7 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<OpenUserShareRidesMessage>(OnUserRidesOpen);
             mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
             mediator.Register<LogOutMessage>(OnLogOut);
+            mediator.Register<HomeMessage>(OnHome);
         }
 
         public bool IsVisible
@@ -54,6 +55,10 @@ namespace TravelAgency.App.ViewModels
         }
 
         private void OnLogOut(LogOutMessage obj)
+        {
+            IsVisible = false;
+        }
+        private void OnHome(HomeMessage obj)
         {
             IsVisible = false;
         }

@@ -56,7 +56,6 @@ namespace TravelAgency.App.ViewModels
             set
             {
                 _model = value;
-                OnPropertyChanged();
             }
         }
 
@@ -75,6 +74,12 @@ namespace TravelAgency.App.ViewModels
             {
                 throw new InvalidOperationException("Null model cannot be saved");
             }
+
+            if (!Uri.IsWellFormedUriString(Model.ImgUrl, UriKind.Absolute))
+            {
+                _model.ImgUrl = "https://cdn-icons-png.flaticon.com/512/744/744465.png";
+            }
+            OnPropertyChanged();
 
             Model = await _carFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });

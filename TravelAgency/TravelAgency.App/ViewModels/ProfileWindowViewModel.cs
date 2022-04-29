@@ -16,6 +16,7 @@ namespace TravelAgency.App.ViewModels
         private readonly IMediator _mediator;
         private bool _isVisible = false;
 
+        public ICommand Home { get; }
         public ICommand LogOut { get; }
         public ICommand ToProfileInfo { get; }
         public ICommand ToUserCars { get; }
@@ -26,11 +27,13 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
             mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
+            Home = new RelayCommand(HomeUser);
             LogOut = new RelayCommand(LogOutUser);
             ToProfileInfo = new RelayCommand(OpenProfileInfo);
             ToUserCars = new RelayCommand(OpenUserCars);
             ToUserShareRides = new RelayCommand(OpenUserShareRides);
         }
+
 
         public bool IsVisible
         {
@@ -62,6 +65,12 @@ namespace TravelAgency.App.ViewModels
         {
             IsVisible = false;
             _mediator.Send(new LogOutMessage());
+        }
+
+        private void HomeUser()
+        {
+            IsVisible = false;
+            _mediator.Send(new HomeMessage());
         }
 
         private void OnOpenProfile(OpenProfileInfoMessage obj)

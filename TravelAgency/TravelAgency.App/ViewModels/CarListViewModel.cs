@@ -32,6 +32,7 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<OpenUserShareRidesMessage>(OnUserRidesOpen);
             mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
             mediator.Register<LogOutMessage>(OnLogOut);
+            mediator.Register<HomeMessage>(OnHome);
 
             mediator.Register<DeleteMessage<CarWrapper>>(CarDeleted);
             mediator.Register<UpdateMessage<CarWrapper>>(CarUpdated);
@@ -92,6 +93,10 @@ namespace TravelAgency.App.ViewModels
             IsVisible = false;
         }
         private void OnLogOut(LogOutMessage obj)
+        {
+            IsVisible = false;
+        }
+        private void OnHome(HomeMessage obj)
         {
             IsVisible = false;
         }

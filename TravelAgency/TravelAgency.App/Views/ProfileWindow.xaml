@@ -26,7 +26,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
-                <Button Style="{StaticResource ProfileButton}"  Grid.Row="1" >Domov</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding Home}" Grid.Row="1" >Domov</Button>
                 <Button Style="{StaticResource ProfileButton}" Command="{Binding ToProfileInfo}" Grid.Row="2" >Profil</Button>
                 <Button Style="{StaticResource ProfileButton}" Command="{Binding ToUserCars}" Grid.Row="3" >Moje Autá</Button>
                 <Button Style="{StaticResource ProfileButton}" Command="{Binding ToUserShareRides}" Grid.Row="4" >Moje jazdy</Button>

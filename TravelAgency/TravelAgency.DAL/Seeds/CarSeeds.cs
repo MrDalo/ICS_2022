@@ -11,7 +11,7 @@ public static class CarSeeds
         LicensePlate: "PU584XG",
         Manufacturer: "Fiat",
         CarType: CarType.Other,
-        ImgUrl: null,
+        ImgUrl: "https://cdn.rychlyauta.cz/data/image/full/2017/06/595139c239d53.jpg?1498495426",
         RegistrationDate: DateTime.Parse("2021-10-10"), 
         Capacity: 3,
         OwnerId: UserSeeds.Driver1.Id)

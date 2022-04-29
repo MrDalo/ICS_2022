@@ -36,6 +36,9 @@
     <Style x:Key="AddCircleButton" TargetType="Button">
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="50,0,0,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">

@@ -38,6 +38,7 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<OpenUserShareRidesMessage>(OnUserRidesOpen);
             mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
             mediator.Register<LogOutMessage>(OnLogOut);
+            mediator.Register<HomeMessage>(OnHome);
         }
 
         private void OnOpenRegistration(RegisterMessage obj)
@@ -61,6 +62,10 @@ namespace TravelAgency.App.ViewModels
         }
 
         private void OnLogOut(LogOutMessage obj)
+        {
+            IsVisibleProfile = false;
+        }
+        private void OnHome(HomeMessage obj)
         {
             IsVisibleProfile = false;
         }
@@ -109,6 +114,11 @@ namespace TravelAgency.App.ViewModels
             if (Model == null)
             {
                 throw new InvalidOperationException("Null model cannot be saved");
+            }
+
+            if (!Uri.IsWellFormedUriString(Model.PhotoUrl, UriKind.Absolute))
+            {
+                _model.PhotoUrl = "https://icons.veryicon.com/png/o/business/multi-color-financial-and-business-icons/user-139.png";
             }
 
             Model = await _userFacade.SaveAsync(Model.Model);

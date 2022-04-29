@@ -33,23 +33,15 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="150" Height="auto"> <!--Height="250"-->
+                    <Grid Width="auto" Height="auto">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="150" />
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
+
                         
-                            <Button
-                                Margin="50,0,0,0"
-                                Grid.Row="0"
-                                Width="40" Height="40" 
-                                Style="{StaticResource AddCircleButton}"
-                                Content="X">
-                            </Button>
-                        
-                        <Image Height="120" Width="140" Grid.Row="0" Source="https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person-279x300.jpg" Stretch="UniformToFill" />
-                        
+                        <Image Height="120" Width="140" Grid.Row="0" Source="{Binding ImgUrl}"/>
                         <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -91,9 +83,7 @@
         </ListView>
 
         <Button
-            Margin="50,0,0,0"
             Grid.Column="1"
-            Width="40" Height="40" 
             Style="{StaticResource AddCircleButton}"
             Command="{Binding CarListViewModel.CarNewCommand}"
             Content="+">

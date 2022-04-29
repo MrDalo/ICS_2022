@@ -21,7 +21,7 @@
             Height="100" Width="100" 
             Margin="20,0,0, 0" >
             <Ellipse.Fill>
-                <ImageBrush  Stretch="UniformToFill" ImageSource="https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person-279x300.jpg"/>
+                <ImageBrush  Stretch="UniformToFill" ImageSource="{Binding Model.PhotoUrl}"/>
             </Ellipse.Fill>
 
         </Ellipse>
