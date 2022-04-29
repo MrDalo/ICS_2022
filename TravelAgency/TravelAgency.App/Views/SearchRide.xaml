@@ -75,14 +75,26 @@
 
             <Grid  Grid.Column="0">
                 <Button
-                    Style="{StaticResource CreateRideButton}" HorizontalAlignment="Left" Background="#FFDDDDDD" VerticalAlignment="Center" Margin="20,20,20,20" >Späť
+                    Style="{StaticResource CreateRideButton}" 
+                    HorizontalAlignment="Left" 
+                    Background="#FFDDDDDD" 
+                    VerticalAlignment="Center" 
+                    Margin="20,20,20,20" 
+                    Command="{Binding GoBack}"
+                    >Späť
                 </Button>
 
             </Grid>
 
             <Grid  Grid.Column="1">
                 <Button
-                    Style="{StaticResource CreateRideButton}" HorizontalAlignment="Right" Background="#FFDDDDDD" VerticalAlignment="Center" Margin="0,20,20,20" >Vyhľadať
+                    Style="{StaticResource CreateRideButton}" 
+                    HorizontalAlignment="Right" 
+                    Background="#FFDDDDDD" 
+                    VerticalAlignment="Center" 
+                    Margin="0,20,20,20"
+                    Command="{Binding FilteredRides}"
+                    >Vyhľadať
                 </Button>
 
             </Grid>

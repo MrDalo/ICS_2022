@@ -79,6 +79,7 @@
                               Width="400"
                               Grid.ColumnSpan="2"/>
 
+
         <views:UserRegister x:Name="RegistrationPage"
                               Grid.Column="0"
                               DataContext="{Binding UserDetailViewModel}"
@@ -106,6 +107,11 @@
             Grid.ColumnSpan="2"
             DataContext="{Binding SearchRideViewModel}" 
         />
+
+        <views:FilteredRides x:Name="FilteredRides"
+                             Grid.Column="0"
+                             DataContext="{Binding FilteredRidesViewModel}"
+                             Grid.ColumnSpan="2"/>
 
         <views:ProfileWindow
             Grid.Column="0"
