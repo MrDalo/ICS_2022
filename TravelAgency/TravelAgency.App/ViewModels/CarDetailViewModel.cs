@@ -69,6 +69,16 @@ namespace TravelAgency.App.ViewModels
 
         public async Task SaveAsync()
         {
+            if (!await _carFacade.CanIAddNewCar(_idUser))
+            {
+                var _ = _messageDialogService.Show(
+                    $"Uloženie zlyhalo",
+                    "Nemôžeš pridať viac ako 3 autá.",
+                    MessageDialogButtonConfiguration.OK,
+                    MessageDialogResult.OK);
+                Model = null;
+                return;
+            }
 
             if (Model == null)
             {
