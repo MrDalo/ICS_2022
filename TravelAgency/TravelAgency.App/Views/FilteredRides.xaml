@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TravelAgency.App.Views"
              xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+             d:DataContext="{d:DesignInstance viewModels:FilteredRidesViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     
 
@@ -62,7 +62,8 @@
     </UserControl.Resources>
 
 
-    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}">
+    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}"
+          Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -112,7 +113,14 @@
                     <Label Grid.Column="1" Grid.Row="2" Content="TODO"/>
                     <TextBlock Grid.Column="0" Grid.Row="3" Text="Do:"/>
                     <Label Grid.Column="1" Grid.Row="3" Content="TODO"/>
-                    <Button Grid.Column="0" Grid.Row="4" Content="TODO" Width="60" Height="20"/>
+                    <Button 
+                        Grid.Column="0" 
+                        Grid.Row="4" 
+                        Content="Zmena trasy" 
+                        Width="80" 
+                        Height="20"
+                        Command="{Binding GoBack}"
+                        />
                     <Button Grid.Column="1" Grid.Row="4" Content="TODO2" Width="60" Height="20"/>
 
 
