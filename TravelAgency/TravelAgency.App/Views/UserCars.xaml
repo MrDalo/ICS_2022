@@ -6,11 +6,13 @@
              xmlns:local="clr-namespace:TravelAgency.App.Views"
              xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
              xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:enums="clr-namespace:TravelAgency.Common.Enums;assembly=TravelAgency.Common"
+             xmlns:extensions="clr-namespace:TravelAgency.App.Extensions"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource DefaultForegroundBrightBrush}"
-          Visibility="{Binding UserCarsViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
+          Visibility="{Binding CarListViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
 
         
 
@@ -21,7 +23,7 @@
 
         
         <ListView x:Name="CarList" HorizontalContentAlignment="Right" 
-                  ItemsSource="{Binding SelectedUserDetailViewModel.Model.Model.Cars}">
+                  ItemsSource="{Binding CarListViewModel.Cars}">
       
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -70,13 +72,15 @@
                             <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding LicensePlate, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}" />
                             <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Manufacturer, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
                             <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Capacity, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
-                            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding CarType, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
+                            <ComboBox
+                                Grid.Row="3" Grid.Column="1"
+                                ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:CarType}}, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedItem="{Binding CarType, UpdateSourceTrigger=PropertyChanged}">
+
+                            </ComboBox>
                             <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding RegistrationDate, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
-
-
                            
                         </Grid>
-                       
 
                     </Grid>
                 </DataTemplate>
@@ -90,14 +94,16 @@
             </interactions:Interaction.Triggers>
 
         </ListView>
+
         <Button Grid.Column="1"  Width="70" Height="40" Style="{StaticResource ConfirmButton}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Potvrdit"
-                Command="{Binding CarDetailViewModel.SaveCommand}"/>
+                Command="{Binding CarListViewModel.CarNewCommand}"/>
 
         <Button
             Margin="50,0,0,0"
             Grid.Column="1"
             Width="40" Height="40" 
             Style="{StaticResource AddCircleButton}"
+            Command="{Binding CarListViewModel.CarNewCommand}"
             Content="+">
         </Button>
 

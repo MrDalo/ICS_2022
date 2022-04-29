@@ -16,13 +16,18 @@ namespace TravelAgency.App.ViewModels
         private readonly IMediator _mediator;
         private bool _isVisible = false;
 
+        public ICommand SubmitCreation { get; }
+        public ICommand GoBack { get; }
+
+
         public CreateRideViewModel(IMediator mediator)
         {
             _mediator = mediator;
 
-            mediator.Register<ShareRideCreatingMessage>(OnShareRideCreating);
             mediator.Register<CreateRideWindowMessage>(CreateRideWindowOpen);
 
+            SubmitCreation = new RelayCommand(SubmitCreationFunc);
+            GoBack = new RelayCommand(GoBackFunc);
 
         }
 
@@ -38,11 +43,19 @@ namespace TravelAgency.App.ViewModels
         }
 
 
-        private void OnShareRideCreating(ShareRideCreatingMessage obj)
+        private void SubmitCreationFunc()
         {
             IsVisible = false;
 
         }
+
+        private void GoBackFunc()
+        {
+            IsVisible = false;
+
+        }
+
+       
 
         private void CreateRideWindowOpen(CreateRideWindowMessage obj)
         {

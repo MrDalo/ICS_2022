@@ -11,19 +11,22 @@ using TravelAgency.App.Commands;
 
 namespace TravelAgency.App.ViewModels
 {
-    public class UserCarsViewModel : ViewModelBase, IUserCarsViewModel
+    public class FilteredRidesViewModel : ViewModelBase, IFilteredRidesViewModel
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
 
-        public UserCarsViewModel(IMediator mediator)
+        public ICommand GoBack { get; }
+
+
+        public FilteredRidesViewModel(IMediator mediator)
         {
             _mediator = mediator;
 
-            mediator.Register<OpenUserCarsMessage>(OnUserCarsOpen);
-            mediator.Register<OpenUserShareRidesMessage>(OnUserRidesOpen);
-            mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
-            mediator.Register<LogOutMessage>(OnLogOut);
+            mediator.Register<FilteredRideWindowMessage>(FilteredRidesWindowOpen);
+
+            GoBack = new RelayCommand(GoBackFunc);
+
         }
 
         public bool IsVisible
@@ -37,24 +40,20 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
-        private void OnOpenProfile(OpenProfileInfoMessage obj)
+
+        private void GoBackFunc()
         {
             IsVisible = false;
+
         }
 
-        private void OnUserCarsOpen(OpenUserCarsMessage obj)
+        private void FilteredRidesWindowOpen(FilteredRideWindowMessage obj)
         {
             IsVisible = true;
+
         }
 
-        private void OnUserRidesOpen(OpenUserShareRidesMessage obj)
-        {
-            IsVisible = false;
-        }
-        private void OnLogOut(LogOutMessage obj)
-        {
-            IsVisible = false;
-        }
+
 
     }
 }

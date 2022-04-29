@@ -17,7 +17,8 @@ namespace TravelAgency.App.ViewModels
         private readonly IMediator _mediator;
 
         private bool _isVisible = false;
-        private UserWrapper? _model = UserDetailModel.Empty;
+        private bool _isVisibleProfile = false;
+        private UserWrapper? _model;
 
         public UserDetailViewModel(
             UserFacade userFacade,
@@ -28,12 +29,40 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
+            
+            // Registration Window
             mediator.Register<RegisterMessage>(OnOpenRegistration);
+
+            // Profile Window
+            mediator.Register<OpenUserCarsMessage>(OnUserCarsOpen);
+            mediator.Register<OpenUserShareRidesMessage>(OnUserRidesOpen);
+            mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
+            mediator.Register<LogOutMessage>(OnLogOut);
         }
 
         private void OnOpenRegistration(RegisterMessage obj)
         {
             IsVisible = true;
+        }
+
+        private void OnOpenProfile(OpenProfileInfoMessage obj)
+        {
+            IsVisibleProfile = true;
+        }
+
+        private void OnUserCarsOpen(OpenUserCarsMessage obj)
+        {
+            IsVisibleProfile = false;
+        }
+
+        private void OnUserRidesOpen(OpenUserShareRidesMessage obj)
+        {
+            IsVisibleProfile = false;
+        }
+
+        private void OnLogOut(LogOutMessage obj)
+        {
+            IsVisibleProfile = false;
         }
 
         public bool IsVisible
@@ -47,10 +76,16 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
-        //public UserWrapper? Model
-        //{
-        //    get; private set ;
-        //}
+        public bool IsVisibleProfile
+        {
+            get => _isVisibleProfile;
+
+            set
+            {
+                _isVisibleProfile = value;
+                OnPropertyChanged();
+            }
+        }
 
         public UserWrapper? Model
         {
@@ -59,7 +94,6 @@ namespace TravelAgency.App.ViewModels
             {
                 _model = value;
                 OnPropertyChanged();
-                //IngredientAmountDetailViewModel.RecipeId = value?.Id ?? Guid.Empty;
             }
         }
 
@@ -77,11 +111,9 @@ namespace TravelAgency.App.ViewModels
                 throw new InvalidOperationException("Null model cannot be saved");
             }
 
-            IsVisible = false;
-
             Model = await _userFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<UserWrapper>{Model = Model});
-            Model = UserDetailModel.Empty;
+            IsVisible = false;
         }
 
         private bool CanSave() => Model?.IsValid ?? false;
@@ -98,11 +130,5 @@ namespace TravelAgency.App.ViewModels
                 Model = Model
             });
         }
-
-
-
-
-
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TravelAgency.App.ViewModels
 {
-    public interface IUserCarsViewModel
+    public interface IFilteredRidesViewModel
     {
     }
 }

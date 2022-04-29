@@ -16,12 +16,17 @@ namespace TravelAgency.App.ViewModels
         private readonly IMediator _mediator;
         private bool _isVisible = false;
 
+        public ICommand GoBack { get; }
+        public ICommand FilteredRides { get; }
+
 
         public SearchRideViewModel(IMediator mediator)
         {
             _mediator = mediator;
 
             mediator.Register<OpenSearchRideMessage>(OnSearchRideOpen);
+            GoBack = new RelayCommand(GoBackFunc);
+            FilteredRides = new RelayCommand(FilterRidesButton);
         }
 
         public bool IsVisible
@@ -33,6 +38,18 @@ namespace TravelAgency.App.ViewModels
                 _isVisible = value;
                 OnPropertyChanged();
             }
+        }
+
+        private void GoBackFunc()
+        {
+            IsVisible = false;
+
+        }
+
+        private void FilterRidesButton()
+        {
+            _mediator.Send(new FilteredRideWindowMessage());
+
         }
 
         private void OnSearchRideOpen(OpenSearchRideMessage obj)

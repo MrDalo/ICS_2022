@@ -163,6 +163,7 @@
                 Width="150"
                 Height="40"
                 Style="{StaticResource BackButton}"
+                Command="{Binding GoBack}"
                     >Späť</Button>
 
             <Button 
@@ -171,6 +172,7 @@
                 Height="40"
                 BorderThickness="0"
                 Style="{StaticResource ConfirmButton}"
+                Command="{Binding SubmitCreation}"
                 >Vytvoriť</Button>
 
 

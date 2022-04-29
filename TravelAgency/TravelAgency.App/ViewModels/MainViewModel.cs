@@ -13,9 +13,6 @@ namespace TravelAgency.App.ViewModels
 
     public class MainViewModel : ViewModelBase
     {
-        private readonly IFactory<IUserDetailViewModel> _userDetailViewModelFactory;
-        private readonly IFactory<ICarDetailViewModel> _carDetailViewModelFactory;
-
         private readonly IFactory<IShareRideDetailViewModel> _shareRideDetailViewModelFactory;
         //private readonly IFactory<IPassengerOfShareRideDetailViewModel> _passengerOfShareRideDetailViewModelFactory;
 
@@ -29,49 +26,44 @@ namespace TravelAgency.App.ViewModels
                 IPassengerOfShareRideListViewModel passengerOfShareRideListViewModel,
                 ISelectOptionViewModel selectOptionViewModel,
                 IProfileWindowViewModel profileWindowViewModel,
-                IProfileInfoViewModel profileInfoViewModel,
-                IUserCarsViewModel userCarsViewModel,
                 IUserRidesViewModel userRidesViewModel,
                 ISearchRideViewModel searchRideViewModel,
                 ICreateRideViewModel createRideViewModel,
+                IFilteredRidesViewModel filteredRidesViewModel,
                 IMediator mediator,
-                IFactory<IUserDetailViewModel> userDetailViewModelFactory,
-                IFactory<ICarDetailViewModel> carDetailViewModelFactory,
+                IUserDetailViewModel userDetailViewModel,
+                ICarDetailViewModel carDetailViewModel,
                 IFactory<IShareRideDetailViewModel> shareRideDetailViewModelFactory)
-            //IFactory<IPassengerOfShareRideDetailViewModel> passengerOfShareRideDetailViewModelFactory)//TODO
+                //IFactory<IPassengerOfShareRideDetailViewModel> passengerOfShareRideDetailViewModelFactory)//TODO
         {
-
             UserListViewModel = userListViewModel;
+            UserDetailViewModel = userDetailViewModel;
             CarListViewModel = carListViewModel;
+            CarDetailViewModel = carDetailViewModel;
             ShareRideListViewModel = shareRideListViewModel;
             PassengerOfShareRideListViewModel = passengerOfShareRideListViewModel;
             SelectOptionViewModel = selectOptionViewModel;
             ProfileWindowViewModel = profileWindowViewModel;
-            ProfileInfoViewModel = profileInfoViewModel;
-            UserCarsViewModel = userCarsViewModel;
             CreateRideViewModel = createRideViewModel;
             UserRidesViewModel = userRidesViewModel;
             SearchRideViewModel = searchRideViewModel;
-            _userDetailViewModelFactory = userDetailViewModelFactory;
-            _carDetailViewModelFactory = carDetailViewModelFactory;
+            FilteredRidesViewModel = filteredRidesViewModel;
             _shareRideDetailViewModelFactory = shareRideDetailViewModelFactory;
-
             //_passengerOfShareRideDetailViewModelFactory = passengerOfShareRideDetailViewModelFactory;
 
-            UserDetailViewModel = _userDetailViewModelFactory.Create();
-            CarDetailViewModel = _carDetailViewModelFactory.Create();
             ShareRideDetailViewModel = _shareRideDetailViewModelFactory.Create();
             //PassengerOfShareRideDetailViewModel = _passengerOfShareRideDetailViewModelFactory.Create();
             _mediator = mediator;
 
             mediator.Register<SelectedMessage<UserWrapper>>(OnUserSelected);
             mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
+            mediator.Register<SelectedMessage<CarWrapper>>(OnCarSelected);
+            mediator.Register<NewMessage<CarWrapper>>(OnCarNewMessage);
             OpenProfile = new RelayCommand(OnProfileButtonClicked);
         }
 
-     
-
         public IUserDetailViewModel? SelectedUserDetailViewModel { get; set; }
+        public ICarDetailViewModel? SelectedCarDetailViewModel { get; set; }
 
         public IUserListViewModel UserListViewModel { get; }
         public ICarListViewModel CarListViewModel { get; }
@@ -79,9 +71,8 @@ namespace TravelAgency.App.ViewModels
         public IPassengerOfShareRideListViewModel PassengerOfShareRideListViewModel { get; }
         public ISelectOptionViewModel SelectOptionViewModel { get; }
         public IProfileWindowViewModel ProfileWindowViewModel { get; }
-        public IProfileInfoViewModel ProfileInfoViewModel { get; }
-        public IUserCarsViewModel UserCarsViewModel { get; }
         public IUserRidesViewModel UserRidesViewModel { get; }
+        public IFilteredRidesViewModel FilteredRidesViewModel { get; }
         public ISearchRideViewModel SearchRideViewModel { get; }
         public ICreateRideViewModel CreateRideViewModel { get; }
 
@@ -98,15 +89,16 @@ namespace TravelAgency.App.ViewModels
 
         private void OnProfileButtonClicked()
         {
+            // Load User Cars into Profile
+            _mediator.Send(new LoadUserCarsMessage(SelectedUserDetailViewModel.Model.Id));
+            
+            // Profile Visibility
             _mediator.Send(new OpenProfileInfoMessage());
         }
 
         private void OnUserNewMessage(NewMessage<UserWrapper> obj)
         {
-            //SelectUser(Guid.Empty);
-            var userDetailViewModel = _userDetailViewModelFactory.Create();
-            userDetailViewModel.LoadAsync(Guid.Empty);
-
+            SelectUser(Guid.Empty);
         }
 
         private void OnUserSelected(SelectedMessage<UserWrapper> message)
@@ -123,10 +115,39 @@ namespace TravelAgency.App.ViewModels
 
             else
             {
-                var userDetailViewModel = _userDetailViewModelFactory.Create();
-                userDetailViewModel.LoadAsync(id.Value);
+                if (SelectedUserDetailViewModel == null)
+                {
+                    SelectedUserDetailViewModel = UserDetailViewModel;
+                }
 
-                SelectedUserDetailViewModel = userDetailViewModel;
+                SelectedUserDetailViewModel.LoadAsync(id.Value);
+            }
+        }
+
+        private void OnCarNewMessage(NewMessage<CarWrapper> obj)
+        {
+            SelectCar(Guid.Empty);
+        }
+
+        private void OnCarSelected(SelectedMessage<CarWrapper> message)
+        {
+            SelectCar(message.Id);
+        }
+
+        private void SelectCar(Guid? id)
+        {
+            if (id is null)
+            {
+                SelectedCarDetailViewModel = null;
+            }
+            else
+            {
+                if (SelectedCarDetailViewModel == null)
+                {
+                    SelectedCarDetailViewModel = CarDetailViewModel;
+                }
+
+                SelectedCarDetailViewModel.LoadAsync(id.Value);
             }
         }
 

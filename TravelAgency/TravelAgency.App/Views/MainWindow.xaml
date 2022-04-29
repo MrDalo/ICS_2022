@@ -50,7 +50,8 @@
             VerticalAlignment="Top"
             Height="50" Width="50" 
             Margin="0,20,20, 0" 
-            Command="{Binding OpenProfile}">
+            Command="{Binding OpenProfile}"
+            Visibility="{Binding Path=SelectOptionViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
         </Button>
 
         <!--<Ellipse  
@@ -70,6 +71,7 @@
             HorizontalAlignment="Right"
             Margin="0,30,80, 0"
             Content="{Binding SelectedUserDetailViewModel.Model.Login}"
+            Visibility="{Binding Path=SelectOptionViewModel.IsVisible, Converter={StaticResource BoolToVis}}"
             />
 
         <views:LoginInterface x:Name="LoginPage"
@@ -78,6 +80,7 @@
                               Height="200" 
                               Width="400"
                               Grid.ColumnSpan="2"/>
+
 
         <views:UserRegister x:Name="RegistrationPage"
                               Grid.Column="0"
@@ -107,13 +110,18 @@
             DataContext="{Binding SearchRideViewModel}" 
         />
 
+        <views:FilteredRides x:Name="FilteredRides"
+                             Grid.Column="0"
+                             DataContext="{Binding FilteredRidesViewModel}"
+                             Grid.ColumnSpan="2"/>
+
         <views:ProfileWindow
             Grid.Column="0"
             DataContext="{Binding ProfileWindowViewModel}"
             />
 
         <views:ProfileInfo
-            Grid.Column="1"/>
+            Grid.Column="1" DataContext="{Binding UserDetailViewModel}"/>
 
         <views:UserCars
             Grid.Column="1"/>

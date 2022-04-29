@@ -65,20 +65,19 @@ namespace TravelAgency.App
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<ISelectOptionViewModel, SelectOptionViewModel>();
             services.AddSingleton<IProfileWindowViewModel, ProfileWindowViewModel>();
-            services.AddSingleton<IProfileInfoViewModel, ProfileInfoViewModel>();
-            services.AddSingleton<IUserCarsViewModel, UserCarsViewModel>();
             services.AddSingleton<ICreateRideViewModel, CreateRideViewModel>();
             services.AddSingleton<IUserRidesViewModel, UserRidesViewModel>();
+            services.AddSingleton<IFilteredRidesViewModel, FilteredRidesViewModel>();
             services.AddSingleton<IUserListViewModel, UserListViewModel>();
             services.AddSingleton<IShareRideListViewModel, ShareRideListViewModel>();
             services.AddSingleton<IPassengerOfShareRideListViewModel, PassengerOfShareRideListViewModel>();
             services.AddSingleton<ICarListViewModel, CarListViewModel>();
+            services.AddSingleton<IUserDetailViewModel, UserDetailViewModel>();
+            services.AddSingleton<ICarDetailViewModel, CarDetailViewModel>();
             services.AddFactory<ISearchRideViewModel, SearchRideViewModel>();
-            services.AddFactory<IUserDetailViewModel, UserDetailViewModel>();
             services.AddFactory<ISelectOptionViewModel, SelectOptionViewModel>();
             services.AddFactory<IShareRideDetailViewModel, ShareRideDetailViewModel>();
             services.AddFactory<IPassengerOfShareRideListViewModel, PassengerOfShareRideListViewModel>();
-            services.AddFactory<ICarDetailViewModel, CarDetailViewModel>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)
