@@ -136,5 +136,16 @@
             Grid.Row="0"
             Visibility="Collapsed"
             />
+
+        <views:CarUpdate
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Height="300"
+            Width="450"
+            DataContext="{Binding CarDetailViewModel}"/>
+
     </Grid>
 </Window>

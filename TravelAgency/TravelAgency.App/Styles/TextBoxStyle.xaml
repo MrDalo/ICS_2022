@@ -3,12 +3,21 @@
     
     <Style x:Key="CreateRideTextbox" TargetType="TextBox">
         <Setter Property="FontSize" Value="15"/>
-        <!--<Setter Property="FontWeight" Value="Bold"/>-->
-        <Setter Property="Background" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
+    </Style>
+
+    <Style x:Key="CarUpdateTextbox" TargetType="TextBox">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Background" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="30"/>
     </Style>
 
     <Style TargetType="TextBox" x:Key="SearchRideTextbox" xmlns:sys="clr-namespace:System;assembly=mscorlib">

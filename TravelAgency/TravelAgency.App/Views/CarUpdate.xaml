@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="TravelAgency.App.Views.CarUpdate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TravelAgency.App.Views"
+      xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
+      xmlns:extensions="clr-namespace:TravelAgency.App.Extensions"
+      xmlns:enums="clr-namespace:TravelAgency.Common.Enums;assembly=TravelAgency.Common"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:DataContext="{d:DesignInstance viewModels:CarDetailViewModel}">
+
+
+    <Grid Background="{StaticResource DefaultBackgroundBrush}"
+          Visibility="{Binding Path=IsVisible, Converter={StaticResource BoolToVis}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Label 
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Content="Editovanie áut"
+            Style="{StaticResource EditCarTitle}"/>
+
+        <Label 
+            Grid.Row="1"
+            Content="ŠPZ"
+            Style="{StaticResource CarUpdateFontStyle}"/>
+
+        <TextBox 
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding Model.LicensePlate}"
+            Style="{StaticResource CarUpdateTextbox}"/>
+        
+        <Label 
+            Grid.Row="2"
+            Content="Výrobca:"
+            Style="{StaticResource CarUpdateFontStyle}"/>
+
+        <TextBox 
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="{Binding Model.Manufacturer}"
+            Style="{StaticResource CarUpdateTextbox}"/>
+
+        <Label 
+            Grid.Row="3"
+            Content="Kapacita:"
+            Style="{StaticResource CarUpdateFontStyle}"/>
+
+        <TextBox 
+            Grid.Row="3"
+            Grid.Column="1"
+            Text="{Binding Model.Capacity}"
+            Style="{StaticResource CarUpdateTextbox}"/>
+
+
+        <Label 
+            Grid.Row="4"
+            Content="Typ vozidla:"
+            Style="{StaticResource CarUpdateFontStyle}"/>
+
+        <ComboBox
+            Grid.Row="4"
+            Grid.Column="1"
+            ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:CarType}}, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding CarType, UpdateSourceTrigger=PropertyChanged}"
+            Style="{StaticResource CarUpdateComboBox}"/>
+
+        
+
+        <Label 
+            Grid.Row="5"
+            Content="Dátum registrácie:"
+            Style="{StaticResource CarUpdateFontStyle}"/>
+
+        <TextBox 
+            Grid.Row="5"
+            Grid.Column="1"
+            Text="{Binding Model.RegistrationDate}"
+            Style="{StaticResource CarUpdateTextbox}"/>
+
+
+
+        <Label 
+            Grid.Row="6"
+            Content="Fotka(URL):"
+            Style="{StaticResource CarUpdateFontStyle}"/>
+
+        <TextBox 
+            Grid.Row="6"
+            Grid.Column="1"
+            Text="{Binding Model.ImgUrl}"
+            Style="{StaticResource CarUpdateTextbox}"/>
+
+        <Button
+            Grid.Row="7"
+            Grid.Column="0"
+            Margin="20,2"
+            Content="Zmazať"
+            Command="{Binding SaveCommand}"/>
+
+        <Button
+            Grid.Row="7"
+            Grid.Column="1"
+            Margin="20,2"
+            Content="Pridať"
+            Command="{Binding DeleteCommand}"/>
+
+    </Grid>
+</UserControl>

@@ -10,6 +10,7 @@
                 <Setter Property="CornerRadius" Value="10" />
             </Style>
         </Style.Resources>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Background" Value="{StaticResource DefaultBackgroundBrush}"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="FontSize" Value="20"/>
