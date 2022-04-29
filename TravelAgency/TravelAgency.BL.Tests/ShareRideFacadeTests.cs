@@ -41,6 +41,32 @@ namespace TravelAgency.BL.Tests
             DeepAssert.Equal(model, returnedModel);
         }
 
+
+
+        [Fact]
+        public async Task GetDriverPassengerShareRidesTest()
+        {
+            var share_rides =
+                await _shareRideFacadeSUT.GetUserPassengerShareRides(Guid.Parse(input: "87B869FC-8356-4440-9CB7-43E3A996F165"));
+
+
+            DeepAssert.Equal(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntity1), share_rides.First());
+        }
+
+
+
+        [Fact]
+        public async Task GetDriverShareRides()
+        {
+            var share_rides =
+                await _shareRideFacadeSUT.GetDriverShareRides(Guid.Parse(input: "4c5df605-d676-4c25-98d8-5b795c7b6503"));
+            
+
+            DeepAssert.Equal(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntity1), share_rides.First());
+        }
+
+
+
         [Fact]
         public async Task ShareRide_FromTrencin()
         {

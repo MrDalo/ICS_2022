@@ -43,7 +43,23 @@ namespace TravelAgency.BL.Tests
         {
             returnedModel.Id = expectedModel.Id;
         }
-        
+
+        [Fact]
+        public async Task CanAddNewCarTest()
+        {
+
+            Assert.True(await _carFacadeSUT.CanIAddNewCar(Guid.Parse(input: "4c5df605-d676-4c25-98d8-5b795c7b6503")));
+
+        }
+
+        [Fact]
+        public async Task CanNotAddNewCarTest()
+        {
+
+            Assert.False(await _carFacadeSUT.CanIAddNewCar(Guid.Parse(input: "e11a73a4-db74-4749-a93d-6de07d773304")));
+
+        }
+
         [Fact]
         public async Task GetAll_Single_SeededCarByID()
         {

@@ -53,6 +53,44 @@ namespace TravelAgency.BL.Facades
             return await _mapper.ProjectTo<ShareRideDetailModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
 
+        public async Task<IEnumerable<ShareRideListModel>> GetDriverShareRides(Guid DriverId)
+        {
+            await using var uow = _unitOfWorkFactory.Create();
+            var query = uow
+                .GetRepository<ShareRideEntity>()
+                .Get()
+                .Where(e=>e.DriverId == DriverId);
+
+            
+
+
+            return await _mapper.ProjectTo<ShareRideListModel>(query).ToArrayAsync().ConfigureAwait(false);
+        }
+
+
+        public async Task<IEnumerable<ShareRideListModel>> GetUserPassengerShareRides(Guid PassengerId)
+        {
+            await using var uow = _unitOfWorkFactory.Create();
+            var query = uow
+                .GetRepository<PassengerOfShareRideEntity>()
+                .Get()
+                .Where(e => e.PassengerId == PassengerId);
+
+            
+            var shareRideQuery = uow.GetRepository<ShareRideEntity>()
+                .Get();
+
+            
+            foreach (var value in query)
+            {
+
+                shareRideQuery = shareRideQuery.Where(e => e.Id == value.ShareRideId);
+            }
+
+            return await _mapper.ProjectTo<ShareRideListModel>(shareRideQuery).ToArrayAsync().ConfigureAwait(false);
+        }
+
+
 
         public async Task<int> IsShareRideFull(ShareRideDetailModel model)
         {

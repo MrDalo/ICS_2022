@@ -28,6 +28,25 @@ namespace TravelAgency.BL.Facades
             
             return await _mapper.ProjectTo<CarListModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
+
+        public async Task<bool> CanIAddNewCar(Guid userId)
+        {
+            
+            //Need one await to prevent Warning about async function without await inside
+            await using var uow = _unitOfWorkFactory.Create();
+            
+            var query = uow
+                .GetRepository<CarEntity>()
+                .Get()
+                .Where(e => e.OwnerId == userId);
+
+            //Max supported cars per user is set to 3
+            if (query.Count() < 3)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 
 }

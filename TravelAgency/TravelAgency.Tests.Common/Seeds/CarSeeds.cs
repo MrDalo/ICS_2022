@@ -96,7 +96,7 @@ public static class CarSeeds
         RegistrationDate = DateTime.Parse("2018-01-01"),
         Capacity = 3,
         Owner = null, 
-        OwnerId = UserSeeds.PassengerTest70.Id
+        OwnerId = UserSeeds.PassengerTest69.Id
     };
 
 
