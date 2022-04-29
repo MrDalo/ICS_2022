@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelAgency.BL.Models;
 using TravelAgency.Common.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace TravelAgency.App.Wrappers
 {
@@ -59,6 +60,18 @@ namespace TravelAgency.App.Wrappers
         }
 
         // TODO - constraints
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (string.IsNullOrWhiteSpace(LicensePlate))
+            {
+                yield return new ValidationResult($"{nameof(LicensePlate)} is required", new[] { nameof(LicensePlate) });
+            }
+
+            if (string.IsNullOrWhiteSpace(Manufacturer))
+            {
+                yield return new ValidationResult($"{nameof(Manufacturer)} is required", new[] { nameof(Manufacturer) });
+            }
+        }
 
         public static implicit operator CarWrapper(CarDetailModel detailModel)
             => new(detailModel);

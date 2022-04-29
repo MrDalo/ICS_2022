@@ -69,16 +69,11 @@
                             <Label FontWeight="Bold" Grid.Column="0" Grid.Row="3" Content="Typ:"/>
                             <Label FontWeight="Bold" Grid.Column="0" Grid.Row="4" Content="Registrácia:"/>
 
-                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding LicensePlate, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}" />
-                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Manufacturer, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
-                            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Capacity, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
-                            <ComboBox
-                                Grid.Row="3" Grid.Column="1"
-                                ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:CarType}}, UpdateSourceTrigger=PropertyChanged}"
-                                SelectedItem="{Binding CarType, UpdateSourceTrigger=PropertyChanged}">
-
-                            </ComboBox>
-                            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding RegistrationDate, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CreateRideTextbox}"/>
+                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding LicensePlate}"/>
+                            <Label Grid.Column="1" Grid.Row="1" Content="{Binding Manufacturer}"/>
+                            <Label Grid.Column="1" Grid.Row="2" Content="{Binding Capacity}"/>
+                            <Label Grid.Column="1" Grid.Row="3" Content="{Binding CarType}"/>
+                            <Label Grid.Column="1" Grid.Row="4" Content="{Binding RegistrationDate}"/>
                            
                         </Grid>
 
@@ -94,9 +89,6 @@
             </interactions:Interaction.Triggers>
 
         </ListView>
-
-        <Button Grid.Column="1"  Width="70" Height="40" Style="{StaticResource ConfirmButton}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Potvrdit"
-                Command="{Binding CarListViewModel.CarNewCommand}"/>
 
         <Button
             Margin="50,0,0,0"

@@ -26,7 +26,9 @@ namespace TravelAgency.App.ViewModels
         private readonly CarFacade _carFacade;
         private readonly IMediator _mediator;
         private readonly IMessageDialogService _messageDialogService;
-        private CarWrapper? _model = new CarDetailModel(string.Empty, string.Empty, default, default, 0, Guid.Empty);
+        private CarWrapper? _model;// = new CarDetailModel(string.Empty, string.Empty, default, default, 0, Guid.Empty);
+
+        private Guid _idUser;
 
         public CarDetailViewModel(
             CarFacade carFacade,
@@ -39,9 +41,14 @@ namespace TravelAgency.App.ViewModels
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
             DeleteCommand = new AsyncRelayCommand(DeleteAsync);
+
+            mediator.Register<LoadUserCarsMessage>(LoadCars);
         }
 
-        //public CarWrapper? Model { get; private set;}
+        private void LoadCars(LoadUserCarsMessage obj)
+        {
+            _idUser = obj.Id;
+        }
 
         public CarWrapper? Model
         {
@@ -56,11 +63,9 @@ namespace TravelAgency.App.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
-
         public async Task LoadAsync(Guid id)
         {
-            Model = await _carFacade.GetAsync(id) ?? new(string.Empty, string.Empty, default, default, 0, Guid.Empty);
-
+            Model = await _carFacade.GetAsync(id) ?? new(string.Empty, string.Empty, default, default, 0, _idUser);
         }
 
         public async Task SaveAsync()
@@ -73,7 +78,9 @@ namespace TravelAgency.App.ViewModels
 
             Model = await _carFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
-            Model = new CarDetailModel(string.Empty, string.Empty, default, default, 0, Guid.Empty);
+            
+            // Hide window
+            Model = null;
         }
 
         private bool CanSave() => Model?.IsValid ?? false;
@@ -114,6 +121,8 @@ namespace TravelAgency.App.ViewModels
                 });
             }
 
+            // Hide window
+            Model = null;
         }
 
 

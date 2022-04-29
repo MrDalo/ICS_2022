@@ -13,7 +13,7 @@
 
 
     <Grid Background="{StaticResource DefaultBackgroundBrush}"
-          Visibility="{Binding Path=IsVisible, Converter={StaticResource BoolToVis}}">
+          Visibility="{Binding Path=Model, Converter={StaticResource NullToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -78,7 +78,7 @@
             Grid.Row="4"
             Grid.Column="1"
             ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:CarType}}, UpdateSourceTrigger=PropertyChanged}"
-            SelectedItem="{Binding CarType, UpdateSourceTrigger=PropertyChanged}"
+            SelectedItem="{Binding Model.CarType, UpdateSourceTrigger=PropertyChanged}"
             Style="{StaticResource CarUpdateComboBox}"/>
 
         
@@ -112,14 +112,14 @@
             Grid.Column="0"
             Margin="20,2"
             Content="Zmazať"
-            Command="{Binding SaveCommand}"/>
+            Command="{Binding DeleteCommand}"/>
 
         <Button
             Grid.Row="7"
             Grid.Column="1"
             Margin="20,2"
-            Content="Pridať"
-            Command="{Binding DeleteCommand}"/>
+            Content="Uložiť"
+            Command="{Binding SaveCommand}"/>
 
     </Grid>
 </UserControl>
