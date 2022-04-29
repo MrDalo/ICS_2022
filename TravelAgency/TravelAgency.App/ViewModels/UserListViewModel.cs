@@ -43,6 +43,13 @@ namespace TravelAgency.App.ViewModels
             LogIn = new RelayCommand(LogInUser);
 
             mediator.Register<UpdateMessage<UserWrapper>>(UserUpdated);
+            mediator.Register<LogOutMessage>(LogOutUser);
+        }
+
+        private async void LogOutUser(LogOutMessage obj)
+        {
+            _selectedUserListModel = null;
+            await LoadAsync();
         }
 
         public ObservableCollection<UserListModel> Users { get; } = new();
