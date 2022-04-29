@@ -26,7 +26,7 @@ namespace TravelAgency.App.ViewModels
         private readonly CarFacade _carFacade;
         private readonly IMediator _mediator;
         private readonly IMessageDialogService _messageDialogService;
-
+        private CarWrapper? _model = new CarDetailModel(string.Empty, string.Empty, default, default, 0, Guid.Empty);
 
         public CarDetailViewModel(
             CarFacade carFacade,
@@ -41,29 +41,27 @@ namespace TravelAgency.App.ViewModels
             DeleteCommand = new AsyncRelayCommand(DeleteAsync);
         }
 
+        //public CarWrapper? Model { get; private set;}
 
-        public CarWrapper? Model { get; private set;}
+        public CarWrapper? Model
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
 
         public async Task LoadAsync(Guid id)
         {
-            Model = await _carFacade.GetAsync(id) ?? new(string.Empty, string.Empty, default, default, 0, Guid.Empty); ;
+            Model = await _carFacade.GetAsync(id) ?? new(string.Empty, string.Empty, default, default, 0, Guid.Empty);
 
         }
-
-        public ObservableCollection<CarDetailModel> Cars { get; } = new();
-
-        public async Task GetAllUsersCarViewModel(Guid UserId)
-        {
-            Cars.Clear();
-
-            var cars = await _carFacade.GetAllUserCars(UserId);
-            Cars.AddRange(cars);
-
-        }
-
 
         public async Task SaveAsync()
         {
@@ -75,7 +73,7 @@ namespace TravelAgency.App.ViewModels
 
             Model = await _carFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
-
+            Model = new CarDetailModel(string.Empty, string.Empty, default, default, 0, Guid.Empty);
         }
 
         private bool CanSave() => Model?.IsValid ?? false;

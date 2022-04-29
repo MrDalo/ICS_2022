@@ -8,6 +8,7 @@ using TravelAgency.App.Wrappers;
 using TravelAgency.BL.Facades;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System;
 
 namespace TravelAgency.App.ViewModels
 {
@@ -15,7 +16,7 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly CarFacade _carFacade;
         private readonly IMediator _mediator;
-
+        private bool _isVisible = false;
 
         public CarListViewModel(
             CarFacade carFacade,
@@ -27,12 +28,20 @@ namespace TravelAgency.App.ViewModels
             CarSelectedCommand = new RelayCommand<CarListModel>(CarSelected);
             CarNewCommand = new RelayCommand(CarNew);
 
-           
-            mediator.Register<DeleteMessage<CarWrapper>>(CarDeleted);
-        }
+            mediator.Register<OpenUserCarsMessage>(OnUserCarsOpen);
+            mediator.Register<OpenUserShareRidesMessage>(OnUserRidesOpen);
+            mediator.Register<OpenProfileInfoMessage>(OnOpenProfile);
+            mediator.Register<LogOutMessage>(OnLogOut);
 
+            mediator.Register<DeleteMessage<CarWrapper>>(CarDeleted);
+            mediator.Register<UpdateMessage<CarWrapper>>(CarUpdated);
+
+            mediator.Register<LoadUserCarsMessage>(LoadCars);
+        }
+        
         public ObservableCollection<CarListModel> Cars { get; set; } = new();
 
+        private Guid _userGuid;
         public ICommand CarSelectedCommand { get; }
         public ICommand CarNewCommand { get; }
 
@@ -42,14 +51,49 @@ namespace TravelAgency.App.ViewModels
         
         private async void CarDeleted(DeleteMessage<CarWrapper> _) => await LoadAsync();
 
-
+        private async void CarUpdated(UpdateMessage<CarWrapper> _) => await LoadAsync();
 
         public async Task LoadAsync()
         {
             Cars.Clear();
-            var cars = await _carFacade.GetAll();
+            var cars = await _carFacade.GetAllUserCars(_userGuid);
             Cars.AddRange(cars);
+        }
+        private async void LoadCars(LoadUserCarsMessage obj)
+        {
+            _userGuid = obj.Id;
+            Cars.Clear();
+            var cars = await _carFacade.GetAllUserCars(obj.Id);
+            Cars.AddRange(cars);
+        }
+        public bool IsVisible
+        {
+            get => _isVisible;
 
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void OnOpenProfile(OpenProfileInfoMessage obj)
+        {
+            IsVisible = false;
+        }
+
+        private void OnUserCarsOpen(OpenUserCarsMessage obj)
+        {
+            IsVisible = true;
+        }
+
+        private void OnUserRidesOpen(OpenUserShareRidesMessage obj)
+        {
+            IsVisible = false;
+        }
+        private void OnLogOut(LogOutMessage obj)
+        {
+            IsVisible = false;
         }
     }
 }

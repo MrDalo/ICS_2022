@@ -18,15 +18,15 @@ namespace TravelAgency.BL.Facades
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CarDetailModel>> GetAllUserCars(Guid UserId)
+        public async Task<IEnumerable<CarListModel>> GetAllUserCars(Guid UserId)
         {
             await using var uow = _unitOfWorkFactory.Create();
             var query = uow
                 .GetRepository<CarEntity>()
                 .Get()
                 .Where(e => e.OwnerId == UserId);
-
-            return await _mapper.ProjectTo<CarDetailModel>(query).ToArrayAsync().ConfigureAwait(false);
+            
+            return await _mapper.ProjectTo<CarListModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
     }
 

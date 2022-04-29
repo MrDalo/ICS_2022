@@ -41,16 +41,9 @@ namespace TravelAgency.App.ViewModels
             UserNewCommand = new RelayCommand(UserNew);
             
             LogIn = new RelayCommand(LogInUser);
-            //OpenRegistration = new RelayCommand(OpenRegistrationWindow);
 
             mediator.Register<UpdateMessage<UserWrapper>>(UserUpdated);
         }
-
-        //private void OpenRegistrationWindow()
-        //{
-        //    _mediator.Send(new RegisterMessage());
-        //}
-
 
         public ObservableCollection<UserListModel> Users { get; } = new();
         
