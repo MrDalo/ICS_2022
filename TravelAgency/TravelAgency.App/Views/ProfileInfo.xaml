@@ -55,7 +55,7 @@
             <TextBlock FontWeight="Bold" Padding="20,4,0,0" Grid.Column="0" Grid.Row="3" >E-mail:</TextBlock>
             <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="4" >Tel.č:</TextBlock>
 
-            <TextBox Style="{StaticResource CreateRideTextbox}" Grid.Column="1" Grid.Row="0" Text="{Binding Model.Login, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Model.Login}" />
             <TextBox Style="{StaticResource CreateRideTextbox}"  Grid.Column="1" Grid.Row="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Style="{StaticResource CreateRideTextbox}" Grid.Column="1" Grid.Row="2" Text="{Binding Model.Surname, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Style="{StaticResource CreateRideTextbox}" Grid.Column="1" Grid.Row="3" Text="{Binding Model.Email, UpdateSourceTrigger=PropertyChanged}" />
