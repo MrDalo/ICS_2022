@@ -13,9 +13,6 @@ namespace TravelAgency.App.ViewModels
 
     public class MainViewModel : ViewModelBase
     {
-        private readonly IFactory<IShareRideDetailViewModel> _shareRideDetailViewModelFactory;
-        //private readonly IFactory<IPassengerOfShareRideDetailViewModel> _passengerOfShareRideDetailViewModelFactory;
-
         private readonly IMediator _mediator;
         public ICommand OpenProfile { get; }
 
@@ -33,14 +30,14 @@ namespace TravelAgency.App.ViewModels
                 IMediator mediator,
                 IUserDetailViewModel userDetailViewModel,
                 ICarDetailViewModel carDetailViewModel,
-                IFactory<IShareRideDetailViewModel> shareRideDetailViewModelFactory)
-                //IFactory<IPassengerOfShareRideDetailViewModel> passengerOfShareRideDetailViewModelFactory)//TODO
+                IShareRideDetailViewModel shareRideDetailViewModel)
         {
             UserListViewModel = userListViewModel;
             UserDetailViewModel = userDetailViewModel;
             CarListViewModel = carListViewModel;
             CarDetailViewModel = carDetailViewModel;
             ShareRideListViewModel = shareRideListViewModel;
+            ShareRideDetailViewModel = shareRideDetailViewModel;
             PassengerOfShareRideListViewModel = passengerOfShareRideListViewModel;
             SelectOptionViewModel = selectOptionViewModel;
             ProfileWindowViewModel = profileWindowViewModel;
@@ -48,11 +45,7 @@ namespace TravelAgency.App.ViewModels
             UserRidesViewModel = userRidesViewModel;
             SearchRideViewModel = searchRideViewModel;
             FilteredRidesViewModel = filteredRidesViewModel;
-            _shareRideDetailViewModelFactory = shareRideDetailViewModelFactory;
-            //_passengerOfShareRideDetailViewModelFactory = passengerOfShareRideDetailViewModelFactory;
 
-            ShareRideDetailViewModel = _shareRideDetailViewModelFactory.Create();
-            //PassengerOfShareRideDetailViewModel = _passengerOfShareRideDetailViewModelFactory.Create();
             _mediator = mediator;
 
             mediator.Register<SelectedMessage<UserWrapper>>(OnUserSelected);
@@ -78,13 +71,7 @@ namespace TravelAgency.App.ViewModels
         public IUserDetailViewModel UserDetailViewModel { get; }
         public ICarDetailViewModel CarDetailViewModel { get; }
         public IShareRideDetailViewModel ShareRideDetailViewModel { get; }
-        //public IPassengerOfShareRideDetailViewModel PassengerOfShareRideDetailViewModel { get; }
 
-        public ObservableCollection<IUserDetailViewModel> UserDetailViewModels { get; } = new ObservableCollection<IUserDetailViewModel>();
-
-        public ObservableCollection<IShareRideDetailViewModel> ShareRideDetailViewModels { get; } = new ObservableCollection<IShareRideDetailViewModel>();
-       // public ObservableCollection<IPassengerOfShareRideDetailViewModel> PassengerOfShareRideDetailViewModels { get; } = new ObservableCollection<IPassengerOfShareRideDetailViewModel>();
-        public ObservableCollection<ICarDetailViewModel> CarViewModels { get; } = new ObservableCollection<ICarDetailViewModel>();
 
         private void OnProfileButtonClicked()
         {
