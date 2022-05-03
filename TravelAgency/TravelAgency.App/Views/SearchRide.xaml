@@ -57,12 +57,12 @@
 
         </Grid>-->
         <Grid Grid.Row="1">
-            <TextBox Width="200" Height="30" Tag="Odkial" Style="{StaticResource SearchBox}"/>
+            <TextBox Width="200" Height="30" Tag="Odkial" Style="{StaticResource SearchBox}" Text="{Binding FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
 
         <Grid Grid.Row="2">
-            <TextBox Width="200" Height="30" Tag="Kam" Style="{StaticResource SearchBox}"/>
+            <TextBox Width="200" Height="30" Tag="Kam" Style="{StaticResource SearchBox}" Text="{Binding ToPlace, UpdateSourceTrigger=PropertyChanged}"/>
             <!--<TextBox Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>-->
 
 

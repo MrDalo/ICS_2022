@@ -121,7 +121,7 @@
                         Height="20"
                         Command="{Binding GoBack}"
                         />
-                    <Button Grid.Column="1" Grid.Row="4" Content="TODO2" Width="60" Height="20"/>
+            <Button Grid.Column="1" Grid.Row="4" Content="Filtrovať" Width="60" Height="20" Command="{Binding FilterRides}"/>
 
 
 
@@ -129,7 +129,7 @@
         </Grid>
 
 
-        <ListView Width="Auto" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=4}">
+        <ListView Width="Auto" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=filteredShareRides}">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -156,13 +156,13 @@
                         </Grid.RowDefinitions>
 
 
-                        <Label Grid.Row="0" Grid.Column="0" Width="Auto" Content="{Binding Bratislava}"/>
-                        <Label Grid.Row="0" Grid.Column="1" Width="Auto" Content="{Binding Praha}"/>
+                        <Label Grid.Row="0" Grid.Column="0" Width="Auto" Content="{Binding FromPlace}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Width="Auto" Content="{Binding ToPlace}"/>
 
-                        <Label Grid.Row="1" Grid.Column="0" Width="Auto" Content="{Binding cas1}"/>
-                        <Label Grid.Row="1" Grid.Column="1" Width="Auto" Content="{Binding cas2}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Width="Auto" Content="{Binding LeaveTime}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Width="Auto" Content="{Binding ArriveTime}"/>
 
-                        <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center" Content="{Binding cena}"/>
+                        <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center" Content="{Binding Cost}"/>
                         <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" VerticalAlignment="Center" Content="{Binding kapacita}"/>
 
                         <Ellipse

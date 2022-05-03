@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="TravelAgency.App.Views.CreateRide"
+             xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -64,6 +65,7 @@
                     Grid.Row="1"
                     Width="200" Height="30"
                     Style="{StaticResource CreateRideTextbox}"
+                    Text="{Binding FromPlace, UpdateSourceTrigger=PropertyChanged}"
                 >
                 </TextBox>
 
@@ -76,6 +78,7 @@
                     Grid.Row="3"
                     Width="200" Height="30"
                     Style="{StaticResource CreateRideTextbox}"
+                    Text="{Binding ToPlace, UpdateSourceTrigger=PropertyChanged}"
                 >
                 </TextBox>
             </Grid>
@@ -96,14 +99,23 @@
                 >Zvoľte auto:
                 </Label>
 
-                <ComboBox
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Width="200"
-                    Height="30"
-                    VerticalAlignment="Top"
-                    Background="{StaticResource DefaultAddButtonHoverBrush}"
-                    ItemsSource="{Binding TODOBINDING}">
+                <ComboBox x:Name="CarListComboBox"
+                          Grid.Column="1"
+                          Grid.Row="1"
+                          Width="200"
+                          Height="30"
+                          VerticalAlignment="Top"
+                    
+                          ItemsSource="{Binding Cars}"
+                          DisplayMemberPath="LicensePlate" SelectionChanged="ComboBox_SelectionChanged">
+                    <interactions:Interaction.Triggers>
+                        <interactions:EventTrigger EventName="SelectionChanged">
+                            <interactions:InvokeCommandAction Command="{Binding SubmitCreation}"
+                                                              CommandParameter="{Binding ElementName=CarListComboBox, Path=SelectedItem}" />
+                        </interactions:EventTrigger>
+                    </interactions:Interaction.Triggers>
+
+
                 </ComboBox>
 
                 <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
