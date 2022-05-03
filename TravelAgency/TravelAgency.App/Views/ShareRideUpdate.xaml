@@ -77,22 +77,27 @@
             <Label
                 Grid.Column="0"
                 HorizontalAlignment="Center"
-                Content="halooo"
+                Content="{Binding Model.LeaveTime}"
                 />
             <Label
                 Grid.Column="1"
                 HorizontalAlignment="Center"
-                Content="halooo1"
+                Content="{Binding Model.ArriveTime}"
             />
             <Label
                 Grid.Column="2"
-                HorizontalAlignment="Center"
-                Content="halooo2"
+                HorizontalAlignment="Left"
+                Content="{Binding Model.FromPlace}"
+            />
+            <Label
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                Content="{Binding Model.ToPlace}"
             />
         </Grid>
 
-        <ListView Width="Auto" Grid.Row="2" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=4}">
-
+        <ListView Width="Auto" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedPassenger}" ItemsSource="{Binding Passengers}">
+    
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical" />
@@ -111,7 +116,7 @@
 
                             <Label
                                 Grid.Column="0"
-                                Content="{Binding Pasazier}"
+                                Content="Pasazier"
                                 Padding="10"
                                 VerticalAlignment="Center"
                                 FontSize="25"
@@ -125,7 +130,12 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Grid.Row="2" Style="{StaticResource ConfirmButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200" Content="Zrusit jazdu" Padding="10,0,10,0" Margin="10,0,10,0"/>
+        <Button Grid.Row="3" Style="{StaticResource ConfirmButton}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="200" Content="Zrušiť jazdu" Padding="10,0,10,0" Margin="10,0,10,0"
+                Command="{Binding DeleteCommand}"/>
+        <Button Grid.Row="3" Style="{StaticResource ConfirmButton}" Visibility="{Binding Path=SelectedPassenger, Converter={StaticResource NullToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200" Content="Odobrať" Padding="10,0,10,0" Margin="10,0,10,0"
+                Command="{Binding DeletePassengerCommand}"/>
+        <Button Grid.Row="3" Style="{StaticResource ConfirmButton}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="50" Width="50" Content="X" Padding="10,0,10,0" Margin="10,0,10,0"
+                Command="{Binding CloseCommand}"/>
 
     </Grid>
 </UserControl>

@@ -37,7 +37,7 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<DeleteMessage<CarWrapper>>(CarDeleted);
             mediator.Register<UpdateMessage<CarWrapper>>(CarUpdated);
 
-            mediator.Register<LoadUserCarsMessage>(LoadCars);
+            mediator.Register<LoadUserProfile>(LoadCars);
         }
         
         public ObservableCollection<CarListModel> Cars { get; set; } = new();
@@ -60,7 +60,7 @@ namespace TravelAgency.App.ViewModels
             var cars = await _carFacade.GetAllUserCars(_userGuid);
             Cars.AddRange(cars);
         }
-        private async void LoadCars(LoadUserCarsMessage obj)
+        private async void LoadCars(LoadUserProfile obj)
         {
             _userGuid = obj.Id;
             Cars.Clear();

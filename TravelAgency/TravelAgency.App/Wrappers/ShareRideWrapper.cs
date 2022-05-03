@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelAgency.App.Extensions;
 using TravelAgency.BL.Models;
 
 namespace TravelAgency.App.Wrappers
@@ -55,6 +56,17 @@ namespace TravelAgency.App.Wrappers
         {
             get => GetValue<Guid>();
             set => SetValue(value);
+        }
+
+        private void InitializeCollectionProperties(ShareRideDetailModel model)
+        {
+            if (model.Passengers == null)
+            {
+                throw new ArgumentException("Ingredients cannot be null");
+            }
+            Passengers.AddRange(model.Passengers.Select(e => new PassengerOfShareRideWrapper(e)));
+
+            RegisterCollection(Passengers, model.Passengers);
         }
 
         public ObservableCollection<PassengerOfShareRideWrapper> Passengers { get; set; } = new();

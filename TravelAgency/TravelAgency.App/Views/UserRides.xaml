@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TravelAgency.App.Views"
+             xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
+             xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance viewModels:ShareRideListViewModel}">
     <Grid Background="{StaticResource DefaultForegroundBrightBrush}" 
-          Visibility="{Binding UserRidesViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
+          Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
 
        
                 <Grid.RowDefinitions>
@@ -30,12 +33,17 @@
                     Spolujazdec
                 </Label>
 
-        <ListView HorizontalContentAlignment="Right" HorizontalAlignment="Center" Grid.Row="1" ItemsSource="{Binding SelectedUserDetailViewModel.Model.Model.DriverShareRides}">
-                  
+        <ListView x:Name="Driver" HorizontalContentAlignment="Right" HorizontalAlignment="Center" Grid.Row="1" ItemsSource="{Binding DriverShareRides}">
+            <interactions:Interaction.Triggers>
+                <interactions:EventTrigger EventName="SelectionChanged">
+                    <interactions:InvokeCommandAction Command="{Binding ShareRideSelectedCommand}"
+                                                      CommandParameter="{Binding ElementName=Driver, Path=SelectedItem}" />
+                </interactions:EventTrigger>
+            </interactions:Interaction.Triggers>
             <ListView.View>
 				<GridView >
+                    
                     <GridViewColumn Header="Odjazd" Width="150" DisplayMemberBinding="{Binding LeaveTime}" />
-                    <GridViewColumn Header="Príchod" Width="150" DisplayMemberBinding="{Binding ArriveTime}" />
                     <GridViewColumn Header="Začiatok" Width="150" DisplayMemberBinding="{Binding FromPlace}" />
                     <GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding ToPlace}" />
                     <GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding Cost}" />
@@ -44,19 +52,17 @@
             
         </ListView>
 
-        <!--<ListView Margin="0,0,0,5" HorizontalAlignment="Center" Grid.Row="3" ItemsSource="{Binding SelectedUserDetailViewModel.Model.Model.PassengerShareRides}">
-1
+        <ListView Margin="0,0,0,5" HorizontalAlignment="Center" Grid.Row="3" ItemsSource="{Binding PassengerShareRides}">
             <ListView.View >
                 <GridView>
                     <GridViewColumn Header="Odjazd" Width="150" DisplayMemberBinding="{Binding LeaveTime}" />
-                    <GridViewColumn Header="Príchod" Width="150" DisplayMemberBinding="{Binding ArriveTime}" />
                     <GridViewColumn Header="Začiatok" Width="150" DisplayMemberBinding="{Binding FromPlace}" />
                     <GridViewColumn Header="Destinácia" Width="150" DisplayMemberBinding="{Binding ToPlace}" />
                     <GridViewColumn Header="Cena" Width="150" DisplayMemberBinding="{Binding Cost}" />
                 </GridView>
             </ListView.View>
 
-        </ListView>-->
+        </ListView>
 
        
 

@@ -10,7 +10,6 @@ using TravelAgency.App.Commands;
 
 namespace TravelAgency.App.ViewModels
 {
-
     public class MainViewModel : ViewModelBase
     {
         private readonly IMediator _mediator;
@@ -23,7 +22,6 @@ namespace TravelAgency.App.ViewModels
                 IPassengerOfShareRideListViewModel passengerOfShareRideListViewModel,
                 ISelectOptionViewModel selectOptionViewModel,
                 IProfileWindowViewModel profileWindowViewModel,
-                IUserRidesViewModel userRidesViewModel,
                 ISearchRideViewModel searchRideViewModel,
                 ICreateRideViewModel createRideViewModel,
                 IFilteredRidesViewModel filteredRidesViewModel,
@@ -42,7 +40,6 @@ namespace TravelAgency.App.ViewModels
             SelectOptionViewModel = selectOptionViewModel;
             ProfileWindowViewModel = profileWindowViewModel;
             CreateRideViewModel = createRideViewModel;
-            UserRidesViewModel = userRidesViewModel;
             SearchRideViewModel = searchRideViewModel;
             FilteredRidesViewModel = filteredRidesViewModel;
 
@@ -52,11 +49,14 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
             mediator.Register<SelectedMessage<CarWrapper>>(OnCarSelected);
             mediator.Register<NewMessage<CarWrapper>>(OnCarNewMessage);
+            mediator.Register<SelectedMessage<ShareRideWrapper>>(OnShareRideSelected);
+            mediator.Register<NewMessage<ShareRideWrapper>>(OnShareRideNewMessage);
             OpenProfile = new RelayCommand(OnProfileButtonClicked);
         }
 
         public IUserDetailViewModel? SelectedUserDetailViewModel { get; set; }
         public ICarDetailViewModel? SelectedCarDetailViewModel { get; set; }
+        public IShareRideDetailViewModel? SelectedShareRideDetailViewModel { get; set; }
 
         public IUserListViewModel UserListViewModel { get; }
         public ICarListViewModel CarListViewModel { get; }
@@ -64,7 +64,6 @@ namespace TravelAgency.App.ViewModels
         public IPassengerOfShareRideListViewModel PassengerOfShareRideListViewModel { get; }
         public ISelectOptionViewModel SelectOptionViewModel { get; }
         public IProfileWindowViewModel ProfileWindowViewModel { get; }
-        public IUserRidesViewModel UserRidesViewModel { get; }
         public IFilteredRidesViewModel FilteredRidesViewModel { get; }
         public ISearchRideViewModel SearchRideViewModel { get; }
         public ICreateRideViewModel CreateRideViewModel { get; }
@@ -76,7 +75,7 @@ namespace TravelAgency.App.ViewModels
         private void OnProfileButtonClicked()
         {
             // Load User Cars into Profile
-            _mediator.Send(new LoadUserCarsMessage(SelectedUserDetailViewModel.Model.Id));
+            _mediator.Send(new LoadUserProfile(SelectedUserDetailViewModel.Model.Id));
             
             // Profile Visibility
             _mediator.Send(new OpenProfileInfoMessage());
@@ -134,6 +133,33 @@ namespace TravelAgency.App.ViewModels
                 }
 
                 SelectedCarDetailViewModel.LoadAsync(id.Value);
+            }
+        }
+
+        private void OnShareRideNewMessage(NewMessage<ShareRideWrapper> obj)
+        {
+            SelectShareRide(Guid.Empty);
+        }
+
+        private void OnShareRideSelected(SelectedMessage<ShareRideWrapper> message)
+        {
+            SelectShareRide(message.Id);
+        }
+
+        private void SelectShareRide(Guid? id)
+        {
+            if (id is null)
+            {
+                SelectedShareRideDetailViewModel = null;
+            }
+            else
+            {
+                if (SelectedShareRideDetailViewModel == null)
+                {
+                    SelectedShareRideDetailViewModel = ShareRideDetailViewModel;
+                }
+
+                SelectedShareRideDetailViewModel.LoadAsync(id.Value);
             }
         }
 
