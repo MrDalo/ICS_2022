@@ -16,7 +16,9 @@
           Visibility="{Binding Path=Model, Converter={StaticResource NullToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -27,56 +29,74 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
+
+        <Button 
+            Grid.Row="0"
+            
+            Grid.Column="3"
+            
+            Name="cancelButton" 
+            Margin="0, 0, 0, 0"
+            
+            IsCancel="True"
+            >X</Button>
 
         <Label 
             Grid.Row="0"
+            Grid.Column="1"
             Grid.ColumnSpan="2"
+            Grid.RowSpan="2"
             Content="Editovanie áut"
             Style="{StaticResource EditCarTitle}"/>
 
         <Label 
-            Grid.Row="1"
+            Grid.Row="2"
+            Grid.Column="1"
             Content="ŠPZ"
             Style="{StaticResource CarUpdateFontStyle}"/>
 
         <TextBox 
-            Grid.Row="1"
-            Grid.Column="1"
+            Grid.Row="2"
+            Grid.Column="2"
             Text="{Binding Model.LicensePlate}"
             Style="{StaticResource CarUpdateTextbox}"/>
         
         <Label 
-            Grid.Row="2"
+            Grid.Row="3"
+            Grid.Column="1"
             Content="Výrobca:"
             Style="{StaticResource CarUpdateFontStyle}"/>
 
         <TextBox 
-            Grid.Row="2"
-            Grid.Column="1"
+            Grid.Row="3"
+            Grid.Column="2"
             Text="{Binding Model.Manufacturer}"
             Style="{StaticResource CarUpdateTextbox}"/>
 
         <Label 
-            Grid.Row="3"
+            Grid.Row="4"
+            Grid.Column="1"
             Content="Kapacita:"
             Style="{StaticResource CarUpdateFontStyle}"/>
 
         <TextBox 
-            Grid.Row="3"
-            Grid.Column="1"
+            Grid.Row="4"
+            Grid.Column="2"
             Text="{Binding Model.Capacity}"
             Style="{StaticResource CarUpdateTextbox}"/>
 
 
         <Label 
-            Grid.Row="4"
+            Grid.Row="5"
+            Grid.Column="1"
             Content="Typ vozidla:"
             Style="{StaticResource CarUpdateFontStyle}"/>
 
         <ComboBox
-            Grid.Row="4"
-            Grid.Column="1"
+            Grid.Row="5"
+            Grid.Column="2"
             ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:CarType}}, UpdateSourceTrigger=PropertyChanged}"
             SelectedItem="{Binding Model.CarType, UpdateSourceTrigger=PropertyChanged}"
             Style="{StaticResource CarUpdateComboBox}"/>
@@ -84,39 +104,42 @@
         
 
         <Label 
-            Grid.Row="5"
+            Grid.Row="6"
+            Grid.Column="1"
             Content="Dátum registrácie:"
             Style="{StaticResource CarUpdateFontStyle}"/>
 
         <TextBox 
-            Grid.Row="5"
-            Grid.Column="1"
+            Grid.Row="6"
+            Grid.Column="2"
             Text="{Binding Model.RegistrationDate}"
             Style="{StaticResource CarUpdateTextbox}"/>
 
 
 
         <Label 
-            Grid.Row="6"
+            Grid.Row="7"
+            Grid.Column="1"
             Content="Fotka(URL):"
             Style="{StaticResource CarUpdateFontStyle}"/>
 
         <TextBox 
-            Grid.Row="6"
-            Grid.Column="1"
+            Grid.Row="7"
+            Grid.Column="2"
             Text="{Binding Model.ImgUrl}"
             Style="{StaticResource CarUpdateTextbox}"/>
 
         <Button
-            Grid.Row="7"
-            Grid.Column="0"
+            Grid.Row="8"
+            Grid.Column="1"
             Margin="20,2"
             Content="Zmazať"
             Command="{Binding DeleteCommand}"/>
 
         <Button
-            Grid.Row="7"
-            Grid.Column="1"
+            Grid.Row="8"
+            Grid.Column="2"
+            
             Margin="20,2"
             Content="Uložiť"
             Command="{Binding SaveCommand}"/>
