@@ -16,8 +16,14 @@ namespace TravelAgency.App.ViewModels
         private readonly IMediator _mediator;
         private bool _isVisible = false;
 
+        private DateTime _TimeValue = DateTime.Now;
+        private DateTime _currentDate = DateTime.Now;
+
         public ICommand GoBack { get; }
         public ICommand FilteredRides { get; }
+
+        public ICommand IncrementTime { get; }
+        public ICommand DecrementTime { get; }
 
 
         public SearchRideViewModel(IMediator mediator)
@@ -27,7 +33,11 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<OpenSearchRideMessage>(OnSearchRideOpen);
             GoBack = new RelayCommand(GoBackFunc);
             FilteredRides = new RelayCommand(FilterRidesButton);
+            IncrementTime = new RelayCommand(IncrementTimeValue);
+            DecrementTime = new RelayCommand(DecrementTimeValue);
         }
+
+
 
         public bool IsVisible
         {
@@ -36,6 +46,28 @@ namespace TravelAgency.App.ViewModels
             set
             {
                 _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime TimeValue
+        {
+            get => _TimeValue;
+
+            set
+            {
+                _TimeValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime CurrentDate
+        {
+            get => _currentDate;
+
+            set
+            {
+                _currentDate = value;
                 OnPropertyChanged();
             }
         }
@@ -57,5 +89,14 @@ namespace TravelAgency.App.ViewModels
             IsVisible = true;
         }
 
+        private void IncrementTimeValue()
+        {
+            TimeValue = TimeValue.AddMinutes(30);
+        }
+        private void DecrementTimeValue()
+        {
+            TimeValue = TimeValue.AddMinutes(-30);
+        }
     }
+
 }

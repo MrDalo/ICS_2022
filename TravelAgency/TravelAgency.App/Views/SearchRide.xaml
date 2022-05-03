@@ -13,12 +13,15 @@
     <Grid Background="{StaticResource DefaultBackgroundBrightBrush}" Visibility="{Binding Path=IsVisible, Converter={StaticResource BoolToVis}}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
         <Ellipse
             Grid.Column="0"
@@ -43,6 +46,9 @@
         </TextBlock>
 
         <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Style="{StaticResource UserRidesTitle}" 
             VerticalContentAlignment="Center" 
             HorizontalContentAlignment="Center"
@@ -56,12 +62,12 @@
             <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>
 
         </Grid>-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.Column="0">
             <TextBox Width="200" Height="30" Tag="Odkial" Style="{StaticResource SearchBox}"/>
         </Grid>
 
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.Column="0">
             <TextBox Width="200" Height="30" Tag="Kam" Style="{StaticResource SearchBox}"/>
             <!--<TextBox Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>-->
 
@@ -69,22 +75,21 @@
 
         </Grid>
 
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="1*"/>
-                <ColumnDefinition  Width="1*"/>
-                <ColumnDefinition  Width="1*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+            </Grid.RowDefinitions>
 
             <Label
-                Grid.Column="0"
+                Grid.Row="0"
                 Style="{StaticResource AddRideSourceDestionationTitle}"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center" Margin="0,0,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top" Margin="0,0,0,0"
             >Dátum odchodu:</Label> 
 
             
-            <DatePicker
+            <!--<DatePicker
                 Grid.Column="1"
                 Height="25"
                 HorizontalAlignment="Center"
@@ -92,22 +97,82 @@
                 VerticalAlignment="Center"
                 Width="115"
 
-                />
-            <!--<TODO PICK A DATE AND TIME FROM CALENDAR (HALFWAY DONE)
-                StackPanel Grid.Column="2">
-                <Calendar Name="CalendarStart"/>
-                <TextBox Text="{Binding ElementName=CalendarStart, Path=SelectedDate,StringFormat='{}{0:MM.dd.yyyy 0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
-            </StackPanel>-->
+                />-->
+            <!--<TODO PICK A DATE AND TIME FROM CALENDAR (HALFWAY DONE)-->
+               <StackPanel Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Calendar  Grid.Column="0" 
+                               Grid.Row="0"
+                               Grid.RowSpan="2"
+                               VerticalAlignment="Center"
+                               x:Name="CalendarStart"
+                               DisplayDate="{Binding CurrentDate}"
+                               SelectedDate="{Binding CurrentDate}"
+                    />
+
+                    <Button x:Name="Inc_btn"
+                            Grid.Column="1" 
+                            Grid.Row="0" 
+                            HorizontalAlignment="Left" 
+                            Width="30" 
+                            Height="30" 
+                            VerticalAlignment="Center"
+                            Content="+"
+                            FontSize="20"
+                            Command="{Binding IncrementTime}"
+                            />
+
+                    <Button x:Name="Dec_btn"
+                            Grid.Column="1" 
+                            Grid.Row="0" 
+                            HorizontalAlignment="Right" 
+                            Width="30" 
+                            Height="30" 
+                            VerticalAlignment="Center"
+                            Content="-"
+                            FontSize="20"
+                            Command="{Binding DecrementTime}"
+                            />
+                    
+                    <TextBox x:Name="Time"
+                            Grid.Column="1" 
+                            Grid.Row="0" 
+                            HorizontalAlignment="Center" 
+                            HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Width="50" 
+                            Height="30" 
+                            VerticalAlignment="Center"
+                            Foreground="black"
+                            Text="{Binding Path=TimeValue,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBox x:Name="Date"
+                             Grid.Row="1" 
+                             Grid.Column="1"
+                             Width="Auto"
+                             Height="30"
+                         
+                            HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Text="{Binding ElementName=CalendarStart, Path=SelectedDate,StringFormat='{}{0:yyyy/MM/dd}', UpdateSourceTrigger=PropertyChanged}">
+                    
+                    </TextBox>
+
+                </Grid>
+            </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="1*"/>
-                <ColumnDefinition  Width="1*"/>
-            </Grid.ColumnDefinitions>
-
-
-            <Grid  Grid.Column="0">
+            <Grid  Grid.Column="0" Grid.Row="3">
                 <Button
                     Grid.Column="0"
                     Width="150"
@@ -118,26 +183,19 @@
 
             </Grid>
 
-            <Grid  Grid.Column="1">
-
-                <Button 
-                    Grid.Column="1"
-                    Width="150"
-                    Height="40"
-                    BorderThickness="0"
-                    Style="{StaticResource ConfirmButton}"
+        <Grid  Grid.Column="1" Grid.Row="3">
+            <Button
+                    Style="{StaticResource CreateRideButton}" 
+                    HorizontalAlignment="Right" 
+                    Background="#FFDDDDDD" 
+                    VerticalAlignment="Center" 
+                    Margin="0,20,20,20"
                     Command="{Binding FilteredRides}"
-                >Vyhľadať</Button>
-
-            </Grid>
-
+                    >Vyhľadať
+            </Button>
 
         </Grid>
 
-        
-
-
-        
-
     </Grid>
+
 </local:UserControlBase>
