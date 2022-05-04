@@ -11,6 +11,9 @@ namespace TravelAgency.BL.Models
         public Guid PassengerId { get; set; } = PassengerId;
         public Guid ShareRideId { get; set; } = ShareRideId;
 
+        public UserEntity? Passenger { get; set; }
+        public ShareRideEntity? ShareRide { get; set; }
+
 
         public class MapperProfile : Profile
         {

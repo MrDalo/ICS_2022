@@ -116,10 +116,11 @@
 
                             <Label
                                 Grid.Column="0"
-                                Content="Pasazier"
+                                Content="{Binding Passenger.Name}"
                                 Padding="10"
                                 VerticalAlignment="Center"
                                 FontSize="25"
+                                
                                 />
                             <Button Grid.Column="1" Style="{StaticResource ConfirmButton}" HorizontalAlignment="Right" VerticalAlignment="Center" Height="30" Width="100" Content="Odobrat" Padding="10,0,10,0" Margin="10,0,10,0"/>
 
