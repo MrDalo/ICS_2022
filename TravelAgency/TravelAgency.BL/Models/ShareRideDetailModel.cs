@@ -20,6 +20,7 @@ namespace TravelAgency.BL.Models
         public Guid? CarId { get; set; } = CarId;
         public Guid DriverId { get; set; } = DriverId;
 
+        public CarEntity? Car { get; init; }
 
         public List<PassengerOfShareRideDetailModel> Passengers { get; init; } = new();
 

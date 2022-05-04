@@ -53,6 +53,7 @@ namespace TravelAgency.App.ViewModels
 
         private void GoBackFunc()
         {
+            
             Model = null;
         }
 

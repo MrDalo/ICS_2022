@@ -149,8 +149,21 @@
             Grid.Row="8"
             Grid.Column="1"
             Margin="20,2"
+            Content="Späť"
+            HorizontalAlignment="Right"
+            Width="100"
+            Command="{Binding GoBack}"/>
+
+        <Button
+            Grid.Row="8"
+            Width="100"
+            HorizontalAlignment="Left"
+            Grid.Column="1"
+            Margin="20,2"
             Content="Zmazať"
             Command="{Binding DeleteCommand}"/>
+
+
 
         <Button
             Grid.Row="8"

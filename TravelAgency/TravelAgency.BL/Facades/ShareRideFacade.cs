@@ -20,7 +20,8 @@ namespace TravelAgency.BL.Facades
         }
 
         public async Task<IEnumerable<ShareRideDetailModel>> GetFilteredShareRidesAsync(
-            DateTime ? startTime = null, DateTime ? finishTime = null,
+            DateTime ? startTimeFrom = null, DateTime ? finishTimeFrom = null,
+            DateTime? startTimeTo = null, DateTime? finishTimeTo = null,
             string ? startLocation = null, string ? destinationLocation = null
             )
         {
@@ -39,14 +40,24 @@ namespace TravelAgency.BL.Facades
                 query = query.Where(ride => ride.ToPlace.ToUpper() == destinationLocation.ToUpper());
             }
 
-            if(startTime != null)
+            if(startTimeFrom != null)
             {                                                   
-                query = query.Where(ride =>DateTime.Compare(ride.LeaveTime, (DateTime)(startTime)) >= 0 );
+                query = query.Where(ride =>DateTime.Compare(ride.LeaveTime, (DateTime)(startTimeFrom)) >= 0 );
             }
-            
-            if(finishTime != null)
+
+            if (startTimeTo != null)
             {
-                query = query.Where(ride => DateTime.Compare(ride.ArriveTime, (DateTime)(finishTime)) <= 0);
+                query = query.Where(ride => DateTime.Compare(ride.LeaveTime, (DateTime)(startTimeTo)) <= 0);
+            }
+
+            if (finishTimeFrom != null)
+            {
+                query = query.Where(ride => DateTime.Compare(ride.ArriveTime, (DateTime)(finishTimeFrom)) >= 0);
+            }
+
+            if (finishTimeTo != null)
+            {
+                query = query.Where(ride => DateTime.Compare(ride.ArriveTime, (DateTime)(finishTimeTo)) <= 0);
             }
 
 

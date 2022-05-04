@@ -133,30 +133,93 @@
                     <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Filter" TextAlignment="Center" VerticalAlignment="Center"/>
                     <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0B4F6C"/>
                     <!--<TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Odchod/Prichod" TextAlignment="Center" VerticalAlignment="Center"/>-->
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Od:"/>
-                    <Label Grid.Column="1" Grid.Row="2" Content="TODO"/>
-                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Do:"/>
-                    <Label Grid.Column="1" Grid.Row="3" Content="TODO"/>
-                    <Button 
-                        Grid.Column="0" 
-                        Grid.Row="4" 
-                        Content="Zmena trasy" 
-                        Width="90" 
-                        Height="30"
-                        FontSize="12"
-                        Style="{StaticResource BackButton}"
-                        Command="{Binding GoBack}"
-                        />
-            <Button 
-                Grid.Column="1" 
+                    
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Od:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="Inc_btn1"
+                    Grid.Column="1" 
+                    Grid.Row="2" 
+                    HorizontalAlignment="Left" 
+                    Width="30" 
+                    Height="30" 
+                    VerticalAlignment="Center"
+                    Content="+"
+                    FontSize="20"
+                    Command="{Binding IncrementTime1}"
+                    />
+
+                    <Button x:Name="Dec_btn1"
+                            Grid.Column="1" 
+                            Grid.Row="2" 
+                            HorizontalAlignment="Right" 
+                            Width="30" 
+                            Height="30" 
+                            VerticalAlignment="Center"
+                            Content="-"
+                            FontSize="20"
+                            Command="{Binding DecrementTime1}"
+                    />
+
+                    <TextBox x:Name="Time1"
+                             Grid.Column="1" 
+                             Grid.Row="2" 
+                             HorizontalAlignment="Center" 
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Width="50" 
+                             Height="30" 
+                             VerticalAlignment="Center"
+                             Foreground="black"
+                             Text="{Binding Path=TimeValue1,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
+
+
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Do:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    <Button x:Name="Inc_btn"
+                            Grid.Column="1" 
+                            Grid.Row="3" 
+                            HorizontalAlignment="Left" 
+                            Width="30" 
+                            Height="30" 
+                            VerticalAlignment="Center"
+                            Content="+"
+                            FontSize="20"
+                            Command="{Binding IncrementTime2}"
+                    />
+
+                    <Button x:Name="Dec_btn"
+                            Grid.Column="1" 
+                            Grid.Row="3" 
+                            HorizontalAlignment="Right" 
+                            Width="30" 
+                            Height="30" 
+                            VerticalAlignment="Center"
+                            Content="-"
+                            FontSize="20"
+                            Command="{Binding DecrementTime2}"
+                    />
+
+                    <TextBox x:Name="Time"
+                             Grid.Column="1" 
+                             Grid.Row="3" 
+                             HorizontalAlignment="Center" 
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Width="50" 
+                             Height="30" 
+                             VerticalAlignment="Center"
+                             Foreground="black"
+                             Text="{Binding Path=TimeValue2,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
+
+
+            <Button
+                Grid.Column="0" 
                 Grid.Row="4" 
-                Content="Filtrovať" 
-                FontSize="12"
-                Width="90" 
-                Height="30" 
-                Style="{StaticResource ConfirmButton}"
-                Command="{Binding FilterRides}"
-                />
+                Content="Zmena trasy" 
+                Width="80" 
+                Height="20"
+                Command="{Binding GoBack}"/>
+
+            <Button Grid.Column="1" Grid.Row="4" Content="Filtrovať" Width="60" Height="20" Command="{Binding FilterRides}"/>
 
 
 
@@ -198,7 +261,15 @@
                         <Label Grid.Row="1" Grid.Column="1" Width="Auto" Content="{Binding ArriveTime}"/>
 
                         <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center" Content="{Binding Cost}"/>
-                        <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" VerticalAlignment="Center" Content="{Binding kapacita}"/>
+
+                        <TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" VerticalAlignment="Center">
+                           <TextBlock.Text>
+                                    <MultiBinding StringFormat=" {0}(+1) / {1}">
+                                        <Binding Path="Passengers.Count"/>
+                                        <Binding Path="Car.Capacity"/>
+                                </MultiBinding>
+                           </TextBlock.Text>
+                        </TextBlock>
 
                         <Ellipse
                             Grid.Column="4"

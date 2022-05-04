@@ -90,7 +90,7 @@ namespace TravelAgency.App.ViewModels
         {
             var newTimeForFiltering = new DateTime(year: CurrentDate.Year, month: CurrentDate.Month,
                 day: CurrentDate.Day, hour: TimeValue.Hour, minute: TimeValue.Minute, second: 0);
-            var filteredShareRides = await _shareRideFacade.GetFilteredShareRidesAsync(startTime: newTimeForFiltering, finishTime: null,
+            var filteredShareRides = await _shareRideFacade.GetFilteredShareRidesAsync(startTimeFrom: newTimeForFiltering, finishTimeFrom: null,
                 startLocation: FromPlace, destinationLocation: ToPlace);
 
             _mediator.Send(new FilteredRideWindowMessage(filteredShareRides, FromPlace, ToPlace));

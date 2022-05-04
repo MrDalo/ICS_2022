@@ -29,7 +29,8 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
-            
+            GoBack = new RelayCommand(GoBackFromRegistration);
+
             // Registration Window
             mediator.Register<RegisterMessage>(OnOpenRegistration);
 
@@ -44,6 +45,11 @@ namespace TravelAgency.App.ViewModels
         private void OnOpenRegistration(RegisterMessage obj)
         {
             IsVisible = true;
+        }
+
+        private void GoBackFromRegistration()
+        {
+            IsVisible = false;
         }
 
         private void OnOpenProfile(OpenProfileInfoMessage obj)
@@ -103,6 +109,8 @@ namespace TravelAgency.App.ViewModels
         }
 
         public ICommand SaveCommand { get; set; }
+
+        public ICommand GoBack { get; set; }
 
         public async Task LoadAsync(Guid id)
         {
