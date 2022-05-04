@@ -33,7 +33,7 @@
             Height="40" Width="40">
 
             <Ellipse.Fill>
-                    <ImageBrush  Stretch="UniformToFill" ImageSource="https://www.diethelmtravel.com/wp-content/uploads/2016/04/bill-gates-wealthiest-person-279x300.jpg"/>
+                    <ImageBrush  Stretch="UniformToFill" ImageSource="{Binding Model.Model.Driver.PhotoUrl}"/>
                 </Ellipse.Fill>
 
         </Ellipse>
@@ -42,7 +42,7 @@
             Grid.Row="0"
             VerticalAlignment="Center"
             Margin="0,0,150,0"
-            Content="Meno"
+            Content="{Binding Model.Model.Driver.Name}"
             FontSize="15"
             HorizontalAlignment="Center"
         />
