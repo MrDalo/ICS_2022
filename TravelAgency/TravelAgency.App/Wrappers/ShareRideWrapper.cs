@@ -14,6 +14,7 @@ namespace TravelAgency.App.Wrappers
         public ShareRideWrapper(ShareRideDetailModel model)
             : base(model)
         {
+            InitializeCollectionProperties(model);
         }
 
         public string? FromPlace

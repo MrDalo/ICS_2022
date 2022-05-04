@@ -15,6 +15,7 @@ namespace TravelAgency.App.Wrappers
         public UserWrapper(UserDetailModel model)
             : base(model)
         {
+            InitializeCollectionProperties(model);
         }
 
         public string? Login
@@ -70,22 +71,20 @@ namespace TravelAgency.App.Wrappers
 
             RegisterCollection(PassengerShareRides, model.PassengerShareRides);
 
-            //if (model.Cars == null)
-            //{
-            //    throw new ArgumentException("Ingredients cannot be null");
-            //}
-            //Cars.AddRange(model.Cars.Select(e => new CarWrapper(e)));
+            if (model.Cars == null)
+            {
+                throw new ArgumentException("Ingredients cannot be null");
+            }
+            Cars.AddRange(model.Cars.Select(e => new CarWrapper(e)));
 
-            //RegisterCollection(Cars, model.Cars);
+            RegisterCollection(Cars, model.Cars);
         }
 
-        public ObservableCollection<ShareRideWrapper> DriverShareRides { get; set; } = new();
+        public ObservableCollection<ShareRideWrapper> DriverShareRides { get; init; } = new();
 
-        public ObservableCollection<PassengerOfShareRideWrapper> PassengerShareRides { get; set; } = new();
+        public ObservableCollection<PassengerOfShareRideWrapper> PassengerShareRides { get; init; } = new();
 
-        public ObservableCollection<CarWrapper> Cars { get; set; } = new();
-
-        // TODO - constraints
+        public ObservableCollection<CarWrapper> Cars { get; init; } = new();
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
