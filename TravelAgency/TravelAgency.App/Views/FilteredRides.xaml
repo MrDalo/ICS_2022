@@ -70,7 +70,31 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid Grid.Row="0" Grid.Column="0">
+            <Ellipse
+                Grid.RowSpan="4"
+                Margin="-200,-250,0,-20" 
+                Width="400" 
+                Height="400" 
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Fill="{StaticResource DefaultBackgroundBrush}"
+                />
+
+            <TextBlock 
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Margin="25,10"
+                    Style="{StaticResource ProfileViewLogo}"
+                    HorizontalAlignment="Left">            
+                    ICS
+                    <LineBreak/>
+                    travel agency
+                </TextBlock>
+        </Grid>
+            
+
+            <Grid Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1">
 
             <Border CornerRadius="10"
                     BorderThickness="1"
@@ -117,11 +141,22 @@
                         Grid.Column="0" 
                         Grid.Row="4" 
                         Content="Zmena trasy" 
-                        Width="80" 
-                        Height="20"
+                        Width="90" 
+                        Height="30"
+                        FontSize="12"
+                        Style="{StaticResource BackButton}"
                         Command="{Binding GoBack}"
                         />
-            <Button Grid.Column="1" Grid.Row="4" Content="Filtrovať" Width="60" Height="20" Command="{Binding FilterRides}"/>
+            <Button 
+                Grid.Column="1" 
+                Grid.Row="4" 
+                Content="Filtrovať" 
+                FontSize="12"
+                Width="90" 
+                Height="30" 
+                Style="{StaticResource ConfirmButton}"
+                Command="{Binding FilterRides}"
+                />
 
 
 
