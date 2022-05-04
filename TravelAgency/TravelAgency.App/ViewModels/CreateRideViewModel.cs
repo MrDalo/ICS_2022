@@ -73,6 +73,7 @@ namespace TravelAgency.App.ViewModels
 
         private async Task FillCarsObservableCollection(Guid userId)
         {
+            Cars.Clear();
             Cars.AddRange(await _carFacade.GetAllUserCars(userId));
         }
 

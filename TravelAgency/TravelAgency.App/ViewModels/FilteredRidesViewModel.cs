@@ -72,6 +72,7 @@ namespace TravelAgency.App.ViewModels
 
         private void FilteredRidesWindowOpen(FilteredRideWindowMessage obj)
         {
+            filteredShareRides.Clear();
             filteredShareRides.AddRange(obj.filteredShareRide);
             FromPlace = obj.FromPlace;
             ToPlace = obj.ToPlace;
