@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -34,7 +35,7 @@ namespace TravelAgency.App.ViewModels
 
             mediator.Register<OpenSearchRideMessage>(OnSearchRideOpen);
             GoBack = new RelayCommand(GoBackFunc);
-            FilteredRides = new RelayCommand(FilterRidesButton);
+            FilteredRides = new AsyncRelayCommand(FilterRidesButton);
             IncrementTime = new RelayCommand(IncrementTimeValue);
             DecrementTime = new RelayCommand(DecrementTimeValue);
         }
@@ -87,7 +88,9 @@ namespace TravelAgency.App.ViewModels
 
         private async Task FilterRidesButton()
         {
-            var filteredShareRides = await _shareRideFacade.GetFilteredShareRidesAsync(startTime: null, finishTime: null,
+            var newTimeForFiltering = new DateTime(year: CurrentDate.Year, month: CurrentDate.Month,
+                day: CurrentDate.Day, hour: TimeValue.Hour, minute: TimeValue.Minute, second: 0);
+            var filteredShareRides = await _shareRideFacade.GetFilteredShareRidesAsync(startTime: newTimeForFiltering, finishTime: null,
                 startLocation: FromPlace, destinationLocation: ToPlace);
 
             _mediator.Send(new FilteredRideWindowMessage(filteredShareRides, FromPlace, ToPlace));
