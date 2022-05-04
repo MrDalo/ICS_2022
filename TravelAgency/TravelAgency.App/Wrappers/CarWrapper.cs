@@ -59,7 +59,6 @@ namespace TravelAgency.App.Wrappers
             set => SetValue(value);
         }
 
-        // TODO - constraints
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (string.IsNullOrWhiteSpace(LicensePlate))
@@ -70,6 +69,10 @@ namespace TravelAgency.App.Wrappers
             if (string.IsNullOrWhiteSpace(Manufacturer))
             {
                 yield return new ValidationResult($"{nameof(Manufacturer)} is required", new[] { nameof(Manufacturer) });
+            }
+            if (Capacity <= 0)
+            {
+                yield return new ValidationResult($"{nameof(Capacity)} is required", new[] { nameof(Capacity) });
             }
         }
 

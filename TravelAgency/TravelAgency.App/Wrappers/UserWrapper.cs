@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelAgency.App.Extensions;
 using TravelAgency.BL.Models;
 
 namespace TravelAgency.App.Wrappers
@@ -14,6 +15,7 @@ namespace TravelAgency.App.Wrappers
         public UserWrapper(UserDetailModel model)
             : base(model)
         {
+            InitializeCollectionProperties(model);
         }
 
         public string? Login
@@ -51,14 +53,38 @@ namespace TravelAgency.App.Wrappers
             get => GetValue<string>(); 
             set => SetValue(value);
         }
+        private void InitializeCollectionProperties(UserDetailModel model)
+        {
+            if (model.DriverShareRides == null)
+            {
+                throw new ArgumentException("Ingredients cannot be null");
+            }
+            DriverShareRides.AddRange(model.DriverShareRides.Select(e => new ShareRideWrapper(e)));
 
-        public ObservableCollection<ShareRideWrapper> DriverShareRides { get; set; } = new();
+            RegisterCollection(DriverShareRides, model.DriverShareRides);
 
-        public ObservableCollection<PassengerOfShareRideWrapper> PassengerShareRides { get; set; } = new();
+            if (model.PassengerShareRides == null)
+            {
+                throw new ArgumentException("Ingredients cannot be null");
+            }
+            PassengerShareRides.AddRange(model.PassengerShareRides.Select(e => new PassengerOfShareRideWrapper(e)));
 
-        public ObservableCollection<CarWrapper> Cars { get; set; } = new();
+            RegisterCollection(PassengerShareRides, model.PassengerShareRides);
 
-        // TODO - constraints
+            if (model.Cars == null)
+            {
+                throw new ArgumentException("Ingredients cannot be null");
+            }
+            Cars.AddRange(model.Cars.Select(e => new CarWrapper(e)));
+
+            RegisterCollection(Cars, model.Cars);
+        }
+
+        public ObservableCollection<ShareRideWrapper> DriverShareRides { get; init; } = new();
+
+        public ObservableCollection<PassengerOfShareRideWrapper> PassengerShareRides { get; init; } = new();
+
+        public ObservableCollection<CarWrapper> Cars { get; init; } = new();
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

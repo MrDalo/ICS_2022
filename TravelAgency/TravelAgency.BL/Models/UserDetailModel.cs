@@ -23,7 +23,7 @@ namespace TravelAgency.BL.Models
 
         public List<PassengerOfShareRideDetailModel> PassengerShareRides { get; init; } = new();
 
-        public List<CarListModel> Cars { get; init; } = new();
+        public List<CarDetailModel> Cars { get; init; } = new();
 
         public class MapperProfile : Profile
         {

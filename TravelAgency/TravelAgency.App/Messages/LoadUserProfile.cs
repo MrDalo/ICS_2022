@@ -2,7 +2,7 @@
 
 namespace TravelAgency.App.Messages
 {
-    public record LoadUserCarsMessage(Guid Id) : IMessage
+    public record LoadUserProfile(Guid Id) : IMessage
     {
     }
 }

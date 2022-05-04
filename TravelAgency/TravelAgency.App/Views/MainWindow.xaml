@@ -144,7 +144,8 @@
             <!--DataContext="{Binding CarListViewModel}"/>-->
 
         <views:UserRides
-            Grid.Column="1" />
+            Grid.Column="1" 
+            DataContext="{Binding ShareRideListViewModel}"/>
            
         <views:FilteredRides
             Grid.Column="0"
@@ -157,8 +158,13 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Grid.Row="0"
-            Height="300"
-            Width="450"
             DataContext="{Binding CarDetailViewModel}"/>
+        
+        <views:ShareRideUpdate
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            DataContext="{Binding ShareRideDetailViewModel}"/>
+
     </Grid>
 </Window>

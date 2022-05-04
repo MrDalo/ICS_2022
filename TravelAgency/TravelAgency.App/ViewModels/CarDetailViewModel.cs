@@ -26,7 +26,7 @@ namespace TravelAgency.App.ViewModels
         private readonly CarFacade _carFacade;
         private readonly IMediator _mediator;
         private readonly IMessageDialogService _messageDialogService;
-        private CarWrapper? _model;// = new CarDetailModel(string.Empty, string.Empty, default, default, 0, Guid.Empty);
+        private CarWrapper? _model;
 
         private Guid _idUser;
 
@@ -42,10 +42,10 @@ namespace TravelAgency.App.ViewModels
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
             DeleteCommand = new AsyncRelayCommand(DeleteAsync);
 
-            mediator.Register<LoadUserCarsMessage>(LoadCars);
+            mediator.Register<LoadUserProfile>(LoadCars);
         }
 
-        private void LoadCars(LoadUserCarsMessage obj)
+        private void LoadCars(LoadUserProfile obj)
         {
             _idUser = obj.Id;
         }
