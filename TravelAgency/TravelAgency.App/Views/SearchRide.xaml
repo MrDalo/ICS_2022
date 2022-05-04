@@ -63,14 +63,14 @@
 
         </Grid>-->
         <Border Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
-            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}"/>
+            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}" Text="{Binding FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
 
         
             
             <!--<TextBox Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>-->
         <Border Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
-            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Kam" Style="{StaticResource SearchBox}" Text=""/>
+            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Kam" Style="{StaticResource SearchBox}" Text="{Binding ToPlace, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
 
 

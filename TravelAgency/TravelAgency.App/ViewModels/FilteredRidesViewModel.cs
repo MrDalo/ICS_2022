@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using TravelAgency.App.Services;
 using TravelAgency.App.Messages;
-using TravelAgency.App.Commands;
+using TravelAgency.App.Extensions;
+using TravelAgency.BL.Models;
+using TravelAgency.BL.Facades;
+using RelayCommand = TravelAgency.App.Commands.RelayCommand;
 
 namespace TravelAgency.App.ViewModels
 {
@@ -15,17 +21,22 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
+        public ObservableCollection<ShareRideDetailModel> filteredShareRides { get; set; }= new();
 
         public ICommand GoBack { get; }
+        public ICommand FilterRides { get; }
+        private readonly ShareRideFacade _shareRideFacade;
 
 
-        public FilteredRidesViewModel(IMediator mediator)
+        public FilteredRidesViewModel(ShareRideFacade shareRideFacade, IMediator mediator)
         {
+            _shareRideFacade = shareRideFacade;
             _mediator = mediator;
 
             mediator.Register<FilteredRideWindowMessage>(FilteredRidesWindowOpen);
 
             GoBack = new RelayCommand(GoBackFunc);
+            FilterRides = new AsyncRelayCommand(FilterShareRides);
 
         }
 
@@ -40,6 +51,8 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
+        public string? FromPlace { get; set; }
+        public string? ToPlace { get; set; }
 
         private void GoBackFunc()
         {
@@ -47,9 +60,24 @@ namespace TravelAgency.App.ViewModels
 
         }
 
+        private async Task FilterShareRides()
+        {
+            
+            var newFilteredShareRides = await _shareRideFacade.GetFilteredShareRidesAsync(startLocation: FromPlace, destinationLocation: ToPlace);
+            filteredShareRides.Clear();
+            filteredShareRides.AddRange(newFilteredShareRides);
+        }
+
+
+
         private void FilteredRidesWindowOpen(FilteredRideWindowMessage obj)
         {
+            filteredShareRides.Clear();
+            filteredShareRides.AddRange(obj.filteredShareRide);
+            FromPlace = obj.FromPlace;
+            ToPlace = obj.ToPlace;
             IsVisible = true;
+            
 
         }
 

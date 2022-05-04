@@ -89,7 +89,7 @@ namespace TravelAgency.App.ViewModels
         {
             if (_selectedUserListModel is not null)
             {
-                _mediator.Send(new LogInMessage());
+                _mediator.Send(new LogInMessage(_selectedUserListModel.Id));
                 _mediator.Send(new SelectedMessage<UserWrapper> { Id = _selectedUserListModel.Id });
             }
             else

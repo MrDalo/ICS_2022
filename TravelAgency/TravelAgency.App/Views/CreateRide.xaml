@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="TravelAgency.App.Views.CreateRide"
+             xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -57,12 +58,14 @@
                 </Grid.RowDefinitions>
 
                 <Border VerticalAlignment="Center" Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
-                    <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}"/>
+                    <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}" Text="{Binding Model.FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
+                    
 
 
+                   
                 <Border VerticalAlignment="Center" Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
-                    <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Kam" Style="{StaticResource SearchBox}" Text=""/>
+                    <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Kam" Style="{StaticResource SearchBox}"  Text="{Binding Model.ToPlace, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
             </Grid>
 
@@ -82,14 +85,25 @@
                 >Zvoľte auto:
                 </Label>
 
-                <ComboBox
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Width="200"
-                    Height="30"
-                    VerticalAlignment="Top"
-                    Background="{StaticResource DefaultAddButtonHoverBrush}"
-                    ItemsSource="{Binding TODOBINDING}">
+                <ComboBox x:Name="CarListComboBox"
+                          Grid.Column="1"
+                          Grid.Row="1"
+                          Width="200"
+                          Height="30"
+                          VerticalAlignment="Top"
+                    
+                          ItemsSource="{Binding Cars, UpdateSourceTrigger=PropertyChanged}"
+                          
+                          DisplayMemberPath="LicensePlate" 
+                          SelectionChanged="ComboBox_SelectionChanged">
+
+                    <interactions:Interaction.Triggers>
+                        <interactions:EventTrigger EventName="SelectionChanged">
+                            <interactions:InvokeCommandAction Command="{Binding CarSelectedCommand}"
+                                                              CommandParameter="{Binding ElementName=CarListComboBox, Path=SelectedItem}" />
+                        </interactions:EventTrigger>
+                    </interactions:Interaction.Triggers>
+
                 </ComboBox>
 
                 <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
@@ -103,6 +117,7 @@
                         <ColumnDefinition /> 
                     </Grid.ColumnDefinitions>
 
+
                     <Label
                         Grid.Column="0"
                         Grid.Row="0"
@@ -110,6 +125,14 @@
                         FontSize="14"
                         >Príchod:
                     </Label>
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource CreateRideTextbox}"
+                        Width="150"
+                        Text="{Binding Model.ArriveTime}"
+                        />
+
 
                     <Label
                         Grid.Column="0"
@@ -118,46 +141,35 @@
                         FontSize="14"
                     >Odchod:
                     </Label>
-
-                    <Label 
-                        Grid.Column="0"
-                        Grid.Row="2"
-                        FontWeight="Bold"
-                        FontSize="14"
-                    >Dátum:
-                    </Label>
-
-                    <TextBox
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Style="{StaticResource CreateRideTextbox}"
-                        Width="150"
-                        ></TextBox>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource CreateRideTextbox}"
                         Width="150"
+                        Text="{Binding Model.LeaveTime}"
                     ></TextBox>
 
-                    <TextBox
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        FontWeight="Bold"
+                        FontSize="14"
+                    >Cena:
+                    </Label>
+                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
                         Style="{StaticResource CreateRideTextbox}"
                         Width="150"
+                        Text="{Binding Model.Cost}"
                     ></TextBox>
-
-
 
 
                 </Grid>
             </Grid>
 
-
-
         </Grid>
-
-
 
 
         <Grid Grid.Row="2">
@@ -183,10 +195,7 @@
                 Command="{Binding SubmitCreation}"
                 >Vytvoriť</Button>
 
-
         </Grid>
-
-
-            
+        
     </Grid>
 </UserControl>

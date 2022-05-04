@@ -5,9 +5,11 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using TravelAgency.App.Services;
 using TravelAgency.App.Messages;
-using TravelAgency.App.Commands;
+using TravelAgency.BL.Facades;
+using RelayCommand = TravelAgency.App.Commands.RelayCommand;
 
 namespace TravelAgency.App.ViewModels
 {
@@ -25,9 +27,9 @@ namespace TravelAgency.App.ViewModels
         public ICommand IncrementTime { get; }
         public ICommand DecrementTime { get; }
 
-
-        public SearchRideViewModel(IMediator mediator)
+        public SearchRideViewModel(ShareRideFacade shareRideFacade, IMediator mediator)
         {
+            _shareRideFacade = shareRideFacade;
             _mediator = mediator;
 
             mediator.Register<OpenSearchRideMessage>(OnSearchRideOpen);
@@ -49,6 +51,11 @@ namespace TravelAgency.App.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private readonly ShareRideFacade _shareRideFacade;
+
+        public string? FromPlace { get; set; }
+        public string? ToPlace { get; set; }
 
         public DateTime TimeValue
         {
@@ -78,9 +85,12 @@ namespace TravelAgency.App.ViewModels
 
         }
 
-        private void FilterRidesButton()
+        private async Task FilterRidesButton()
         {
-            _mediator.Send(new FilteredRideWindowMessage());
+            var filteredShareRides = await _shareRideFacade.GetFilteredShareRidesAsync(startTime: null, finishTime: null,
+                startLocation: FromPlace, destinationLocation: ToPlace);
+
+            _mediator.Send(new FilteredRideWindowMessage(filteredShareRides, FromPlace, ToPlace));
 
         }
 

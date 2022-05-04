@@ -42,9 +42,12 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
+        public Guid UserId { get; set; }
+
 
         private void OnUserLogin(LogInMessage obj)
         {
+            UserId = obj.ID;
             IsVisible = true;
         }
 
@@ -55,7 +58,7 @@ namespace TravelAgency.App.ViewModels
 
         private void CreateRideButton()
         {
-            _mediator.Send(new CreateRideWindowMessage());
+            _mediator.Send(new CreateRideWindowMessage(UserId));
             
         }
         private void SearchRideButton()

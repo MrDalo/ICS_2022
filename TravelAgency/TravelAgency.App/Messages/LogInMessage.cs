@@ -1,6 +1,6 @@
 ﻿namespace TravelAgency.App.Messages
 {
-    public record LogInMessage : IMessage
+    public record LogInMessage(System.Guid ID) : IMessage
     {
     }
 }
