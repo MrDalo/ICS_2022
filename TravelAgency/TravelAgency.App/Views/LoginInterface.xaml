@@ -39,8 +39,8 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Margin="15" Grid.Column="0" Command="{Binding UserNewCommand}">Registrovať</Button>
-            <Button Margin="15" Grid.Column="1" Command="{Binding LogIn}">Prihlásiť sa</Button>
+            <Button Margin="15" Grid.Column="0" Style="{StaticResource BackButton}" Command="{Binding UserNewCommand}">Registrovať</Button>
+            <Button Margin="15" Grid.Column="1"  Style="{StaticResource ConfirmButton}" Command="{Binding LogIn}">Prihlásiť sa</Button>
         </Grid>
             
     </Grid>

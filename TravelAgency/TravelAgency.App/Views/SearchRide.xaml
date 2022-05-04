@@ -62,18 +62,17 @@
             <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>
 
         </Grid>-->
-        <Grid Grid.Row="1" Grid.Column="0">
-            <TextBox Width="200" Height="30" Tag="Odkial" Style="{StaticResource SearchBox}"/>
-        </Grid>
+        <Border Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
+            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}"/>
+        </Border>
 
-
-        <Grid Grid.Row="2" Grid.Column="0">
-            <TextBox Width="200" Height="30" Tag="Kam" Style="{StaticResource SearchBox}"/>
+        
+            
             <!--<TextBox Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>-->
+        <Border Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
+            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Kam" Style="{StaticResource SearchBox}" Text=""/>
+        </Border>
 
-
-
-        </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
             <Grid.RowDefinitions>
@@ -156,17 +155,18 @@
                             Foreground="black"
                             Text="{Binding Path=TimeValue,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
 
+                    <Border Padding="5" Width="Auto" Height="30" CornerRadius="10" Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="Black">
                     <TextBox x:Name="Date"
-                             Grid.Row="1" 
-                             Grid.Column="1"
+                             BorderThickness="0"
                              Width="Auto"
-                             Height="30"
-                         
-                            HorizontalContentAlignment="Center"
+                             Height="Auto"
+                             HorizontalContentAlignment="Center"
                              VerticalContentAlignment="Center"
                              Text="{Binding ElementName=CalendarStart, Path=SelectedDate,StringFormat='{}{0:yyyy/MM/dd}', UpdateSourceTrigger=PropertyChanged}">
                     
                     </TextBox>
+                    </Border>
+
 
                 </Grid>
             </StackPanel>
@@ -185,11 +185,11 @@
 
         <Grid  Grid.Column="1" Grid.Row="3">
             <Button
-                    Style="{StaticResource CreateRideButton}" 
-                    HorizontalAlignment="Right" 
-                    Background="#FFDDDDDD" 
+                    Style="{StaticResource ConfirmButton}"
+                    HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
-                    Margin="0,20,20,20"
+                    Width="150"
+                    BorderThickness="0"
                     Command="{Binding FilteredRides}"
                     >Vyhľadať
             </Button>

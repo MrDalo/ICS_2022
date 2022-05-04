@@ -162,7 +162,7 @@
                 Style="{StaticResource AddRideSourceDestionationTitle}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center" Margin="0,0,0,0"
-            >Nahrať profilovú fotku (URL adresa):</Label>
+            >Profilová fotka (URL):</Label>
 
             <TextBox
                 Grid.Column="1"
@@ -179,7 +179,7 @@
                 <ColumnDefinition  Width="1*"/>
                 <ColumnDefinition  Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Width="200" Height="40" BorderThickness="1" Style="{StaticResource BackButton}" Content="Späť" Command="{Binding SaveCommand}"/>
+            <Button Grid.Column="0" Width="200" Height="40" BorderThickness="1" Style="{StaticResource BackButton}" Content="Späť" Command="{Binding GoBack}"/>
             <Button Grid.Column="1" Width="200" Height="40" BorderThickness="0" Style="{StaticResource ConfirmButton}" Content="Registrovať" Command="{Binding SaveCommand}"/>
 
             <!--<Button
