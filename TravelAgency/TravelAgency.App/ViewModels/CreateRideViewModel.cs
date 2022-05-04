@@ -49,10 +49,12 @@ namespace TravelAgency.App.ViewModels
 
         private void CarSelected(CarListModel? carListModel)
         {
+
             if (carListModel is not null)
             {
                 _model.CarId = carListModel.Id;
             }
+            
         }
 
         public ICommand CarSelectedCommand { get; }
@@ -65,12 +67,7 @@ namespace TravelAgency.App.ViewModels
                 _model = value;
             }
         }
-
-        //public async Task LoadAsync(Guid id)
-        //{
-        //    Model = await _shareRideFacade.GetAsync(id) ?? new(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: Guid.Empty, DriverId: id);
-        //}
-
+        
         public bool IsVisible
         {
             get => _isVisible;
@@ -102,9 +99,9 @@ namespace TravelAgency.App.ViewModels
 
             Model = await _shareRideFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<ShareRideWrapper> { Model = Model });
-
+            
             Model = null;
-            IsVisible = false;
+           IsVisible = false;
         }
 
         private void GoBackFunc()
@@ -119,10 +116,16 @@ namespace TravelAgency.App.ViewModels
             _idUser = userId;
         }
 
+        private async Task CreateModel()
+        {
+            Model = await _shareRideFacade.GetAsync(Guid.Empty) ?? new(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: Guid.Empty, DriverId: Guid.Empty);
+
+        }
         private void CreateRideWindowOpen(CreateRideWindowMessage obj)
         {
             FillCarsObservableCollection(obj.userID);
             IsVisible = true;
+            CreateModel();
         }
 
     }
