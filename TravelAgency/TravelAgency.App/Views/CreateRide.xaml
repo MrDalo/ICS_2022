@@ -65,9 +65,8 @@
                     Grid.Row="1"
                     Width="200" Height="30"
                     Style="{StaticResource CreateRideTextbox}"
-                    Text="{Binding FromPlace, UpdateSourceTrigger=PropertyChanged}"
-                >
-                </TextBox>
+                    Text="{Binding Model.FromPlace, UpdateSourceTrigger=PropertyChanged}"
+                />
 
 
                 <Label 
@@ -78,9 +77,8 @@
                     Grid.Row="3"
                     Width="200" Height="30"
                     Style="{StaticResource CreateRideTextbox}"
-                    Text="{Binding ToPlace, UpdateSourceTrigger=PropertyChanged}"
-                >
-                </TextBox>
+                    Text="{Binding Model.ToPlace, UpdateSourceTrigger=PropertyChanged}"
+                />
             </Grid>
 
 
@@ -106,15 +104,17 @@
                           Height="30"
                           VerticalAlignment="Top"
                     
-                          ItemsSource="{Binding Cars}"
-                          DisplayMemberPath="LicensePlate" SelectionChanged="ComboBox_SelectionChanged">
+                          ItemsSource="{Binding Cars, UpdateSourceTrigger=PropertyChanged}"
+                          
+                          DisplayMemberPath="LicensePlate" 
+                          SelectionChanged="ComboBox_SelectionChanged">
+
                     <interactions:Interaction.Triggers>
                         <interactions:EventTrigger EventName="SelectionChanged">
-                            <interactions:InvokeCommandAction Command="{Binding SubmitCreation}"
+                            <interactions:InvokeCommandAction Command="{Binding CarSelectedCommand}"
                                                               CommandParameter="{Binding ElementName=CarListComboBox, Path=SelectedItem}" />
                         </interactions:EventTrigger>
                     </interactions:Interaction.Triggers>
-
 
                 </ComboBox>
 
@@ -129,6 +129,7 @@
                         <ColumnDefinition /> 
                     </Grid.ColumnDefinitions>
 
+
                     <Label
                         Grid.Column="0"
                         Grid.Row="0"
@@ -136,6 +137,14 @@
                         FontSize="14"
                         >Príchod:
                     </Label>
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Style="{StaticResource CreateRideTextbox}"
+                        Width="150"
+                        Text="{Binding Model.ArriveTime}"
+                        />
+
 
                     <Label
                         Grid.Column="0"
@@ -144,46 +153,35 @@
                         FontSize="14"
                     >Odchod:
                     </Label>
-
-                    <Label 
-                        Grid.Column="0"
-                        Grid.Row="2"
-                        FontWeight="Bold"
-                        FontSize="14"
-                    >Dátum:
-                    </Label>
-
-                    <TextBox
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Style="{StaticResource CreateRideTextbox}"
-                        Width="150"
-                        ></TextBox>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource CreateRideTextbox}"
                         Width="150"
+                        Text="{Binding Model.LeaveTime}"
                     ></TextBox>
 
-                    <TextBox
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        FontWeight="Bold"
+                        FontSize="14"
+                    >Cena:
+                    </Label>
+                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
                         Style="{StaticResource CreateRideTextbox}"
                         Width="150"
+                        Text="{Binding Model.Cost}"
                     ></TextBox>
-
-
 
 
                 </Grid>
             </Grid>
 
-
-
         </Grid>
-
-
 
 
         <Grid Grid.Row="2">
@@ -209,10 +207,7 @@
                 Command="{Binding SubmitCreation}"
                 >Vytvoriť</Button>
 
-
         </Grid>
-
-
-            
+        
     </Grid>
 </UserControl>
