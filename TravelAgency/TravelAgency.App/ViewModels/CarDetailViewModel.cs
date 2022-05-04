@@ -8,14 +8,14 @@ using TravelAgency.App.Services;
 using TravelAgency.App.Extensions;
 using TravelAgency.BL.Models;
 using TravelAgency.App.Wrappers;
-using TravelAgency.App.Commands;
 using TravelAgency.BL.Facades;
 using TravelAgency.Common.Enums;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Windows.Input;
+using Microsoft.Toolkit.Mvvm.Input;
 using TravelAgency.App.Services.MessageDialog;
-
+using AsyncRelayCommand = TravelAgency.App.Commands.AsyncRelayCommand;
 
 
 namespace TravelAgency.App.ViewModels
@@ -41,6 +41,7 @@ namespace TravelAgency.App.ViewModels
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
             DeleteCommand = new AsyncRelayCommand(DeleteAsync);
+            GoBack = new RelayCommand(GoBackFunc);
 
             mediator.Register<LoadUserProfile>(LoadCars);
         }
@@ -48,6 +49,11 @@ namespace TravelAgency.App.ViewModels
         private void LoadCars(LoadUserProfile obj)
         {
             _idUser = obj.Id;
+        }
+
+        private void GoBackFunc()
+        {
+            Model = null;
         }
 
         public CarWrapper? Model
@@ -61,6 +67,7 @@ namespace TravelAgency.App.ViewModels
 
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
+        public ICommand GoBack { get; }
 
         public async Task LoadAsync(Guid id)
         {
