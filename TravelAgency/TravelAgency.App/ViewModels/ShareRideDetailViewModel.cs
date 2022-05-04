@@ -97,14 +97,12 @@ namespace TravelAgency.App.ViewModels
 
             if (Model.Id != Guid.Empty)
             {
-                // TODO: error messages
-                //var delete = _messageDialogService.Show(
-                //    $"Delete",
-                //    $"Do you want to delete {Model.ArriveTime}?.",
-                //    MessageDialogButtonConfiguration.YesNo,
-                //    MessageDialogResult.No);
-
-                //if (delete == MessageDialogResult.No) return;
+                var delete = _messageDialogService.Show(
+                    $"Vymazať jazdu",
+                    $"Skutočne chcete vymazať túto jazdu?",
+                    MessageDialogButtonConfiguration.YesNo,
+                    MessageDialogResult.No);
+                if (delete == MessageDialogResult.No) return;
 
                 try
                 {
@@ -138,14 +136,12 @@ namespace TravelAgency.App.ViewModels
 
             if (Model.Id != Guid.Empty)
             {
-                // TODO: error messages
-                //var delete = _messageDialogService.Show(
-                //    $"Delete",
-                //    $"Do you want to delete {Model.ArriveTime}?.",
-                //    MessageDialogButtonConfiguration.YesNo,
-                //    MessageDialogResult.No);
-
-                //if (delete == MessageDialogResult.No) return;
+                var delete = _messageDialogService.Show(
+                    $"Odobrať užívateľa",
+                    $"Skutočne chcete odobrať užívateľa {SelectedPassenger?.Passenger.Login}?",
+                    MessageDialogButtonConfiguration.YesNo,
+                    MessageDialogResult.No);
+                if (delete == MessageDialogResult.No) return;
 
                 try
                 {

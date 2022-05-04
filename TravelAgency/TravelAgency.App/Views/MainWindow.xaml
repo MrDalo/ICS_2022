@@ -63,6 +63,7 @@
                 Margin="0,20,20, 0"
                 Background="Transparent"
                 BorderThickness="0"
+                Cursor="Hand"
                 Command="{Binding OpenProfile}"
                 Visibility="{Binding Path=SelectOptionViewModel.IsVisible, Converter={StaticResource BoolToVis}}">
         >

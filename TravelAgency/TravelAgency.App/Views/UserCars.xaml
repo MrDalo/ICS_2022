@@ -23,7 +23,8 @@
 
         
         <ListView x:Name="CarList" HorizontalContentAlignment="Right" 
-                  ItemsSource="{Binding CarListViewModel.Cars}">
+                  ItemsSource="{Binding CarListViewModel.Cars}"
+                  Cursor="Hand">
       
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

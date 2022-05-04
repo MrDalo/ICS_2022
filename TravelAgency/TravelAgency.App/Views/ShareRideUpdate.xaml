@@ -120,7 +120,7 @@
                 />
         </Grid>
 
-        <ListView Width="Auto" BorderThickness="0" Margin="50,0,50,0" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedPassenger}" ItemsSource="{Binding Passengers}">
+        <ListView Width="Auto" Cursor="Hand" BorderThickness="0" Margin="50,0,50,0" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedPassenger}" ItemsSource="{Binding Passengers}">
     
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

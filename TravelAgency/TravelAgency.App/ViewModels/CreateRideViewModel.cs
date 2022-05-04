@@ -12,6 +12,7 @@ using TravelAgency.BL.Models;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Commands;
 using TravelAgency.App.Extensions;
+using TravelAgency.App.Services.MessageDialog;
 using TravelAgency.App.Wrappers;
 
 namespace TravelAgency.App.ViewModels
@@ -22,15 +23,17 @@ namespace TravelAgency.App.ViewModels
         private bool _isVisible = false;
         private readonly CarFacade _carFacade;
         private readonly ShareRideFacade _shareRideFacade ;
-        
+        private readonly IMessageDialogService _messageDialogService;
+
         private Guid _idUser;
         private ShareRideWrapper? _model = new ShareRideDetailModel(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: default, DriverId:Guid.Empty);
 
-        public CreateRideViewModel(CarFacade carFacade, ShareRideFacade shareRideFacade, IMediator mediator)
+        public CreateRideViewModel(CarFacade carFacade, ShareRideFacade shareRideFacade, IMediator mediator, IMessageDialogService messageDialogService)
         {
             _mediator = mediator;
             _carFacade = carFacade;
             _shareRideFacade = shareRideFacade;
+            _messageDialogService = messageDialogService;
 
             CarSelectedCommand = new RelayCommand<CarListModel>(CarSelected);
             SubmitCreation = new AsyncRelayCommand(SubmitCreationFunc, CanSave);
@@ -90,7 +93,12 @@ namespace TravelAgency.App.ViewModels
 
             Model = await _shareRideFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<ShareRideWrapper> { Model = Model });
-            
+
+            var _ = _messageDialogService.Show(
+                $"Vytvorenie jazdy",
+                $"Vytvorenie jazdy prebehlo v poriadku.",
+                MessageDialogButtonConfiguration.OK,
+                MessageDialogResult.OK);
             // Hide Window
             Model = null;
             IsVisible = false;

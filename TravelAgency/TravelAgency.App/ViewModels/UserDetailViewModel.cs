@@ -15,6 +15,7 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly UserFacade _userFacade;
         private readonly IMediator _mediator;
+        private readonly IMessageDialogService _messageDialogService;
 
         private bool _isVisible = false;
         private bool _isVisibleProfile = false;
@@ -26,6 +27,7 @@ namespace TravelAgency.App.ViewModels
             IMediator mediator)
         {
             _userFacade = userFacade;
+            _messageDialogService = messageDialogService;
             _mediator = mediator;
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
@@ -96,6 +98,15 @@ namespace TravelAgency.App.ViewModels
 
             Model = await _userFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<UserWrapper>{Model = Model});
+           
+            
+            
+                var _ = _messageDialogService.Show(
+                    $"Uloženie",
+                    $"Uloženie prebehlo v poriadku.",
+                    MessageDialogButtonConfiguration.OK,
+                    MessageDialogResult.OK);
+
             IsVisible = false;
         }
 

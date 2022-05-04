@@ -108,7 +108,7 @@ namespace TravelAgency.App.ViewModels
             {
                 var delete = _messageDialogService.Show(
                     $"Vymazať",
-                    $"Skutočne chcete vymazať auto s ŠPZ {Model?.LicensePlate}?.",
+                    $"Skutočne chcete vymazať auto s ŠPZ {Model?.LicensePlate}?",
                     MessageDialogButtonConfiguration.YesNo,
                     MessageDialogResult.No);
 
