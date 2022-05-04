@@ -80,12 +80,20 @@ namespace TravelAgency.BL.Facades
             var shareRideQuery = uow.GetRepository<ShareRideEntity>()
                 .Get();
 
-            
-            foreach (var value in query)
+            if (!query.Any())
+            {
+                shareRideQuery = shareRideQuery.Where(e => e.Id == Guid.Empty);
+            }
+            else
             {
 
-                shareRideQuery = shareRideQuery.Where(e => e.Id == value.ShareRideId);
+                foreach (var value in query)
+                {
+
+                    shareRideQuery = shareRideQuery.Where(e => e.Id == value.ShareRideId);
+                }
             }
+            
 
             return await _mapper.ProjectTo<ShareRideListModel>(shareRideQuery).ToArrayAsync().ConfigureAwait(false);
         }
