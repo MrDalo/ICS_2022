@@ -22,7 +22,6 @@ namespace TravelAgency.App.ViewModels
 {
     public class CarDetailViewModel : ViewModelBase, ICarDetailViewModel
     {
-
         private readonly CarFacade _carFacade;
         private readonly IMediator _mediator;
         private readonly IMessageDialogService _messageDialogService;
@@ -53,7 +52,7 @@ namespace TravelAgency.App.ViewModels
 
         private void GoBackFunc()
         {
-            
+            _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
             Model = null;
         }
 
@@ -143,12 +142,8 @@ namespace TravelAgency.App.ViewModels
                     Model = Model
                 });
             }
-
             // Hide window
             Model = null;
         }
-
-
-
     }
 }
