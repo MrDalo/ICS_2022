@@ -130,7 +130,7 @@
                         Grid.Column="1"
                         Style="{StaticResource CreateRideTextbox}"
                         Width="150"
-                        Text="{Binding Model.ArriveTime}"
+                        Text="{Binding Model.ArriveTime, UpdateSourceTrigger=PropertyChanged}"
                         />
 
 
@@ -146,7 +146,7 @@
                         Grid.Column="1"
                         Style="{StaticResource CreateRideTextbox}"
                         Width="150"
-                        Text="{Binding Model.LeaveTime}"
+                        Text="{Binding Model.LeaveTime, UpdateSourceTrigger=PropertyChanged}"
                     ></TextBox>
 
 
@@ -162,7 +162,7 @@
                         Grid.Column="1"
                         Style="{StaticResource CreateRideTextbox}"
                         Width="150"
-                        Text="{Binding Model.Cost}"
+                        Text="{Binding Model.Cost, UpdateSourceTrigger=PropertyChanged}"
                     ></TextBox>
 
 

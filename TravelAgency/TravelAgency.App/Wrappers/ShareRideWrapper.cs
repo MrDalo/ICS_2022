@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,34 @@ namespace TravelAgency.App.Wrappers
         public ObservableCollection<PassengerOfShareRideWrapper> Passengers { get; set; } = new();
 
         // TODO - constraints
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (string.IsNullOrWhiteSpace(FromPlace))
+            {
+                yield return new ValidationResult($"{nameof(FromPlace)} is required", new[] { nameof(FromPlace) });
+            }
+
+            if (string.IsNullOrWhiteSpace(ToPlace))
+            {
+                yield return new ValidationResult($"{nameof(ToPlace)} is required", new[] { nameof(ToPlace) });
+            }
+            
+            if (ArriveTime == default)
+            {
+                yield return new ValidationResult($"{nameof(ArriveTime)} is required", new[] { nameof(ArriveTime) });
+            }
+
+            
+            if (LeaveTime == default)
+            {
+                yield return new ValidationResult($"{nameof(LeaveTime)} is required", new[] { nameof(LeaveTime) });
+            }
+
+            if (Cost < 0)
+            {
+                yield return new ValidationResult($"{nameof(Cost)} is required", new[] { nameof(Cost) });
+            }
+        }
 
         public static implicit operator ShareRideWrapper(ShareRideDetailModel detailModel)
             => new(detailModel);

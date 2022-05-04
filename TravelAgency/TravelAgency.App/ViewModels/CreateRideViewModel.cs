@@ -33,7 +33,7 @@ namespace TravelAgency.App.ViewModels
             _shareRideFacade = shareRideFacade;
 
             CarSelectedCommand = new RelayCommand<CarListModel>(CarSelected);
-            SubmitCreation = new AsyncRelayCommand(SubmitCreationFunc);
+            SubmitCreation = new AsyncRelayCommand(SubmitCreationFunc, CanSave);
             GoBack = new RelayCommand(GoBackFunc);
 
             mediator.Register<CreateRideWindowMessage>(CreateRideWindowOpen);
@@ -115,6 +115,7 @@ namespace TravelAgency.App.ViewModels
             CreateModel();
         }
 
+        private bool CanSave() => Model?.IsValid ?? false;
         private void GoBackFunc()
         {
             IsVisible = false;
