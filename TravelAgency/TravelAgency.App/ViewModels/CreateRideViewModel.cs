@@ -20,16 +20,10 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
-
-        public ICommand SubmitCreation { get; }
-        public ICommand GoBack { get; }
-
         private readonly CarFacade _carFacade;
         private readonly ShareRideFacade _shareRideFacade ;
-
+        
         private Guid _idUser;
-
-
         private ShareRideWrapper? _model = new ShareRideDetailModel(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: default, DriverId:Guid.Empty);
 
         public CreateRideViewModel(CarFacade carFacade, ShareRideFacade shareRideFacade, IMediator mediator)
@@ -39,24 +33,16 @@ namespace TravelAgency.App.ViewModels
             _shareRideFacade = shareRideFacade;
 
             CarSelectedCommand = new RelayCommand<CarListModel>(CarSelected);
-
-            mediator.Register<CreateRideWindowMessage>(CreateRideWindowOpen);
-
             SubmitCreation = new AsyncRelayCommand(SubmitCreationFunc);
             GoBack = new RelayCommand(GoBackFunc);
 
+            mediator.Register<CreateRideWindowMessage>(CreateRideWindowOpen);
         }
 
-        private void CarSelected(CarListModel? carListModel)
-        {
+        public ObservableCollection<CarListModel> Cars { get; set; } = new();
 
-            if (carListModel is not null)
-            {
-                _model.CarId = carListModel.Id;
-            }
-            
-        }
-
+        public ICommand SubmitCreation { get; }
+        public ICommand GoBack { get; }
         public ICommand CarSelectedCommand { get; }
 
         public ShareRideWrapper? Model
@@ -65,9 +51,10 @@ namespace TravelAgency.App.ViewModels
             set
             {
                 _model = value;
+                OnPropertyChanged();
             }
         }
-        
+
         public bool IsVisible
         {
             get => _isVisible;
@@ -79,9 +66,13 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
-        public ObservableCollection<CarListModel> Cars { get; set; } = new();
-
-
+        private void CarSelected(CarListModel? carListModel)
+        {
+            if (carListModel is not null)
+            {
+                _model.CarId = carListModel.Id;
+            }
+        }
 
         public async Task SubmitCreationFunc()
         {
@@ -92,7 +83,7 @@ namespace TravelAgency.App.ViewModels
 
             if (Model.DriverId == Guid.Empty)
             {
-                _model.DriverId=_idUser; 
+                _model.DriverId = _idUser; 
             }
             
             OnPropertyChanged();
@@ -100,12 +91,8 @@ namespace TravelAgency.App.ViewModels
             Model = await _shareRideFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<ShareRideWrapper> { Model = Model });
             
+            // Hide Window
             Model = null;
-           IsVisible = false;
-        }
-
-        private void GoBackFunc()
-        {
             IsVisible = false;
         }
 
@@ -119,8 +106,8 @@ namespace TravelAgency.App.ViewModels
         private async Task CreateModel()
         {
             Model = await _shareRideFacade.GetAsync(Guid.Empty) ?? new(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: Guid.Empty, DriverId: Guid.Empty);
-
         }
+
         private void CreateRideWindowOpen(CreateRideWindowMessage obj)
         {
             FillCarsObservableCollection(obj.userID);
@@ -128,5 +115,9 @@ namespace TravelAgency.App.ViewModels
             CreateModel();
         }
 
+        private void GoBackFunc()
+        {
+            IsVisible = false;
+        }
     }
 }

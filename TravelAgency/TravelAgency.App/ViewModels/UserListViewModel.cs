@@ -25,9 +25,6 @@ namespace TravelAgency.App.ViewModels
         private UserListModel? _selectedUserListModel;
         private readonly IMessageDialogService _messageDialogService;
 
-        public ICommand LogIn { get; }
-        //public ICommand OpenRegistration { get; }
-
         public UserListViewModel(
             UserFacade userFacade,
             IMediator mediator,
@@ -46,19 +43,11 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<LogOutMessage>(LogOutUser);
         }
 
-        private async void LogOutUser(LogOutMessage obj)
-        {
-            _selectedUserListModel = null;
-            await LoadAsync();
-        }
-
         public ObservableCollection<UserListModel> Users { get; } = new();
         
-        
         public ICommand UserNewCommand { get; }
-
         public ICommand UserSelectedCommand { get; }
-
+        public ICommand LogIn { get; }
 
         private async void UserUpdated(UpdateMessage<UserWrapper> _) => await LoadAsync();
 
@@ -67,7 +56,6 @@ namespace TravelAgency.App.ViewModels
             _mediator.Send(new RegisterMessage());
             _mediator.Send(new NewMessage<UserWrapper>());
         }
-
 
         private void UserSelected(UserListModel? userListModel)
         {
@@ -102,5 +90,12 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
+        /*** Message processing ***/
+
+        private async void LogOutUser(LogOutMessage obj)
+        {
+            _selectedUserListModel = null;
+            await LoadAsync();
+        }
     }
 }

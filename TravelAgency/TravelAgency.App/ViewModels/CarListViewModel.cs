@@ -17,6 +17,7 @@ namespace TravelAgency.App.ViewModels
         private readonly CarFacade _carFacade;
         private readonly IMediator _mediator;
         private bool _isVisible = false;
+        private Guid _userGuid;
 
         public CarListViewModel(
             CarFacade carFacade,
@@ -42,9 +43,19 @@ namespace TravelAgency.App.ViewModels
         
         public ObservableCollection<CarListModel> Cars { get; set; } = new();
 
-        private Guid _userGuid;
         public ICommand CarSelectedCommand { get; }
         public ICommand CarNewCommand { get; }
+
+        public bool IsVisible
+        {
+            get => _isVisible;
+
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void CarNew() => _mediator.Send(new NewMessage<CarWrapper>());
 
@@ -60,6 +71,9 @@ namespace TravelAgency.App.ViewModels
             var cars = await _carFacade.GetAllUserCars(_userGuid);
             Cars.AddRange(cars);
         }
+
+        /*** Message processing ***/
+
         private async void LoadCars(LoadUserProfile obj)
         {
             _userGuid = obj.Id;
@@ -67,17 +81,7 @@ namespace TravelAgency.App.ViewModels
             var cars = await _carFacade.GetAllUserCars(obj.Id);
             Cars.AddRange(cars);
         }
-        public bool IsVisible
-        {
-            get => _isVisible;
-
-            set
-            {
-                _isVisible = value;
-                OnPropertyChanged();
-            }
-        }
-
+       
         private void OnOpenProfile(OpenProfileInfoMessage obj)
         {
             IsVisible = false;

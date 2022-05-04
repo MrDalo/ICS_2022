@@ -45,16 +45,9 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<LoadUserProfile>(LoadCars);
         }
 
-        private void LoadCars(LoadUserProfile obj)
-        {
-            _idUser = obj.Id;
-        }
-
-        private void GoBackFunc()
-        {
-            _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
-            Model = null;
-        }
+        public ICommand SaveCommand { get; }
+        public ICommand DeleteCommand { get; }
+        public ICommand GoBack { get; }
 
         public CarWrapper? Model
         {
@@ -62,12 +55,9 @@ namespace TravelAgency.App.ViewModels
             set
             {
                 _model = value;
+                OnPropertyChanged();
             }
         }
-
-        public ICommand SaveCommand { get; }
-        public ICommand DeleteCommand { get; }
-        public ICommand GoBack { get; }
 
         public async Task LoadAsync(Guid id)
         {
@@ -117,8 +107,8 @@ namespace TravelAgency.App.ViewModels
             if (Model.Id != Guid.Empty)
             {
                 var delete = _messageDialogService.Show(
-                    $"Delete",
-                    $"Do you want to delete {Model?.LicensePlate}?.",
+                    $"Vymazať",
+                    $"Skutočne chcete vymazať auto s ŠPZ {Model?.LicensePlate}?.",
                     MessageDialogButtonConfiguration.YesNo,
                     MessageDialogResult.No);
 
@@ -131,8 +121,8 @@ namespace TravelAgency.App.ViewModels
                 catch
                 {
                     var _ = _messageDialogService.Show(
-                        $"Deleting of {Model?.LicensePlate} failed!",
-                        "Deleting failed",
+                        $"Vymazanie auta s ŠPZ {Model?.LicensePlate} zlyhalo!",
+                        "Vymazanie zlyhalo",
                         MessageDialogButtonConfiguration.OK,
                         MessageDialogResult.OK);
                 }
@@ -143,6 +133,19 @@ namespace TravelAgency.App.ViewModels
                 });
             }
             // Hide window
+            Model = null;
+        }
+
+        /*** Message processing ***/
+
+        private void LoadCars(LoadUserProfile obj)
+        {
+            _idUser = obj.Id;
+        }
+       
+        private void GoBackFunc()
+        {
+            _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
             Model = null;
         }
     }

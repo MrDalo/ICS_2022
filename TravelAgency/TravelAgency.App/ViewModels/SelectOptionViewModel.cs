@@ -16,9 +16,6 @@ namespace TravelAgency.App.ViewModels
         private readonly IMediator _mediator;
         private bool _isVisible = false;
 
-        public ICommand CreateRide { get; set; }
-        public ICommand SearchRide { get; set; }
-
         public SelectOptionViewModel(IMediator mediator)
         {
             _mediator = mediator;
@@ -28,8 +25,11 @@ namespace TravelAgency.App.ViewModels
 
             mediator.Register<LogInMessage>(OnUserLogin);
             mediator.Register<LogOutMessage>(OnLogOut);
-            //LogIn = new RelayCommand(UserLogIn);
         }
+        
+        public ICommand CreateRide { get; set; }
+        public ICommand SearchRide { get; set; }
+        public Guid UserId { get; set; }
 
         public bool IsVisible
         {
@@ -42,8 +42,7 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
-        public Guid UserId { get; set; }
-
+        /*** Message processing ***/
 
         private void OnUserLogin(LogInMessage obj)
         {
@@ -59,13 +58,10 @@ namespace TravelAgency.App.ViewModels
         private void CreateRideButton()
         {
             _mediator.Send(new CreateRideWindowMessage(UserId));
-            
         }
         private void SearchRideButton()
         {
             _mediator.Send(new OpenSearchRideMessage());
-
         }
-
     }
 }

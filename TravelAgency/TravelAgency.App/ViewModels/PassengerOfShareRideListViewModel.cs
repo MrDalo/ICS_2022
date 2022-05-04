@@ -15,8 +15,6 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly PassengerOfShareRideFacade _passengerOfShareRideFacade;
         private readonly IMediator _mediator;
-
-
         public PassengerOfShareRideListViewModel(
             PassengerOfShareRideFacade passengerOfShareRideFacade,
             IMediator mediator)
@@ -31,7 +29,6 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<DeleteMessage<PassengerOfShareRideWrapper>>(PassengerOfShareRideDeleted);
         }
 
-
         public ObservableCollection<PassengerOfShareRideListModel> PassengerOfShareRides { get; set; } = new();
 
         public ICommand PassengerOfShareRideSelectedCommand { get; }
@@ -40,23 +37,16 @@ namespace TravelAgency.App.ViewModels
         private void PassengerOfShareRideNew() => _mediator.Send(new NewMessage<PassengerOfShareRideWrapper>());
 
         private void PassengerOfShareRideSelected(PassengerOfShareRideListModel? passengerOfShareRide) => _mediator.Send(new SelectedMessage<PassengerOfShareRideWrapper> { Id = passengerOfShareRide?.Id });
-
         
         private async void PassengerOfShareRideUpdated(UpdateMessage<PassengerOfShareRideWrapper> _) => await LoadAsync();
 
         private async void PassengerOfShareRideDeleted(DeleteMessage<PassengerOfShareRideWrapper> _) => await LoadAsync();
-
 
         public async Task LoadAsync()
         {
             PassengerOfShareRides.Clear();
             var passengerOfShareRides = await _passengerOfShareRideFacade.GetAll();
             PassengerOfShareRides.AddRange(passengerOfShareRides);
-
         }
-
-
-
-
     }
 }

@@ -14,12 +14,8 @@ namespace TravelAgency.App.ViewModels
 {
     public class PassengerOfShareRideDetailViewModel : ViewModelBase, IPassengerOfShareRideDetailViewModel
     {
-
-
         private readonly PassengerOfShareRideFacade _passengerOfShareRideFacade;
         private readonly IMediator _mediator;
-
-
         public PassengerOfShareRideDetailViewModel(
             PassengerOfShareRideFacade passengerOfShareRideFacade,
             IMediator mediator)
@@ -50,8 +46,6 @@ namespace TravelAgency.App.ViewModels
 
             Model = await _passengerOfShareRideFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<PassengerOfShareRideWrapper> { Model = Model });
-
-
         }
 
         private bool CanSave() => Model?.IsValid ?? false;
@@ -67,8 +61,6 @@ namespace TravelAgency.App.ViewModels
             {
                 Model = Model
             });
-
         }
-
     }
 }

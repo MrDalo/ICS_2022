@@ -42,38 +42,17 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<HomeMessage>(OnHome);
         }
 
-        private void OnOpenRegistration(RegisterMessage obj)
+        public ICommand SaveCommand { get; }
+        public ICommand GoBack { get; }
+        
+        public UserWrapper? Model
         {
-            IsVisible = true;
-        }
-
-        private void GoBackFromRegistration()
-        {
-            IsVisible = false;
-        }
-
-        private void OnOpenProfile(OpenProfileInfoMessage obj)
-        {
-            IsVisibleProfile = true;
-        }
-
-        private void OnUserCarsOpen(OpenUserCarsMessage obj)
-        {
-            IsVisibleProfile = false;
-        }
-
-        private void OnUserRidesOpen(OpenUserShareRidesMessage obj)
-        {
-            IsVisibleProfile = false;
-        }
-
-        private void OnLogOut(LogOutMessage obj)
-        {
-            IsVisibleProfile = false;
-        }
-        private void OnHome(HomeMessage obj)
-        {
-            IsVisibleProfile = false;
+            get => _model;
+            set
+            {
+                _model = value;
+                OnPropertyChanged();
+            }
         }
 
         public bool IsVisible
@@ -97,20 +76,6 @@ namespace TravelAgency.App.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        public UserWrapper? Model
-        {
-            get => _model;
-            set
-            {
-                _model = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public ICommand SaveCommand { get; set; }
-
-        public ICommand GoBack { get; set; }
 
         public async Task LoadAsync(Guid id)
         {
@@ -147,6 +112,42 @@ namespace TravelAgency.App.ViewModels
             {
                 Model = Model
             });
+        }
+
+        /*** Message processing ***/
+
+        private void OnOpenRegistration(RegisterMessage obj)
+        {
+            IsVisible = true;
+        }
+
+        private void GoBackFromRegistration()
+        {
+            IsVisible = false;
+        }
+
+        private void OnOpenProfile(OpenProfileInfoMessage obj)
+        {
+            IsVisibleProfile = true;
+        }
+
+        private void OnUserCarsOpen(OpenUserCarsMessage obj)
+        {
+            IsVisibleProfile = false;
+        }
+
+        private void OnUserRidesOpen(OpenUserShareRidesMessage obj)
+        {
+            IsVisibleProfile = false;
+        }
+
+        private void OnLogOut(LogOutMessage obj)
+        {
+            IsVisibleProfile = false;
+        }
+        private void OnHome(HomeMessage obj)
+        {
+            IsVisibleProfile = false;
         }
     }
 }
