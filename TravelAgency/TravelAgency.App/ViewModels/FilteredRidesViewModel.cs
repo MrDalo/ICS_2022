@@ -11,6 +11,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using TravelAgency.App.Services;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Extensions;
+using TravelAgency.App.Services.MessageDialog;
 using TravelAgency.BL.Models;
 using TravelAgency.BL.Facades;
 using RelayCommand = TravelAgency.App.Commands.RelayCommand;
@@ -21,6 +22,7 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
+        private readonly IMessageDialogService _messageDialogService;
 
         private bool _arrivalSelected = false;
         public ObservableCollection<ShareRideDetailModel> filteredShareRides { get; set; }= new();
@@ -46,12 +48,12 @@ namespace TravelAgency.App.ViewModels
 
 
 
-        public FilteredRidesViewModel(ShareRideFacade shareRideFacade, UserFacade userFacade, IMediator mediator)
+        public FilteredRidesViewModel(ShareRideFacade shareRideFacade, UserFacade userFacade, IMediator mediator, IMessageDialogService messageDialogService)
         {
             _shareRideFacade = shareRideFacade;
             _userFacade = userFacade;
             _mediator = mediator;
-
+            _messageDialogService = messageDialogService;
             mediator.Register<FilteredRideWindowMessage>(FilteredRidesWindowOpen);
 
             GoBack = new RelayCommand(GoBackFunc);
@@ -130,14 +132,41 @@ namespace TravelAgency.App.ViewModels
             {
                 var userModel = await _userFacade.GetAsync(UserId);
                 var isAdded = await _userFacade.SignUpForShareRideAsPassenger(userModel, selectedShareRide);
+                if (isAdded)
+                {
+                    var _ = _messageDialogService.Show(
+                        $"Úspešne pridané",
+                        $"Boli ste úspešne pridaný do jazdy",
+                        MessageDialogButtonConfiguration.OK,
+                        MessageDialogResult.OK);
+
+                    _mediator.Send(new CloseSearchRideMessage());
+                    IsVisible = false;
+                }
+                else
+                {
+                    var _ = _messageDialogService.Show(
+                        $"Časová kolízia",
+                        $"Pridanie do jazdy zlyhalo. V tomto čase už existuje jazda",
+                        MessageDialogButtonConfiguration.OK,
+                        MessageDialogResult.OK);
+                }
             }
             else if (isShareRideFull == -1)
             {
-                //Error
+                var _ = _messageDialogService.Show(
+                    $"Pridanie zlyhalo",
+                    $"Pridanie do jazdy zlyhalo",
+                    MessageDialogButtonConfiguration.OK,
+                    MessageDialogResult.OK);
             }
             else
             {
-                //ShareRideIsFull
+                var _ = _messageDialogService.Show(
+                    $"Pridanie zlyhalo",
+                    $"Zvolená jazda už nemá voľné miesta",
+                    MessageDialogButtonConfiguration.OK,
+                    MessageDialogResult.OK);
             }
 
         }
@@ -152,8 +181,6 @@ namespace TravelAgency.App.ViewModels
             TimeValue1 = new DateTime(year: obj.Time1.Year, month: obj.Time1.Month, day: obj.Time1.Day, hour: obj.Time1.Hour, minute: obj.Time1.Minute, second: obj.Time1.Second);
             TimeValue2 = new  DateTime(year: obj.Time1.Year, month: obj.Time1.Month, day: obj.Time1.Day, hour: obj.Time1.Hour, minute: obj.Time1.Minute, second: obj.Time1.Second );
             IsVisible = true;
-            
-
         }
 
         private void IncrementTimeValue1()
@@ -182,8 +209,6 @@ namespace TravelAgency.App.ViewModels
                 TimeValue2 = TimeValue2.AddMinutes(30);
             }
         }
-
-
-
+        
     }
 }

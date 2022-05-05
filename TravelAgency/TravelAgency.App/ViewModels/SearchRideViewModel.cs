@@ -34,12 +34,14 @@ namespace TravelAgency.App.ViewModels
             _mediator = mediator;
 
             mediator.Register<OpenSearchRideMessage>(OnSearchRideOpen);
+            mediator.Register<CloseSearchRideMessage>(OnSearchRideClose);
             GoBack = new RelayCommand(GoBackFunc);
             FilteredRides = new AsyncRelayCommand(FilterRidesButton);
             IncrementTime = new RelayCommand(IncrementTimeValue);
             DecrementTime = new RelayCommand(DecrementTimeValue);
         }
 
+       
 
 
         public bool IsVisible
@@ -102,6 +104,10 @@ namespace TravelAgency.App.ViewModels
         {
             UserId = obj.UserId;
             IsVisible = true;
+        }
+        private void OnSearchRideClose(CloseSearchRideMessage obj)
+        {
+           IsVisible = false;
         }
 
         private void IncrementTimeValue()

@@ -108,6 +108,17 @@ namespace TravelAgency.App.ViewModels
         {
             Cars.Clear();
             Cars.AddRange(await _carFacade.GetAllUserCars(userId));
+            if (Cars.Count == 0)
+            {
+                var _ = _messageDialogService.Show(
+                    $"Nemožno vytvoriť",
+                    $"Nemožno vytvoriť jazdu, nevlastníte žiadne auto",
+                    MessageDialogButtonConfiguration.OK,
+                    MessageDialogResult.OK);
+                IsVisible = false;
+                return;
+
+            }
             _idUser = userId;
         }
 
