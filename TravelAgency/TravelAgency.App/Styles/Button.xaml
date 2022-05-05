@@ -86,5 +86,19 @@
         </Setter>
     </Style>
 
+    <Style x:Key="CarUpdateButton" TargetType="Button">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="{StaticResource DefaultBackgroundBrightBrush}"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
 
 </ResourceDictionary>

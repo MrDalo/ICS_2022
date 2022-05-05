@@ -27,8 +27,6 @@
                 BorderThickness="0" 
                 CornerRadius="20"
                 Grid.Column="0" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
                 Width="600"
                 Height="300"
                 >
@@ -55,7 +53,7 @@
                 <Button 
             Grid.Row="0"
             Grid.Column="3"
-            Margin="0, 0, 0, 0"
+            Style="{StaticResource CarUpdateButton}"
             Cursor="Hand"
             Command="{Binding GoBack}"
             >X</Button>
@@ -71,7 +69,7 @@
                 <Label 
             Grid.Row="2"
             Grid.Column="1"
-            Content="ŠPZ"
+            Content="ŠPZ:"
             Style="{StaticResource CarUpdateFontStyle}"/>
 
                 <TextBox 
@@ -145,19 +143,19 @@
             Grid.Column="2"
             Text="{Binding Model.ImgUrl}"
             Style="{StaticResource CarUpdateTextbox}"/>
-
+                
                 <Button
             Grid.Row="8"
             Grid.Column="1"
-            Margin="20,2"
+            Style="{StaticResource CarUpdateButton}"
             Content="Zmazať"
-            Cursor="Hand"
+            Margin="20,2"
             Command="{Binding DeleteCommand}"/>
 
                 <Button
             Grid.Row="8"
             Grid.Column="2"
-            Cursor="Hand"
+            Style="{StaticResource CarUpdateButton}"
             Margin="20,2"
             Content="Uložiť"
             Command="{Binding SaveCommand}"/>
