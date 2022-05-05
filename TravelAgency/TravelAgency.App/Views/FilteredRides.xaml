@@ -46,14 +46,14 @@
                                     <RemoveStoryboard BeginStoryboardName="leftt"></RemoveStoryboard>
                                     <BeginStoryboard Storyboard="{StaticResource right}" x:Name="rightt" ></BeginStoryboard>
                                 </Trigger.ExitActions>
-                                <Setter TargetName="button" Property="Background" Value="#757575"></Setter>
+                                <Setter TargetName="button" Property="Background" Value="#cccccc"></Setter>
                             </Trigger>
                             <Trigger Property="IsChecked" Value="true">
                                 <Trigger.ExitActions>
                                     <RemoveStoryboard BeginStoryboardName="rightt"></RemoveStoryboard>
                                     <BeginStoryboard Storyboard="{StaticResource left}" x:Name="leftt" ></BeginStoryboard>
                                 </Trigger.ExitActions>
-                                <Setter TargetName="button" Property="Background" Value="#20BF55"></Setter>
+                                <Setter TargetName="button" Property="Background" Value="#E4002B"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -132,10 +132,39 @@
 
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Filter" TextAlignment="Center" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#0B4F6C"/>
+            <CheckBox IsChecked="{Binding ArrivalSelected}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource DefaultBackgroundBrush}"/>
                     <!--<TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Odchod/Prichod" TextAlignment="Center" VerticalAlignment="Center"/>-->
-                    
-                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Od:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Label
+                        x:Name ="Arrival"
+                        Grid.Column="0" 
+                        Grid.Row="1" 
+                        Width="Auto" Height="40" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Panel.ZIndex="10"
+                        Background="Transparent"
+                        Content="Odchod"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontWeight="Bold"
+                        FontSize="12"/>
+                    <Label
+                        x:Name="Departure"
+                        Grid.Column="1" 
+                        Grid.Row="1" 
+                        Width="Auto" Height="40" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Panel.ZIndex="10"
+                        Background="Transparent"
+                        Content="Príchod"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontWeight="Bold"
+                        FontSize="12"/>
+
+<TextBlock Grid.Column="0" Grid.Row="2" Text="Od:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button x:Name="Inc_btn1"
                     Grid.Column="1" 
                     Grid.Row="2" 
@@ -238,7 +267,7 @@
         </Grid>
 
 
-        <ListView Width="Auto" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=filteredShareRides}">
+        <ListView Width="Auto" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" SelectedItem="{Binding selectedShareRide}" ItemsSource="{Binding Path=filteredShareRides}">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -262,14 +291,19 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
+                            
+                            </Grid.RowDefinitions>
 
 
                         <Label Grid.Row="0" Grid.Column="0" Width="Auto" Content="{Binding FromPlace}"/>
                         <Label Grid.Row="0" Grid.Column="1" Width="Auto" Content="{Binding ToPlace}"/>
 
-                        <Label Grid.Row="1" Grid.Column="0" Width="Auto" Content="{Binding LeaveTime}"/>
-                        <Label Grid.Row="1" Grid.Column="1" Width="Auto" Content="{Binding ArriveTime}"/>
+                        <Label Grid.Row="1" Grid.Column="0" Width="Auto" Content="{Binding Path=LeaveTime}" ContentStringFormat='{}{0:dd.MM.yyyy 0:HH:mm:ss}'/>
+                        <Label Grid.Row="1" Grid.Column="1" Width="Auto" Content="{Binding Path=ArriveTime}" ContentStringFormat='{}{0:dd.MM.yyyy 0:HH:mm:ss}'/>
+
+                            <!--<TextBlock Grid.Row="1" Grid.Column="0" Width="Auto" Text="{Binding Path=LeaveTime,StringFormat='{}{0:dd/MM/yyyy 0:HH:mm}'}"/>-->
+                            <!--<TextBlock Grid.Row="2" Grid.Column="1" Width="Auto" Text="{Binding Path=ArriveTime,StringFormat='{}{0:dd/MM/yyyy 0:HH:mm}'}"/>-->
+                            
 
                         <Label Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" VerticalAlignment="Center" Content="{Binding Cost}"/>
 
@@ -293,7 +327,7 @@
 
                         </Ellipse>
 
-                        <Button Style="{StaticResource ConfirmButton}" Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Height="30" Width="Auto" Content="Pridat sa" Padding="10,0,10,0" Margin="10,0,10,0"/>
+                            
 
 
                     </Grid>
@@ -303,7 +337,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-
+        <Button Style="{StaticResource ConfirmButton}" Command="{Binding AddUserToShareRide}" Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Height="30" Width="Auto" Content="Pridať sa" Padding="10,0,10,0" Margin="10,0,10,0"/>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>

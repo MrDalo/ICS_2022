@@ -57,7 +57,7 @@ namespace TravelAgency.App.Wrappers
         {
             if (model.DriverShareRides == null)
             {
-                throw new ArgumentException("Ingredients cannot be null");
+                throw new ArgumentException("DriverShareRides cannot be null");
             }
             DriverShareRides.AddRange(model.DriverShareRides.Select(e => new ShareRideWrapper(e)));
 
@@ -65,7 +65,7 @@ namespace TravelAgency.App.Wrappers
 
             if (model.PassengerShareRides == null)
             {
-                throw new ArgumentException("Ingredients cannot be null");
+                throw new ArgumentException("PassengerShareRides cannot be null");
             }
             PassengerShareRides.AddRange(model.PassengerShareRides.Select(e => new PassengerOfShareRideWrapper(e)));
 
@@ -73,7 +73,7 @@ namespace TravelAgency.App.Wrappers
 
             if (model.Cars == null)
             {
-                throw new ArgumentException("Ingredients cannot be null");
+                throw new ArgumentException("Cars cannot be null");
             }
             Cars.AddRange(model.Cars.Select(e => new CarWrapper(e)));
 

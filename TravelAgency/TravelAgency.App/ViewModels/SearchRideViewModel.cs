@@ -57,6 +57,7 @@ namespace TravelAgency.App.ViewModels
 
         public string? FromPlace { get; set; }
         public string? ToPlace { get; set; }
+        private Guid UserId { get; set; }
 
         public DateTime TimeValue
         {
@@ -93,12 +94,13 @@ namespace TravelAgency.App.ViewModels
             var filteredShareRides = await _shareRideFacade.GetFilteredShareRidesAsync(startTimeFrom: newTimeForFiltering, finishTimeFrom: null,
                 startLocation: FromPlace, destinationLocation: ToPlace);
 
-            _mediator.Send(new FilteredRideWindowMessage(filteredShareRides, FromPlace, ToPlace));
+            _mediator.Send(new FilteredRideWindowMessage(filteredShareRides, FromPlace, ToPlace, newTimeForFiltering, newTimeForFiltering, UserId));
 
         }
 
         private void OnSearchRideOpen(OpenSearchRideMessage obj)
         {
+            UserId = obj.UserId;
             IsVisible = true;
         }
 

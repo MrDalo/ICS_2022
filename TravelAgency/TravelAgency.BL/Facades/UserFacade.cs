@@ -72,13 +72,13 @@ namespace TravelAgency.BL.Facades
                 };
                 
 
-                user.PassengerShareRides.Add(newPassengerAndShareRideRelation);
+                //user.PassengerShareRides.Add(newPassengerAndShareRideRelation);
 
-                await uow
-                    .GetRepository<UserEntity>()
-                    .InsertOrUpdateAsync(user, _mapper)
-                    .ConfigureAwait(false);
-                await uow.CommitAsync();
+                //await uow
+                //    .GetRepository<UserEntity>()
+                //    .InsertOrUpdateAsync(user, _mapper)
+                ////    .ConfigureAwait(false);
+                //await uow.CommitAsync();
 
                 await uow
                     .GetRepository<PassengerOfShareRideEntity>()

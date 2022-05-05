@@ -117,6 +117,8 @@
                                x:Name="CalendarStart"
                                DisplayDate="{Binding CurrentDate}"
                                SelectedDate="{Binding CurrentDate}"
+                               IsTodayHighlighted="False"
+                               SelectionMode="SingleDate"
                     />
 
                     <Button x:Name="Inc_btn"

@@ -64,7 +64,7 @@ namespace TravelAgency.App.Wrappers
         {
             if (model.Passengers == null)
             {
-                throw new ArgumentException("Ingredients cannot be null");
+                throw new ArgumentException("Passengers cannot be null");
             }
             Passengers.AddRange(model.Passengers.Select(e => new PassengerOfShareRideWrapper(e)));
 

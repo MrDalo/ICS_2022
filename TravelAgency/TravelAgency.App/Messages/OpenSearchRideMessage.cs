@@ -1,6 +1,8 @@
-﻿namespace TravelAgency.App.Messages
+﻿using System;
+
+namespace TravelAgency.App.Messages
 {
-    public record OpenSearchRideMessage : IMessage
+    public record OpenSearchRideMessage(Guid UserId) : IMessage
     {
     }
 }

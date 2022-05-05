@@ -61,7 +61,8 @@ namespace TravelAgency.App.ViewModels
         }
         private void SearchRideButton()
         {
-            _mediator.Send(new OpenSearchRideMessage());
+            _mediator.Send(new OpenSearchRideMessage(UserId));
+
         }
     }
 }
