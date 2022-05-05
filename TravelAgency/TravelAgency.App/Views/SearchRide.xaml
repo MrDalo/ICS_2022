@@ -120,25 +120,21 @@
                     <Button x:Name="Inc_btn"
                             Grid.Column="1" 
                             Grid.Row="0" 
+                            Style="{StaticResource AddOrSubTime}"
                             HorizontalAlignment="Left" 
-                            Width="30" 
-                            Height="30" 
                             VerticalAlignment="Center"
                             Content="+"
-                            FontSize="20"
                             Cursor="Hand"
                             Command="{Binding IncrementTime}"
                             />
 
                     <Button x:Name="Dec_btn"
                             Grid.Column="1" 
-                            Grid.Row="0" 
-                            HorizontalAlignment="Right" 
-                            Width="30" 
-                            Height="30" 
+                            Grid.Row="0"
+                            Style="{StaticResource AddOrSubTime}"
+                            HorizontalAlignment="Right"  
                             VerticalAlignment="Center"
                             Content="-"
-                            FontSize="20"
                             Cursor="Hand"
                             Command="{Binding DecrementTime}"
                             />
@@ -177,7 +173,7 @@
                     Grid.Column="0"
                     Width="150"
                     Height="40"
-                    Style="{StaticResource BackButton}"
+                    Style="{StaticResource WhiteButton}"
                     Command="{Binding GoBack}"
                 >Späť</Button>
 
@@ -185,7 +181,7 @@
 
         <Grid  Grid.Column="1" Grid.Row="3">
             <Button
-                    Style="{StaticResource ConfirmButton}"
+                    Style="{StaticResource RedButton}"
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
                     Width="150"

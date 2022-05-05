@@ -69,6 +69,8 @@
             HorizontalAlignment="Right"
             Margin="0,30,80, 0"
             Content="{Binding SelectedUserDetailViewModel.Model.Login}"
+            Foreground="{StaticResource DefaultForegroundBrightBrush}"
+            FontWeight="Bold"
             Visibility="{Binding Path=SelectOptionViewModel.IsVisible, Converter={StaticResource BoolToVis}}"
             />
 
@@ -83,15 +85,15 @@
         <views:UserRegister x:Name="RegistrationPage"
                               Grid.Column="0"
                               DataContext="{Binding UserDetailViewModel}"
-                              Height="300" 
-                              Width="500"
                               Grid.ColumnSpan="2"/>
+        <!--Height="300" 
+            Width="500"-->
 
         <views:SelectOption x:Name="SelectOption"
             Grid.Column="0"
             DataContext="{Binding SelectOptionViewModel}" 
-            Height="200" 
-            Width="400" 
+            Height="205" 
+            Width="405" 
             Grid.ColumnSpan="2"
         />
 

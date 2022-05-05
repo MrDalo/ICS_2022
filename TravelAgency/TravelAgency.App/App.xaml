@@ -12,10 +12,9 @@
                 <ResourceDictionary Source="Styles/Button.xaml"/>
                 <ResourceDictionary Source="Styles/Text.xaml"/>
                 <ResourceDictionary Source="Styles/TextBoxStyle.xaml"/>
-                <ResourceDictionary Source="Styles/BackButton.xaml"/>
-                <ResourceDictionary Source="Styles/ConfirmButton.xaml"/>
                 <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/EllipseLogo.xaml"/>
+                <ResourceDictionary Source="Styles/CreateUpdatePopUp.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
