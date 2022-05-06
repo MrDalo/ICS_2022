@@ -16,8 +16,15 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+        
         <Ellipse  
             HorizontalAlignment="Left" 
+            Grid.Column="0"
             Height="100" Width="100" 
             Margin="20,0,0, 0" >
             <Ellipse.Fill>
@@ -26,12 +33,35 @@
 
         </Ellipse>
 
-        <Button Grid.Row="0" Margin="150,0,0,0" HorizontalAlignment="Left" Height="30" Width="Auto" Background="Transparent" BorderThickness="0">
+        <Button Grid.Row="0" 
+                Grid.Column="0"
+                Margin="150,0,0,0" HorizontalAlignment="Left" 
+                Height="30" Width="Auto" 
+                Background="Transparent" 
+                BorderThickness="0"
+                Command="{Binding ShowTextBox}"
+                >
             <StackPanel Width="auto" Height="auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Image Source="https://www.pinclipart.com/picdir/big/192-1928203_pen-clip-art-black-and-white.png" Width="20" Height="20"/>
             </StackPanel>
         </Button>
 
+            <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{StaticResource DataTitle}"
+                    Content="URL:"
+                    Visibility="{Binding Path=EditURL, Converter={StaticResource BoolToVis}}"
+                />
+            <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="50,0,50,0"
+                 Style="{StaticResource EditOrCreateTextbox}"
+                 Text="{Binding Model.PhotoUrl}"
+                 Visibility="{Binding Path=EditURL, Converter={StaticResource BoolToVis}}"
+                 />
+        </Grid>
+        
         <Grid  Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
@@ -50,19 +80,19 @@
             </Grid.ColumnDefinitions>
 
 
-            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="0" >Login:</TextBlock>
-            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="1" >Meno:</TextBlock>
-            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="2" >Priezvisko:</TextBlock>
-            <TextBlock FontWeight="Bold" Padding="20,4,0,0" Grid.Column="0" Grid.Row="3" >E-mail:</TextBlock>
-            <TextBlock FontWeight="Bold" Padding="20,4,0,0"  Grid.Column="0" Grid.Row="4" >Tel.č:</TextBlock>
+            <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource DataTitle}" >Login:</Label>
+            <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource DataTitle}" >Meno:</Label>
+            <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource DataTitle}" >Priezvisko:</Label>
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource DataTitle}" >E-mail:</Label>
+            <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource DataTitle}" >Tel.č:</Label>
 
             <Label Grid.Column="1" Grid.Row="0" FontSize="15" Content="{Binding Model.Login}" />
-            <TextBox Style="{StaticResource CreateRideTextbox}"  Grid.Column="1" Grid.Row="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Style="{StaticResource CreateRideTextbox}" Grid.Column="1" Grid.Row="2" Text="{Binding Model.Surname, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Style="{StaticResource CreateRideTextbox}" Grid.Column="1" Grid.Row="3" Text="{Binding Model.Email, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Style="{StaticResource CreateRideTextbox}" Grid.Column="1" Grid.Row="4" Text="{Binding Model.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}"  Grid.Column="1" Grid.Row="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}" Grid.Column="1" Grid.Row="2" Text="{Binding Model.Surname, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}" Grid.Column="1" Grid.Row="3" Text="{Binding Model.Email, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}" Grid.Column="1" Grid.Row="4" Text="{Binding Model.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
             
-            <Button Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" Width="200" Height="40" BorderThickness="0" Style="{StaticResource RedButton}" Content="Uložiť zmeny" Command="{Binding SaveCommand}"/>
+            <Button Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" Style="{StaticResource RedButton}" Content="Uložiť zmeny" Command="{Binding SaveCommand}"/>
         </Grid>
 
 

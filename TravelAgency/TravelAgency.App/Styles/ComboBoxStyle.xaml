@@ -2,9 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="CarUpdateComboBox" TargetType="ComboBox">
         <Setter Property="FontSize" Value="15"/>
-        <Setter Property="Width" Value="200"/>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="Margin" Value="0,2,0,0"></Setter>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="10,2,10,0"/>
         <Setter Property="Background" Value="{StaticResource DefaultBackgroundBrightBrush}"/>
     </Style>
 </ResourceDictionary>

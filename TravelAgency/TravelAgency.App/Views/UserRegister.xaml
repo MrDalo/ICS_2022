@@ -13,7 +13,7 @@
           Visibility="{Binding Path=IsVisible, Converter={StaticResource BoolToVis}}">
         
         <Grid.Background>
-            <SolidColorBrush Color="White" Opacity="0.5" />
+            <SolidColorBrush Color="Black" Opacity="0.5" />
         </Grid.Background>
         
         <Grid.ColumnDefinitions>
@@ -40,25 +40,21 @@
             <ColumnDefinition  Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock 
-            Grid.Row="0"
-            Grid.ColumnSpan="2"
-            Margin="20,20"
-            Style="{StaticResource ProfileViewLogo}"
-            HorizontalAlignment="Left">            
-            ICS
-            <LineBreak/>
-            travel agency
-        </TextBlock>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label
+                Style="{StaticResource ViewTitle}">
+                Registrovať
+            </Label>
 
-        <Label
-            Grid.Row="0"
-            Grid.ColumnSpan="2"
-            Style="{StaticResource UserRidesTitle}">
-            Registrovať
-        </Label>
+            <Button 
+                Style="{StaticResource CloseButton}"
+                Command="{Binding GoBack}"
+                >X
+            </Button>
+        </Grid>
+         
 
-        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid Grid.Row="1" Grid.Column="0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  Width="1*"/>
@@ -66,15 +62,13 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                Style="{StaticResource AddRideSourceDestionationTitle}"
+                Style="{StaticResource DataTitle}"
             >Login:</Label>
 
             <TextBox
                 Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                Height="30"
                 Text="{Binding Model.Login, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource CarUpdateTextbox}" TextAlignment="Left"/>
+                Style="{StaticResource EditOrCreateTextbox}"/>
 
         </Grid>
 
@@ -85,17 +79,13 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                Style="{StaticResource AddRideSourceDestionationTitle}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" Margin="0,0,0,0"
+                Style="{StaticResource DataTitle}"
             >Meno:</Label>
 
             <TextBox
                 Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                Height="30"
                 Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource CarUpdateTextbox}" TextAlignment="Left"/>
+                Style="{StaticResource EditOrCreateTextbox}"/>
 
 
         </Grid>
@@ -107,17 +97,13 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                Style="{StaticResource AddRideSourceDestionationTitle}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" Margin="0,0,0,0"
+                Style="{StaticResource DataTitle}"
             >Priezvisko:</Label>
 
             <TextBox
                 Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                Height="30"
                 Text="{Binding Model.Surname, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource CarUpdateTextbox}" TextAlignment="Left"/>
+                Style="{StaticResource EditOrCreateTextbox}"/>
 
 
         </Grid>
@@ -129,17 +115,13 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                Style="{StaticResource AddRideSourceDestionationTitle}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" Margin="0,0,0,0"
+                Style="{StaticResource DataTitle}"
             >E-mail:</Label>
 
             <TextBox
                 Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                Height="30"
                 Text="{Binding Model.Email, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource CarUpdateTextbox}" TextAlignment="Left"/>
+                Style="{StaticResource EditOrCreateTextbox}"/>
 
 
 
@@ -152,17 +134,13 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                Style="{StaticResource AddRideSourceDestionationTitle}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" Margin="0,0,0,0"
+                Style="{StaticResource DataTitle}"
             >Tel.č.:</Label>
 
             <TextBox
                 Grid.Column="1"
-                HorizontalAlignment="Stretch"
-                Height="30"
                 Text="{Binding Model.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource CarUpdateTextbox}" TextAlignment="Left"/>
+                Style="{StaticResource EditOrCreateTextbox}"/>
 
         </Grid>
 
@@ -173,36 +151,27 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                Style="{StaticResource AddRideSourceDestionationTitle}"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center" 
-                Margin="0,0,0,0"
+                Style="{StaticResource DataTitle}"
             >Profilová fotka (URL):</Label>
 
             <TextBox
                 Grid.Column="1"
-                Height="30"
-                HorizontalAlignment="Stretch"
                 Text="{Binding Model.PhotoUrl, UpdateSourceTrigger=PropertyChanged}"
-                Style="{StaticResource CarUpdateTextbox}" TextAlignment="Left" />
+                Style="{StaticResource EditOrCreateTextbox}"/>
 
 
         </Grid>
 
         <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="1*"/>
-                <ColumnDefinition  Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Width="200" Height="40" BorderThickness="1" Style="{StaticResource WhiteButton}" Content="Späť" Command="{Binding GoBack}"/>
-            <Button Grid.Column="1" Width="200" Height="40" BorderThickness="0" Style="{StaticResource RedButton}" Content="Registrovať" Command="{Binding SaveCommand}"/>
-
-            <!--<Button
-            Style="{StaticResource ConfirmButton}" 
-            HorizontalAlignment="Right" Background="#FFDDDDDD" 
-            VerticalAlignment="Center" Margin="0,20,20,20"
-            Command="{Binding SaveCommand}"
-            >Registrovať</Button>-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="1*"/>
+                    <ColumnDefinition  Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="1" 
+                    Style="{StaticResource RedButton}" 
+                    Content="Registrovať" 
+                    Command="{Binding SaveCommand}"/>
 
         </Grid>
         </Grid>

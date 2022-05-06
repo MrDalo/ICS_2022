@@ -35,8 +35,7 @@
             </Grid>
         </Grid>
 
-
-        <TextBlock Grid.Row="0" Style="{StaticResource ProfileViewLogo}">            
+        <TextBlock Grid.Row="0" Style="{StaticResource ProfileViewLogo}" HorizontalAlignment="Center">            
             ICS
             <LineBreak/>
             travel agency

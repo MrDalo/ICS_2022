@@ -28,16 +28,13 @@
 
         <TextBlock 
             Grid.Row="0"
-            Grid.RowSpan="3"
-            Margin="25,10"
-            Style="{StaticResource ProfileViewLogo}"
-            HorizontalAlignment="Left">            
+            Style="{StaticResource ProfileViewLogo}">            
             ICS
             <LineBreak/>
             travel agency
         </TextBlock>
 
-        <Label  Grid.Row="0" Style="{StaticResource UserRidesTitle}">Vytvoriť jazdu</Label>
+        <Label Grid.Row="0" Style="{StaticResource ViewTitle}">Vytvoriť jazdu</Label>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -77,15 +74,13 @@
                 <Label
                     Grid.Column="1"
                     Grid.Row="0"
-                    Style="{StaticResource AddRideSourceDestionationTitle}"
+                    Style="{StaticResource DataTitle}"
                 >Zvoľte auto:
                 </Label>
 
                 <ComboBox x:Name="CarListComboBox"
                           Grid.Column="1"
                           Grid.Row="1"
-                          Width="200"
-                          Height="30"
                           VerticalAlignment="Top"
                     
                           ItemsSource="{Binding Cars, UpdateSourceTrigger=PropertyChanged}"
@@ -109,55 +104,49 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition /> 
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/> 
                     </Grid.ColumnDefinitions>
 
 
                     <Label
                         Grid.Column="0"
                         Grid.Row="0"
-                        FontWeight="Bold"
-                        FontSize="14"
+                        Style="{StaticResource DataTitle}"
                         >Príchod:
                     </Label>
                     <TextBox
                         Grid.Row="0"
                         Grid.Column="1"
-                        Style="{StaticResource CreateRideTextbox}"
-                        Width="150"
-                        Text="{Binding Model.ArriveTime, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource EditOrCreateTextbox}"
+                        Text="{Binding Model.ArriveTime, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
                         />
 
 
                     <Label
                         Grid.Column="0"
                         Grid.Row="1"
-                        FontWeight="Bold"
-                        FontSize="14"
+                        Style="{StaticResource DataTitle}"
                     >Odchod:
                     </Label>
                     <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
-                        Style="{StaticResource CreateRideTextbox}"
-                        Width="150"
-                        Text="{Binding Model.LeaveTime, UpdateSourceTrigger=PropertyChanged}"
+                        Style="{StaticResource EditOrCreateTextbox}"
+                        Text="{Binding Model.LeaveTime, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
                     ></TextBox>
 
 
                     <Label
                         Grid.Column="0"
                         Grid.Row="2"
-                        FontWeight="Bold"
-                        FontSize="14"
+                        Style="{StaticResource DataTitle}"
                     >Cena:
                     </Label>
                      <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        Style="{StaticResource CreateRideTextbox}"
-                        Width="150"
+                        Style="{StaticResource EditOrCreateTextbox}"
                         Text="{Binding Model.Cost, UpdateSourceTrigger=PropertyChanged}"
                     ></TextBox>
 

@@ -72,19 +72,18 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0" Panel.ZIndex="100">
+        <Grid Grid.Row="0" Grid.Column="0">
             <Ellipse
                 Grid.RowSpan="4"
                 Style="{StaticResource EllipseLogo}"
                 Fill="{StaticResource DefaultBackgroundBrush}"
                 />
 
-            <TextBlock 
+            <TextBlock
                     Grid.Row="0"
                     Grid.RowSpan="2"
-                    Margin="25,10"
                     Style="{StaticResource ProfileViewLogo}"
-                    HorizontalAlignment="Left">            
+                    >
                     ICS
                     <LineBreak/>
                     travel agency
@@ -92,7 +91,7 @@
         </Grid>
             
 
-            <Grid Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1">
+            <Grid Grid.Column="1" Grid.Row="0">
 
             <Border CornerRadius="10"
                     BorderThickness="0"
@@ -272,7 +271,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Transparent"  BorderThickness="1" CornerRadius="10" Background="#eeeeee">
+                    <Border BorderBrush="Transparent"  BorderThickness="1" CornerRadius="10" Background="#F0F0F0">
                     <Grid HorizontalAlignment="Stretch" Height="80" Background="Transparent">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -301,16 +300,9 @@
                         <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Width="Auto" Content="{Binding ToPlace}"/>
 
                         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Width="Auto" Content="{Binding Path=LeaveTime}" ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
-                        <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Width="Auto" Content="{Binding Path=ArriveTime}" ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
+                            <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Width="Auto" Content="{Binding Path=ArriveTime}" ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
 
-                            <!--<TextBlock Grid.Row="1" Grid.Column="0" Width="Auto" Text="{Binding Path=LeaveTime,StringFormat='{}{0:dd/MM/yyyy 0:HH:mm}'}"/>-->
-                            <!--<TextBlock Grid.Row="2" Grid.Column="1" Width="Auto" Text="{Binding Path=ArriveTime,StringFormat='{}{0:dd/MM/yyyy 0:HH:mm}'}"/>-->
-
-
-
-
-
-                        <Image
+                            <Image
                                 Grid.Column="3"
                                 Grid.Row="0"
                                 Height="15"

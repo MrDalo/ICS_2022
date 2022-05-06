@@ -8,195 +8,210 @@
                        mc:Ignorable="d" 
                        d:DesignHeight="450" d:DesignWidth="800"
                        d:DataContext="{d:DesignInstance viewModels:ShareRideDetailViewModel}">
-    <Grid Background="{StaticResource DefaultBackgroundBrightBrush}" 
-          Visibility="{Binding Path=Model, Converter={StaticResource NullToVisibilityConverter}}">
-       
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="80"/>
-        </Grid.RowDefinitions>
-
-        <Label
-            Grid.Row="0"
-            Content="Detail jazdy"
-            FontSize="25"
-            FontWeight="Bold"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            />
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-
-
-            <Label
-                Grid.Row="0"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                Content="Odchod"
-                FontSize="15"
-                FontWeight="Bold"
-                VerticalContentAlignment="Center"
-                />
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                VerticalContentAlignment="Center"
-                Content="Príchod"
-                FontSize="15"
-                FontWeight="Bold"
-            />
-            <Label
-                Grid.Row="0"
-                Grid.Column="2"
-                HorizontalAlignment="Left"
-                VerticalContentAlignment="Center"
-                Content="{Binding Model.LeaveTime}"
-                FontSize="13"
-                />
-            <Label
-                Grid.Row="1"
-                Grid.Column="2"
-                HorizontalAlignment="Left"
-                VerticalContentAlignment="Center"
-                Content="{Binding Model.ArriveTime}"
-                FontSize="13"
-                />
-
-
-
-
-            <Label
-                Grid.Row="0"
-                Grid.Column="3"
-                HorizontalAlignment="Left"
-                Content="Odkiaľ"
-                FontSize="15"
-                FontWeight="Bold"
-                VerticalContentAlignment="Center"
-                />
-            <Label
-                Grid.Row="1"
-                Grid.Column="3"
-                HorizontalAlignment="Left"
-                Content="Kam"
-                FontSize="15"
-                FontWeight="Bold"
-                VerticalContentAlignment="Center"
-                />
-            <Label
-                Grid.Row="0"
-                Grid.Column="4"
-                HorizontalAlignment="Left"
-                Content="{Binding Model.FromPlace}"
-                FontSize="13"
-                VerticalContentAlignment="Center"
-                />
-            <Label
-                Grid.Row="1"
-                Grid.Column="4"
-                HorizontalAlignment="Left"
-                Content="{Binding Model.ToPlace}"
-                FontSize="13"
-                VerticalContentAlignment="Center"
-                />
-        </Grid>
-
-        <ListView Width="Auto" Cursor="Hand" BorderThickness="0" Margin="50,0,50,0" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedPassenger}" ItemsSource="{Binding Passengers}">
-    
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Transparent"  BorderThickness="1" CornerRadius="10" Background="#eeeeee">
-                        <Grid HorizontalAlignment="Stretch" Height="80" Background="Transparent">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="3*"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <Label
-                                Grid.Column="0"
-                                Content="{Binding Passenger.Login}"
-                                Padding="10"
-                                Margin="10,0,10,0"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                FontSize="18"
-                                />
-                            <Label
-                                Grid.Column="1"
-                                Content="{Binding Passenger.Name}"
-                                Padding="10"
-                                Margin="10,0,10,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="18"
-                                />
-                            
-                            <Label
-                                Grid.Column="2"
-                                Content="{Binding Passenger.Surname}"
-                                Padding="10"
-                                Margin="10,0,10,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="18"
-                                />
-                            <Label
-                                Grid.Column="3"
-                                Content="{Binding Passenger.PhoneNumber}"
-                                Padding="10"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                FontSize="13"
-                                />
-                        </Grid>
-                    </Border>
-
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-
-        <Grid Grid.Row="3" Margin="0,0,0,0">
-            <Button
-                Style="{StaticResource RedButton}" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Center" Height="50" Width="200" 
-                Content="Zrušiť jazdu" Padding="10,0,10,0" Margin="10,0,10,0"
-                Command="{Binding DeleteCommand}"/>
-            <Button
-                Style="{StaticResource RedButton}" Visibility="{Binding Path=SelectedPassenger, Converter={StaticResource NullToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="120" Content="Odobrať" Padding="10,0,10,0" Margin="10,0,10,0"
-                Command="{Binding DeletePassengerCommand}"/>
-            <Button 
-                Style="{StaticResource WhiteButton}" HorizontalAlignment="Left" VerticalAlignment="Center" Height="50" Width="100" Content="Späť" Padding="10,0,10,0" Margin="10,0,10,0"
-                Command="{Binding CloseCommand}"/>
-        </Grid>
+    <Grid Visibility="{Binding Path=Model, Converter={StaticResource NullToVisibilityConverter}}">
         
+        <Grid.Background>
+            <SolidColorBrush Color="Black" Opacity="0.5" />
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="{StaticResource DefaultBackgroundBrightBrush}"
+                Grid.Column="0" 
+                Style="{StaticResource CreateOrUpdatePopUp}"
+                Width="700" Height="400">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Button 
+                        Style="{StaticResource CloseButton}" 
+                        Content="X"
+                        Command="{Binding CloseCommand}"/>
+     
+                    <Label
+                        Grid.Row="0"
+                        Content="Detail jazdy"
+                        Style="{StaticResource ViewTitle}"/>
+                </Grid>
+                
+                <Grid Grid.Row="1" Margin="50,0,50,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <Grid Grid.Column="0" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label
+                            Grid.Column="0"
+                            Content="Odchod:"
+                            Style="{StaticResource DataTitle}"/>
+
+                        <Label
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalContentAlignment="Center"
+                            Content="{Binding Model.LeaveTime, StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'}"
+                            FontSize="13"/>                        
+                       
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Column="0"
+                            Content="Príchod:"
+                            Style="{StaticResource DataTitle}"/>
+                        <Label
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalContentAlignment="Center"
+                            Content="{Binding Model.ArriveTime, StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'}"
+                            FontSize="13"/>
+                        
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Column="0"
+                            Content="Odkiaľ:"
+                            Style="{StaticResource DataTitle}"/>
+                        <Label
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"
+                            Content="{Binding Model.FromPlace}"
+                            FontSize="13"
+                            VerticalContentAlignment="Center"/>
+
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Column="0"
+                            Content="Kam:"
+                            Style="{StaticResource DataTitle}"/>
+                        <Label
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"
+                            Content="{Binding Model.ToPlace}"
+                            FontSize="13"
+                            VerticalContentAlignment="Center"/>
+                    </Grid>
+                </Grid>
+
+                <ListView 
+                    Width="Auto" Cursor="Hand" 
+                    Height="Auto"
+                    MaxHeight="200"
+                    BorderThickness="0" 
+                    Margin="50,0,50,0" 
+                    Grid.Row="2" 
+                    HorizontalContentAlignment="Stretch" 
+                    SelectedItem="{Binding SelectedPassenger}" 
+                    ItemsSource="{Binding Passengers}"
+                    d:ItemsSource="{d:SampleData}"
+                    >
+                        
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Transparent"  BorderThickness="1" CornerRadius="10" Background="#F0F0F0">
+                                <Grid HorizontalAlignment="Stretch" MaxHeight="100" Height="Auto" Background="Transparent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        Grid.Column="0"
+                                        Content="{Binding Passenger.Login}"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="15"/>
+                                    <Label
+                                        Grid.Column="1"
+                                        Content="{Binding Passenger.Name}"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="15"/>
+                                    <Label
+                                        Grid.Column="2"
+                                        Content="{Binding Passenger.Surname}"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="15"/>
+                                    <Label
+                                        Grid.Column="3"
+                                        Content="{Binding Passenger.PhoneNumber}"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="13"/>
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="0"
+                        Style="{StaticResource RedButton}" Visibility="{Binding Path=SelectedPassenger, Converter={StaticResource NullToVisibilityConverter}}" 
+                        Content="Odobrať pasažiera" 
+                        Command="{Binding DeletePassengerCommand}"/>
+                   
+                    <Button
+                        Grid.Column="1"
+                        Style="{StaticResource RedButton}"
+                        Content="Zrušiť jazdu"
+                        Command="{Binding DeleteCommand}"/>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
+            
 </UserControl>

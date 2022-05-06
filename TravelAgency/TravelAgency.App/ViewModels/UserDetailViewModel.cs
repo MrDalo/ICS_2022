@@ -19,6 +19,7 @@ namespace TravelAgency.App.ViewModels
 
         private bool _isVisible = false;
         private bool _isVisibleProfile = false;
+        private bool _editURL = false;
         private UserWrapper? _model;
 
         public UserDetailViewModel(
@@ -32,6 +33,7 @@ namespace TravelAgency.App.ViewModels
 
             SaveCommand = new AsyncRelayCommand(SaveAsync, CanSave);
             GoBack = new RelayCommand(GoBackFromRegistration);
+            ShowTextBox = new RelayCommand(() => EditURL = !EditURL);
 
             // Registration Window
             mediator.Register<RegisterMessage>(OnOpenRegistration);
@@ -46,7 +48,8 @@ namespace TravelAgency.App.ViewModels
 
         public ICommand SaveCommand { get; }
         public ICommand GoBack { get; }
-        
+        public ICommand ShowTextBox { get; }
+
         public UserWrapper? Model
         {
             get => _model;
@@ -79,6 +82,16 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
+        public bool EditURL
+        {
+            get => _editURL;
+
+            set
+            {
+                _editURL = value;
+                OnPropertyChanged();
+            }
+        }
         public async Task LoadAsync(Guid id)
         {
             Model = await _userFacade.GetAsync(id) ?? UserDetailModel.Empty;
