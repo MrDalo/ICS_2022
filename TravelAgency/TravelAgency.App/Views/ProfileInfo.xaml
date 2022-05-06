@@ -18,7 +18,7 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
         
@@ -39,10 +39,11 @@
                 Height="30" Width="Auto" 
                 Background="Transparent" 
                 BorderThickness="0"
+                Cursor="Hand"
                 Command="{Binding ShowTextBox}"
                 >
             <StackPanel Width="auto" Height="auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Image Source="https://www.pinclipart.com/picdir/big/192-1928203_pen-clip-art-black-and-white.png" Width="20" Height="20"/>
+                    <Image Source="https://cdn.iconscout.com/icon/free/png-256/edit-mode-pencil-tool-change-30495.png" Width="20" Height="20"/>
             </StackPanel>
         </Button>
 
@@ -62,7 +63,7 @@
                  />
         </Grid>
         
-        <Grid  Grid.Row="1">
+        <Grid  Grid.Row="1" Margin="20,0,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />

@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colors.xaml"/>
+        <ResourceDictionary Source="Brushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ProfileButton" TargetType="Button">
@@ -73,6 +74,25 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Background" Value="{StaticResource DefaultBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource DefaultForegroundBrightBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DefaultForegroundDarkBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DefaultForegroundDarkBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="Transparent"/>
@@ -119,6 +139,10 @@
                             <Setter Property="Background" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
                             <Setter Property="Foreground" Value="{StaticResource DefaultForegroundDarkBrush}"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource DefaultAddButtonBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -162,6 +186,10 @@
                             <Setter Property="Background" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
                             <Setter Property="Foreground" Value="{StaticResource DefaultForegroundDarkBrush}"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource DefaultAddButtonBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -187,7 +215,7 @@
                             <Setter Property="Background" TargetName="border" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource DefaultAddButtonHoverBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource DefaultAddButtonBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

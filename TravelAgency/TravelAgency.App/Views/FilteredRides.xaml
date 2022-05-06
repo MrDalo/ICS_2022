@@ -20,8 +20,8 @@
                     <ControlTemplate TargetType="CheckBox">
                         <StackPanel Orientation="Horizontal">
                             <Grid >
-                                <Border Width="180" Height="30" Background="#eeeeee" CornerRadius="20" Margin="5,0"></Border>
-                                <Border x:Name="button" Height="30" Width="100" CornerRadius="20" HorizontalAlignment="Left"  ></Border>
+                                <Border Width="180" Height="30" Background="{StaticResource DefaultAddButtonBrush}" CornerRadius="20" Margin="5,0"></Border>
+                                <Border x:Name="button" Height="30" Width="100" CornerRadius="15" HorizontalAlignment="Left"  ></Border>
                             </Grid>
                             <ContentPresenter x:Name="content" Margin="10,0,0,0" Content="{TemplateBinding Content}" VerticalAlignment="Center"/>
                         </StackPanel>
@@ -130,8 +130,10 @@
                 </Grid.RowDefinitions>
 
 
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" Content="Filter" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <CheckBox IsChecked="{Binding ArrivalSelected}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource DefaultBackgroundBrush}"/>
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" Content="Filter" HorizontalContentAlignment="Center" 
+                   VerticalContentAlignment="Center"
+                   FontSize="22"/>
+            <CheckBox IsChecked="{Binding ArrivalSelected}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource DefaultBackgroundBrush}"/>
  
             <Label
                         x:Name ="Arrival"
@@ -165,16 +167,33 @@
                         FontSize="12"/>
 
             <Label Grid.Column="0" Grid.Row="2" Content="Od:" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button x:Name="Inc_btn1"
-                    Grid.Column="1" 
-                    Grid.Row="2" 
-                    Style="{StaticResource AddOrSubTime}"
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    Content="+"
-                    Cursor="Hand"
-                    Command="{Binding IncrementTime1}"
-                    />
+                <Border Grid.Column="1" 
+                        Grid.Row="2" 
+                        HorizontalAlignment="Center" 
+                        Width="100" 
+                        Height="30" 
+                        Background="{StaticResource DefaultBackgroundBrightBrush}"
+                        VerticalAlignment="Center"
+                        CornerRadius="20"
+                             >
+                    <TextBox x:Name="Time1"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Foreground="{StaticResource DefaultForegroundDarkBrush}"
+                             Text="{Binding Path=TimeValue1,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
+                </Border>
+                    <Button x:Name="Inc_btn1"
+                            Grid.Column="1" 
+                            Grid.Row="2" 
+                            Style="{StaticResource AddOrSubTime}"
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center"
+                            Content="+"
+                            Cursor="Hand"
+                            Command="{Binding IncrementTime1}"
+                            />
 
                     <Button x:Name="Dec_btn1"
                             Grid.Column="1" 
@@ -187,22 +206,29 @@
                             Command="{Binding DecrementTime1}"
                     />
 
-                    <TextBox x:Name="Time1"
-                             Grid.Column="1" 
-                             Grid.Row="2" 
-                             HorizontalAlignment="Center" 
-                             HorizontalContentAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             Width="50" 
-                             Height="30" 
-                             VerticalAlignment="Center"
-                             Foreground="black"
-                             Text="{Binding Path=TimeValue1,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
 
 
             <Label Grid.Column="0" Grid.Row="3" Content="Do:" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Border Grid.Column="1" 
+                        Grid.Row="3" 
+                        HorizontalAlignment="Center" 
+                        Width="100" 
+                        Height="30" 
+                        Background="{StaticResource DefaultBackgroundBrightBrush}"
+                        VerticalAlignment="Center"
+                        CornerRadius="20"
+                             >
+                    <TextBox x:Name="Time2"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Foreground="{StaticResource DefaultForegroundDarkBrush}"
+                             Text="{Binding Path=TimeValue2,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
+                </Border>
 
-                    <Button x:Name="Inc_btn"
+
+                <Button x:Name="Inc_btn"
                             Grid.Column="1" 
                             Grid.Row="3" 
                             Style="{StaticResource AddOrSubTime}"
@@ -223,18 +249,6 @@
                             Cursor="Hand"
                             Command="{Binding DecrementTime2}"
                     />
-
-                    <TextBox x:Name="Time"
-                             Grid.Column="1" 
-                             Grid.Row="3" 
-                             HorizontalAlignment="Center" 
-                             HorizontalContentAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             Width="50" 
-                             Height="30" 
-                             VerticalAlignment="Center"
-                             Foreground="black"
-                             Text="{Binding Path=TimeValue2,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
 
 
             <Button
@@ -261,17 +275,53 @@
         </Grid>
         </Border>
 
-        <ListView Width="Auto" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData}" SelectedItem="{Binding selectedShareRide}" ItemsSource="{Binding Path=filteredShareRides}">
+        <ListView Width="Auto" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData}" 
+                  SelectedItem="{Binding selectedShareRide}" 
+                  ItemsSource="{Binding Path=filteredShareRides}"
+                  ItemContainerStyle="{StaticResource SelectedItem2}"
+                  BorderThickness="0"
+                  >
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.Resources>
+                <Style TargetType="{x:Type ScrollBar}">
+                    <Setter Property="Background" Value="#F0F0F0"/>
+                    <Setter Property="BorderBrush" Value="#F0F0F0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                        <RowDefinition Height="0.00001*"/>
+                                        <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                    </Grid.RowDefinitions>
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1" CornerRadius="10"/>
+                                    <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource RepeatButtonTransparent}" HorizontalAlignment="Left" Width="17"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Style="{StaticResource ScrollBarThumbVertical}" Margin="2"/>
+                                        </Track.Thumb>
+                                    </Track>
+                                </Grid>
 
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.Resources>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Transparent"  BorderThickness="1" CornerRadius="10" Background="#F0F0F0">
+                    <Border BorderBrush="Transparent" BorderThickness="1">
                     <Grid HorizontalAlignment="Stretch" Height="80" Background="Transparent">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -294,7 +344,7 @@
                             <Border CornerRadius="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Width="15" Height="7" Background="#565656"/>
                             <Border CornerRadius="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Width="15" Height="7" Background="#565656"/>
                             <Border CornerRadius="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Width="15" Height="7" Background="#565656"/>
-                            <Ellipse Grid.Column="2" Grid.Row="1" Height="15" Width="15" Fill="#565656"/>
+                        <Ellipse Grid.Column="2" Grid.Row="1" Height="15" Width="15" Fill="#565656"/>
 
                         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Width="Auto" Content="{Binding FromPlace}"/>
                         <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Width="Auto" Content="{Binding ToPlace}"/>

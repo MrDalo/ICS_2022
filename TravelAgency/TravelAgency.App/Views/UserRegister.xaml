@@ -23,7 +23,7 @@
         <Border Background="{StaticResource DefaultBackgroundBrightBrush}"
                 Grid.Column="0" 
                 Style="{StaticResource CreateOrUpdatePopUp}"
-                Width="500" Height="300">
+                Width="600" Height="350">
         <Grid>
         
         <Grid.RowDefinitions>
@@ -146,8 +146,8 @@
 
         <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
                 <ColumnDefinition  Width="2*"/>
-                <ColumnDefinition  Width="3*"/>
             </Grid.ColumnDefinitions>
 
             <Label

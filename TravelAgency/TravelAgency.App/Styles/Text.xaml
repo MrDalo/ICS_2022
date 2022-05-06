@@ -32,4 +32,20 @@
         <Setter Property="Background" Value="Transparent"/>
     </Style>
 
+    <Style x:Key="ListItemStyle" TargetType="Label">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0,0,0,0.5"/>
+    </Style>
+    
+    <Style x:Key="ListHeaderStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    </Style>
+    
 </ResourceDictionary>

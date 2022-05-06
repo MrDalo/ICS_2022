@@ -21,7 +21,7 @@
         <Border Background="{StaticResource DefaultBackgroundBrightBrush}"
                 Grid.Column="0" 
                 Style="{StaticResource CreateOrUpdatePopUp}"
-                Width="700" Height="400">
+                Width="700" Height="350">
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -133,14 +133,16 @@
                 <ListView 
                     Width="Auto" Cursor="Hand" 
                     Height="Auto"
-                    MaxHeight="200"
-                    BorderThickness="0" 
+                    MaxHeight="150"
+                    BorderThickness="0"
+                    Background="Transparent"
                     Margin="50,0,50,0" 
                     Grid.Row="2" 
                     HorizontalContentAlignment="Stretch" 
                     SelectedItem="{Binding SelectedPassenger}" 
                     ItemsSource="{Binding Passengers}"
                     d:ItemsSource="{d:SampleData}"
+                    ItemContainerStyle="{StaticResource SelectedItem2}"
                     >
                         
                     <ListView.ItemsPanel>
@@ -148,12 +150,50 @@
                             <StackPanel Orientation="Vertical" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
+                    <ListView.Resources>
+                            <Style TargetType="{x:Type ScrollBar}">
+                                <Setter Property="Background" Value="{StaticResource DefaultAddButtonBrush}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource DefaultAddButtonBrush}"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                            <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                    <RowDefinition Height="0.00001*"/>
+                                                    <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                </Grid.RowDefinitions>
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1" CornerRadius="10"/>
+                                                <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                                                    <Track.DecreaseRepeatButton>
+                                                        <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource RepeatButtonTransparent}" HorizontalAlignment="Left" Width="17"/>
+                                                    </Track.DecreaseRepeatButton>
+                                                    <Track.IncreaseRepeatButton>
+                                                        <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                                    </Track.IncreaseRepeatButton>
+                                                    <Track.Thumb>
+                                                        <Thumb Style="{StaticResource ScrollBarThumbVertical}" Margin="2"/>
+                                                    </Track.Thumb>
+                                                </Track>
+                                            </Grid>
 
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.Resources>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="Transparent"  BorderThickness="1" CornerRadius="10" Background="#F0F0F0">
-                                <Grid HorizontalAlignment="Stretch" MaxHeight="100" Height="Auto" Background="Transparent">
+                            
+                            <Border BorderBrush="Transparent"  BorderThickness="1">
+                                <Grid HorizontalAlignment="Stretch" MaxHeight="100" Height="Auto">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="2*"/>
+                                    </Grid.RowDefinitions>
+
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
                                         <ColumnDefinition Width="1*"/>
@@ -162,24 +202,69 @@
 
                                     <Label
                                         Grid.Column="0"
-                                        Content="{Binding Passenger.Login}"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Content="Pasažier"
+                                        FontWeight="Bold"
                                         Padding="10"
                                         VerticalAlignment="Center"
                                         FontSize="15"/>
                                     <Label
                                         Grid.Column="1"
+                                        Grid.Row="0"
+                                        Content="Login"
+                                        FontWeight="Bold"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="10"/>
+                                    <Label
+                                        Grid.Column="2"
+                                        Grid.Row="0"
+                                        Content="Meno"
+                                        FontWeight="Bold"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="10"/>
+                                    <Label
+                                        Grid.Column="3"
+                                        Grid.Row="0"
+                                        Content="Priezvisko"
+                                        FontWeight="Bold"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="10"/>
+                                    <Label
+                                        Grid.Column="4"
+                                        Grid.Row="0"
+                                        Content="Telefónne číslo"
+                                        FontWeight="Bold"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="10"/>
+                                    <Label
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Content="{Binding Passenger.Login}"
+                                        Padding="10"
+                                        VerticalAlignment="Center"
+                                        FontSize="13"/>
+                                    <Label
+                                        Grid.Column="2"
+                                        Grid.Row="1"
                                         Content="{Binding Passenger.Name}"
                                         Padding="10"
                                         VerticalAlignment="Center"
-                                        FontSize="15"/>
+                                        FontSize="13"/>
                                     <Label
-                                        Grid.Column="2"
+                                        Grid.Column="3"
+                                        Grid.Row="1"
                                         Content="{Binding Passenger.Surname}"
                                         Padding="10"
                                         VerticalAlignment="Center"
-                                        FontSize="15"/>
+                                        FontSize="13"/>
                                     <Label
-                                        Grid.Column="3"
+                                        Grid.Column="4"
+                                        Grid.Row="1"
                                         Content="{Binding Passenger.PhoneNumber}"
                                         Padding="10"
                                         VerticalAlignment="Center"

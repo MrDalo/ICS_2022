@@ -19,13 +19,13 @@
             </Grid.RowDefinitions>
 
             
-            <ComboBox x:Name="UserListComboBox"
-            Height="20" Grid.Row="0"
-            Margin="10,0"
-            ItemsSource="{Binding Mode=OneWay,Path= Users}"
-            DisplayMemberPath="Login"
-            
-            >
+            <ComboBox 
+                    x:Name="UserListComboBox"
+                    Grid.Row="0"
+                    Style="{StaticResource CarUpdateComboBox}"
+                    ItemsSource="{Binding Mode=OneWay,Path= Users}"
+                    DisplayMemberPath="Login">
+                
                 <interactions:Interaction.Triggers>
                     <interactions:EventTrigger EventName="SelectionChanged">
                         <interactions:InvokeCommandAction Command="{Binding UserSelectedCommand}"

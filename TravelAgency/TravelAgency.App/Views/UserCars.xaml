@@ -24,8 +24,10 @@
         <ListView x:Name="CarList" HorizontalContentAlignment="Right" 
                   ItemsSource="{Binding CarListViewModel.Cars}"
                   d:ItemsSource="{d:SampleData ItemCount=3}"
+                  Padding="20,0,0,0"
                   Cursor="Hand"
                   BorderBrush="Transparent"
+                  ItemContainerStyle="{StaticResource SelectedItem3}"
                   >
       
             <ListView.ItemsPanel>
@@ -36,9 +38,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Width="auto" MinWidth="190" Height="auto" 
-                            Background="{StaticResource DefaultAddButtonBrush}" 
-                            CornerRadius="20" BorderThickness="0"
+                    <Border Width="auto" MinWidth="190" Height="auto" MaxHeight="300"
                             Padding="0,0,0,10"
                             >
                     <Grid>

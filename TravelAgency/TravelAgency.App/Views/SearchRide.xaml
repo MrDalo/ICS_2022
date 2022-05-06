@@ -23,6 +23,58 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
+        <Ellipse Grid.Column="0"
+                 Grid.Row="1" 
+                 Grid.RowSpan="2"
+                 Height="15" 
+                 Width="15" 
+                 Fill="#565656"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="-250,-120,0,0"
+                 />
+            <Border CornerRadius="3" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Width="7" 
+                    Height="15" 
+                    Margin="-250,-50,0,0"
+                    Background="#565656"/>
+            <Border CornerRadius="3" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Width="7" 
+                    Height="15" 
+                    Margin="-250,0,0,0"
+                    Background="#565656"/>
+            <Border CornerRadius="3" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Width="7" 
+                    Height="15"
+                    Margin="-250,50,0,0" 
+                    Background="#565656"/>
+        <Ellipse Grid.Column="0" 
+                 Grid.Row="1"
+                 Grid.RowSpan="2"
+                 Height="15" 
+                 Width="15" 
+                 Fill="#565656"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="-250,120,0,0"
+                 />
+
+
         <Ellipse
             Grid.Column="0"
             Grid.RowSpan="3"
@@ -49,19 +101,28 @@
             Vyhľadať jazdu
         </Label>
 
-        <!--<Grid Grid.Row="1">
-            <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>
-
-        </Grid>-->
-        <Border Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
-            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}" Text="{Binding FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
+        <Border 
+            Padding="5" 
+            Width="200" 
+            Height="30"
+            CornerRadius="10" 
+            Grid.Row="1" 
+            Grid.Column="0" 
+            BorderThickness="1" 
+            BorderBrush="{StaticResource DefaultForegroundDarkBrush}">
+            <TextBox BorderThickness="0" Tag="Odkial" Style="{StaticResource SearchBox}" Text="{Binding FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
 
-        
-            
-            <!--<TextBox Width="200" Height="30" Text="" Style="{StaticResource SearchRideTextbox}"/>-->
-        <Border Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
-            <TextBox BorderThickness="0" BorderBrush="Transparent" Tag="Kam" Style="{StaticResource SearchBox}" Text="{Binding ToPlace, UpdateSourceTrigger=PropertyChanged}"/>
+        <Border 
+            Padding="5" 
+            Width="200" 
+            Height="30" 
+            CornerRadius="10" 
+            Grid.Row="2" 
+            Grid.Column="0" 
+            BorderThickness="1" 
+            BorderBrush="{StaticResource DefaultForegroundDarkBrush}">
+            <TextBox BorderThickness="0" Tag="Kam" Style="{StaticResource SearchBox}" Text="{Binding ToPlace, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
 
 
@@ -76,17 +137,6 @@
                 Style="{StaticResource DataTitle}"
             >Dátum odchodu:</Label> 
 
-            
-            <!--<DatePicker
-                Grid.Column="1"
-                Height="25"
-                HorizontalAlignment="Center"
-                Name="datePicker1"  
-                VerticalAlignment="Center"
-                Width="115"
-
-                />-->
-            <!--<TODO PICK A DATE AND TIME FROM CALENDAR (HALFWAY DONE)-->
                <StackPanel Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -110,6 +160,26 @@
                                SelectionMode="SingleDate"
                     />
 
+                    <Border Grid.Column="1" 
+                            Grid.Row="0" 
+                            HorizontalAlignment="Center" 
+                            Width="100" 
+                            Height="30" 
+                            Background="Transparent"
+                            VerticalAlignment="Center"
+                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
+                            BorderThickness="1"
+                            CornerRadius="20"
+                             >
+                        <TextBox x:Name="Time"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Background="{StaticResource DefaultBackgroundBrightBrush}"
+                             BorderThickness="0"
+                             Foreground="{StaticResource DefaultForegroundDarkBrush}"
+                             Text="{Binding Path=TimeValue,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
+                    </Border>
+
                     <Button x:Name="Inc_btn"
                             Grid.Column="1" 
                             Grid.Row="0" 
@@ -132,17 +202,6 @@
                             Command="{Binding DecrementTime}"
                             />
                     
-                    <TextBox x:Name="Time"
-                            Grid.Column="1" 
-                            Grid.Row="0" 
-                            HorizontalAlignment="Center" 
-                            HorizontalContentAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             Width="50" 
-                            Height="30" 
-                            VerticalAlignment="Center"
-                            Foreground="black"
-                            Text="{Binding Path=TimeValue,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
 
                     <Border Padding="5" Width="Auto" Height="30" CornerRadius="10" Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="Black">
                     <TextBox x:Name="Date"
@@ -161,23 +220,21 @@
             </StackPanel>
         </Grid>
 
-            <Grid  Grid.Column="0" Grid.Row="3">
-                <Button
-                    Grid.Column="0"
-                    Style="{StaticResource WhiteButton}"
-                    Command="{Binding GoBack}"
-                >Späť</Button>
-
-            </Grid>
-
-        <Grid  Grid.Column="1" Grid.Row="3">
             <Button
-                    Style="{StaticResource RedButton}"
-                    Command="{Binding FilteredRides}"
-                    >Vyhľadať
+                Grid.Column="0"
+                Grid.Row="3"
+                Style="{StaticResource WhiteButton}"
+                Command="{Binding GoBack}"
+                >Späť
             </Button>
 
-        </Grid>
+            <Button
+                Grid.Column="1" 
+                Grid.Row="3"
+                Style="{StaticResource RedButton}"
+                Command="{Binding FilteredRides}"
+                >Vyhľadať
+            </Button>
 
     </Grid>
 

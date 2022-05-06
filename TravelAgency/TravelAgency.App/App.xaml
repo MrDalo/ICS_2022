@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/EllipseLogo.xaml"/>
                 <ResourceDictionary Source="Styles/CreateUpdatePopUp.xaml"/>
+                <ResourceDictionary Source="Styles/ListViewStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />

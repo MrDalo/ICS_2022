@@ -14,10 +14,15 @@
           Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
         <Ellipse
             Grid.Column="0"
@@ -34,52 +39,97 @@
             travel agency
         </TextBlock>
 
-        <Label Grid.Row="0" Style="{StaticResource ViewTitle}">Vytvoriť jazdu</Label>
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2" Style="{StaticResource ViewTitle}">Vytvoriť jazdu</Label>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            
-            <Grid Grid.Column="0" HorizontalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.6*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="0.6*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-
-                <Border VerticalAlignment="Center" Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
+                <Border VerticalAlignment="Center" 
+                        Padding="5" 
+                        Width="200" 
+                        Height="30" 
+                        CornerRadius="10" 
+                        Grid.Row="1" 
+                        BorderThickness="1" 
+                        BorderBrush="{StaticResource DefaultForegroundDarkBrush}">
                     <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}" Text="{Binding Model.FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
                     
-
-
-                   
-                <Border VerticalAlignment="Center" Padding="5" Width="200" Height="30" CornerRadius="10" Grid.Row="2" Grid.Column="0" BorderThickness="1" BorderBrush="Black">
+                <Border VerticalAlignment="Center" 
+                        Padding="5" 
+                        Width="200" 
+                        Height="30" 
+                        CornerRadius="10" 
+                        Grid.Row="2" 
+                        BorderThickness="1" 
+                        BorderBrush="{StaticResource DefaultForegroundDarkBrush}">
                     <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Kam" Style="{StaticResource SearchBox}"  Text="{Binding Model.ToPlace, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
-            </Grid>
 
+        <Ellipse Grid.Column="0"
+                 Grid.Row="1" 
+                 Grid.RowSpan="2"
+                 Height="15" 
+                 Width="15" 
+                 Fill="#565656"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="-250,-120,0,0"
+                 />
+        <Border CornerRadius="3" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Width="7" 
+                    Height="15" 
+                    Margin="-250,-50,0,0"
+                    Background="#565656"/>
+        <Border CornerRadius="3" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Width="7" 
+                    Height="15" 
+                    Margin="-250,0,0,0"
+                    Background="#565656"/>
+        <Border CornerRadius="3" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Width="7" 
+                    Height="15"
+                    Margin="-250,50,0,0" 
+                    Background="#565656"/>
+        <Ellipse Grid.Column="0" 
+                 Grid.Row="1"
+                 Grid.RowSpan="2"
+                 Height="15" 
+                 Width="15" 
+                 Fill="#565656"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Margin="-250,120,0,0"
+                 />
 
-            <Grid Grid.Column="1" HorizontalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="3*"/>
-                    
-                </Grid.RowDefinitions>
-                
-                <Label
-                    Grid.Column="1"
+        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label
                     Grid.Row="0"
                     Style="{StaticResource DataTitle}"
                 >Zvoľte auto:
-                </Label>
+            </Label>
 
-                <ComboBox x:Name="CarListComboBox"
-                          Grid.Column="1"
+            <ComboBox x:Name="CarListComboBox"
                           Grid.Row="1"
                           VerticalAlignment="Top"
                     
@@ -88,34 +138,35 @@
                           DisplayMemberPath="LicensePlate" 
                           SelectionChanged="ComboBox_SelectionChanged">
 
-                    <interactions:Interaction.Triggers>
-                        <interactions:EventTrigger EventName="SelectionChanged">
-                            <interactions:InvokeCommandAction Command="{Binding CarSelectedCommand}"
+                <interactions:Interaction.Triggers>
+                    <interactions:EventTrigger EventName="SelectionChanged">
+                        <interactions:InvokeCommandAction Command="{Binding CarSelectedCommand}"
                                                               CommandParameter="{Binding ElementName=CarListComboBox, Path=SelectedItem}" />
-                        </interactions:EventTrigger>
-                    </interactions:Interaction.Triggers>
+                    </interactions:EventTrigger>
+                </interactions:Interaction.Triggers>
 
-                </ComboBox>
+            </ComboBox>
+        </Grid>
+            
+            <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/> 
-                    </Grid.ColumnDefinitions>
 
-
-                    <Label
+                <Label
                         Grid.Column="0"
                         Grid.Row="0"
                         Style="{StaticResource DataTitle}"
                         >Príchod:
-                    </Label>
-                    <TextBox
+                </Label>
+                <TextBox
                         Grid.Row="0"
                         Grid.Column="1"
                         Style="{StaticResource EditOrCreateTextbox}"
@@ -123,13 +174,13 @@
                         />
 
 
-                    <Label
+                <Label
                         Grid.Column="0"
                         Grid.Row="1"
                         Style="{StaticResource DataTitle}"
                     >Odchod:
-                    </Label>
-                    <TextBox
+                </Label>
+                <TextBox
                         Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource EditOrCreateTextbox}"
@@ -137,13 +188,13 @@
                     ></TextBox>
 
 
-                    <Label
+                <Label
                         Grid.Column="0"
                         Grid.Row="2"
                         Style="{StaticResource DataTitle}"
                     >Cena:
-                    </Label>
-                     <TextBox
+                </Label>
+                <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
                         Style="{StaticResource EditOrCreateTextbox}"
@@ -151,13 +202,9 @@
                     ></TextBox>
 
 
-                </Grid>
             </Grid>
 
-        </Grid>
-
-
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -165,16 +212,12 @@
 
             <Button
                 Grid.Column="0"
-                Width="150"
-                Height="40"
                 Style="{StaticResource WhiteButton}"
                 Command="{Binding GoBack}"
                     >Späť</Button>
 
             <Button 
                 Grid.Column="1"
-                Width="150"
-                Height="40"
                 BorderThickness="0"
                 Style="{StaticResource RedButton}"
                 Command="{Binding SubmitCreation}"

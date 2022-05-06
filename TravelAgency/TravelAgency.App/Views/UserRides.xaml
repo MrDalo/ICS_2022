@@ -10,40 +10,41 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance viewModels:ShareRideListViewModel}">
 
+
     <Grid Background="{StaticResource DefaultForegroundBrightBrush}" 
           Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
 
-       
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2.5*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2.5*"/>
-                </Grid.RowDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2.5*"/>
+        </Grid.RowDefinitions>
 
 
-                <Label
+        <Label
                     Grid.Row="0"
                     Style="{StaticResource ViewTitle}">
-                    Šofér
-                </Label>
+            Šofér
+        </Label>
 
-                <Label 
+        <Label 
                     Grid.Row="2"
                     Style="{StaticResource ViewTitle}">
-                    Spolujazdec
-                </Label>
+            Spolujazdec
+        </Label>
 
-<!-- LIST WITH USER SHARE RIDES (WHERE HE IS THE DRIVER) -->
-        
+        <!-- LIST WITH USER SHARE RIDES (WHERE HE IS THE DRIVER) -->
+
         <Border 
             HorizontalAlignment="Stretch" 
             Grid.Row="1"
             BorderThickness="0"
             CornerRadius="20"
-            Background="#f0f0f0"
+            Background="#F0F0F0"
             Padding="10"
-            Margin="50,10,50,10"
+            Margin="50,5,50,5"
                   >
             <Grid>
                 <Grid.RowDefinitions>
@@ -61,35 +62,19 @@
                     <Label
                             Grid.Column="0"
                             Content="Odjazd"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalAlignment="Stretch"
-                            HorizontalContentAlignment="Center"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                     <Label
                             Grid.Column="1"
                             Content="Začiatok"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                     <Label
                             Grid.Column="2"
                             Content="Destinácia"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                     <Label
                             Grid.Column="3"
                             Content="Cena"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
@@ -113,7 +98,41 @@
                             BorderThickness="0"
                             Background="Transparent"
                             Foreground="{StaticResource DefaultForegroundDarkBrush}"
-                    >
+                            ItemContainerStyle="{StaticResource SelectedItem1}">
+
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ScrollBar}">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="BorderBrush" Value="#F0F0F0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                            <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                    <RowDefinition Height="0.00001*"/>
+                                                    <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                </Grid.RowDefinitions>
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1" CornerRadius="10"/>
+                                                <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                                                    <Track.DecreaseRepeatButton>
+                                                        <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource RepeatButtonTransparent}" HorizontalAlignment="Left" Width="17"/>
+                                                    </Track.DecreaseRepeatButton>
+                                                    <Track.IncreaseRepeatButton>
+                                                        <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                                    </Track.IncreaseRepeatButton>
+                                                    <Track.Thumb>
+                                                        <Thumb Style="{StaticResource ScrollBarThumbVertical}" Margin="2"/>
+                                                    </Track.Thumb>
+                                                </Track>
+                                            </Grid>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.Resources>
+
                         <interactions:Interaction.Triggers>
                             <interactions:EventTrigger EventName="SelectionChanged">
                                 <interactions:InvokeCommandAction Command="{Binding ShareRideSelectedCommand}"
@@ -138,32 +157,20 @@
                                     </Grid.ColumnDefinitions>
                                     <Label
                                             Grid.Column="0"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding LeaveTime}"
                                             ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
                                     <Label
                                             Grid.Column="1"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding FromPlace}"/>
                                     <Label
                                             Grid.Column="2"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding ToPlace}"/>
                                     <Label
                                             Grid.Column="3"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding Cost}"/>
 
                                 </Grid>
@@ -175,16 +182,16 @@
             </Grid>
         </Border>
 
-<!-- LIST WITH USER SHARE RIDES (WHERE HE IS THE PASSENGER) -->
-        
+        <!-- LIST WITH USER SHARE RIDES (WHERE HE IS THE PASSENGER) -->
+
         <Border 
             HorizontalAlignment="Stretch" 
             Grid.Row="3"
             BorderThickness="0"
             CornerRadius="20"
-            Background="#f0f0f0"
+            Background="#F0F0F0"
             Padding="10"
-            Margin="50,10,50,10"
+            Margin="50,5,50,5"
                   >
             <Grid>
                 <Grid.RowDefinitions>
@@ -202,43 +209,27 @@
                     <Label
                             Grid.Column="0"
                             Content="Odjazd"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalAlignment="Stretch"
-                            HorizontalContentAlignment="Center"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                     <Label
                             Grid.Column="1"
                             Content="Začiatok"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                     <Label
                             Grid.Column="2"
                             Content="Destinácia"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                     <Label
                             Grid.Column="3"
                             Content="Cena"
-                            BorderBrush="{StaticResource DefaultForegroundDarkBrush}"
-                            BorderThickness="0,0,0,1"
-                            HorizontalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            Style="{StaticResource DataTitle}"/>
+                            Style="{StaticResource ListHeaderStyle}"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <ListView 
                             ItemsSource="{Binding PassengerShareRides}"
                             d:ItemsSource="{d:SampleData}"
@@ -253,13 +244,47 @@
                             BorderThickness="0"
                             Background="Transparent"
                             Foreground="{StaticResource DefaultForegroundDarkBrush}"
+                            ItemContainerStyle="{StaticResource SelectedItem1}"
                     >
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ScrollBar}">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="BorderBrush" Value="#F0F0F0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                            <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                    <RowDefinition Height="0.00001*"/>
+                                                    <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                </Grid.RowDefinitions>
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1" CornerRadius="10"/>
+                                                <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                                                    <Track.DecreaseRepeatButton>
+                                                        <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource RepeatButtonTransparent}" HorizontalAlignment="Left" Width="17"/>
+                                                    </Track.DecreaseRepeatButton>
+                                                    <Track.IncreaseRepeatButton>
+                                                        <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                                    </Track.IncreaseRepeatButton>
+                                                    <Track.Thumb>
+                                                        <Thumb Style="{StaticResource ScrollBarThumbVertical}" Margin="2"/>
+                                                    </Track.Thumb>
+                                                </Track>
+                                            </Grid>
+
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.Resources>
+
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical" />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
-                        
+
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -271,32 +296,20 @@
                                     </Grid.ColumnDefinitions>
                                     <Label
                                             Grid.Column="0"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding LeaveTime}"
                                             ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
                                     <Label
                                             Grid.Column="1"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding FromPlace}"/>
                                     <Label
                                             Grid.Column="2"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding ToPlace}"/>
                                     <Label
                                             Grid.Column="3"
-                                            HorizontalAlignment="Stretch"
-                                            HorizontalContentAlignment="Center"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0.5"
+                                            Style="{StaticResource ListItemStyle}"
                                             Content="{Binding Cost}"/>
 
                                 </Grid>

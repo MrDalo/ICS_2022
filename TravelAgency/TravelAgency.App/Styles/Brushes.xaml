@@ -3,13 +3,13 @@
 
     <!--Default Brushes for the application-->
  
-    <SolidColorBrush x:Key="DefaultForegroundBrightBrush" Color="#fff"/>
-    <SolidColorBrush x:Key="DefaultForegroundDarkBrush" Color="#000"/>
+    <SolidColorBrush x:Key="DefaultForegroundBrightBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="DefaultForegroundDarkBrush" Color="#000000"/>
 
-    <SolidColorBrush x:Key="DefaultAddButtonBrush" Color="#FFC4C4C4"/>
-    <SolidColorBrush x:Key="DefaultAddButtonHoverBrush" Color="#FFE7E7E7"/>
+    <SolidColorBrush x:Key="DefaultAddButtonBrush" Color="#F0F0F0"/>
+    <SolidColorBrush x:Key="DefaultAddButtonHoverBrush" Color="#D0D0D0"/>
 
-    <SolidColorBrush x:Key="DefaultBackgroundBrightBrush" Color="#fff"/>
+    <SolidColorBrush x:Key="DefaultBackgroundBrightBrush" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="DefaultBackgroundBrush" Color="#E4002B"/>
     <SolidColorBrush x:Key="DefaultBackgroundBrushHover" Color="#FFFF7575"/>
 </ResourceDictionary>
