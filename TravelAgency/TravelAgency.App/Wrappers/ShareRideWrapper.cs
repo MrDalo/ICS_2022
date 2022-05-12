@@ -95,7 +95,12 @@ namespace TravelAgency.App.Wrappers
                 yield return new ValidationResult($"{nameof(LeaveTime)} is required", new[] { nameof(LeaveTime) });
             }
 
-            if (Cost < 0)
+            if (DateTime.Compare(Model.LeaveTime, Model.ArriveTime) >= 0)
+            {
+                yield return new ValidationResult($"{nameof(LeaveTime)} is similar or later", new[] { nameof(ArriveTime) });
+            }
+
+            if (Cost <= 0)
             {
                 yield return new ValidationResult($"{nameof(Cost)} is required", new[] { nameof(Cost) });
             }
