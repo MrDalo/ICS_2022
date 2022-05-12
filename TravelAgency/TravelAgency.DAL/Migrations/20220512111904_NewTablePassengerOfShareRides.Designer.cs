@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelAgency.DAL;
 
@@ -11,9 +12,10 @@ using TravelAgency.DAL;
 namespace TravelAgency.DAL.Migrations
 {
     [DbContext(typeof(TravelAgencyDbContext))]
-    partial class TravelAgencyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220512111904_NewTablePassengerOfShareRides")]
+    partial class NewTablePassengerOfShareRides
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
