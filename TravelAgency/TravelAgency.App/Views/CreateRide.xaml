@@ -162,12 +162,12 @@
 
                 <Label
                         Grid.Column="0"
-                        Grid.Row="0"
+                        Grid.Row="1"
                         Style="{StaticResource DataTitle}"
                         >Príchod:
                 </Label>
                 <TextBox
-                        Grid.Row="0"
+                        Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource EditOrCreateTextbox}"
                         Text="{Binding Model.ArriveTime, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
@@ -176,12 +176,12 @@
 
                 <Label
                         Grid.Column="0"
-                        Grid.Row="1"
+                        Grid.Row="0"
                         Style="{StaticResource DataTitle}"
                     >Odchod:
                 </Label>
                 <TextBox
-                        Grid.Row="1"
+                        Grid.Row="0"
                         Grid.Column="1"
                         Style="{StaticResource EditOrCreateTextbox}"
                         Text="{Binding Model.LeaveTime, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
