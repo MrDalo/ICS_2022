@@ -1,12 +1,9 @@
-﻿using TravelAgency.App.Factories;
+﻿using System;
+using System.Windows.Input;
+using TravelAgency.App.Commands;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Services;
 using TravelAgency.App.Wrappers;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using TravelAgency.App.Commands;
 
 namespace TravelAgency.App.ViewModels
 {
@@ -76,7 +73,7 @@ namespace TravelAgency.App.ViewModels
         {
             // Load User Cars into Profile
             _mediator.Send(new LoadUserProfile(SelectedUserDetailViewModel.Model.Id));
-            
+
             // Profile Visibility
             _mediator.Send(new OpenProfileInfoMessage());
         }
@@ -100,10 +97,7 @@ namespace TravelAgency.App.ViewModels
 
             else
             {
-                if (SelectedUserDetailViewModel == null)
-                {
-                    SelectedUserDetailViewModel = UserDetailViewModel;
-                }
+                SelectedUserDetailViewModel ??= UserDetailViewModel;
 
                 SelectedUserDetailViewModel.LoadAsync(id.Value);
             }
@@ -127,10 +121,7 @@ namespace TravelAgency.App.ViewModels
             }
             else
             {
-                if (SelectedCarDetailViewModel == null)
-                {
-                    SelectedCarDetailViewModel = CarDetailViewModel;
-                }
+                SelectedCarDetailViewModel ??= CarDetailViewModel;
 
                 SelectedCarDetailViewModel.LoadAsync(id.Value);
             }
@@ -154,10 +145,7 @@ namespace TravelAgency.App.ViewModels
             }
             else
             {
-                if (SelectedShareRideDetailViewModel == null)
-                {
-                    SelectedShareRideDetailViewModel = ShareRideDetailViewModel;
-                }
+                SelectedShareRideDetailViewModel ??= ShareRideDetailViewModel;
 
                 SelectedShareRideDetailViewModel.LoadAsync(id.Value);
             }

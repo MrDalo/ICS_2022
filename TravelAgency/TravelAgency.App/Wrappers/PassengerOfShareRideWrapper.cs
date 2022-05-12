@@ -27,8 +27,6 @@ namespace TravelAgency.App.Wrappers
             set => SetValue(value);
         }
 
-        // TODO - constraints
-
         public static implicit operator PassengerOfShareRideWrapper(PassengerOfShareRideDetailModel detailModel)
             => new(detailModel);
 

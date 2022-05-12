@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.Input;
-using TravelAgency.App.Services;
 using TravelAgency.App.Messages;
-using TravelAgency.App.Wrappers;
+using TravelAgency.App.Services;
 
 namespace TravelAgency.App.ViewModels
 {
@@ -26,7 +21,7 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<LogInMessage>(OnUserLogin);
             mediator.Register<LogOutMessage>(OnLogOut);
         }
-        
+
         public ICommand CreateRide { get; set; }
         public ICommand SearchRide { get; set; }
         public Guid UserId { get; set; }

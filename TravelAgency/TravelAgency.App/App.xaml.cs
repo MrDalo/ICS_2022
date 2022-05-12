@@ -1,25 +1,19 @@
-﻿//using TravelAgency.App.Extensions;
-using TravelAgency.App.Services;
-using TravelAgency.App.Services.MessageDialog;
-using TravelAgency.App.ViewModels;
-using TravelAgency.App.Views;
-using TravelAgency.DAL;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Globalization;
-using System.Threading;
-using System.Windows;
-using TravelAgency.App.Factories;
-using TravelAgency.App.Settings;
-using TravelAgency.App.Extensions;
-using TravelAgency.BL;
-using TravelAgency.BL.Facades;
-using TravelAgency.DAL.Factories;
-using TravelAgency.DAL.UnitOfWork;
 using Microsoft.Extensions.Options;
+using System;
+using System.Windows;
+using TravelAgency.App.Extensions;
+using TravelAgency.App.Services;
+using TravelAgency.App.Services.MessageDialog;
+using TravelAgency.App.Settings;
+using TravelAgency.App.ViewModels;
+using TravelAgency.App.Views;
+using TravelAgency.BL;
+using TravelAgency.DAL;
+using TravelAgency.DAL.Factories;
 
 namespace TravelAgency.App
 {
@@ -32,7 +26,7 @@ namespace TravelAgency.App
 
         public App()
         {
-            
+
             _host = Host.CreateDefaultBuilder()
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .ConfigureServices((context, services) => { ConfigureServices(context.Configuration, services); })

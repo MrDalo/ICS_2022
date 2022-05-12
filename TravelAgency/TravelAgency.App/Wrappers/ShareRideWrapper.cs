@@ -73,7 +73,6 @@ namespace TravelAgency.App.Wrappers
 
         public ObservableCollection<PassengerOfShareRideWrapper> Passengers { get; set; } = new();
 
-        // TODO - constraints
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (string.IsNullOrWhiteSpace(FromPlace))
@@ -91,7 +90,6 @@ namespace TravelAgency.App.Wrappers
                 yield return new ValidationResult($"{nameof(ArriveTime)} is required", new[] { nameof(ArriveTime) });
             }
 
-            
             if (LeaveTime == default)
             {
                 yield return new ValidationResult($"{nameof(LeaveTime)} is required", new[] { nameof(LeaveTime) });

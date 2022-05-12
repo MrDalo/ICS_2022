@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TravelAgency.App.Services;
-using TravelAgency.BL.Facades;
-using TravelAgency.BL.Models;
-using TravelAgency.App.Messages;
 using TravelAgency.App.Commands;
 using TravelAgency.App.Extensions;
+using TravelAgency.App.Messages;
+using TravelAgency.App.Services;
 using TravelAgency.App.Services.MessageDialog;
 using TravelAgency.App.Wrappers;
+using TravelAgency.BL.Facades;
+using TravelAgency.BL.Models;
 
 namespace TravelAgency.App.ViewModels
 {
@@ -22,11 +18,11 @@ namespace TravelAgency.App.ViewModels
         private readonly IMediator _mediator;
         private bool _isVisible = false;
         private readonly CarFacade _carFacade;
-        private readonly ShareRideFacade _shareRideFacade ;
+        private readonly ShareRideFacade _shareRideFacade;
         private readonly IMessageDialogService _messageDialogService;
 
         private Guid _idUser;
-        private ShareRideWrapper? _model = new ShareRideDetailModel(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: default, DriverId:Guid.Empty);
+        private ShareRideWrapper? _model = new ShareRideDetailModel(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: default, DriverId: Guid.Empty);
 
         public CreateRideViewModel(CarFacade carFacade, ShareRideFacade shareRideFacade, IMediator mediator, IMessageDialogService messageDialogService)
         {
@@ -86,9 +82,9 @@ namespace TravelAgency.App.ViewModels
 
             if (Model.DriverId == Guid.Empty)
             {
-                _model.DriverId = _idUser; 
+                _model.DriverId = _idUser;
             }
-            
+
             OnPropertyChanged();
 
             Model = await _shareRideFacade.SaveAsync(Model.Model);
@@ -127,11 +123,11 @@ namespace TravelAgency.App.ViewModels
             Model = await _shareRideFacade.GetAsync(Guid.Empty) ?? new(string.Empty, string.Empty, default, default, ArriveTime: default, CarId: Guid.Empty, DriverId: Guid.Empty);
         }
 
-        private void CreateRideWindowOpen(CreateRideWindowMessage obj)
+        private async void CreateRideWindowOpen(CreateRideWindowMessage obj)
         {
-            FillCarsObservableCollection(obj.userID);
-            IsVisible = true;
-            CreateModel();
+            await FillCarsObservableCollection(obj.userID);
+            IsVisible = Cars.Count != 0;
+            await CreateModel();
         }
 
         private bool CanSave() => Model?.IsValid ?? false;

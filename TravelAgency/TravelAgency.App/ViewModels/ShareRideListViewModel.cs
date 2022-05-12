@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TravelAgency.App.Commands;
+using TravelAgency.App.Extensions;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Services;
-using TravelAgency.App.Extensions;
-using TravelAgency.BL.Models;
 using TravelAgency.App.Wrappers;
-using TravelAgency.App.Commands;
 using TravelAgency.BL.Facades;
-using TravelAgency.Common.Enums;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Windows.Input;
+using TravelAgency.BL.Models;
 
 namespace TravelAgency.App.ViewModels
 {
@@ -77,10 +72,10 @@ namespace TravelAgency.App.ViewModels
             _userGuid = obj.Id;
             DriverShareRides.Clear();
             PassengerShareRides.Clear();
-            
+
             var driverShareRides = await _shareRideFacade.GetDriverShareRides(obj.Id);
             var passengerShareRides = await _shareRideFacade.GetUserPassengerShareRides(obj.Id);
-            
+
             DriverShareRides.AddRange(driverShareRides);
             PassengerShareRides.AddRange(passengerShareRides);
         }

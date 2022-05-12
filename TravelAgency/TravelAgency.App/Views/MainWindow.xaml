@@ -122,7 +122,6 @@
 
         <views:UserCars
             Grid.Column="1"/>
-            <!--DataContext="{Binding CarListViewModel}"/>-->
 
         <views:UserRides
             Grid.Column="1" 

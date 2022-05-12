@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TravelAgency.App.Commands;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Services;
-using TravelAgency.BL.Models;
-using TravelAgency.App.Commands;
-using TravelAgency.BL.Facades;
-using System.Windows.Input;
 using TravelAgency.App.Wrappers;
-using TravelAgency.App.Services.MessageDialog;
+using TravelAgency.BL.Facades;
 
 
 namespace TravelAgency.App.ViewModels

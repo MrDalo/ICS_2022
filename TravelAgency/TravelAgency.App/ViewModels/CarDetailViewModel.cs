@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TravelAgency.App.Messages;
 using TravelAgency.App.Services;
-using TravelAgency.App.Extensions;
-using TravelAgency.BL.Models;
+using TravelAgency.App.Services.MessageDialog;
 using TravelAgency.App.Wrappers;
 using TravelAgency.BL.Facades;
-using TravelAgency.Common.Enums;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.Input;
-using TravelAgency.App.Services.MessageDialog;
 using AsyncRelayCommand = TravelAgency.App.Commands.AsyncRelayCommand;
 
 
@@ -90,7 +82,7 @@ namespace TravelAgency.App.ViewModels
 
             Model = await _carFacade.SaveAsync(Model.Model);
             _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });
-            
+
             // Hide window
             Model = null;
         }
@@ -142,7 +134,7 @@ namespace TravelAgency.App.ViewModels
         {
             _idUser = obj.Id;
         }
-       
+
         private void GoBackFunc()
         {
             _mediator.Send(new UpdateMessage<CarWrapper> { Model = Model });

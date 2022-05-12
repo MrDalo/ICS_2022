@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices.ActiveDirectory;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using Microsoft.Toolkit.Mvvm.Input;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.Input;
-using TravelAgency.App.Services;
 using TravelAgency.App.Messages;
+using TravelAgency.App.Services;
 using TravelAgency.BL.Facades;
 using RelayCommand = TravelAgency.App.Commands.RelayCommand;
 
@@ -18,15 +13,6 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
-
-        private DateTime _TimeValue = DateTime.Now;
-        private DateTime _currentDate = DateTime.Now;
-
-        public ICommand GoBack { get; }
-        public ICommand FilteredRides { get; }
-
-        public ICommand IncrementTime { get; }
-        public ICommand DecrementTime { get; }
 
         public SearchRideViewModel(ShareRideFacade shareRideFacade, IMediator mediator)
         {
@@ -41,8 +27,18 @@ namespace TravelAgency.App.ViewModels
             DecrementTime = new RelayCommand(DecrementTimeValue);
         }
 
-       
+        public ICommand GoBack { get; }
+        public ICommand FilteredRides { get; }
+        public ICommand IncrementTime { get; }
+        public ICommand DecrementTime { get; }
 
+        private readonly ShareRideFacade _shareRideFacade;
+        public string? FromPlace { get; set; }
+        public string? ToPlace { get; set; }
+        private Guid UserId { get; set; }
+
+        private DateTime _timeValue = DateTime.Now;
+        private DateTime _currentDate = DateTime.Now;
 
         public bool IsVisible
         {
@@ -55,19 +51,13 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
-        private readonly ShareRideFacade _shareRideFacade;
-
-        public string? FromPlace { get; set; }
-        public string? ToPlace { get; set; }
-        private Guid UserId { get; set; }
-
         public DateTime TimeValue
         {
-            get => _TimeValue;
+            get => _timeValue;
 
             set
             {
-                _TimeValue = value;
+                _timeValue = value;
                 OnPropertyChanged();
             }
         }
@@ -82,13 +72,11 @@ namespace TravelAgency.App.ViewModels
                 OnPropertyChanged();
             }
         }
-
         private void GoBackFunc()
         {
             IsVisible = false;
 
         }
-
         private async Task FilterRidesButton()
         {
             var newTimeForFiltering = new DateTime(year: CurrentDate.Year, month: CurrentDate.Month,
@@ -97,7 +85,6 @@ namespace TravelAgency.App.ViewModels
                 startLocation: FromPlace, destinationLocation: ToPlace);
 
             _mediator.Send(new FilteredRideWindowMessage(filteredShareRides, FromPlace, ToPlace, newTimeForFiltering, newTimeForFiltering, UserId));
-
         }
 
         private void OnSearchRideOpen(OpenSearchRideMessage obj)
@@ -105,9 +92,10 @@ namespace TravelAgency.App.ViewModels
             UserId = obj.UserId;
             IsVisible = true;
         }
+
         private void OnSearchRideClose(CloseSearchRideMessage obj)
         {
-           IsVisible = false;
+            IsVisible = false;
         }
 
         private void IncrementTimeValue()
@@ -119,5 +107,4 @@ namespace TravelAgency.App.ViewModels
             TimeValue = TimeValue.AddMinutes(-30);
         }
     }
-
 }

@@ -276,8 +276,8 @@
         </Border>
 
         <ListView Width="Auto" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Stretch" d:ItemsSource="{d:SampleData}" 
-                  SelectedItem="{Binding selectedShareRide}" 
-                  ItemsSource="{Binding Path=filteredShareRides}"
+                  SelectedItem="{Binding SelectedShareRide}" 
+                  ItemsSource="{Binding Path=FilteredShareRides}"
                   ItemContainerStyle="{StaticResource SelectedItem2}"
                   BorderThickness="0"
                   >
@@ -380,19 +380,6 @@
                                 </MultiBinding>
                            </TextBlock.Text>
                         </TextBlock>
-                        
-
-
-                        <Ellipse
-                            Grid.Column="5"
-                            Grid.Row="0"
-                            Grid.RowSpan="3"
-                            Height="40" Width="40">
-                                <Ellipse.Fill>
-                                    <ImageBrush  Stretch="UniformToFill" ImageSource="{Binding }"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
-
                     </Grid>
                     </Border>
 
@@ -408,7 +395,7 @@
                 Content="Pridať sa" 
                 Padding="10,0,10,0"
                 Margin="0,0,0,10"
-                Visibility="{Binding Path=selectedShareRide, Converter={StaticResource NullToVisibilityConverter}}"
+                Visibility="{Binding Path=SelectedShareRide, Converter={StaticResource NullToVisibilityConverter}}"
                 />
         
         <Grid.RowDefinitions>
