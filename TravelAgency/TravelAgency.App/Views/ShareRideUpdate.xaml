@@ -71,7 +71,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalContentAlignment="Center"
-                            Content="{Binding Model.LeaveTime, StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'}"
+                            Content="{Binding Model.LeaveTime}"
+                            ContentStringFormat='{}{0:dd/MM/yyyy HH:mm}'
                             FontSize="13"/>                        
                        
                     </Grid>
@@ -89,7 +90,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Stretch"
                             VerticalContentAlignment="Center"
-                            Content="{Binding Model.ArriveTime, StringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'}"
+                            Content="{Binding Model.ArriveTime}"
+                            ContentStringFormat='{}{0:dd/MM/yyyy HH:mm}'
                             FontSize="13"/>
                         
                     </Grid>

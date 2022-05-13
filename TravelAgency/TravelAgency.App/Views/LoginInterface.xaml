@@ -22,7 +22,6 @@
             <ComboBox 
                     x:Name="UserListComboBox"
                     Grid.Row="0"
-                    Style="{StaticResource CarUpdateComboBox}"
                     ItemsSource="{Binding Mode=OneWay,Path= Users}"
                     DisplayMemberPath="Login">
                 

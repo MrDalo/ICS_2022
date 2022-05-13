@@ -126,50 +126,51 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
 
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" Content="Filter" HorizontalContentAlignment="Center" 
                    VerticalContentAlignment="Center"
                    FontSize="22"/>
-            <CheckBox IsChecked="{Binding ArrivalSelected}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource DefaultBackgroundBrush}"/>
- 
-            <Label
+                
+                    <Label
                         x:Name ="Arrival"
                         Grid.Column="0" 
                         Grid.Row="1" 
-                        Width="Auto" Height="40" 
-                        HorizontalAlignment="Center" 
+                        HorizontalAlignment="Stretch" 
                         VerticalAlignment="Center" 
                         Panel.ZIndex="10"
                         Background="Transparent"
                         Content="Odchod"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
-                        Foreground="{StaticResource DefaultForegroundBrightBrush}"
+                        Foreground="{StaticResource DefaultForegroundDarkBrush}"
                         FontWeight="Bold"
                         FontSize="12"/>
                     <Label
                         x:Name="Departure"
                         Grid.Column="1" 
                         Grid.Row="1" 
-                        Width="Auto" Height="40" 
-                        HorizontalAlignment="Left" 
+                        HorizontalAlignment="Stretch" 
                         VerticalAlignment="Center" 
                         Panel.ZIndex="10"
                         Background="Transparent"
-                        Foreground="{StaticResource DefaultForegroundBrightBrush}"
+                        Foreground="{StaticResource DefaultForegroundDarkBrush}"
                         Content="Príchod"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontWeight="Bold"
                         FontSize="12"/>
+            
+            <CheckBox IsChecked="{Binding ArrivalSelected}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource DefaultBackgroundBrush}"/>
+ 
 
-            <Label Grid.Column="0" Grid.Row="2" Content="Od:" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="3" Content="Od:" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border Grid.Column="1" 
-                        Grid.Row="2" 
-                        HorizontalAlignment="Center" 
+                        Grid.Row="3" 
+                        HorizontalAlignment="Stretch" 
                         Width="100" 
                         Height="30" 
                         Background="{StaticResource DefaultBackgroundBrightBrush}"
@@ -184,34 +185,30 @@
                              Foreground="{StaticResource DefaultForegroundDarkBrush}"
                              Text="{Binding Path=TimeValue1,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
                 </Border>
-                    <Button x:Name="Inc_btn1"
-                            Grid.Column="1" 
-                            Grid.Row="2" 
-                            Style="{StaticResource AddOrSubTime}"
-                            HorizontalAlignment="Left" 
-                            VerticalAlignment="Center"
-                            Content="+"
-                            Cursor="Hand"
-                            Command="{Binding IncrementTime1}"
-                            />
 
                     <Button x:Name="Dec_btn1"
                             Grid.Column="1" 
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Style="{StaticResource AddOrSubTime}"
-                            HorizontalAlignment="Right" 
-                            VerticalAlignment="Center"
+                            Margin="-75,0,0,0"
                             Content="-"
-                            Cursor="Hand"
                             Command="{Binding DecrementTime1}"
                     />
+                    <Button x:Name="Inc_btn1"
+                            Grid.Column="1" 
+                            Grid.Row="3" 
+                            Style="{StaticResource AddOrSubTime}"
+                            Margin="75,0,0,0"
+                            Content="+"
+                            Command="{Binding IncrementTime1}"
+                            />
 
 
 
-            <Label Grid.Column="0" Grid.Row="3" Content="Do:" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" Grid.Row="4" Content="Do:" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Border Grid.Column="1" 
-                        Grid.Row="3" 
-                        HorizontalAlignment="Center" 
+                        Grid.Row="4" 
+                        HorizontalAlignment="Stretch" 
                         Width="100" 
                         Height="30" 
                         Background="{StaticResource DefaultBackgroundBrightBrush}"
@@ -227,46 +224,40 @@
                              Text="{Binding Path=TimeValue2,StringFormat='{}{0:HH:mm}', UpdateSourceTrigger=PropertyChanged}" />
                 </Border>
 
+                <Button x:Name="Dec_btn"
+                        Grid.Column="1" 
+                        Grid.Row="4" 
+                        Style="{StaticResource AddOrSubTime}"
+                        Margin="-75,0,0,0"
+                        Content="-"
+                        Command="{Binding DecrementTime2}"
+                />
 
                 <Button x:Name="Inc_btn"
                             Grid.Column="1" 
-                            Grid.Row="3" 
+                            Grid.Row="4" 
                             Style="{StaticResource AddOrSubTime}"
-                            HorizontalAlignment="Left" 
-                            VerticalAlignment="Center"
+                            Margin="75,0,0,0"
                             Content="+"
-                            Cursor="Hand"
                             Command="{Binding IncrementTime2}"
                     />
 
-                    <Button x:Name="Dec_btn"
-                            Grid.Column="1" 
-                            Grid.Row="3" 
-                            Style="{StaticResource AddOrSubTime}"
-                            HorizontalAlignment="Right"  
-                            VerticalAlignment="Center"
-                            Content="-"
-                            Cursor="Hand"
-                            Command="{Binding DecrementTime2}"
-                    />
 
 
             <Button
                 Grid.Column="0" 
-                Grid.Row="4" 
-                Content="Zmena trasy" 
-                Cursor="Hand"
+                Grid.Row="5" 
+                Content="Zmena trasy"
                 Width="100"
                 Height="30"
                 Style="{StaticResource WhiteButton}"
                 Command="{Binding GoBack}"/>
 
             <Button Grid.Column="1" 
-                    Grid.Row="4" 
+                    Grid.Row="5" 
                     Content="Filtrovať" 
                     Width="100" Height="30"
                     Style="{StaticResource RedButton}"
-                    Cursor="Hand"
                     Command="{Binding FilterRides}"/>
 
 
@@ -349,8 +340,8 @@
                         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Width="Auto" Content="{Binding FromPlace}"/>
                         <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Width="Auto" Content="{Binding ToPlace}"/>
 
-                        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Width="Auto" Content="{Binding Path=LeaveTime}" ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
-                            <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Width="Auto" Content="{Binding Path=ArriveTime}" ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
+                        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Width="Auto" Content="{Binding Path=LeaveTime}" ContentStringFormat='{}{0:dd/MM/yyyy HH:mm}'/>
+                            <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Width="Auto" Content="{Binding Path=ArriveTime}" ContentStringFormat='{}{0:dd/MM/yyyy HH:mm}'/>
 
                             <Image
                                 Grid.Column="3"

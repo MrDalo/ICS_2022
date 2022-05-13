@@ -24,6 +24,112 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid   
+                x:Name="Calendar1"
+                Grid.Column="0" 
+                Grid.Row="0"
+                Grid.RowSpan="4"
+                Grid.ColumnSpan="2"
+                Panel.ZIndex="100"
+                Visibility="{Binding Path=OpenCalendar1, Converter={StaticResource BoolToVis}}"
+                >
+
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border 
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Panel.ZIndex="105"
+                    Background="White"
+                    Width="Auto"
+                    Height="Auto"
+                    CornerRadius="20"
+                    BorderThickness="0"
+                    Padding="10"
+                    >
+                     <Calendar
+                               x:Name="CalendarStart"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               DisplayDate="{Binding CurrentDate1}"
+                               SelectedDate="{Binding CurrentDate1}"
+                               IsTodayHighlighted="False"
+                               SelectionMode="SingleDate"
+                               Visibility="{Binding Path=OpenCalendar1, Converter={StaticResource BoolToVis}}"
+                    />
+
+            </Border>
+            
+            <Button 
+                Grid.Column="0"
+                Panel.ZIndex="105"
+                Style="{StaticResource CloseButton}"
+                Command="{Binding ShowCalendar1}"
+                >X
+            </Button>
+            
+        </Grid>
+
+        <Grid   
+                x:Name="Calendar2"
+                Grid.Column="0" 
+                Grid.Row="0"
+                Grid.RowSpan="4"
+                Grid.ColumnSpan="2"
+                Panel.ZIndex="100"
+                Visibility="{Binding Path=OpenCalendar2, Converter={StaticResource BoolToVis}}"
+                >
+
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border 
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Panel.ZIndex="105"
+                    Background="White"
+                    Width="Auto"
+                    Height="Auto"
+                    CornerRadius="20"
+                    BorderThickness="0"
+                    Padding="10"
+                    >
+                <Calendar
+                               x:Name="CalendarEnd"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               DisplayDate="{Binding CurrentDate1}"
+                               SelectedDate="{Binding CurrentDate1}"
+                               IsTodayHighlighted="False"
+                               SelectionMode="SingleDate"
+                               Visibility="{Binding Path=OpenCalendar2, Converter={StaticResource BoolToVis}}"
+                    />
+
+            </Border>
+
+            <Button 
+                Grid.Column="0"
+                Panel.ZIndex="105"
+                Style="{StaticResource CloseButton}"
+                Command="{Binding ShowCalendar2}"
+                >X
+            </Button>
+
+        </Grid>
+
         <Ellipse
             Grid.Column="0"
             Grid.RowSpan="3"
@@ -116,27 +222,25 @@
                  Margin="-250,120,0,0"
                  />
 
-        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+        
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
+
+            <StackPanel>
             <Label
-                    Grid.Row="0"
                     Style="{StaticResource DataTitle}"
                 >Zvoľte auto:
             </Label>
 
             <ComboBox x:Name="CarListComboBox"
-                          Grid.Row="1"
-                          VerticalAlignment="Top"
-                    
-                          ItemsSource="{Binding Cars, UpdateSourceTrigger=PropertyChanged}"
-                          
-                          DisplayMemberPath="LicensePlate" 
-                          SelectionChanged="ComboBox_SelectionChanged">
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding Cars, UpdateSourceTrigger=PropertyChanged}"                        
+                        DisplayMemberPath="LicensePlate" 
+                        SelectionChanged="ComboBox_SelectionChanged">
 
                 <interactions:Interaction.Triggers>
                     <interactions:EventTrigger EventName="SelectionChanged">
@@ -146,14 +250,17 @@
                 </interactions:Interaction.Triggers>
 
             </ComboBox>
-        </Grid>
+            </StackPanel>
+        
             
-            <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" >
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -162,47 +269,75 @@
 
                 <Label
                         Grid.Column="0"
-                        Grid.Row="1"
-                        Style="{StaticResource DataTitle}"
-                        >Príchod:
-                </Label>
-                <TextBox
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Style="{StaticResource EditOrCreateTextbox}"
-                        Text="{Binding Model.ArriveTime, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                        />
-
-
-                <Label
-                        Grid.Column="0"
                         Grid.Row="0"
                         Style="{StaticResource DataTitle}"
                     >Odchod:
                 </Label>
+                <Button 
+                    Grid.Column="0" Grid.Row="1"
+                    Background="Transparent" 
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Width="Auto" Height="50"
+                    Command="{Binding ShowCalendar1}">
+
+                    <StackPanel Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Image Source=" http://www.tkdfm.cz/wp-content/uploads/calendar-icon.png" Width="50" Height="50"/>
+                    </StackPanel>
+                </Button>
+
                 <TextBox
-                        Grid.Row="0"
+                        Grid.Row="1"
                         Grid.Column="1"
                         Style="{StaticResource EditOrCreateTextbox}"
-                        Text="{Binding Model.LeaveTime, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
-                    ></TextBox>
-
+                        Text="{Binding ElementName=CalendarStart, Path=SelectedDate,StringFormat='{}{0:dd/MM/yyyy HH:mm}', UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label
                         Grid.Column="0"
                         Grid.Row="2"
                         Style="{StaticResource DataTitle}"
+                        >Príchod:
+                </Label>
+                <Button 
+                    Grid.Column="0" Grid.Row="3"
+                    Background="Transparent" 
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Width="Auto" Height="50"
+                    Command="{Binding ShowCalendar2}">
+
+                    <StackPanel Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Image Source=" http://www.tkdfm.cz/wp-content/uploads/calendar-icon.png" Width="50" Height="50"/>
+                    </StackPanel>
+                </Button>
+
+                <TextBox
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Style="{StaticResource EditOrCreateTextbox}"
+                        Text="{Binding ElementName=CalendarEnd, Path=SelectedDate,StringFormat='{}{0:dd/MM/yyyy HH:mm}', UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Style="{StaticResource DataTitle}"
                     >Cena:
                 </Label>
-                <TextBox
-                        Grid.Row="2"
+                    <TextBox
+                        Grid.Row="4"
                         Grid.Column="1"
                         Style="{StaticResource EditOrCreateTextbox}"
                         Text="{Binding Model.Cost, UpdateSourceTrigger=PropertyChanged}"
-                    ></TextBox>
+                    />
 
 
             </Grid>
+        </Grid>
 
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

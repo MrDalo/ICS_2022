@@ -123,7 +123,7 @@
                         Grid.Column="1"
                         ItemsSource="{Binding Source={extensions:EnumBindingSource {x:Type enums:CarType}}, UpdateSourceTrigger=PropertyChanged}"
                         SelectedItem="{Binding Model.CarType, UpdateSourceTrigger=PropertyChanged}"
-                        Style="{StaticResource CarUpdateComboBox}"/>
+                        />
 
                 </Grid>
                 <Grid Grid.Row="2" Grid.Column="1">

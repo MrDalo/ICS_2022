@@ -13,6 +13,7 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
+        private bool _openCalendar = false;
 
         public SearchRideViewModel(ShareRideFacade shareRideFacade, IMediator mediator)
         {
@@ -25,12 +26,14 @@ namespace TravelAgency.App.ViewModels
             FilteredRides = new AsyncRelayCommand(FilterRidesButton);
             IncrementTime = new RelayCommand(IncrementTimeValue);
             DecrementTime = new RelayCommand(DecrementTimeValue);
+            ShowCalendar = new RelayCommand(() => OpenCalendar = !OpenCalendar);
         }
 
         public ICommand GoBack { get; }
         public ICommand FilteredRides { get; }
         public ICommand IncrementTime { get; }
         public ICommand DecrementTime { get; }
+        public ICommand ShowCalendar { get; }
 
         private readonly ShareRideFacade _shareRideFacade;
         public string? FromPlace { get; set; }
@@ -50,7 +53,16 @@ namespace TravelAgency.App.ViewModels
                 OnPropertyChanged();
             }
         }
+        public bool OpenCalendar
+        {
+            get => _openCalendar;
 
+            set
+            {
+                _openCalendar = value;
+                OnPropertyChanged();
+            }
+        }
         public DateTime TimeValue
         {
             get => _timeValue;
@@ -61,7 +73,6 @@ namespace TravelAgency.App.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public DateTime CurrentDate
         {
             get => _currentDate;

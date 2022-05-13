@@ -52,7 +52,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Margin="0,0,10,0">
+                <Grid Grid.Row="0" Margin="0,0,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
@@ -159,7 +159,7 @@
                                             Grid.Column="0"
                                             Style="{StaticResource ListItemStyle}"
                                             Content="{Binding LeaveTime}"
-                                            ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
+                                            ContentStringFormat='{}{0:dd/MM/yyyy HH:mm}'/>
                                     <Label
                                             Grid.Column="1"
                                             Style="{StaticResource ListItemStyle}"
@@ -199,7 +199,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Margin="0,0,10,0">
+                <Grid Grid.Row="0" Margin="0,0,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
@@ -298,7 +298,7 @@
                                             Grid.Column="0"
                                             Style="{StaticResource ListItemStyle}"
                                             Content="{Binding LeaveTime}"
-                                            ContentStringFormat='{}{0:dd.MM.yyyy HH:mm:ss}'/>
+                                            ContentStringFormat='{}{0:dd/MM/yyyy HH:mm}'/>
                                     <Label
                                             Grid.Column="1"
                                             Style="{StaticResource ListItemStyle}"

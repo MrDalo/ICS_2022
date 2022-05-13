@@ -17,6 +17,8 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly IMediator _mediator;
         private bool _isVisible = false;
+        private bool _openCalendar1 = false;
+        private bool _openCalendar2 = false;
         private readonly CarFacade _carFacade;
         private readonly ShareRideFacade _shareRideFacade;
         private readonly IMessageDialogService _messageDialogService;
@@ -35,6 +37,9 @@ namespace TravelAgency.App.ViewModels
             SubmitCreation = new AsyncRelayCommand(SubmitCreationFunc, CanSave);
             GoBack = new RelayCommand(GoBackFunc);
 
+            ShowCalendar1 = new RelayCommand(() => OpenCalendar1 = !OpenCalendar1);
+            ShowCalendar2 = new RelayCommand(() => OpenCalendar2 = !OpenCalendar2);
+
             mediator.Register<CreateRideWindowMessage>(CreateRideWindowOpen);
         }
 
@@ -43,7 +48,11 @@ namespace TravelAgency.App.ViewModels
         public ICommand SubmitCreation { get; }
         public ICommand GoBack { get; }
         public ICommand CarSelectedCommand { get; }
+        public ICommand ShowCalendar1 { get; }
+        public ICommand ShowCalendar2 { get; }
 
+        private DateTime _currentDate1 = DateTime.Now;
+        private DateTime _currentDate2 = DateTime.Now;
         public ShareRideWrapper? Model
         {
             get => _model;
@@ -64,7 +73,46 @@ namespace TravelAgency.App.ViewModels
                 OnPropertyChanged();
             }
         }
+        public bool OpenCalendar1
+        {
+            get => _openCalendar1;
 
+            set
+            {
+                _openCalendar1 = value;
+                OnPropertyChanged();
+            }
+        }
+        public DateTime CurrentDate1
+        {
+            get => _currentDate1;
+
+            set
+            {
+                _currentDate1 = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool OpenCalendar2
+        {
+            get => _openCalendar2;
+
+            set
+            {
+                _openCalendar2 = value;
+                OnPropertyChanged();
+            }
+        }
+        public DateTime CurrentDate2
+        {
+            get => _currentDate2;
+
+            set
+            {
+                _currentDate2 = value;
+                OnPropertyChanged();
+            }
+        }
         private void CarSelected(CarListModel? carListModel)
         {
             if (carListModel is not null)
