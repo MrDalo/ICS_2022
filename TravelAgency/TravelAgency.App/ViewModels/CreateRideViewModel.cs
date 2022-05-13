@@ -36,7 +36,10 @@ namespace TravelAgency.App.ViewModels
             CarSelectedCommand = new RelayCommand<CarListModel>(CarSelected);
             SubmitCreation = new AsyncRelayCommand(SubmitCreationFunc, CanSave);
             GoBack = new RelayCommand(GoBackFunc);
-
+            IncrementTime1 = new RelayCommand(IncrementTimeValue1);
+            DecrementTime1 = new RelayCommand(DecrementTimeValue1);
+            IncrementTime2 = new RelayCommand(IncrementTimeValue2);
+            DecrementTime2 = new RelayCommand(DecrementTimeValue2);
             ShowCalendar1 = new RelayCommand(() => OpenCalendar1 = !OpenCalendar1);
             ShowCalendar2 = new RelayCommand(() => OpenCalendar2 = !OpenCalendar2);
 
@@ -50,9 +53,17 @@ namespace TravelAgency.App.ViewModels
         public ICommand CarSelectedCommand { get; }
         public ICommand ShowCalendar1 { get; }
         public ICommand ShowCalendar2 { get; }
+        public ICommand IncrementTime1 { get; }
+        public ICommand DecrementTime1 { get; }
+        public ICommand IncrementTime2 { get; }
+        public ICommand DecrementTime2 { get; }
 
         private DateTime _currentDate1 = DateTime.Now;
-        private DateTime _currentDate2 = DateTime.Now;
+        private DateTime _currentDate2 = (DateTime.Now).AddMinutes(60);
+
+        private DateTime _timeValue1 = DateTime.Now;
+        private DateTime _timeValue2 = (DateTime.Now).AddMinutes(60);
+
         public ShareRideWrapper? Model
         {
             get => _model;
@@ -90,6 +101,34 @@ namespace TravelAgency.App.ViewModels
             set
             {
                 _currentDate1 = value;
+                string string_date = CurrentDate2.ToString("dd/MM/yyyy");
+                string string_time = TimeValue2.ToString("HH:mm");
+                DateTime dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.ArriveTime = dt;
+
+                string_date = CurrentDate1.ToString("dd/MM/yyyy");
+                string_time = TimeValue1.ToString("HH:mm");
+                dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.LeaveTime = dt;
+                OnPropertyChanged();
+            }
+        }
+        public DateTime TimeValue1
+        {
+            get => _timeValue1;
+
+            set
+            {
+                _timeValue1 = value;
+                string string_date = CurrentDate2.ToString("dd/MM/yyyy");
+                string string_time = TimeValue2.ToString("HH:mm");
+                DateTime dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.ArriveTime = dt;
+
+                string_date = CurrentDate1.ToString("dd/MM/yyyy");
+                string_time = TimeValue1.ToString("HH:mm");
+                dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.LeaveTime = dt;
                 OnPropertyChanged();
             }
         }
@@ -110,9 +149,51 @@ namespace TravelAgency.App.ViewModels
             set
             {
                 _currentDate2 = value;
+                string string_date = CurrentDate2.ToString("dd/MM/yyyy");
+                string string_time = TimeValue2.ToString("HH:mm");
+                DateTime dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.ArriveTime = dt;
+
+                string_date = CurrentDate1.ToString("dd/MM/yyyy");
+                string_time = TimeValue1.ToString("HH:mm");
+                dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.LeaveTime = dt;
                 OnPropertyChanged();
             }
         }
+        public DateTime TimeValue2
+        {
+            get => _timeValue2;
+
+            set
+            {
+                _timeValue2 = value;
+                string string_date = CurrentDate2.ToString("dd/MM/yyyy");
+                string string_time = TimeValue2.ToString("HH:mm");
+                DateTime dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.ArriveTime = dt;
+
+                string_date = CurrentDate1.ToString("dd/MM/yyyy");
+                string_time = TimeValue1.ToString("HH:mm");
+                dt = Convert.ToDateTime(string_date + " " + string_time);
+                _model.LeaveTime = dt;
+                OnPropertyChanged();
+            }
+        }
+
+        //TODO: solve the problem with calling this function (maybe its by using the _model)
+        //public void TimeSetter()
+        //{
+        //    string string_date = CurrentDate2.ToString("dd/MM/yyyy");
+        //    string string_time = TimeValue2.ToString("HH:mm");
+        //    DateTime dt = Convert.ToDateTime(string_date + " " + string_time);
+        //    _model.ArriveTime = dt;
+
+        //    string_date = CurrentDate1.ToString("dd/MM/yyyy");
+        //    string_time = TimeValue1.ToString("HH:mm");
+        //    dt = Convert.ToDateTime(string_date + " " + string_time);
+        //    _model.LeaveTime = dt;
+        //}
         private void CarSelected(CarListModel? carListModel)
         {
             if (carListModel is not null)
@@ -182,6 +263,22 @@ namespace TravelAgency.App.ViewModels
         private void GoBackFunc()
         {
             IsVisible = false;
+        }
+        private void IncrementTimeValue1()
+        {
+            TimeValue1 = TimeValue1.AddMinutes(30);
+        }
+        private void DecrementTimeValue1()
+        {
+            TimeValue1 = TimeValue1.AddMinutes(-30);
+        }
+        private void IncrementTimeValue2()
+        {
+            TimeValue2 = TimeValue2.AddMinutes(30);
+        }
+        private void DecrementTimeValue2()
+        {
+            TimeValue2 = TimeValue2.AddMinutes(-30);
         }
     }
 }
