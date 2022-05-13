@@ -46,6 +46,8 @@ namespace TravelAgency.App.ViewModels
             mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
             mediator.Register<SelectedMessage<CarWrapper>>(OnCarSelected);
             mediator.Register<NewMessage<CarWrapper>>(OnCarNewMessage);
+            mediator.Register<DeleteMessage<CarWrapper>>(OnCarDeleteMessage);
+            mediator.Register<UpdateMessage<CarWrapper>>(OnCarUpdateMessage);
             mediator.Register<SelectedMessage<ShareRideWrapper>>(OnShareRideSelected);
             mediator.Register<NewMessage<ShareRideWrapper>>(OnShareRideNewMessage);
             OpenProfile = new RelayCommand(OnProfileButtonClicked);
@@ -103,8 +105,24 @@ namespace TravelAgency.App.ViewModels
             }
         }
 
+        private void ReloadUser()
+        {
+            SelectedUserDetailViewModel?.LoadAsync(SelectedUserDetailViewModel.Model.Id);
+        }
+
+        private void OnCarDeleteMessage(DeleteMessage<CarWrapper> _)
+        {
+            ReloadUser();
+        }
+
+        private void OnCarUpdateMessage(UpdateMessage<CarWrapper> _)
+        {
+            ReloadUser();
+        }
+
         private void OnCarNewMessage(NewMessage<CarWrapper> obj)
         {
+            ReloadUser();
             SelectCar(Guid.Empty);
         }
 
