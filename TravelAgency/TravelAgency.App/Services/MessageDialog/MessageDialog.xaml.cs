@@ -35,11 +35,11 @@ namespace TravelAgency.App.Services.MessageDialog
             MessageDialogButtonConfiguration buttonConfiguration) =>
             buttonConfiguration switch
             {
-                MessageDialogButtonConfiguration.OK => new[] { MessageDialogResult.OK },
-                MessageDialogButtonConfiguration.OKCancel => new[] { MessageDialogResult.OK, MessageDialogResult.Cancel },
-                MessageDialogButtonConfiguration.YesNoCancel => new[] { MessageDialogResult.Yes, MessageDialogResult.No, MessageDialogResult.Cancel },
-                MessageDialogButtonConfiguration.YesNo => new[] { MessageDialogResult.OK, MessageDialogResult.No },
-                _ => new[] { MessageDialogResult.OK }
+                MessageDialogButtonConfiguration.Ok => new[] { MessageDialogResult.Ok },
+                MessageDialogButtonConfiguration.OkZatvoriť => new[] { MessageDialogResult.Ok, MessageDialogResult.Zatvoriť },
+                MessageDialogButtonConfiguration.ÁnoNieZatvoriť => new[] { MessageDialogResult.Áno, MessageDialogResult.Nie, MessageDialogResult.Zatvoriť },
+                MessageDialogButtonConfiguration.ÁnoNie => new[] { MessageDialogResult.Ok, MessageDialogResult.Nie },
+                _ => new[] { MessageDialogResult.Ok }
             };
 
         private void ButtonClick(object sender, RoutedEventArgs e)

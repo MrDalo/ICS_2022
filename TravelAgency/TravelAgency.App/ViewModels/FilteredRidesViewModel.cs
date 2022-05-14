@@ -23,6 +23,7 @@ namespace TravelAgency.App.ViewModels
         private readonly IMessageDialogService _messageDialogService;
 
         private bool _arrivalSelected = false;
+        private bool _departureSelected = true;
 
         public FilteredRidesViewModel(ShareRideFacade shareRideFacade, UserFacade userFacade, IMediator mediator, IMessageDialogService messageDialogService)
         {
@@ -39,6 +40,8 @@ namespace TravelAgency.App.ViewModels
             IncrementTime2 = new RelayCommand(IncrementTimeValue2);
             DecrementTime2 = new RelayCommand(DecrementTimeValue2);
             AddUserToShareRide = new AsyncRelayCommand(AddUserToShareRideFunc);
+
+            ChangeMode = new RelayCommand(() => DepartureSelected = !DepartureSelected);
         }
         public ObservableCollection<ShareRideDetailModel> FilteredShareRides { get; set; } = new();
 
@@ -49,6 +52,8 @@ namespace TravelAgency.App.ViewModels
         public ICommand DecrementTime1 { get; }
         public ICommand IncrementTime2 { get; }
         public ICommand DecrementTime2 { get; }
+        public ICommand ChangeMode { get; }
+
         public DateTime TimeValue1 { get; set; }
         public DateTime TimeValue2 { get; set; }
 
@@ -79,7 +84,16 @@ namespace TravelAgency.App.ViewModels
                 OnPropertyChanged();
             }
         }
+        public bool DepartureSelected
+        {
+            get => _departureSelected;
 
+            set
+            {
+                _departureSelected = value;
+                OnPropertyChanged();
+            }
+        }
         private void GoBackFunc()
         {
             IsVisible = false;
@@ -119,8 +133,8 @@ namespace TravelAgency.App.ViewModels
                             var _ = _messageDialogService.Show(
                                 $"Úspešne pridané",
                                 $"Boli ste úspešne pridaný do jazdy",
-                                MessageDialogButtonConfiguration.OK,
-                                MessageDialogResult.OK);
+                                MessageDialogButtonConfiguration.Ok,
+                                MessageDialogResult.Ok);
 
                             _mediator.Send(new CloseSearchRideMessage());
                             IsVisible = false;
@@ -130,8 +144,8 @@ namespace TravelAgency.App.ViewModels
                             var _ = _messageDialogService.Show(
                                 $"Časová kolízia",
                                 $"Pridanie do jazdy zlyhalo. V tomto čase už existuje jazda",
-                                MessageDialogButtonConfiguration.OK,
-                                MessageDialogResult.OK);
+                                MessageDialogButtonConfiguration.Ok,
+                                MessageDialogResult.Ok);
                         }
 
                         break;
@@ -141,8 +155,8 @@ namespace TravelAgency.App.ViewModels
                         var _ = _messageDialogService.Show(
                             $"Pridanie zlyhalo",
                             $"Pridanie do jazdy zlyhalo",
-                            MessageDialogButtonConfiguration.OK,
-                            MessageDialogResult.OK);
+                            MessageDialogButtonConfiguration.Ok,
+                            MessageDialogResult.Ok);
                         break;
                     }
                 default:
@@ -150,8 +164,8 @@ namespace TravelAgency.App.ViewModels
                         var _ = _messageDialogService.Show(
                             $"Pridanie zlyhalo",
                             $"Zvolená jazda už nemá voľné miesta",
-                            MessageDialogButtonConfiguration.OK,
-                            MessageDialogResult.OK);
+                            MessageDialogButtonConfiguration.Ok,
+                            MessageDialogResult.Ok);
                         break;
                     }
             }

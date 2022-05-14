@@ -5,30 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.App.Services.MessageDialog"
         mc:Ignorable="d"
-        Background="#DDDDDD"
         WindowStartupLocation="CenterOwner"
-        WindowStyle="ToolWindow"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
         ShowInTaskbar="False"
         ResizeMode="NoResize" MinWidth="300" SizeToContent="WidthAndHeight" d:DesignHeight="138.5">
 
-    <Border BorderBrush="White" BorderThickness="2">
+    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Background="White">
+
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <TextBlock x:Name="textBlock" Text="The Message Text" TextWrapping="Wrap" Margin="5"/>
-            <StackPanel x:Name="ButtonsPanel"
-                        Orientation="Horizontal"
-                        Grid.Row="2"
-                        HorizontalAlignment="Center">
-                <StackPanel.Resources>
-                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                        <Setter Property="Margin" Value="5"/>
-                        <Setter Property="Width" Value="75"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+            <Border Background="{StaticResource DefaultBackgroundBrush}" CornerRadius="10,10,0,0" Padding="5">
+                <TextBlock  x:Name="TitleText"
+                        Grid.Row="0"
+                        HorizontalAlignment="Stretch"
+                        TextAlignment="Center"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        FontSize="20"
+                        Text="{Binding Title,RelativeSource={RelativeSource FindAncestor,AncestorType=Window}}"/>
+            </Border>
+            <TextBlock 
+                    x:Name="textBlock" 
+                    Grid.Row="1"
+                    Text="The Message Text"
+                    FontSize="15"
+                    TextWrapping="Wrap"
+                    Margin="10"
+                    HorizontalAlignment="Stretch" TextAlignment="Center"/>
+   
+        <StackPanel x:Name="ButtonsPanel"
+                    Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="Button" BasedOn="{StaticResource RedButton}">
+                    <Setter Property="Margin" Value="10"/>
+                        <Setter Property="Width" Value="100"/>
                     </Style>
-                </StackPanel.Resources>
-            </StackPanel>
+            </StackPanel.Resources>
+        </StackPanel>
+
         </Grid>
     </Border>
 </Window>

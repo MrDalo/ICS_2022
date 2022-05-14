@@ -117,8 +117,8 @@ namespace TravelAgency.App.ViewModels
                 var _ = _messageDialogService.Show(
                     $"Uloženie",
                     $"Uloženie prebehlo v poriadku.",
-                    MessageDialogButtonConfiguration.OK,
-                    MessageDialogResult.OK);
+                    MessageDialogButtonConfiguration.Ok,
+                    MessageDialogResult.Ok);
 
             IsVisible = false;
         }

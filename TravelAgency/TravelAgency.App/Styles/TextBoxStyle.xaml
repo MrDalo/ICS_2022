@@ -9,6 +9,7 @@
         <Setter Property="BorderThickness" Value="0,0,0,1"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="0,0,20,0"/>
     </Style>
 
     <Style TargetType="TextBox" x:Key="SearchRideTextbox" xmlns:sys="clr-namespace:System;assembly=mscorlib">

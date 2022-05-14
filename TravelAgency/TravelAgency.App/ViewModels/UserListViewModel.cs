@@ -79,8 +79,8 @@ namespace TravelAgency.App.ViewModels
                 var choice = _messageDialogService.Show(
                     "Žiadny zvolený užívateľ :(",
                     $"Pred prihlásením zvoľte užívateľa.",
-                    MessageDialogButtonConfiguration.OK,
-                    MessageDialogResult.OK);
+                    MessageDialogButtonConfiguration.Ok,
+                    MessageDialogResult.Ok);
             }
         }
 

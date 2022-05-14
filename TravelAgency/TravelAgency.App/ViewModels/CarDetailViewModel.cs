@@ -63,8 +63,8 @@ namespace TravelAgency.App.ViewModels
                 var _ = _messageDialogService.Show(
                     $"Uloženie zlyhalo",
                     "Nemôžeš pridať viac ako 3 autá.",
-                    MessageDialogButtonConfiguration.OK,
-                    MessageDialogResult.OK);
+                    MessageDialogButtonConfiguration.Ok,
+                    MessageDialogResult.Ok);
                 Model = null;
                 return;
             }
@@ -101,10 +101,10 @@ namespace TravelAgency.App.ViewModels
                 var delete = _messageDialogService.Show(
                     $"Vymazať",
                     $"Skutočne chcete vymazať auto s ŠPZ {Model?.LicensePlate}?",
-                    MessageDialogButtonConfiguration.YesNo,
-                    MessageDialogResult.No);
+                    MessageDialogButtonConfiguration.ÁnoNie,
+                    MessageDialogResult.Nie);
 
-                if (delete == MessageDialogResult.No) return;
+                if (delete == MessageDialogResult.Nie) return;
 
                 try
                 {
@@ -115,8 +115,8 @@ namespace TravelAgency.App.ViewModels
                     var _ = _messageDialogService.Show(
                         $"Vymazanie auta s ŠPZ {Model?.LicensePlate} zlyhalo!",
                         "Vymazanie zlyhalo",
-                        MessageDialogButtonConfiguration.OK,
-                        MessageDialogResult.OK);
+                        MessageDialogButtonConfiguration.Ok,
+                        MessageDialogResult.Ok);
                 }
 
                 _mediator.Send(new DeleteMessage<CarWrapper>

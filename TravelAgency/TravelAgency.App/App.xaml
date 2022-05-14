@@ -16,8 +16,10 @@
                 <ResourceDictionary Source="Styles/EllipseLogo.xaml"/>
                 <ResourceDictionary Source="Styles/CreateUpdatePopUp.xaml"/>
                 <ResourceDictionary Source="Styles/ListViewStyle.xaml"/>
+                <ResourceDictionary Source="Styles/CalendarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <converters:BooleanToColorConvertor x:Key="BoolToColor" />
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <converters:BooleanToVisibilityConverter x:Key="BoolToVis" />
 

@@ -47,5 +47,13 @@
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="BorderThickness" Value="0,0,0,1"/>
     </Style>
-    
+
+    <Style x:Key="ArrivalDepartureStyle" TargetType="Label">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>

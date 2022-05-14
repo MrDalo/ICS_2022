@@ -100,9 +100,9 @@ namespace TravelAgency.App.ViewModels
                 var delete = _messageDialogService.Show(
                     $"Vymazať jazdu",
                     $"Skutočne chcete vymazať túto jazdu?",
-                    MessageDialogButtonConfiguration.YesNo,
-                    MessageDialogResult.No);
-                if (delete == MessageDialogResult.No) return;
+                    MessageDialogButtonConfiguration.ÁnoNie,
+                    MessageDialogResult.Nie);
+                if (delete == MessageDialogResult.Nie) return;
 
                 try
                 {
@@ -113,8 +113,8 @@ namespace TravelAgency.App.ViewModels
                     var _ = _messageDialogService.Show(
                         $"Deleting failed!",
                         "Deleting failed",
-                        MessageDialogButtonConfiguration.OK,
-                        MessageDialogResult.OK);
+                        MessageDialogButtonConfiguration.Ok,
+                        MessageDialogResult.Ok);
                 }
 
                 _mediator.Send(new DeleteMessage<ShareRideWrapper>
@@ -139,9 +139,9 @@ namespace TravelAgency.App.ViewModels
                 var delete = _messageDialogService.Show(
                     $"Odobrať užívateľa",
                     $"Skutočne chcete odobrať užívateľa {SelectedPassenger?.Passenger.Login}?",
-                    MessageDialogButtonConfiguration.YesNo,
-                    MessageDialogResult.No);
-                if (delete == MessageDialogResult.No) return;
+                    MessageDialogButtonConfiguration.ÁnoNie,
+                    MessageDialogResult.Nie);
+                if (delete == MessageDialogResult.Nie) return;
 
                 try
                 {
@@ -152,18 +152,12 @@ namespace TravelAgency.App.ViewModels
                     var _ = _messageDialogService.Show(
                         $"Deleting failed!",
                         "Deleting failed",
-                        MessageDialogButtonConfiguration.OK,
-                        MessageDialogResult.OK);
+                        MessageDialogButtonConfiguration.Ok,
+                        MessageDialogResult.Ok);
                 }
 
-                // TODO osetrit
                 Passengers.Remove(SelectedPassenger);
                 
-                // TODO update kolekcie
-                //_mediator.Send(new DeleteMessage<ShareRideWrapper>
-                //{
-                //    Model = Model
-                //});
             }
 
             // Hide window

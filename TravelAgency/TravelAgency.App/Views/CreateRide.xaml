@@ -10,11 +10,13 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:CreateRideViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
+    
+
     <Grid Background="{StaticResource DefaultBackgroundBrightBrush}"
           Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1.5*"/>
@@ -58,6 +60,10 @@
                                x:Name="CalendarStart"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
+                               Style="{DynamicResource CalendarStyle1}" 
+                               CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
+                               CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" 
+                               CalendarItemStyle="{DynamicResource CalendarItemStyle1}"
                                DisplayDate="{Binding CurrentDate1}"
                                SelectedDate="{Binding CurrentDate1}"
                                IsTodayHighlighted="False"
@@ -107,10 +113,14 @@
                     BorderThickness="0"
                     Padding="10"
                     >
-                <Calendar
+                <Calendar 
                                x:Name="CalendarEnd"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
+                               Style="{DynamicResource CalendarStyle1}" 
+                               CalendarButtonStyle="{DynamicResource CalendarButtonStyle1}" 
+                               CalendarDayButtonStyle="{DynamicResource CalendarDayButtonStyle1}" 
+                               CalendarItemStyle="{DynamicResource CalendarItemStyle1}"
                                DisplayDate="{Binding CurrentDate2}"
                                SelectedDate="{Binding CurrentDate2}"
                                IsTodayHighlighted="False"
@@ -157,7 +167,7 @@
                         Grid.Row="1" 
                         BorderThickness="1" 
                         BorderBrush="{StaticResource DefaultForegroundDarkBrush}">
-                    <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Odkial" Style="{StaticResource SearchBox}" Text="{Binding Model.FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox VerticalAlignment="Center" BorderThickness="0" BorderBrush="Transparent" Tag="Odkiaľ" Style="{StaticResource SearchBox}" Text="{Binding Model.FromPlace, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
                     
                 <Border VerticalAlignment="Center" 
@@ -237,9 +247,9 @@
             </Label>
 
             <ComboBox x:Name="CarListComboBox"
-                        VerticalAlignment="Top"
                         ItemsSource="{Binding Cars, UpdateSourceTrigger=PropertyChanged}"                        
-                        DisplayMemberPath="LicensePlate" 
+                        DisplayMemberPath="LicensePlate"
+                        Margin="0,0,150,0"
                         SelectionChanged="ComboBox_SelectionChanged">
 
                 <interactions:Interaction.Triggers>
@@ -255,37 +265,35 @@
             
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="0.8*"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.8*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1.5*"/>
                 </Grid.ColumnDefinitions>
 
 
                 <Label
                         Grid.Column="0"
                         Grid.Row="0"
+                        Grid.ColumnSpan="3"
                         Style="{StaticResource DataTitle}"
                     >Odchod:
                 </Label>
                 <Button 
-                    Grid.Column="0" Grid.Row="1"
-                    Background="Transparent" 
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="Auto" Height="50"
+                    Grid.Column="0" 
+                    Grid.Row="1"
+                    Style="{StaticResource CalendarIcon}" 
+                    Height="40"
                     Command="{Binding ShowCalendar1}">
 
                     <StackPanel Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Image Source=" http://www.tkdfm.cz/wp-content/uploads/calendar-icon.png" Width="50" Height="50"/>
+                        <Image Source=" http://www.tkdfm.cz/wp-content/uploads/calendar-icon.png" Width="40" Height="40"/>
                     </StackPanel>
                 </Button>
 
@@ -315,7 +323,7 @@
                             Grid.Row="1"
                             Style="{StaticResource AddOrSubTime}"
                             HorizontalAlignment="Left"
-                            Margin="90,0,0,0"
+                            Margin="15,0,0,0"
                             Content="-"
                             Command="{Binding DecrementTime1}"
                             />
@@ -325,36 +333,46 @@
                             Grid.Row="1" 
                             Style="{StaticResource AddOrSubTime}"
                             HorizontalAlignment="Left"
-                            Margin="15,0,0,0"
+                            Margin="90,0,0,0"
                             Content="+"
                             Command="{Binding IncrementTime1}"
                             />
 
-                
-                <TextBox
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Style="{StaticResource EditOrCreateTextbox}"
-                        Text="{Binding ElementName=CalendarStart, Path=SelectedDate,StringFormat='{}{0:dd/MM/yyyy}', UpdateSourceTrigger=PropertyChanged}"/>
+                <Border 
+                    Grid.Row="1" 
+                    Grid.Column="2"
+                    Width="Auto"
+                    Margin="10,0,10,0"
+                    Padding="5" 
+                    Height="30" 
+                    CornerRadius="10" 
+                    BorderThickness="1" 
+                    BorderBrush="Black">
+                    <TextBox x:Name="Date1"
+                            BorderThickness="0"
+                            Width="Auto"
+                            Height="Auto"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=CalendarStart, Path=SelectedDate,StringFormat='{}{0:dd/MM/yyyy}', UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                </Border>
 
                 <Label
                         Grid.Column="0"
                         Grid.Row="2"
+                        Grid.ColumnSpan="3"
                         Style="{StaticResource DataTitle}"
                         >Príchod:
                 </Label>
                 <Button 
                     Grid.Column="0" Grid.Row="3"
-                    Background="Transparent" 
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="Auto" Height="50"
+                    Style="{StaticResource CalendarIcon}" 
+                    Height="40"
                     Command="{Binding ShowCalendar2}">
 
                     <StackPanel Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Image Source=" http://www.tkdfm.cz/wp-content/uploads/calendar-icon.png" Width="50" Height="50"/>
+                        <Image Source=" http://www.tkdfm.cz/wp-content/uploads/calendar-icon.png" Width="40" Height="40"/>
                     </StackPanel>
                 </Button>
 
@@ -385,7 +403,7 @@
                             Grid.Row="3"
                             Style="{StaticResource AddOrSubTime}"
                             HorizontalAlignment="Left"
-                            Margin="90,0,0,0"
+                            Margin="15,0,0,0"
                             Content="-"
                             Command="{Binding DecrementTime2}"
                             />
@@ -395,16 +413,30 @@
                             Grid.Row="3" 
                             Style="{StaticResource AddOrSubTime}"
                             HorizontalAlignment="Left"
-                            Margin="15,0,0,0"
+                            Margin="90,0,0,0"
                             Content="+"
                             Command="{Binding IncrementTime2}"
                             />
 
-                <TextBox
-                        Grid.Row="3"
-                        Grid.Column="2"
-                        Style="{StaticResource EditOrCreateTextbox}"
-                        Text="{Binding ElementName=CalendarEnd, Path=SelectedDate,StringFormat='{}{0:dd/MM/yyyy}', UpdateSourceTrigger=PropertyChanged}"/>
+                <Border 
+                    Grid.Row="3" 
+                    Grid.Column="2"
+                    Width="Auto"
+                    Margin="10,0,10,0"
+                    Padding="5" 
+                    Height="30" 
+                    CornerRadius="10" 
+                    BorderThickness="1" 
+                    BorderBrush="Black">
+                    <TextBox x:Name="Date2"
+                            BorderThickness="0"
+                            Width="Auto"
+                            Height="Auto"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ElementName=CalendarEnd, Path=SelectedDate,StringFormat='{}{0:dd/MM/yyyy}', UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                </Border>                
 
 
                 <Label
