@@ -49,6 +49,48 @@ public static class ShareRideSeeds
         Driver = UserSeeds.PassengerTest69
     };
 
+    public static readonly ShareRideEntity ShareRideWithoutPass1 = new(
+        Id: Guid.Parse(input: "20C97578-A2B7-4B46-991D-4DC0A29AE4B1"),
+        FromPlace: "Ilava",
+        ToPlace: "Viena",
+        LeaveTime: new DateTime(2022, 6, 13, 14, 30, 0),
+        ArriveTime: new DateTime(2022, 6, 13, 16, 30, 0),
+        Cost: 6,
+        CarId: CarSeeds.CarToBeUpdated.Id,
+        DriverId: UserSeeds.DriverTest72.Id)
+    {
+        Car = CarSeeds.CarToBeUpdated,
+        Driver = UserSeeds.DriverTest72
+    };
+
+    public static readonly ShareRideEntity ShareRideWithoutPass2 = new(
+        Id: Guid.Parse(input: "5A1514DB-46DE-4BDD-A89C-4EA677966891"),
+        FromPlace: "Ilava",
+        ToPlace: "Viena",
+        LeaveTime: new DateTime(2022, 6, 13, 14, 30, 0),
+        ArriveTime: new DateTime(2022, 6, 13, 16, 30, 0),
+        Cost: 6,
+        CarId: CarSeeds.CarToBeUpdated.Id,
+        DriverId: UserSeeds.DriverTest72.Id)
+    {
+        Car = CarSeeds.CarToBeUpdated,
+        Driver = UserSeeds.DriverTest72
+    };
+
+    public static readonly ShareRideEntity ShareRideWithoutPass3 = new(
+        Id: Guid.Parse(input: "6B059CC3-48CB-40F1-AD16-FA07AF25E739"),
+        FromPlace: "Ilava",
+        ToPlace: "Viena",
+        LeaveTime: new DateTime(2022, 6, 13, 14, 30, 0),
+        ArriveTime: new DateTime(2022, 6, 13, 16, 30, 0),
+        Cost: 6,
+        CarId: CarSeeds.CarToBeUpdated.Id,
+        DriverId: UserSeeds.DriverTest72.Id)
+    {
+        Car = CarSeeds.CarToBeUpdated,
+        Driver = UserSeeds.DriverTest72
+    };
+
     public static readonly ShareRideEntity ShareRideToBeUpdated2 = new(
         Id: Guid.Parse(input: "e83ff5b2-9a73-459b-ac08-f71c1bf53968"),
         FromPlace: "Trencin",
@@ -73,7 +115,10 @@ public static class ShareRideSeeds
             ShareRideEntityUpdate with { Car = null, Driver = null },
             ShareRideEntityDelete with { Car = null, Driver = null },
             ShareRideToBeUpdated1 with { Car = null, Driver = null },
-            ShareRideToBeUpdated2 with { Car = null, Driver = null }
+            ShareRideToBeUpdated2 with { Car = null, Driver = null },
+            ShareRideWithoutPass1 with { Car = null, Driver = null },
+            ShareRideWithoutPass2 with { Car = null, Driver = null },
+            ShareRideWithoutPass3 with { Car = null, Driver = null }
         );
     }
 }

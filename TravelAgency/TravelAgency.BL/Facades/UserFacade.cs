@@ -17,17 +17,6 @@ namespace TravelAgency.BL.Facades
             _mapper = mapper;
         }
 
-        public async Task<bool> CanIAddNewCar(UserDetailModel user)
-        {
-            //Need one await to prevent Warning about async function without await inside
-            await using var uow = _unitOfWorkFactory.Create();
-            //Max supported cars per user is set to 3
-            if (user.Cars.Count < 3)
-            {
-                return true;
-            }
-            return false;
-        }
 
 
         public async Task<bool> SignUpForShareRideAsPassenger(UserDetailModel user, ShareRideDetailModel model)
@@ -83,13 +72,13 @@ namespace TravelAgency.BL.Facades
                 };
                 
 
-                user.PassengerShareRides.Add(newPassengerAndShareRideRelation);
+                //user.PassengerShareRides.Add(newPassengerAndShareRideRelation);
 
-                await uow
-                    .GetRepository<UserEntity>()
-                    .InsertOrUpdateAsync(user, _mapper)
-                    .ConfigureAwait(false);
-                await uow.CommitAsync();
+                //await uow
+                //    .GetRepository<UserEntity>()
+                //    .InsertOrUpdateAsync(user, _mapper)
+                ////    .ConfigureAwait(false);
+                //await uow.CommitAsync();
 
                 await uow
                     .GetRepository<PassengerOfShareRideEntity>()

@@ -19,8 +19,9 @@ namespace TravelAgency.BL.Facades
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ShareRideListModel>> GetFilteredShareRidesAsync(
-            DateTime ? startTime = null, DateTime ? finishTime = null,
+        public async Task<IEnumerable<ShareRideDetailModel>> GetFilteredShareRidesAsync(
+            DateTime ? startTimeFrom = null, DateTime ? finishTimeFrom = null,
+            DateTime? startTimeTo = null, DateTime? finishTimeTo = null,
             string ? startLocation = null, string ? destinationLocation = null
             )
         {
@@ -39,19 +40,75 @@ namespace TravelAgency.BL.Facades
                 query = query.Where(ride => ride.ToPlace.ToUpper() == destinationLocation.ToUpper());
             }
 
-            if(startTime != null)
+            if(startTimeFrom != null)
             {                                                   
-                query = query.Where(ride =>DateTime.Compare(ride.LeaveTime, (DateTime)(startTime)) >= 0 );
+                query = query.Where(ride =>DateTime.Compare(ride.LeaveTime, (DateTime)(startTimeFrom)) >= 0 );
             }
-            
-            if(finishTime != null)
+
+            if (startTimeTo != null)
             {
-                query = query.Where(ride => DateTime.Compare(ride.ArriveTime, (DateTime)(finishTime)) <= 0);
+                query = query.Where(ride => DateTime.Compare(ride.LeaveTime, (DateTime)(startTimeTo)) <= 0);
             }
+
+            if (finishTimeFrom != null)
+            {
+                query = query.Where(ride => DateTime.Compare(ride.ArriveTime, (DateTime)(finishTimeFrom)) >= 0);
+            }
+
+            if (finishTimeTo != null)
+            {
+                query = query.Where(ride => DateTime.Compare(ride.ArriveTime, (DateTime)(finishTimeTo)) <= 0);
+            }
+
+
+            return await _mapper.ProjectTo<ShareRideDetailModel>(query).ToArrayAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IEnumerable<ShareRideListModel>> GetDriverShareRides(Guid DriverId)
+        {
+            await using var uow = _unitOfWorkFactory.Create();
+            var query = uow
+                .GetRepository<ShareRideEntity>()
+                .Get()
+                .Where(e=>e.DriverId == DriverId);
+
+            
 
 
             return await _mapper.ProjectTo<ShareRideListModel>(query).ToArrayAsync().ConfigureAwait(false);
         }
+
+
+        public async Task<IEnumerable<ShareRideListModel>> GetUserPassengerShareRides(Guid PassengerId)
+        {
+            await using var uow = _unitOfWorkFactory.Create();
+            var query = uow
+                .GetRepository<PassengerOfShareRideEntity>()
+                .Get()
+                .Where(e => e.PassengerId == PassengerId);
+
+            
+            var shareRideQuery = uow.GetRepository<ShareRideEntity>()
+                .Get();
+
+            if (!query.Any())
+            {
+                shareRideQuery = shareRideQuery.Where(e => e.Id == Guid.Empty);
+            }
+            else
+            {
+
+                foreach (var value in query)
+                {
+
+                    shareRideQuery = shareRideQuery.Where(e => e.Id == value.ShareRideId);
+                }
+            }
+            
+
+            return await _mapper.ProjectTo<ShareRideListModel>(shareRideQuery).ToArrayAsync().ConfigureAwait(false);
+        }
+
 
 
         public async Task<int> IsShareRideFull(ShareRideDetailModel model)

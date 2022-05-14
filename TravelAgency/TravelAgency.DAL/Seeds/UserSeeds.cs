@@ -12,7 +12,7 @@ public static class UserSeeds
         Surname: "Smith",
         Email: "davidsmith@gmail.com",
         PhoneNumber: "+421789564111",
-        PhotoUrl: null);
+        PhotoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2l3ICDx95MWJd7nvoOej3VtuY6_NRp2knsPYQOjqn25ddXDrD2kZvXUVbwSL8CCF4knY&usqp=CAU");
 
     public static readonly UserEntity Passenger1 = new(
         Id: Guid.Parse(input: "061f3338-0d39-4549-8b7d-ec74f76ba4b1"),
@@ -21,7 +21,7 @@ public static class UserSeeds
         Surname: "Taylor",
         Email: "emanueltaylor@gmail.com",
         PhoneNumber: "+421045256789",
-        PhotoUrl: null);
+        PhotoUrl: "https://1884403144.rsc.cdn77.org/foto/isaiah-webb-vousy-obrazem-sochy/Zml0LWluLzk3OHg5OTk5L2ZpbHRlcnM6cXVhbGl0eSg4NSk6bm9fdXBzY2FsZSgpL2ltZw/2212462.jpg?v=0&st=GNp19ktMcBCOScTY-0DRhI5CEgdVtDqNRvYt2Yw945M&ts=1600812000&e=0");
 
     public static readonly UserEntity Passenger2 = new(
         Id: Guid.Parse(input: "05553338-0d39-4549-8b7d-ec74f76ba4b1"),
@@ -30,7 +30,7 @@ public static class UserSeeds
         Surname: "Green",
         Email: "emilygreen@gmail.com",
         PhoneNumber: "+421124569785",
-        PhotoUrl: null);
+        PhotoUrl: "https://pbs.twimg.com/media/FBfpjhsX0AQqBBH.png");
 
     static UserSeeds()
     {

@@ -1,0 +1,101 @@
+﻿<local:UserControlBase x:Class="TravelAgency.App.Views.ProfileInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelAgency.App.Views"
+             xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:UserDetailViewModel}"
+             d:DesignHeight="450" d:DesignWidth="800">
+            
+    <Grid Background="{StaticResource DefaultForegroundBrightBrush}" 
+          Visibility="{Binding IsVisibleProfile, Converter={StaticResource BoolToVis}}" Margin="-2,0,2,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+        
+        <Ellipse  
+            HorizontalAlignment="Left" 
+            Grid.Column="0"
+            Height="100" Width="100" 
+            Margin="20,0,0, 0" >
+            <Ellipse.Fill>
+                <ImageBrush  Stretch="UniformToFill" ImageSource="{Binding Model.PhotoUrl}"/>
+            </Ellipse.Fill>
+
+        </Ellipse>
+
+        <Button Grid.Row="0" 
+                Grid.Column="0"
+                Margin="150,0,0,0" HorizontalAlignment="Left" 
+                Height="30" Width="Auto" 
+                Background="Transparent" 
+                BorderThickness="0"
+                Cursor="Hand"
+                Command="{Binding ShowTextBox}"
+                >
+            <StackPanel Width="auto" Height="auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Image Source="https://cdn.iconscout.com/icon/free/png-256/edit-mode-pencil-tool-change-30495.png" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+
+            <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{StaticResource DataTitle}"
+                    Content="URL:"
+                    Visibility="{Binding Path=EditURL, Converter={StaticResource BoolToVis}}"
+                />
+            <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="50,0,50,0"
+                 Style="{StaticResource EditOrCreateTextbox}"
+                 Text="{Binding Model.PhotoUrl}"
+                 Visibility="{Binding Path=EditURL, Converter={StaticResource BoolToVis}}"
+                 />
+        </Grid>
+        
+        <Grid  Grid.Row="1" Margin="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="1*"/>
+                <ColumnDefinition  Width="2*"/>
+                <ColumnDefinition  Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource DataTitle}" >Login:</Label>
+            <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource DataTitle}" >Meno:</Label>
+            <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource DataTitle}" >Priezvisko:</Label>
+            <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource DataTitle}" >E-mail:</Label>
+            <Label Grid.Column="0" Grid.Row="4" Style="{StaticResource DataTitle}" >Tel.č:</Label>
+
+            <Label Grid.Column="1" Grid.Row="0" FontSize="15" Content="{Binding Model.Login}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}"  Grid.Column="1" Grid.Row="1" Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}" Grid.Column="1" Grid.Row="2" Text="{Binding Model.Surname, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}" Grid.Column="1" Grid.Row="3" Text="{Binding Model.Email, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Style="{StaticResource EditOrCreateTextbox}" Grid.Column="1" Grid.Row="4" Text="{Binding Model.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+            
+            <Button Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5" Style="{StaticResource RedButton}" Content="Uložiť zmeny" Command="{Binding SaveCommand}"/>
+        </Grid>
+
+
+    </Grid>
+</local:UserControlBase>

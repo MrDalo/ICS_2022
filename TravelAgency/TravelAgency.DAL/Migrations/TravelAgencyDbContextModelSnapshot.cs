@@ -17,25 +17,10 @@ namespace TravelAgency.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ShareRideEntityUserEntity", b =>
-                {
-                    b.Property<Guid>("PassengerShareRidesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PassengersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("PassengerShareRidesId", "PassengersId");
-
-                    b.HasIndex("PassengersId");
-
-                    b.ToTable("PassengerOfShareRide", (string)null);
-                });
 
             modelBuilder.Entity("TravelAgency.DAL.Entities.CarEntity", b =>
                 {
@@ -73,6 +58,24 @@ namespace TravelAgency.DAL.Migrations
                     b.ToTable("Cars");
                 });
 
+            modelBuilder.Entity("TravelAgency.DAL.Entities.PassengerOfShareRideEntity", b =>
+                {
+                    b.Property<Guid>("PassengerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ShareRideId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PassengerId", "ShareRideId");
+
+                    b.HasIndex("ShareRideId");
+
+                    b.ToTable("PassengerOfShareRide");
+                });
+
             modelBuilder.Entity("TravelAgency.DAL.Entities.ShareRideEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -82,7 +85,7 @@ namespace TravelAgency.DAL.Migrations
                     b.Property<DateTime>("ArriveTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CarId")
+                    b.Property<Guid?>("CarId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Cost")
@@ -145,21 +148,6 @@ namespace TravelAgency.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ShareRideEntityUserEntity", b =>
-                {
-                    b.HasOne("TravelAgency.DAL.Entities.ShareRideEntity", null)
-                        .WithMany()
-                        .HasForeignKey("PassengerShareRidesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TravelAgency.DAL.Entities.UserEntity", null)
-                        .WithMany()
-                        .HasForeignKey("PassengersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("TravelAgency.DAL.Entities.CarEntity", b =>
                 {
                     b.HasOne("TravelAgency.DAL.Entities.UserEntity", "Owner")
@@ -171,13 +159,31 @@ namespace TravelAgency.DAL.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("TravelAgency.DAL.Entities.PassengerOfShareRideEntity", b =>
+                {
+                    b.HasOne("TravelAgency.DAL.Entities.UserEntity", "Passenger")
+                        .WithMany("PassengerShareRides")
+                        .HasForeignKey("PassengerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TravelAgency.DAL.Entities.ShareRideEntity", "ShareRide")
+                        .WithMany("Passengers")
+                        .HasForeignKey("ShareRideId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Passenger");
+
+                    b.Navigation("ShareRide");
+                });
+
             modelBuilder.Entity("TravelAgency.DAL.Entities.ShareRideEntity", b =>
                 {
                     b.HasOne("TravelAgency.DAL.Entities.CarEntity", "Car")
                         .WithMany()
                         .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("TravelAgency.DAL.Entities.UserEntity", "Driver")
                         .WithMany("DriverShareRides")
@@ -190,11 +196,18 @@ namespace TravelAgency.DAL.Migrations
                     b.Navigation("Driver");
                 });
 
+            modelBuilder.Entity("TravelAgency.DAL.Entities.ShareRideEntity", b =>
+                {
+                    b.Navigation("Passengers");
+                });
+
             modelBuilder.Entity("TravelAgency.DAL.Entities.UserEntity", b =>
                 {
                     b.Navigation("Cars");
 
                     b.Navigation("DriverShareRides");
+
+                    b.Navigation("PassengerShareRides");
                 });
 #pragma warning restore 612, 618
         }

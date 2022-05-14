@@ -21,25 +21,32 @@ namespace TravelAgency.BL.Tests
             _shareRideFacadeSUT = new ShareRideFacade(UnitOfWorkFactory, Mapper);
         }
 
+        
+
+
         [Fact]
-        public async Task Create_WithNonExistingItem_DoesNotThrow()
+        public async Task GetDriverPassengerShareRidesTest()
         {
-            var model = new ShareRideDetailModel
-            (
-                FromPlace: "Moscow",
-                ToPlace: "Trencin",
-                LeaveTime: new DateTime (2022,10,12,12,50,30),
-                ArriveTime: new DateTime(2022, 10, 14, 12, 50, 30),
-                Cost: 50,
-                CarId: Guid.Parse(input: "1206bea4-b4b2-41a1-bf70-4dc610283298"),
-                DriverId: Guid.Parse(input: "4c5df605-d676-4c25-98d8-5b795c7b6503")
+            var share_rides =
+                await _shareRideFacadeSUT.GetUserPassengerShareRides(Guid.Parse(input: "87B869FC-8356-4440-9CB7-43E3A996F165"));
 
-            );
 
-            var returnedModel = await _shareRideFacadeSUT.SaveAsync(model);
-            FixIds(model,returnedModel);
-            DeepAssert.Equal(model, returnedModel);
+            DeepAssert.Equal(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntity1), share_rides.First());
         }
+
+
+
+        [Fact]
+        public async Task GetDriverShareRides()
+        {
+            var share_rides =
+                await _shareRideFacadeSUT.GetDriverShareRides(Guid.Parse(input: "4c5df605-d676-4c25-98d8-5b795c7b6503"));
+            
+
+            DeepAssert.Equal(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntity1), share_rides.First());
+        }
+
+
 
         [Fact]
         public async Task ShareRide_FromTrencin()
@@ -47,20 +54,19 @@ namespace TravelAgency.BL.Tests
             var share_rides = await _shareRideFacadeSUT.GetFilteredShareRidesAsync(startLocation: "Trencin");
             var share_ride = ShareRideSeeds.ShareRideToBeUpdated2;
 
-            DeepAssert.Equal(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideToBeUpdated2), share_rides.First());
+            DeepAssert.Equal(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideToBeUpdated2), share_rides.First());
         }
 
         [Fact]
-        public async Task ShareRides_ToBrno()
+        public async Task ShareRides_ToViena()
         {
-            var share_rides = await _shareRideFacadeSUT.GetFilteredShareRidesAsync(destinationLocation: "Brno");
-            IList<ShareRideListModel> ref_share_rides = new List<ShareRideListModel>();
-            ref_share_rides.Add(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideToBeUpdated1));
-            ref_share_rides.Add(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntity1));
-            ref_share_rides.Add(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntityDelete));
-            ref_share_rides.Add(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntityUpdate));
+            var share_rides = await _shareRideFacadeSUT.GetFilteredShareRidesAsync(destinationLocation: "Viena");
+            IList<ShareRideDetailModel> ref_share_rides = new List<ShareRideDetailModel>();
+            ref_share_rides.Add(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideWithoutPass1));
+            ref_share_rides.Add(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideWithoutPass2));
+            ref_share_rides.Add(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideWithoutPass3));
 
-            IEnumerable<ShareRideListModel> enum_ref_share_rides = ref_share_rides;
+            IEnumerable<ShareRideDetailModel> enum_ref_share_rides = ref_share_rides;
 
             DeepAssert.Equal(enum_ref_share_rides, share_rides);
         }
@@ -69,13 +75,13 @@ namespace TravelAgency.BL.Tests
         [Fact]
         public async Task ShareRides_FromTime()
         {
-            var share_rides = await _shareRideFacadeSUT.GetFilteredShareRidesAsync(startTime: new DateTime(2022, 4, 12, 12, 20, 0));
-            IList<ShareRideListModel> ref_share_rides = new List<ShareRideListModel>();
-            ref_share_rides.Add(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntity1));
-            ref_share_rides.Add(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntityDelete));
-            ref_share_rides.Add(Mapper.Map<ShareRideListModel>(ShareRideSeeds.ShareRideEntityUpdate));
+            var share_rides = await _shareRideFacadeSUT.GetFilteredShareRidesAsync(startTimeFrom: new DateTime(2022, 6, 12, 12, 20, 0));
+            IList<ShareRideDetailModel> ref_share_rides = new List<ShareRideDetailModel>();
+            ref_share_rides.Add(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideWithoutPass1));
+            ref_share_rides.Add(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideWithoutPass2));
+            ref_share_rides.Add(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideWithoutPass3));
 
-            IEnumerable<ShareRideListModel> enum_ref_share_rides = ref_share_rides;
+            IEnumerable<ShareRideDetailModel> enum_ref_share_rides = ref_share_rides;
 
             DeepAssert.Equal(enum_ref_share_rides, share_rides);
         }
@@ -118,52 +124,6 @@ namespace TravelAgency.BL.Tests
             DeepAssert.Equal(Mapper.Map<ShareRideDetailModel>(ShareRideSeeds.ShareRideToBeUpdated2), share_ride);
         }
 
-        [Fact]
-        public async Task CreateNewShareRide()
-        {
-            var model = new ShareRideDetailModel
-            (
-                FromPlace: "New York",
-                ToPlace: "Canada",
-                LeaveTime: new DateTime(2022, 10, 12, 12, 50, 30),
-                ArriveTime: new DateTime(2022, 10, 14, 12, 50, 30),
-                Cost: 50,
-                CarId: Guid.Parse(input: "1206bea4-b4b2-41a1-bf70-4dc610283298"),
-                DriverId: Guid.Parse(input: "4c5df605-d676-4c25-98d8-5b795c7b6503")
-
-            );
-
-            var returnedModel = await _shareRideFacadeSUT.SaveAsync(model);
-            FixIds(model, returnedModel);
-            DeepAssert.Equal(model, returnedModel);
-        }
-
-
-
-        [Fact]
-        public async Task SeedsCars_SeedersUpdated()
-        {
-            var currently_update = new ShareRideDetailModel(
-                FromPlace: ShareRideSeeds.ShareRideToBeUpdated1.FromPlace,
-                ToPlace: ShareRideSeeds.ShareRideToBeUpdated1.ToPlace,
-                Cost: ShareRideSeeds.ShareRideToBeUpdated1.Cost,
-                LeaveTime: ShareRideSeeds.ShareRideToBeUpdated1.LeaveTime,
-                ArriveTime: ShareRideSeeds.ShareRideToBeUpdated1.ArriveTime,
-                CarId: ShareRideSeeds.ShareRideToBeUpdated1.CarId,
-                DriverId: ShareRideSeeds.ShareRideToBeUpdated1.DriverId)
-            {
-                Id = ShareRideSeeds.ShareRideToBeUpdated1.Id
-            };
-
-            currently_update.LeaveTime = new DateTime(2022, 2, 13, 5, 43, 0);
-
-            await _shareRideFacadeSUT.SaveAsync(currently_update);
-
-            await using var dbxAssert = await DbContextFactory.CreateDbContextAsync();
-            var ShareRideFromDb = await dbxAssert.ShareRides.SingleAsync(i => i.Id == currently_update.Id);
-            DeepAssert.Equal(currently_update, Mapper.Map<ShareRideDetailModel>(ShareRideFromDb));
-
-        }
 
 
 

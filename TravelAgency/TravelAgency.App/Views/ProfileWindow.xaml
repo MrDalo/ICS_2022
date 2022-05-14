@@ -1,0 +1,45 @@
+﻿<local:UserControlBase x:Class="TravelAgency.App.Views.ProfileWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TravelAgency.App.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid Background="{StaticResource DefaultForegroundBrightBrush}" Visibility="{Binding IsVisible, Converter={StaticResource BoolToVis}}">
+        
+        <Grid  Background="{StaticResource DefaultBackgroundBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <Grid  Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding Home}" Grid.Row="1" >Domov</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding ToProfileInfo}" Grid.Row="2" >Profil</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding ToUserCars}" Grid.Row="3" >Moje Autá</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding ToUserShareRides}" Grid.Row="4" >Moje jazdy</Button>
+                <Button Style="{StaticResource ProfileButton}" Command="{Binding LogOut}" Grid.Row="5">Odhlásiť</Button>
+
+            </Grid>
+        </Grid>
+
+        <TextBlock Grid.Row="0" Style="{StaticResource ProfileViewLogo}" HorizontalAlignment="Center">            
+            ICS
+            <LineBreak/>
+            travel agency
+        </TextBlock>
+
+    </Grid>
+</local:UserControlBase>
