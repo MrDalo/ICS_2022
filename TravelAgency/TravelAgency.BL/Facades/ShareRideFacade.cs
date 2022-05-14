@@ -97,14 +97,14 @@ namespace TravelAgency.BL.Facades
             }
             else
             {
-
+                List<Guid> Guids = new();
                 foreach (var value in query)
                 {
-
-                    shareRideQuery = shareRideQuery.Where(e => e.Id == value.ShareRideId);
+                    Guids.Add(value.ShareRideId);
                 }
+
+                shareRideQuery = shareRideQuery.Where(e => Guids.Contains(e.Id));
             }
-            
 
             return await _mapper.ProjectTo<ShareRideListModel>(shareRideQuery).ToArrayAsync().ConfigureAwait(false);
         }
