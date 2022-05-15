@@ -46,7 +46,7 @@
         <Grid Grid.Row="0"
               Grid.Column="0" 
               Grid.ColumnSpan="2"
-              Background="Black"
+              Background="#222"
               Panel.ZIndex="10000">
             
             <Grid.ColumnDefinitions>
