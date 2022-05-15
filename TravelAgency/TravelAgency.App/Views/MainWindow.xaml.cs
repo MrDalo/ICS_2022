@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 using TravelAgency.App.ViewModels;
 
@@ -13,6 +14,12 @@ namespace TravelAgency.App.Views
         {
             InitializeComponent();
             DataContext = mainViewModel;
+        }
+
+        private void DragGrid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
         }
     }
 }
