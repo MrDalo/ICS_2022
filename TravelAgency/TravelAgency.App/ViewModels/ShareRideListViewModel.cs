@@ -63,8 +63,8 @@ namespace TravelAgency.App.ViewModels
         {
             // user can edit only share rides as a driver
             DriverShareRides.Clear();
-            var shareRides = await _shareRideFacade.GetAll();
-            DriverShareRides.AddRange(shareRides);
+            var driverShareRides = await _shareRideFacade.GetDriverShareRides(_userGuid);
+            DriverShareRides.AddRange(driverShareRides);
         }
 
         private async void LoadShareRides(LoadUserProfile obj)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using TravelAgency.App.Commands;
 using TravelAgency.App.Messages;
@@ -11,6 +12,9 @@ namespace TravelAgency.App.ViewModels
     {
         private readonly IMediator _mediator;
         public ICommand OpenProfile { get; }
+        public ICommand ExitApplication { get; set; }
+        public ICommand MinimizeApplication { get; set; }
+        public ICommand MaximizeApplication { get; set; }
 
         public MainViewModel(
                 IUserListViewModel userListViewModel,
@@ -42,6 +46,10 @@ namespace TravelAgency.App.ViewModels
 
             _mediator = mediator;
 
+            ExitApplication = new RelayCommand(Exit);
+            MinimizeApplication = new RelayCommand(Minimize);
+            MaximizeApplication = new RelayCommand(Maximize);
+
             mediator.Register<SelectedMessage<UserWrapper>>(OnUserSelected);
             mediator.Register<NewMessage<UserWrapper>>(OnUserNewMessage);
             mediator.Register<SelectedMessage<CarWrapper>>(OnCarSelected);
@@ -70,7 +78,19 @@ namespace TravelAgency.App.ViewModels
         public ICarDetailViewModel CarDetailViewModel { get; }
         public IShareRideDetailViewModel ShareRideDetailViewModel { get; }
 
+        private void Exit()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
 
+        private void Minimize()
+        {
+            System.Windows.Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+        private void Maximize()
+        {
+            System.Windows.Application.Current.MainWindow.WindowState = System.Windows.Application.Current.MainWindow.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        }
         private void OnProfileButtonClicked()
         {
             // Load User Cars into Profile

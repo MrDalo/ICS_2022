@@ -7,20 +7,92 @@
         xmlns:views="clr-namespace:TravelAgency.App.Views"
         xmlns:viewModels="clr-namespace:TravelAgency.App.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        MinHeight="450" MinWidth="800"
-        d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
-
+        Title="MainWindow"
+        WindowStyle="None"
+        Height="480" Width="800"
+        MinHeight="480" MinWidth="800"
+        WindowStartupLocation="CenterScreen"
+        Style="{DynamicResource MyStyle}"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
+        Icon="Images/Icon.png">
+    <Window.Resources>
+        <Style x:Key="MyStyle" TargetType="{x:Type Window}">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="0"
+                                CornerRadius="20"
+                                GlassFrameThickness="0"
+                                NonClientFrameEdges="None"
+                                ResizeBorderThickness="3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Background="{StaticResource DefaultBackgroundBrush}">
 
-       
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid Grid.Row="0"
+              Grid.Column="0" 
+              Grid.ColumnSpan="2"
+              Background="#222"
+              Panel.ZIndex="10000">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="DragGrid" IsHitTestVisible="True" PreviewMouseDown="DragGrid_PreviewMouseDown"
+                  Cursor="Hand"
+                  Background="Transparent"
+                  Grid.Column="0"
+                  Panel.ZIndex="10005"/>
+
+            <Grid Grid.Column="1"
+                  Panel.ZIndex="10001">
+                
+                <Button 
+                        Style="{StaticResource ExitButton}"
+                        Content="X"
+                        Command="{Binding ExitApplication}"/>
+                <Button 
+                        Style="{StaticResource MinimizeButton}"
+                        Content="-"
+                        Command="{Binding MinimizeApplication}"/>
+                <Button 
+                        Style="{StaticResource MaximizeButton}"
+                        Content="O"
+                        Command="{Binding MaximizeApplication}"/>
+            </Grid>
+
+
+            
+            <Ellipse
+                    Grid.Column="0"     
+                    HorizontalAlignment="Left"
+                    Margin="2"
+                    Panel.ZIndex="10001"
+                    Height="25" Width="25">
+                    <Ellipse.Fill>
+                        <ImageBrush  Stretch="UniformToFill" ImageSource="Images/Icon.png"/>
+                    </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
 
         <Ellipse
+            Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Style="{StaticResource EllipseLogo}"
@@ -28,6 +100,7 @@
         </Ellipse>
 
         <TextBlock 
+            Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Style="{StaticResource ProfileViewLogo}"
@@ -39,7 +112,8 @@
         </TextBlock>
 
 
-        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50"   
+        <Button Grid.Row="1"
+                Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50"   
                 Height="50"
                 Margin="0,20,20, 0"
                 Background="Transparent"
@@ -63,6 +137,7 @@
         </Button>
 
         <Label
+            Grid.Row="1"
             Grid.Column="1"
             VerticalAlignment="Top"
             HorizontalAlignment="Right"
@@ -74,6 +149,7 @@
             />
 
         <views:LoginInterface x:Name="LoginPage"
+                              Grid.Row="1"
                               Grid.Column="0"
                               DataContext="{Binding UserListViewModel}" 
                               Height="200" 
@@ -82,69 +158,75 @@
 
 
         <views:UserRegister x:Name="RegistrationPage"
+                              Grid.Row="1"
                               Grid.Column="0"
                               DataContext="{Binding UserDetailViewModel}"
                               Grid.ColumnSpan="2"/>
 
         <views:SelectOption x:Name="SelectOption"
-            Grid.Column="0"
-            DataContext="{Binding SelectOptionViewModel}" 
-            Height="205" 
-            Width="405" 
-            Grid.ColumnSpan="2"
-        />
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            DataContext="{Binding SelectOptionViewModel}" 
+                            Height="205" 
+                            Width="405" 
+                            Grid.ColumnSpan="2"/>  
 
         <views:CreateRide x:Name="CreateRide"
+                            Grid.Row="1"
                             Grid.Column="0"
                             DataContext="{Binding CreateRideViewModel}" 
                             Grid.ColumnSpan="2"
         />
 
         <views:SearchRide
-            x:Name="SearchRide"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            DataContext="{Binding SearchRideViewModel}" 
-        />
+                            x:Name="SearchRide"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            DataContext="{Binding SearchRideViewModel}" />
 
         <views:FilteredRides x:Name="FilteredRides"
+                             Grid.Row="1"
                              Grid.Column="0"
                              DataContext="{Binding FilteredRidesViewModel}"
                              Grid.ColumnSpan="2"/>
 
         <views:ProfileWindow
-            Grid.Column="0"
-            DataContext="{Binding ProfileWindowViewModel}"
-            />
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            DataContext="{Binding ProfileWindowViewModel}"/>
 
         <views:ProfileInfo
-            Grid.Column="1" DataContext="{Binding UserDetailViewModel}"/>
+                            Grid.Column="1" 
+                            Grid.Row="1"
+                            DataContext="{Binding UserDetailViewModel}"/>
 
         <views:UserCars
-            Grid.Column="1"/>
+                            Grid.Column="1"
+                            Grid.Row="1"/>
 
         <views:UserRides
-            Grid.Column="1" 
-            DataContext="{Binding ShareRideListViewModel}"/>
+                            Grid.Column="1" 
+                            Grid.Row="1"
+                            DataContext="{Binding ShareRideListViewModel}"/>
            
         <views:FilteredRides
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Grid.Row="0"
-            Visibility="Collapsed"
-            />
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            Visibility="Collapsed"/>
 
         <views:CarUpdate
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Grid.Row="0"
-            DataContext="{Binding CarDetailViewModel}"/>
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            DataContext="{Binding CarDetailViewModel}"/>
         
         <views:ShareRideUpdate
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Grid.Row="0"
-            DataContext="{Binding ShareRideDetailViewModel}"/>
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            DataContext="{Binding ShareRideDetailViewModel}"/>
 
     </Grid>
 </Window>
