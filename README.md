@@ -1,20 +1,28 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+**Application name:** Travel Agency\
+**OS:** Windows\
+**Idle:** Visual Studio 2022\
+**Development hosted:** Azure DevOps
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+ICS Travel Agency is a desktop app for Windows OS that serves to connect people offering share rides by car. This app was created as a project for subject C# seminar at FIT BUT. It was created in C# (Entity framework Core - DB, Fluent API, WPF - front-end) with using OOP principes/design patterns/concepts as factories, mappers, unit of work, facades, repositories, models, wrappers and design pattern MVVM.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+## Team members
+- Patrik Sehnoutek
+- Marcel Feiler
+- Dalibor Králik
+- Ján Svitana
+- Lukáš Chytil
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## GUI
+Mock-up was created in Figma.\
+**Link to prototype:** https://bit.ly/3PzUWjo 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## Build and Test
+Automatic tests in Azure DevOps in the form of CI pipeline.
+
+Tests are located in three different folders:
+- BL.Tests (tests for business layer)
+- DAL.Tests (tests for data access layer)
+- Common.Tests
+
+Firstly, open project **TravelAgency.sln** in Visual Studio and build it.
